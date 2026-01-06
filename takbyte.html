@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Takbyte i Skåne – Ferotect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ferotect specialiserar sig på professionella takbyten i Skåne. Vi erbjuder hembesök, offert och trygg process från planering till färdigt tak.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="takbyte-page">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a href="tel:0733451263" class="topbar-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        <div>
+          <p class="topbar-label">Ring oss direkt</p>
+          <p class="topbar-value">073-345 1263</p>
+        </div>
+      </a>
+      <a href="mailto:hej@ferotect.se" class="topbar-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <div>
+          <p class="topbar-label">Mejla oss</p>
+          <p class="topbar-value">hej@ferotect.se</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <header>
+    <div class="nav">
+      <div class="nav-left">
+        <a href="index.html">
+          <img src="Ferotect-logo.png" alt="Ferotect logotyp" class="logo-img">
+        </a>
+        <a href="index.html" class="nav-title">erotect</a>
+      </div>
+
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="index.html#top">Hem</a>
+          <div class="dropdown">
+            <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Tjänster</button>
+            <div class="dropdown-menu">
+              <a href="takbyte.html">Takbyte</a>
+              <a href="solceller.html">Solceller</a>
+              <a href="index.html#platslageri">Plåtslageri</a>
+              <a href="index.html#fasader">Fasader</a>
+            </div>
+          </div>
+          <a href="index.html#why">Varför Ferotect</a>
+          <a href="index.html#roofers">Takläggning</a>
+          <a href="index.html#contact">Kontakt</a>
+        </div>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div id="mobile-menu">
+    <ul>
+      <li><a href="index.html#top">Hem</a></li>
+      <li><a href="takbyte.html">Takbyte</a></li>
+      <li><a href="solceller.html">Solceller</a></li>
+      <li><a href="index.html#platslageri">Plåtslageri</a></li>
+      <li><a href="index.html#fasader">Fasader</a></li>
+      <li><a href="index.html#why">Varför Ferotect</a></li>
+      <li><a href="index.html#roofers">Takläggning</a></li>
+      <li><a href="index.html#contact">Kontakt</a></li>
+    </ul>
+    <div class="mobile-cta">
+      <a href="index.html#contact">Boka hembesök</a>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="hero hero-takbyte">
+      <div>
+        <div class="frosted-box">
+          <div class="hero-kicker">Morgondagens Takbyte</div>
+          <h1>Hantverk som håller i generationer</h1>
+          <p class="hero-lead">
+            Vi hjälper dig genom hela processen – från första <span class="highlight">kostnadsfria hembesöket</span> till ditt färdiga tak. Med Ferotect får du en <span class="highlight">trygg</span> och <span class="highlight">planerad</span> process med högkvalitativa material och erfarna takläggare.
+          </p>
+          <div class="hero-cta-row">
+            <a href="index.html#contact" class="btn-primary">Boka hembesök</a>
+            <a href="#process" class="btn-ghost">Se vår process</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="service-description" class="fade-in">
+      <div class="taktyper-section">
+        <h2 class="section-title">Våra huvudtjänster för takbyte</h2>
+        <p class="section-sub">Vi arbetar med marknadens mest populära och högt värderade taktyper. Välj det som passar ditt hus bäst.</p>
+        
+        <div class="taktyper-grid">
+          <a href="#" class="taktype-card">
+            <div class="taktype-image">
+              <img src="bandtäckning.jpg" alt="Bandtäckning">
+            </div>
+            <div class="taktype-content">
+              <h3>Bandtäckning</h3>
+              <p>Exklusivt material med beprövad livslängd. Bandtäckning erbjuder både skönhet och långsiktig hållbarhet för ditt hem.</p>
+              <div class="taktype-cta">Läs mer →</div>
+            </div>
+          </a>
+
+          <a href="#" class="taktype-card">
+            <div class="taktype-image">
+              <img src="mami.jpg" alt="Takpannor">
+            </div>
+            <div class="taktype-content">
+              <h3>Takpannor</h3>
+              <p>Klassisk estetik möter modern säkerhet. Takpannor är ett tidlöst val som ger ditt hus ett tradicionalt och tryggt utseende.</p>
+              <div class="taktype-cta">Läs mer →</div>
+            </div>
+          </a>
+
+          <a href="#" class="taktype-card">
+            <div class="taktype-image">
+              <img src="papptak.jpg" alt="Papptak">
+            </div>
+            <div class="taktype-content">
+              <h3>Papptak</h3>
+              <p>Modern funktion med ekonomisk användning. Papptak är praktiskt, hållbart och en kostnadseffektiv lösning för många villaägare.</p>
+              <div class="taktype-cta">Läs mer →</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="fade-in">
+      <div class="process-wrapper">
+        <div class="process-header">
+          <div class="process-header-content">
+            <span class="process-eyebrow">FEROTECT PROCESS</span>
+            <h2 class="section-title">Din takbyteresa i <span class="highlight">5 enkla steg</span></h2>
+            <p class="section-sub">En strukturerad, transparent och trygg process från första mötet till ditt nya tak. Vi hanterar allt med expertis och dedikation.</p>
+          </div>
+        </div>
+        
+        <div class="ferotect-method">
+          <div class="steps-container">
+            <div class="step-item" data-step="1">
+              <div class="step-background"></div>
+              <div class="step-header">
+                <div class="step-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+              </div>
+              <div class="step-content">
+                <h4 class="step-title">Hembesök & granskning</h4>
+                <p class="step-description">Kostnadsfritt besök på din egendom. Vi inspekterar ditt tak noggrant och diskuterar dina önskemål och behov.</p>
+              </div>
+              <div class="step-footer">Helt utan bindning</div>
+            </div>
+
+            <div class="step-item" data-step="2">
+              <div class="step-background"></div>
+              <div class="step-header">
+                <div class="step-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4"></path>
+                    <path d="M20 12v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="step-content">
+                <h4 class="step-title">Offert & förslag</h4>
+                <p class="step-description">Detaljerad offert med transparent prissättning. Alla kostnader specificerade – inga överraskningar eller dolda avgifter.</p>
+              </div>
+              <div class="step-footer">Personlig service</div>
+            </div>
+
+            <div class="step-item" data-step="3">
+              <div class="step-background"></div>
+              <div class="step-header">
+                <div class="step-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                </div>
+              </div>
+              <div class="step-content">
+                <h4 class="step-title">Planering & tid</h4>
+                <p class="step-description">Vi bokar ett datum som passar dig perfekt. Flexibel planering med minimal påverkan på din vardag och familj.</p>
+              </div>
+              <div class="step-footer">Dina villkor</div>
+            </div>
+
+            <div class="step-item" data-step="4">
+              <div class="step-background"></div>
+              <div class="step-header">
+                <div class="step-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="step-content">
+                <h4 class="step-title">Professionell utförande</h4>
+                <p class="step-description">Erfarna takläggare arbetar med precision och dedikation. Endast högkvalitativt material och hantverk från start till slut.</p>
+              </div>
+              <div class="step-footer">Expertis garanterad</div>
+            </div>
+
+          </div>
+
+          <div class="step-item step-item-final" data-step="5">
+            <div class="step-background"></div>
+            <div class="step-header">
+              <div class="step-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path>
+                  <polyline points="10 16 6 12 7.41 10.59 10 13.17 16.59 6.58 18 8"></polyline>
+                </svg>
+              </div>
+            </div>
+            <div class="step-content">
+              <h4 class="step-title">Slutlig besiktning</h4>
+              <p class="step-description">Vi inspekterar tillsammans för perfekt resultat. Allt måste vara exakt enligt överenskommelse – inget mindre accepteras.</p>
+            </div>
+            <div class="step-footer">Kvalitetssäkrad</div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact-cta" class="fade-in">
+      <div class="contact-cta-container">
+        <h2 class="section-title">Redo för ett nytt tak?</h2>
+        <p class="section-sub">Kontakta oss idag för en kostnadsfri första dialog och hembesök. Vi återkommer snabbt – personligt och professionellt.</p>
+        <a href="index.html#contact" class="btn-primary btn-large">Boka ditt kostnadsfria hembesök</a>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div class="footer-block footer-about">
+          <h3>Ferotect</h3>
+          <p class="footer-tagline">Takfirma i Skåne med fokus på planerade, trygga och hållbara takbyten.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/ferotect" title="Instagram" class="social-link" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <circle cx="17.5" cy="6.5" r="1.5"></circle>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/ferotect" title="Facebook" class="social-link" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 2h-3a6 6 0 0 0-6 6v3H7v4h2v8h4v-8h3l1-4h-4V8a2 2 0 0 1 2-2h1z"></path>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/ferotect" title="LinkedIn" class="social-link" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-block footer-info">
+          <h4>Adress</h4>
+          <a href="https://maps.google.com/?q=Ullstorp+bygata+77,+Önnestad,+Skåne" target="_blank" rel="noopener noreferrer" class="footer-info-item" style="text-decoration: none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <div>
+              <p class="footer-label">Besöksadress</p>
+              <p class="footer-value">Ullstorp bygata 77<br>Önnestad, Skåne</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="footer-block footer-info">
+          <h4>Kontakt</h4>
+          <div class="footer-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <div>
+              <p class="footer-label">Ring oss</p>
+              <a href="tel:0733451263" class="footer-value">073-345 1263</a>
+            </div>
+          </div>
+          <div class="footer-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <div>
+              <p class="footer-label">E-post</p>
+              <a href="mailto:hej@ferotect.se" class="footer-value">hej@ferotect.se</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-block footer-navigation">
+          <h4>Meny</h4>
+          <nav class="footer-nav">
+            <a href="index.html#top" class="footer-nav-link">Hem</a>
+            <a href="index.html#services" class="footer-nav-link">Vad vi står för</a>
+            <a href="index.html#why" class="footer-nav-link">Din takfirma i Skåne</a>
+            <a href="index.html#roofers" class="footer-nav-link">Våra värderingar</a>
+            <a href="index.html#contact" class="footer-nav-link">Kontakt</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Ferotect. Alla rättigheter reserverade.</p>
+        <div class="footer-bottom-links">
+          <a href="#" class="footer-bottom-link">Integritetspolicy</a>
+          <a href="#" class="footer-bottom-link">Användarvillkor</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
