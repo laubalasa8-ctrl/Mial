@@ -130,7 +130,7 @@ section.stats-section { border-bottom: none; }
   position: relative;
   display: grid;
   gap: 2.5rem;
-  padding: 4rem 1.5rem 5rem;
+  padding: 4rem 1.5rem 1.5rem;
   background-image: linear-gradient(135deg, rgba(42,54,72,0.45), rgba(42,54,72,0.45)), url('Hero-4.0.jpg');
   background-size: cover;
   background-position: center;
@@ -144,6 +144,7 @@ section.stats-section { border-bottom: none; }
   padding-right: calc(1.5rem + (100vw - 100%) / 2);
   z-index: 2;
   overflow: visible;
+  padding-bottom: 5rem;
 }
 .hero > div { position: relative; z-index: 2; max-width: 750px; margin-top: calc(3 * 1.5rem - 3rem); }
 .hero-takbyte { background-image: linear-gradient(135deg, rgba(42,54,72,0.45), rgba(42,54,72,0.45)), url('hejdar.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; padding: 0 1.5rem 5rem; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
@@ -608,7 +609,7 @@ header.scrolled .hamburger span { background: #111; box-shadow: 0 1px 4px rgba(0
   .footer-tagline { font-size: 0.9rem; margin-bottom: 1.2rem; }
   .footer-bottom { flex-direction: column; text-align: center; gap: 1.5rem; }
   .footer-bottom-links { flex-direction: column; gap: 0.8rem; }
-  .hero { height: 80vh; min-height: auto; background-attachment: scroll; padding: 3rem 1.5rem; }
+  .hero { height: auto; min-height: auto; }
   .scroll-indicator { right: calc(100% - 47.5vw); }
 }
 
@@ -622,15 +623,6 @@ header.scrolled .hamburger span { background: #111; box-shadow: 0 1px 4px rgba(0
   .nav-right { display: flex; align-items: center; gap: 0.5rem; }
   .nav-links { display: none; }
   .btn-primary { display: none; }
-  .hero { display: flex; align-items: center; justify-content: center; height: 80vh; min-height: auto; padding: 3rem 1.5rem; background-attachment: scroll; }
-  .hero > div { text-align: center; margin-top: 0; }
-  .hero-kicker { font-size: 0.75rem; margin-bottom: 0.8rem; }
-  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.15; margin-bottom: 1rem; }
-  .hero-lead { font-size: 0.95rem; margin-bottom: 2rem; line-height: 1.6; }
-  .hero-cta-row { gap: 0.8rem; flex-direction: column; }
-  .hero-cta-row .btn-ghost { background: var(--blue); color: white; border-color: var(--blue); }
-  .hero-cta-row .btn-ghost:hover { background: var(--blue-dark); border-color: var(--blue-dark); }
-  .scroll-indicator { display: none; }
   .frosted-box { padding: 2.2rem 1.5rem; margin-left: auto; margin-right: auto; max-width: 100%; margin-top: -6rem; }
   .frosted-box h1 { font-size: clamp(1.8rem, 4vw, 2.2rem); margin-bottom: 1rem; }
   .frosted-box .hero-lead { font-size: 0.95rem; margin-bottom: 1.8rem; line-height: 1.6; }
@@ -689,6 +681,11 @@ header.scrolled .hamburger span { background: #111; box-shadow: 0 1px 4px rgba(0
   .contact-info-value { font-size: 1rem; }
   .contact-form-card { padding: 2.8rem; }
   .form-row { gap: 1rem; }
+  .hero { height: auto; min-height: auto; background-attachment: scroll; padding-top: 1.5rem; padding-bottom: 3rem; background-position: top center; }
+  .hero > div { margin-top: 1rem; }
+  .hero h1 { font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.1; margin-bottom: 0.8rem; }
+  .hero-lead { font-size: 0.95rem; margin-bottom: 1.8rem; line-height: 1.6; }
+  .hero-cta-row { gap: 0.8rem; }
 }
 
 @media (max-width: 600px) {
