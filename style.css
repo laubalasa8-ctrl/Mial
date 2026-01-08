@@ -421,7 +421,7 @@ section.stats-section { border-bottom: none; }
 .why-intro .why-content h2 { font-size: 2.8rem; font-weight: 800; letter-spacing: -1.2px; margin-bottom: 2.2rem; color: var(--text); line-height: 1.2; }
 .why-intro .why-content p { font-size: 1.1rem; line-height: 1.95; color: var(--text-soft); margin-bottom: 1.6rem; }
 .why-intro .why-content p:last-child { margin-bottom: 0; }
-.why-intro .why-image { height: 550px; box-shadow: 0 35px 80px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.1); border-radius: 28px; border: 1px solid rgba(25,168,255,0.12); transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.6s ease; }
+.why-intro .why-image { height: 550px; box-shadow: 0 35px 80px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.1); border-radius: 28px; border: 1px solid rgba(25,168,255,0.12); transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.6s ease; background-image: url('takyto-1.jpg') !important; }
 .why-intro .why-image:hover { transform: translateY(-6px); box-shadow: 0 40px 90px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1); }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
