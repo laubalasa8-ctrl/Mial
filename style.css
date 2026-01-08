@@ -934,7 +934,8 @@ header.scrolled .hamburger span { background: #111; box-shadow: 0 1px 4px rgba(0
   .nav-title { font-size: 0.9rem; margin-left: -0.4rem; }
   .nav-right { display: flex; align-items: center; gap: 0.5rem; }
   .nav-links { display: none; }
-  .btn-primary { display: none; }
+  header .btn-primary { display: none; }
+  .contact-cta-container .btn-primary { display: inline-block; }
   .frosted-box { padding: 2.2rem 1.5rem; margin-left: auto; margin-right: auto; max-width: 100%; margin-top: -6rem; }
   .frosted-box h1 { font-size: clamp(1.8rem, 4vw, 2.2rem); margin-bottom: 1rem; }
   .frosted-box .hero-lead { font-size: 0.95rem; margin-bottom: 1.8rem; line-height: 1.6; }
