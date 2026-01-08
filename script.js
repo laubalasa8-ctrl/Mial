@@ -30,6 +30,18 @@ if (hamburgerBtn && mobileMenu) {
   });
 }
 
+// ===== HERO NOTE CTA BUTTON =====
+const heroNote = document.querySelector('.hero-note');
+if (heroNote) {
+  heroNote.style.cursor = 'pointer';
+  heroNote.addEventListener('click', function() {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+}
+
 // ===== ACCORDION =====
 const accordionItems = document.querySelectorAll('.accordion-item');
 accordionItems.forEach(item => {
