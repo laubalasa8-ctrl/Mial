@@ -18,28 +18,34 @@ const cookieToggles = {
 };
 
 function initCookieBanner() {
+  console.log('Initializing cookie banner...');
   const cookieConsent = localStorage.getItem('ferotect-cookie-consent');
-  console.log('Cookie consent status:', cookieConsent);
+  console.log('Stored consent:', cookieConsent);
   
-  if (!cookieConsent) {
-    console.log('No consent found, showing banner in 1.5 seconds');
-    setTimeout(() => {
-      if (cookieBanner) {
-        console.log('Adding show class to banner');
-        cookieBanner.classList.add('show');
-        document.body.style.overflow = 'hidden';
-      }
-    }, 1500);
+  if (cookieConsent) {
+    // User has already made a choice, hide banner
+    console.log('User has consent, hiding banner');
+    if (cookieBanner) {
+      cookieBanner.classList.add('hide');
+      document.body.style.overflow = 'auto';
+    }
   } else {
-    console.log('Consent already given');
+    // No consent yet, make sure banner is visible
+    console.log('No consent found, showing banner');
+    if (cookieBanner) {
+      cookieBanner.classList.remove('hide');
+      document.body.style.overflow = 'hidden';
+    }
   }
 }
 
 // Tab switching functionality
 if (cookieTabs && cookieTabs.length > 0) {
   cookieTabs.forEach(tab => {
-    tab.addEventListener('click', function() {
+    tab.addEventListener('click', function(e) {
+      e.preventDefault();
       const tabName = this.getAttribute('data-tab');
+      console.log('Switching to tab:', tabName);
       
       // Remove active class from all tabs
       cookieTabs.forEach(t => t.classList.remove('active'));
@@ -55,6 +61,7 @@ if (cookieTabs && cookieTabs.length > 0) {
       const selectedTab = document.getElementById(tabName + '-tab');
       if (selectedTab) {
         selectedTab.style.display = 'block';
+        console.log('Showed tab content:', tabName);
       }
     });
   });
@@ -117,20 +124,27 @@ if (cookieRejectBtn) {
 
 // Close banner
 if (cookieCloseBtn) {
-  cookieCloseBtn.addEventListener('click', closeCookieBanner);
+  cookieCloseBtn.addEventListener('click', function() {
+    console.log('Close button clicked');
+    closeCookieBanner();
+  });
 }
 
 function closeCookieBanner() {
   if (cookieBanner) {
     console.log('Closing cookie banner');
-    cookieBanner.classList.remove('show');
+    cookieBanner.classList.add('hide');
     document.body.style.overflow = 'auto';
   }
 }
 
-// Initialize cookie banner on page load
-document.addEventListener('DOMContentLoaded', initCookieBanner);
-initCookieBanner();
+// Initialize cookie banner immediately and on DOMContentLoaded
+console.log('Script loaded, initializing banner');
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initCookieBanner);
+} else {
+  initCookieBanner();
+}
 
 // ===== HAMBURGER MENU =====
 const hamburgerBtn = document.getElementById('hamburger-btn');
