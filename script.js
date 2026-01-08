@@ -4,6 +4,46 @@ if (yearElement) {
   yearElement.textContent = new Date().getFullYear();
 }
 
+// ===== COOKIE BANNER =====
+const cookieBanner = document.getElementById('cookie-banner');
+const cookieAcceptBtn = document.getElementById('cookie-accept');
+const cookieRejectBtn = document.getElementById('cookie-reject');
+
+function initCookieBanner() {
+  // Check if user has already made a choice
+  const cookieConsent = localStorage.getItem('ferotect-cookie-consent');
+  
+  if (!cookieConsent) {
+    // Show banner after 1 second
+    setTimeout(() => {
+      if (cookieBanner) {
+        cookieBanner.classList.add('show');
+      }
+    }, 1000);
+  }
+}
+
+if (cookieAcceptBtn) {
+  cookieAcceptBtn.addEventListener('click', function() {
+    localStorage.setItem('ferotect-cookie-consent', 'accepted');
+    if (cookieBanner) {
+      cookieBanner.classList.remove('show');
+    }
+  });
+}
+
+if (cookieRejectBtn) {
+  cookieRejectBtn.addEventListener('click', function() {
+    localStorage.setItem('ferotect-cookie-consent', 'rejected');
+    if (cookieBanner) {
+      cookieBanner.classList.remove('show');
+    }
+  });
+}
+
+// Initialize cookie banner on page load
+initCookieBanner();
+
 // ===== HAMBURGER MENU =====
 const hamburgerBtn = document.getElementById('hamburger-btn');
 const mobileMenu = document.getElementById('mobile-menu');
