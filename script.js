@@ -56,47 +56,7 @@ accordionItems.forEach(item => {
 });
 
 // ===== STEP DETAILS =====
-const stepChevrons = document.querySelectorAll('.step-chevron');
-stepChevrons.forEach(chevron => {
-  chevron.addEventListener('click', function(e) {
-    e.stopPropagation();
-    toggleStepItem(chevron.closest('.step-item'));
-  });
-});
-
-const stepItems = document.querySelectorAll('.step-item, .step-item-final');
-stepItems.forEach(item => {
-  item.addEventListener('click', function(e) {
-    if (!e.target.closest('.step-chevron')) {
-      toggleStepItem(item);
-    }
-  });
-});
-
-function toggleStepItem(stepItem) {
-  const chevron = stepItem.querySelector('.step-chevron');
-  const details = stepItem.querySelector('.step-details');
-  
-  // Om denna item är stängd, stäng alla andra och öppna denna
-  if (details.hasAttribute('hidden')) {
-    // Stäng alla andra items
-    document.querySelectorAll('.step-item, .step-item-final').forEach(item => {
-      if (item !== stepItem) {
-        const otherChevron = item.querySelector('.step-chevron');
-        const otherDetails = item.querySelector('.step-details');
-        otherChevron.setAttribute('aria-expanded', 'false');
-        otherDetails.setAttribute('hidden', '');
-      }
-    });
-    // Öppna denna item
-    details.removeAttribute('hidden');
-    chevron.setAttribute('aria-expanded', 'true');
-  } else {
-    // Stäng denna item
-    details.setAttribute('hidden', '');
-    chevron.setAttribute('aria-expanded', 'false');
-  }
-}
+// Removed - step section is now static without expandable details
 
 // ===== COOKIE BANNER (MOBILE ONLY) =====
 function initCookieBanner() {
