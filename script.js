@@ -7,38 +7,114 @@ if (yearElement) {
 // ===== COOKIE BANNER =====
 const cookieBanner = document.getElementById('cookie-banner');
 const cookieAcceptBtn = document.getElementById('cookie-accept');
+const cookieAcceptAllBtn = document.getElementById('cookie-accept-all');
 const cookieRejectBtn = document.getElementById('cookie-reject');
+const cookieCloseBtn = document.getElementById('cookie-close');
+const cookieTabs = document.querySelectorAll('.cookie-banner-tab');
+const cookieToggles = {
+  essential: document.getElementById('essential-toggle'),
+  analytics: document.getElementById('analytics-toggle'),
+  marketing: document.getElementById('marketing-toggle')
+};
 
 function initCookieBanner() {
-  // Check if user has already made a choice
   const cookieConsent = localStorage.getItem('ferotect-cookie-consent');
   
   if (!cookieConsent) {
-    // Show banner after 1 second
     setTimeout(() => {
       if (cookieBanner) {
         cookieBanner.classList.add('show');
+        document.body.style.overflow = 'hidden';
       }
-    }, 1000);
+    }, 1500);
   }
 }
 
+// Tab switching functionality
+cookieTabs.forEach(tab => {
+  tab.addEventListener('click', function() {
+    const tabName = this.getAttribute('data-tab');
+    
+    // Remove active class from all tabs
+    cookieTabs.forEach(t => t.classList.remove('active'));
+    // Add active class to clicked tab
+    this.classList.add('active');
+    
+    // Hide all tab contents
+    document.querySelectorAll('.cookie-tab-content').forEach(content => {
+      content.style.display = 'none';
+    });
+    
+    // Show selected tab content
+    const selectedTab = document.getElementById(tabName + '-tab');
+    if (selectedTab) {
+      selectedTab.style.display = 'block';
+    }
+  });
+});
+
+// Toggle switches functionality
+Object.keys(cookieToggles).forEach(key => {
+  const toggle = cookieToggles[key];
+  if (toggle && key !== 'essential') {
+    toggle.addEventListener('change', function() {
+      // Could add additional logic here for real-time updates
+    });
+  }
+});
+
+// Accept selected cookies
 if (cookieAcceptBtn) {
   cookieAcceptBtn.addEventListener('click', function() {
-    localStorage.setItem('ferotect-cookie-consent', 'accepted');
-    if (cookieBanner) {
-      cookieBanner.classList.remove('show');
-    }
+    const preferences = {
+      essential: true,
+      analytics: cookieToggles.analytics.checked,
+      marketing: cookieToggles.marketing.checked,
+      timestamp: new Date().getTime()
+    };
+    localStorage.setItem('ferotect-cookie-consent', JSON.stringify(preferences));
+    closeCookieBanner();
   });
 }
 
+// Accept all cookies
+if (cookieAcceptAllBtn) {
+  cookieAcceptAllBtn.addEventListener('click', function() {
+    const preferences = {
+      essential: true,
+      analytics: true,
+      marketing: true,
+      timestamp: new Date().getTime()
+    };
+    localStorage.setItem('ferotect-cookie-consent', JSON.stringify(preferences));
+    closeCookieBanner();
+  });
+}
+
+// Reject all non-essential cookies
 if (cookieRejectBtn) {
   cookieRejectBtn.addEventListener('click', function() {
-    localStorage.setItem('ferotect-cookie-consent', 'rejected');
-    if (cookieBanner) {
-      cookieBanner.classList.remove('show');
-    }
+    const preferences = {
+      essential: true,
+      analytics: false,
+      marketing: false,
+      timestamp: new Date().getTime()
+    };
+    localStorage.setItem('ferotect-cookie-consent', JSON.stringify(preferences));
+    closeCookieBanner();
   });
+}
+
+// Close banner
+if (cookieCloseBtn) {
+  cookieCloseBtn.addEventListener('click', closeCookieBanner);
+}
+
+function closeCookieBanner() {
+  if (cookieBanner) {
+    cookieBanner.classList.remove('show');
+    document.body.style.overflow = 'auto';
+  }
 }
 
 // Initialize cookie banner on page load

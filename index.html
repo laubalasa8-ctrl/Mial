@@ -14,14 +14,60 @@
   <!-- Cookie Banner -->
   <div id="cookie-banner" class="cookie-banner">
     <div class="cookie-banner-content">
-      <div class="cookie-banner-text">
-        <h3>Vi använder cookies</h3>
-        <p>Vi använder cookies för att förbättra din upplevelse på vår webbplats. Genom att fortsätta att använda webbplatsen godkänner du vår användning av cookies.</p>
+      <div class="cookie-banner-header">
+        <div class="cookie-banner-text">
+          <h3>Din integritet är viktig</h3>
+          <p>Vi använder cookies för att förbättra din upplevelse. Välj vad som är okej för dig.</p>
+        </div>
+        <button class="cookie-banner-close" id="cookie-close">&times;</button>
       </div>
+      
+      <div class="cookie-banner-tabs">
+        <button class="cookie-banner-tab active" data-tab="essential">Väsentliga</button>
+        <button class="cookie-banner-tab" data-tab="analytics">Analys</button>
+        <button class="cookie-banner-tab" data-tab="marketing">Marknadsföring</button>
+      </div>
+
+      <div id="essential-tab" class="cookie-tab-content">
+        <div class="cookie-banner-toggle">
+          <label>Väsentliga cookies (Alltid på)</label>
+          <div class="cookie-toggle-switch">
+            <input type="checkbox" id="essential-toggle" checked disabled>
+            <span class="cookie-toggle-slider"></span>
+          </div>
+        </div>
+        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: 0.5rem;">Dessa cookies är nödvändiga för att webbplatsen ska fungera.</p>
+      </div>
+
+      <div id="analytics-tab" class="cookie-tab-content" style="display: none;">
+        <div class="cookie-banner-toggle">
+          <label>Analysera din användning</label>
+          <div class="cookie-toggle-switch">
+            <input type="checkbox" id="analytics-toggle">
+            <span class="cookie-toggle-slider"></span>
+          </div>
+        </div>
+        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: 0.5rem;">Hjälper oss förstå hur du använder webbplatsen.</p>
+      </div>
+
+      <div id="marketing-tab" class="cookie-tab-content" style="display: none;">
+        <div class="cookie-banner-toggle">
+          <label>Marknadsföringscookies</label>
+          <div class="cookie-toggle-switch">
+            <input type="checkbox" id="marketing-toggle">
+            <span class="cookie-toggle-slider"></span>
+          </div>
+        </div>
+        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: 0.5rem;">Låter oss visa dig relevant innehål baserat på dina intressen.</p>
+      </div>
+      
       <div class="cookie-banner-actions">
-        <button id="cookie-accept" class="cookie-btn cookie-accept">Acceptera alla</button>
-        <button id="cookie-reject" class="cookie-btn cookie-reject">Avvisa</button>
+        <button id="cookie-accept" class="cookie-btn cookie-accept">Acceptera valda cookies</button>
+        <button id="cookie-accept-all" class="cookie-btn cookie-accept">Acceptera alla</button>
+        <button id="cookie-reject" class="cookie-btn cookie-reject">Avvisa allt</button>
       </div>
+      
+      <p class="cookie-banner-description">Du kan ändra dina val när som helst i inställningarna.</p>
     </div>
   </div>
 
