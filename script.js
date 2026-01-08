@@ -112,19 +112,23 @@ function initCookieBanner() {
   // Check if we're on mobile
   const isMobile = window.innerWidth <= 600;
   
-  // Check if user has already made a choice (within 30 days)
+  // Check if user has already interacted with banner (within 30 days)
   const cookieConsent = localStorage.getItem('cookieConsent');
   const cookieTimestamp = localStorage.getItem('cookieTimestamp');
   const thirtyDaysMs = 30 * 24 * 60 * 60 * 1000;
   const now = Date.now();
 
-  // Only show banner on mobile and if consent not already given or expired
-  if (!isMobile || (cookieConsent && cookieTimestamp && (now - parseInt(cookieTimestamp)) < thirtyDaysMs)) {
+  // Only show banner on mobile and if consent NOT already given
+  const hasConsent = cookieConsent && cookieTimestamp && (now - parseInt(cookieTimestamp)) < thirtyDaysMs;
+  
+  if (!isMobile || hasConsent) {
+    // Hide banner completely - don't show
     cookieBanner.classList.remove('show');
+    cookieOverlay.style.display = 'none';
     return;
   }
 
-  // Show banner with animation
+  // Show banner with animation ONLY if no consent recorded
   setTimeout(() => {
     cookieBanner.classList.add('show');
     cookieOverlay.style.display = 'block';
@@ -132,7 +136,8 @@ function initCookieBanner() {
 
   // Handle info toggle
   if (infoToggle && infoContent) {
-    infoToggle.addEventListener('click', () => {
+    infoToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
       const isExpanded = infoToggle.getAttribute('aria-expanded') === 'true';
       infoToggle.setAttribute('aria-expanded', !isExpanded);
       infoContent.classList.toggle('show');
@@ -141,44 +146,45 @@ function initCookieBanner() {
 
   // Handle accept
   acceptBtn.addEventListener('click', () => {
-    closeBanner();
-    localStorage.setItem('cookieConsent', 'all');
-    localStorage.setItem('cookieTimestamp', Date.now().toString());
+    saveBannerChoice('all');
   });
 
   // Handle reject (only necessary cookies)
   rejectBtn.addEventListener('click', () => {
-    closeBanner();
-    localStorage.setItem('cookieConsent', 'necessary');
-    localStorage.setItem('cookieTimestamp', Date.now().toString());
+    saveBannerChoice('necessary');
   });
 
   // Handle close button
   closeBtn.addEventListener('click', () => {
-    closeBanner();
-    localStorage.setItem('cookieConsent', 'necessary');
-    localStorage.setItem('cookieTimestamp', Date.now().toString());
+    saveBannerChoice('necessary');
   });
 
   // Close overlay click - closes banner
   cookieOverlay.addEventListener('click', () => {
-    closeBanner();
-    localStorage.setItem('cookieConsent', 'necessary');
-    localStorage.setItem('cookieTimestamp', Date.now().toString());
+    saveBannerChoice('necessary');
   });
+
+  function saveBannerChoice(choice) {
+    // Save choice and timestamp
+    localStorage.setItem('cookieConsent', choice);
+    localStorage.setItem('cookieTimestamp', Date.now().toString());
+    
+    // Hide banner immediately
+    closeBanner();
+  }
 
   function closeBanner() {
     cookieBanner.classList.remove('show');
     cookieOverlay.style.display = 'none';
+    cookieBanner.style.display = 'none';
   }
 
   // Re-check on resize in case user goes from desktop to mobile
   window.addEventListener('resize', () => {
     const nowMobile = window.innerWidth <= 600;
-    if (nowMobile && !cookieBanner.classList.contains('show') && !cookieConsent) {
-      cookieBanner.classList.add('show');
-      cookieOverlay.style.display = 'block';
-    } else if (!nowMobile) {
+    const stillHasConsent = localStorage.getItem('cookieConsent') !== null;
+    
+    if (!nowMobile || stillHasConsent) {
       cookieBanner.classList.remove('show');
       cookieOverlay.style.display = 'none';
     }
