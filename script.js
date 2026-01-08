@@ -97,60 +97,79 @@ function toggleStepItem(stepItem) {
   }
 }
 
-// ===== COOKIE BANNER =====
+// ===== COOKIE BANNER (MOBILE ONLY) =====
 function initCookieBanner() {
-  const cookieBanner = document.getElementById('cookieBanner');
+  const cookieBanner = document.getElementById('cookie-banner');
+  const cookieOverlay = document.getElementById('cookie-overlay');
+  const acceptBtn = document.getElementById('cookie-accept');
+  const rejectBtn = document.getElementById('cookie-reject');
+  const closeBtn = document.getElementById('cookie-close');
+
   if (!cookieBanner) return;
 
-  // Check if user has already made a cookie choice
+  // Check if we're on mobile
+  const isMobile = window.innerWidth <= 600;
+  
+  // Check if user has already made a choice (within 30 days)
   const cookieConsent = localStorage.getItem('cookieConsent');
-  if (cookieConsent) {
-    cookieBanner.style.display = 'none';
-    cookieBanner.classList.add('hidden');
+  const cookieTimestamp = localStorage.getItem('cookieTimestamp');
+  const thirtyDaysMs = 30 * 24 * 60 * 60 * 1000;
+  const now = Date.now();
+
+  // Only show banner on mobile and if consent not already given or expired
+  if (!isMobile || (cookieConsent && cookieTimestamp && (now - parseInt(cookieTimestamp)) < thirtyDaysMs)) {
+    cookieBanner.classList.remove('show');
     return;
   }
 
-  const cookieAccept = document.getElementById('cookieAccept');
-  const cookieReject = document.getElementById('cookieReject');
-  const cookieDetails = document.getElementById('cookieDetails');
-  const cookieSelected = document.getElementById('cookieSelected');
+  // Show banner with animation
+  setTimeout(() => {
+    cookieBanner.classList.add('show');
+    cookieOverlay.style.display = 'block';
+  }, 500);
 
-  if (cookieAccept) {
-    cookieAccept.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      localStorage.setItem('cookieConsent', 'accepted');
-      cookieBanner.style.display = 'none';
-      cookieBanner.classList.add('hidden');
-    });
+  // Handle accept
+  acceptBtn.addEventListener('click', () => {
+    closeBanner();
+    localStorage.setItem('cookieConsent', 'all');
+    localStorage.setItem('cookieTimestamp', Date.now().toString());
+  });
+
+  // Handle reject (only necessary cookies)
+  rejectBtn.addEventListener('click', () => {
+    closeBanner();
+    localStorage.setItem('cookieConsent', 'necessary');
+    localStorage.setItem('cookieTimestamp', Date.now().toString());
+  });
+
+  // Handle close button
+  closeBtn.addEventListener('click', () => {
+    closeBanner();
+    localStorage.setItem('cookieConsent', 'necessary');
+    localStorage.setItem('cookieTimestamp', Date.now().toString());
+  });
+
+  // Close overlay click
+  cookieOverlay.addEventListener('click', () => {
+    closeBanner();
+  });
+
+  function closeBanner() {
+    cookieBanner.classList.remove('show');
+    cookieOverlay.style.display = 'none';
   }
 
-  if (cookieReject) {
-    cookieReject.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      localStorage.setItem('cookieConsent', 'rejected');
-      cookieBanner.style.display = 'none';
-      cookieBanner.classList.add('hidden');
-    });
-  }
-
-  if (cookieDetails) {
-    cookieDetails.addEventListener('click', function(e) {
-      e.preventDefault();
-      alert('Detaljerad information om cookies och hur vi använder dem.');
-    });
-  }
-
-  if (cookieSelected) {
-    cookieSelected.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      localStorage.setItem('cookieConsent', 'selected');
-      cookieBanner.style.display = 'none';
-      cookieBanner.classList.add('hidden');
-    });
-  }
+  // Re-check on resize in case user goes from desktop to mobile
+  window.addEventListener('resize', () => {
+    const nowMobile = window.innerWidth <= 600;
+    if (nowMobile && !cookieBanner.classList.contains('show') && !cookieConsent) {
+      cookieBanner.classList.add('show');
+      cookieOverlay.style.display = 'block';
+    } else if (!nowMobile) {
+      cookieBanner.classList.remove('show');
+      cookieOverlay.style.display = 'none';
+    }
+  });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
