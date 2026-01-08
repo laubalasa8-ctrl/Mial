@@ -19,46 +19,53 @@ const cookieToggles = {
 
 function initCookieBanner() {
   const cookieConsent = localStorage.getItem('ferotect-cookie-consent');
+  console.log('Cookie consent status:', cookieConsent);
   
   if (!cookieConsent) {
+    console.log('No consent found, showing banner in 1.5 seconds');
     setTimeout(() => {
       if (cookieBanner) {
+        console.log('Adding show class to banner');
         cookieBanner.classList.add('show');
         document.body.style.overflow = 'hidden';
       }
     }, 1500);
+  } else {
+    console.log('Consent already given');
   }
 }
 
 // Tab switching functionality
-cookieTabs.forEach(tab => {
-  tab.addEventListener('click', function() {
-    const tabName = this.getAttribute('data-tab');
-    
-    // Remove active class from all tabs
-    cookieTabs.forEach(t => t.classList.remove('active'));
-    // Add active class to clicked tab
-    this.classList.add('active');
-    
-    // Hide all tab contents
-    document.querySelectorAll('.cookie-tab-content').forEach(content => {
-      content.style.display = 'none';
+if (cookieTabs && cookieTabs.length > 0) {
+  cookieTabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      const tabName = this.getAttribute('data-tab');
+      
+      // Remove active class from all tabs
+      cookieTabs.forEach(t => t.classList.remove('active'));
+      // Add active class to clicked tab
+      this.classList.add('active');
+      
+      // Hide all tab contents
+      document.querySelectorAll('.cookie-tab-content').forEach(content => {
+        content.style.display = 'none';
+      });
+      
+      // Show selected tab content
+      const selectedTab = document.getElementById(tabName + '-tab');
+      if (selectedTab) {
+        selectedTab.style.display = 'block';
+      }
     });
-    
-    // Show selected tab content
-    const selectedTab = document.getElementById(tabName + '-tab');
-    if (selectedTab) {
-      selectedTab.style.display = 'block';
-    }
   });
-});
+};
 
 // Toggle switches functionality
 Object.keys(cookieToggles).forEach(key => {
   const toggle = cookieToggles[key];
   if (toggle && key !== 'essential') {
     toggle.addEventListener('change', function() {
-      // Could add additional logic here for real-time updates
+      console.log(key + ' toggle changed to:', this.checked);
     });
   }
 });
@@ -68,10 +75,11 @@ if (cookieAcceptBtn) {
   cookieAcceptBtn.addEventListener('click', function() {
     const preferences = {
       essential: true,
-      analytics: cookieToggles.analytics.checked,
-      marketing: cookieToggles.marketing.checked,
+      analytics: cookieToggles.analytics ? cookieToggles.analytics.checked : false,
+      marketing: cookieToggles.marketing ? cookieToggles.marketing.checked : false,
       timestamp: new Date().getTime()
     };
+    console.log('Accepting selected:', preferences);
     localStorage.setItem('ferotect-cookie-consent', JSON.stringify(preferences));
     closeCookieBanner();
   });
@@ -86,6 +94,7 @@ if (cookieAcceptAllBtn) {
       marketing: true,
       timestamp: new Date().getTime()
     };
+    console.log('Accepting all:', preferences);
     localStorage.setItem('ferotect-cookie-consent', JSON.stringify(preferences));
     closeCookieBanner();
   });
@@ -100,6 +109,7 @@ if (cookieRejectBtn) {
       marketing: false,
       timestamp: new Date().getTime()
     };
+    console.log('Rejecting all:', preferences);
     localStorage.setItem('ferotect-cookie-consent', JSON.stringify(preferences));
     closeCookieBanner();
   });
@@ -112,12 +122,14 @@ if (cookieCloseBtn) {
 
 function closeCookieBanner() {
   if (cookieBanner) {
+    console.log('Closing cookie banner');
     cookieBanner.classList.remove('show');
     document.body.style.overflow = 'auto';
   }
 }
 
 // Initialize cookie banner on page load
+document.addEventListener('DOMContentLoaded', initCookieBanner);
 initCookieBanner();
 
 // ===== HAMBURGER MENU =====
