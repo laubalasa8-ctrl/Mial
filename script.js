@@ -77,17 +77,7 @@ function toggleStepItem(stepItem) {
   const chevron = stepItem.querySelector('.step-chevron');
   const details = stepItem.querySelector('.step-details');
   
-  // Stäng alla andra items
-  document.querySelectorAll('.step-item, .step-item-final').forEach(item => {
-    if (item !== stepItem) {
-      const otherChevron = item.querySelector('.step-chevron');
-      const otherDetails = item.querySelector('.step-details');
-      otherChevron.setAttribute('aria-expanded', 'false');
-      otherDetails.setAttribute('hidden', '');
-    }
-  });
-  
-  // Växla aktuell item
+  // Växla aktuell item utan att påverka andra
   if (details.hasAttribute('hidden')) {
     details.removeAttribute('hidden');
     chevron.setAttribute('aria-expanded', 'true');
