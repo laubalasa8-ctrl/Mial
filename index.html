@@ -604,23 +604,30 @@
     <div class="cookie-banner-content">
       <div class="cookie-banner-header">
         <div class="cookie-banner-text">
-          <h3>🍪 Vi använder cookies</h3>
-          <p>Vi använder cookies för att ge dig den bästa upplevelsen på vår webbplats och förstå hur du använder den.</p>
+          <h3>Vi använder cookies</h3>
+          <p>Vi använder cookies för att ge dig den bästa upplevelsen på vår webbplats.</p>
         </div>
         <button class="cookie-banner-close" id="cookie-close" aria-label="Stäng cookie-banner">&times;</button>
       </div>
       
-      <div class="cookie-banner-info">
+      <button class="cookie-info-toggle" id="cookie-info-toggle" aria-expanded="false">
+        <span>Mer information</span>
+        <svg class="toggle-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+      
+      <div class="cookie-banner-info" id="cookie-info-content">
         <div class="cookie-info-item">
-          <strong>📊 Syfte:</strong>
+          <strong>Syfte</strong>
           <p>Vi samlar in data för att förbättra din användarupplevelse, analysera webbplatstrafik och optimera vår tjänst.</p>
         </div>
         <div class="cookie-info-item">
-          <strong>💾 Lagring:</strong>
+          <strong>Lagring</strong>
           <p>Dina cookie-preferenser sparas lokalt i din webbläsare i 30 dagar. Vi lagrar ingen personlig data utan ditt samtycke.</p>
         </div>
         <div class="cookie-info-item">
-          <a href="integritets-policy.html" class="cookie-policy-link" target="_blank">📋 Läs vår integritetspolicy</a>
+          <a href="integritets-policy.html" class="cookie-policy-link" target="_blank">Läs vår integritetspolicy</a>
         </div>
       </div>
       

@@ -104,6 +104,8 @@ function initCookieBanner() {
   const acceptBtn = document.getElementById('cookie-accept');
   const rejectBtn = document.getElementById('cookie-reject');
   const closeBtn = document.getElementById('cookie-close');
+  const infoToggle = document.getElementById('cookie-info-toggle');
+  const infoContent = document.getElementById('cookie-info-content');
 
   if (!cookieBanner) return;
 
@@ -127,6 +129,15 @@ function initCookieBanner() {
     cookieBanner.classList.add('show');
     cookieOverlay.style.display = 'block';
   }, 500);
+
+  // Handle info toggle
+  if (infoToggle && infoContent) {
+    infoToggle.addEventListener('click', () => {
+      const isExpanded = infoToggle.getAttribute('aria-expanded') === 'true';
+      infoToggle.setAttribute('aria-expanded', !isExpanded);
+      infoContent.classList.toggle('show');
+    });
+  }
 
   // Handle accept
   acceptBtn.addEventListener('click', () => {
