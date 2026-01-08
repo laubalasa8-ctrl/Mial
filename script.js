@@ -149,9 +149,11 @@ function initCookieBanner() {
     localStorage.setItem('cookieTimestamp', Date.now().toString());
   });
 
-  // Close overlay click
+  // Close overlay click - closes banner
   cookieOverlay.addEventListener('click', () => {
     closeBanner();
+    localStorage.setItem('cookieConsent', 'necessary');
+    localStorage.setItem('cookieTimestamp', Date.now().toString());
   });
 
   function closeBanner() {
