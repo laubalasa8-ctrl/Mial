@@ -421,7 +421,7 @@ section.stats-section { border-bottom: none; }
 .why-intro .why-content h2 { font-size: 2.8rem; font-weight: 800; letter-spacing: -1.2px; margin-bottom: 2.2rem; color: var(--text); line-height: 1.2; }
 .why-intro .why-content p { font-size: 1.1rem; line-height: 1.95; color: var(--text-soft); margin-bottom: 1.6rem; }
 .why-intro .why-content p:last-child { margin-bottom: 0; }
-.why-intro .why-image { height: 550px; box-shadow: 0 35px 80px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.1); border-radius: 28px; border: 1px solid rgba(25,168,255,0.12); transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.6s ease; background-image: url('takyto-1.jpg') !important; }
+.why-intro .why-image { height: 550px; box-shadow: 0 35px 80px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.1); border-radius: 28px; border: 1px solid rgba(25,168,255,0.12); transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.6s ease; background-image: url('takyto-1.jpg') !important; opacity: 1 !important; animation: none !important; }
 .why-intro .why-image:hover { transform: translateY(-6px); box-shadow: 0 40px 90px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1); }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -867,7 +867,7 @@ header.scrolled .hamburger span { background: #111; box-shadow: 0 1px 4px rgba(0
   .why-container { grid-template-columns: 1fr; gap: 2rem; }
   .why-image { height: 300px; }
   .why-intro .why-container { grid-template-columns: 1fr 1.2fr; gap: 4rem; padding: 3.5rem 1.5rem; }
-  .why-intro .why-image { height: 420px; box-shadow: 0 30px 70px rgba(0,0,0,0.15); }
+  .why-intro .why-image { height: 420px; box-shadow: 0 30px 70px rgba(0,0,0,0.15); opacity: 1 !important; animation: none !important; background-image: url('takyto-1.jpg') !important; }
   .why-intro .why-content h2 { font-size: 2.3rem; margin-bottom: 1.8rem; letter-spacing: -1px; }
   .why-intro .why-content p { font-size: 1.02rem; line-height: 1.88; }
   .taktyper-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
@@ -946,7 +946,7 @@ header.scrolled .hamburger span { background: #111; box-shadow: 0 1px 4px rgba(0
   .hero-note:hover::before { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(25,168,255,0.45); background: linear-gradient(135deg, #0d9cff 0%, #0077bb 100%); }
   #why { margin-top: 8rem; margin-bottom: -1rem; }
   .why-intro .why-container { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem 1.5rem; background: transparent; }
-  .why-intro .why-image { height: 300px; border-radius: 20px; background-image: url('takyto-1.jpg') !important; background-size: cover; background-position: center; opacity: 1; animation: none; }
+  .why-intro .why-image { height: 300px; border-radius: 20px; background-image: url('takyto-1.jpg') !important; background-size: cover; background-position: center; opacity: 1 !important; animation: none !important; }
   .why-intro .why-image img { display: none; width: 100%; height: 100%; object-fit: cover; }
   .why-container { grid-template-columns: 1fr; }
   .why-container .why-image { height: 300px; border-radius: 20px; background-image: url('Kingen-bild-2.png'); background-size: cover; background-position: center; display: block; opacity: 1; animation: none; box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
