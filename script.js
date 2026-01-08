@@ -77,19 +77,17 @@ function toggleStepItem(stepItem) {
   const chevron = stepItem.querySelector('.step-chevron');
   const details = stepItem.querySelector('.step-details');
   
-  // Om denna item är stängd, stäng alla andra och öppna denna (endast på desktop)
+  // Om denna item är stängd, stäng alla andra och öppna denna
   if (details.hasAttribute('hidden')) {
-    // Endast stäng andra items på desktop (screen width > 600px)
-    if (window.innerWidth > 600) {
-      document.querySelectorAll('.step-item, .step-item-final').forEach(item => {
-        if (item !== stepItem) {
-          const otherChevron = item.querySelector('.step-chevron');
-          const otherDetails = item.querySelector('.step-details');
-          otherChevron.setAttribute('aria-expanded', 'false');
-          otherDetails.setAttribute('hidden', '');
-        }
-      });
-    }
+    // Stäng alla andra items
+    document.querySelectorAll('.step-item, .step-item-final').forEach(item => {
+      if (item !== stepItem) {
+        const otherChevron = item.querySelector('.step-chevron');
+        const otherDetails = item.querySelector('.step-details');
+        otherChevron.setAttribute('aria-expanded', 'false');
+        otherDetails.setAttribute('hidden', '');
+      }
+    });
     // Öppna denna item
     details.removeAttribute('hidden');
     chevron.setAttribute('aria-expanded', 'true');
