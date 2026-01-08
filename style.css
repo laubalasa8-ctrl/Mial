@@ -907,8 +907,6 @@ header.scrolled .hamburger span { background: #111; box-shadow: 0 1px 4px rgba(0
   .service-card img { object-position: center 35%; }
   .service-overlay { padding: 1.2rem; }
   .service-overlay h3 { font-size: 1.2rem; font-weight: 700; }
-  .service-card-fasad .service-overlay h3::before { content: 'Fasad'; }
-  .service-card-fasad .service-overlay h3 { font-size: 0; }
   #contact { padding: 3.5rem calc(1.5rem + (100vw - 100%) / 2) 3rem; }
   #footer { padding: 3.5rem calc(1.5rem + (100vw - 100%) / 2) 1.5rem; }
   .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; margin-bottom: 2.5rem; }
