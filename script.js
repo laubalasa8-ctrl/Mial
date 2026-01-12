@@ -42,6 +42,33 @@ if (heroNote) {
   });
 }
 
+// ===== CONTACT NAVIGATION =====
+// Handle navigation to contact form with centered positioning
+document.addEventListener('DOMContentLoaded', function() {
+  // Always scroll to top first
+  window.scrollTo(0, 0);
+  
+  // Then, if navigating to contact, scroll there after a delay
+  if (window.location.hash === '#contact') {
+    setTimeout(() => {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        const contactTop = contactSection.offsetTop;
+        const contactHeight = contactSection.offsetHeight;
+        const viewportHeight = window.innerHeight;
+        
+        // Calculate position to center the contact section
+        const targetScroll = contactTop + (contactHeight / 2) - (viewportHeight / 2);
+        
+        window.scrollTo({
+          top: Math.max(0, targetScroll),
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
+  }
+});
+
 // ===== ACCORDION =====
 const accordionItems = document.querySelectorAll('.accordion-item');
 accordionItems.forEach(item => {
@@ -153,8 +180,28 @@ function initCookieBanner() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Scroll to top on page load
+  // Always scroll to top first
   window.scrollTo(0, 0);
+  
+  // Then, if navigating to contact, scroll there after a delay
+  if (window.location.hash === '#contact') {
+    setTimeout(() => {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        const contactTop = contactSection.offsetTop;
+        const contactHeight = contactSection.offsetHeight;
+        const viewportHeight = window.innerHeight;
+        
+        // Calculate position to center the contact section
+        const targetScroll = contactTop + (contactHeight / 2) - (viewportHeight / 2);
+        
+        window.scrollTo({
+          top: Math.max(0, targetScroll),
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
+  }
   
   // Initialize cookie banner
   initCookieBanner();
