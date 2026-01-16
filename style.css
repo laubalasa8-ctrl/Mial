@@ -5067,3 +5067,13 @@ body:has(.solar-hero) header { background: transparent; }
   .cta-container p { font-size: 1rem; margin-bottom: 2rem; }
   .cta-container .btn-primary { width: 100%; }
 }
+
+@media (max-width: 600px) {
+  .cta-fasad {
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: scroll !important;
+    padding: 6rem 1.5rem;
+    min-height: 450px;
+  }
+}
