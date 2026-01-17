@@ -210,10 +210,29 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===== FORM SUBMISSION =====
 const form = document.querySelector('form');
 if (form) {
+  // Set the form action to send data via FormSubmit
+  form.setAttribute('action', 'https://formsubmit.co/laubalasa8@gmail.com');
+  form.setAttribute('method', 'POST');
+  
+  // Add CSRF protection token
+  const csrfInput = document.createElement('input');
+  csrfInput.type = 'hidden';
+  csrfInput.name = '_captcha';
+  csrfInput.value = 'false';
+  form.appendChild(csrfInput);
+  
+  // Redirect after submission
+  const redirectInput = document.createElement('input');
+  redirectInput.type = 'hidden';
+  redirectInput.name = '_next';
+  redirectInput.value = window.location.href + '#tack';
+  form.appendChild(redirectInput);
+  
   form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Tack för din förfrågan! Vi återkommer inom 1 arbetsdag.');
-    form.reset();
+    // Show thank you message
+    setTimeout(() => {
+      alert('Tack för din förfrågan! Vi återkommer inom 1 arbetsdag.');
+    }, 1500);
   });
 }
 
