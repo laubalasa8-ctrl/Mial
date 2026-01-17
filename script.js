@@ -221,6 +221,13 @@ if (form) {
   csrfInput.value = 'false';
   form.appendChild(csrfInput);
   
+  // Add subject line
+  const subjectInput = document.createElement('input');
+  subjectInput.type = 'hidden';
+  subjectInput.name = '_subject';
+  subjectInput.value = 'Ny förfrågan från Ferotect kontaktformulär';
+  form.appendChild(subjectInput);
+  
   // Redirect after submission
   const redirectInput = document.createElement('input');
   redirectInput.type = 'hidden';
@@ -229,7 +236,7 @@ if (form) {
   form.appendChild(redirectInput);
   
   form.addEventListener('submit', function(e) {
-    // Show thank you message
+    // Show thank you message after a short delay
     setTimeout(() => {
       alert('Tack för din förfrågan! Vi återkommer inom 1 arbetsdag.');
     }, 1500);
