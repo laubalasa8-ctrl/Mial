@@ -210,36 +210,40 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===== FORM SUBMISSION =====
 const form = document.querySelector('form');
 if (form) {
-  // Set the form action to send data via FormSubmit
-  form.setAttribute('action', 'https://formsubmit.co/laubalasa8@gmail.com');
-  form.setAttribute('method', 'POST');
-  
-  // Add CSRF protection token
-  const csrfInput = document.createElement('input');
-  csrfInput.type = 'hidden';
-  csrfInput.name = '_captcha';
-  csrfInput.value = 'false';
-  form.appendChild(csrfInput);
-  
-  // Add subject line
-  const subjectInput = document.createElement('input');
-  subjectInput.type = 'hidden';
-  subjectInput.name = '_subject';
-  subjectInput.value = 'Ny förfrågan från Ferotect kontaktformulär';
-  form.appendChild(subjectInput);
-  
-  // Redirect after submission
-  const redirectInput = document.createElement('input');
-  redirectInput.type = 'hidden';
-  redirectInput.name = '_next';
-  redirectInput.value = window.location.href + '#tack';
-  form.appendChild(redirectInput);
-  
   form.addEventListener('submit', function(e) {
-    // Show thank you message after a short delay
-    setTimeout(() => {
+    e.preventDefault();
+    
+    // Collect form data
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get('name'),
+      phone: formData.get('phone'),
+      email: formData.get('email'),
+      address: formData.get('address'),
+      service: formData.get('service'),
+      message: formData.get('message'),
+      timestamp: new Date().toLocaleString('sv-SE')
+    };
+    
+    // Send via fetch to FormSubmit
+    fetch('https://formsubmit.co/ajax/laubalasa8@gmail.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(json => {
       alert('Tack för din förfrågan! Vi återkommer inom 1 arbetsdag.');
-    }, 1500);
+      form.reset();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Tack för din förfrågan! Vi återkommer inom 1 arbetsdag.');
+      form.reset();
+    });
   });
 }
 
