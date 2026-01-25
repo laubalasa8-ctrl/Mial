@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plåtslageri – Detaljerna Som Håller | Ferotect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="platslageri-page">
+  <!-- TOPBAR & HEADER -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a href="tel:0733451263" class="topbar-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        <div>
+          <p class="topbar-label">Ring oss direkt</p>
+          <p class="topbar-value">073-345 1263</p>
+        </div>
+      </a>
+      <a href="mailto:hej@ferotect.se" class="topbar-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <div>
+          <p class="topbar-label">Mejla oss</p>
+          <p class="topbar-value">hej@ferotect.se</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <header>
+    <div class="nav">
+      <div class="nav-left">
+        <a href="index.html">
+          <img src="Ferotect-logo.png" alt="Ferotect logotyp" class="logo-img">
+        </a>
+        <a href="index.html" class="nav-title">erotect</a>
+      </div>
+
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="index.html#top">Hem</a>
+          <div class="dropdown">
+            <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Tjänster</button>
+            <div class="dropdown-menu">
+              <a href="takbyte.html">Takbyte</a>
+              <a href="solceller.html">Solceller</a>
+              <a href="platslageri.html">Plåtslageri</a>
+              <a href="fasad.html">Fasader</a>
+            </div>
+          </div>
+          <a href="index.html#why">Varför Ferotect</a>
+          <a href="index.html#roofers">Takläggning</a>
+          <a href="index.html#contact">Kontakt</a>
+        </div>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div id="mobile-menu">
+    <ul>
+      <li><a href="index.html#top">Hem</a></li>
+      <li><a href="takbyte.html">Takbyte</a></li>
+      <li><a href="solceller.html">Solceller</a></li>
+      <li><a href="platslageri.html">Plåtslageri</a></li>
+      <li><a href="fasad.html">Fasad</a></li>
+      <li><a href="index.html#contact">Kontakt</a></li>
+    </ul>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="hero hero-platslageri">
+      <div>
+        <div class="frosted-box">
+          <div class="hero-kicker">Plåtslageri & Takarbeten</div>
+          <h1>Ditt tak förtjänar <span class="highlight">precision</span></h1>
+          <p class="hero-lead">
+            Vi installerar hängrännor, takfönster och skorstenar med stor noggrannhet. Vårt plåtarbete är anpassat för Skånes väder och utformat för att fungera pålitligt år efter år.
+          </p>
+          <div class="hero-cta-row">
+            <a href="#contact" class="btn-primary">Boka en kostnadsfri inspektion</a>
+            <a href="#services" class="btn-ghost">Våra Tjänster</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="plat-services">
+      <div class="plat-section-header">
+        <h2 class="plat-section-title">Så Enkelt Blir Det Fel</h2>
+        <p class="plat-section-subtitle">En liten förseelse idag kan bli en stor kostnad imorgon. Läs om vad du bör veta om din plåt.</p>
+      </div>
+
+      <div class="plat-insights-grid">
+        <!-- INSIGHT 1 -->
+        <div class="plat-insight-card">
+          <div class="plat-insight-icon"><i class="fas fa-droplet"></i></div>
+          <h3 class="plat-insight-title">Små Brister Kan Få Följder</h3>
+          <p class="plat-insight-text">Fukt som får pågå över tid kan leda till skador på både material och konstruktion. Tidiga åtgärder minskar risken för mer omfattande problem.</p>
+        </div>
+
+        <!-- INSIGHT 2 -->
+        <div class="plat-insight-card">
+          <div class="plat-insight-icon"><i class="fas fa-triangle-exclamation"></i></div>
+          <h3 class="plat-insight-title">Var Uppmärksam på Tecken</h3>
+          <p class="plat-insight-text">Missfärgningar, rost eller fukt runt tak och fönster kan tyda på begynnande problem. Att åtgärda dem i tid bidrar till att undvika större ingrepp.</p>
+        </div>
+
+        <!-- INSIGHT 3 -->
+        <div class="plat-insight-card">
+          <div class="plat-insight-icon"><i class="fas fa-wind"></i></div>
+          <h3 class="plat-insight-title">Skånskt Klimat Ställer Krav</h3>
+          <p class="plat-insight-text">Vind, fukt och växlande temperaturer påverkar byggnader över tid. Därför anpassar vi material och arbetssätt efter de lokala förhållandena.</p>
+        </div>
+
+        <!-- INSIGHT 4 -->
+        <div class="plat-insight-card">
+          <div class="plat-insight-icon"><i class="fas fa-shield"></i></div>
+          <h3 class="plat-insight-title">Funktion före Yta</h3>
+          <p class="plat-insight-text">Det som inte syns är ofta avgörande. Därför lägger vi stor vikt vid tätning och noggrant utförande, utöver det visuella intrycket.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS SECTION -->
+    <section id="process" class="plat-services-section">
+      <div class="plat-section-header">
+        <h2 class="plat-section-title">Våra Plåttjänster</h2>
+        <p class="plat-section-subtitle">Specialiserad installation av de delar där precision och skydd är avgörande.</p>
+      </div>
+
+      <div class="plat-services-grid">
+        <!-- SERVICE 1 -->
+        <div class="plat-service-card">
+          <div class="plat-service-image">
+            <img src="plat5.jpg" alt="Takkupor och takfönster installation">
+          </div>
+          <div class="plat-service-info">
+            <h3 class="plat-service-title">Takkupor & Takfönster</h3>
+            <a href="#contact" class="plat-service-btn">
+              <span>Läs mer</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- SERVICE 2 -->
+        <div class="plat-service-card">
+          <div class="plat-service-image">
+            <img src="plat8.jpg" alt="Skorsten och avluftningsinstallation">
+          </div>
+          <div class="plat-service-info">
+            <h3 class="plat-service-title">Skorsten & Avluftningar</h3>
+            <a href="#contact" class="plat-service-btn">
+              <span>Läs mer</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST SECTION -->
+    <section class="plat-trust">
+      <div class="plat-trust-content">
+        <h2 class="plat-trust-title">Varför Välja Oss för Plåtslageri?</h2>
+        <p class="plat-trust-subtitle">
+          Vi är inte bara plåtslagare – vi är takexperter som förstår att plåtarbetet är grunden för ett långlivat tak.
+        </p>
+
+        <div class="plat-trust-cards">
+          <div class="plat-trust-card">
+            <div class="plat-trust-icon">🎯</div>
+            <h3>Handverksprecision</h3>
+            <p>Allt görs med millimeterprecision. Vi mäter två gånger, installerar en gång – rätt första gången, varje gång.</p>
+          </div>
+
+          <div class="plat-trust-card">
+            <div class="plat-trust-icon">⏱️</div>
+            <h3>20+ År Hållbarhet</h3>
+            <p>Vi dimensionerar för långsiktighet. Dina rännor, skorsten och ventilation ska fungera perfekt i två decennier.</p>
+          </div>
+
+          <div class="plat-trust-card">
+            <div class="plat-trust-icon">✅</div>
+            <h3>Transparent Process</h3>
+            <p>Från första mötet till installationens sista skruv – du vet alltid vad som händer och varför.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="plat-cta-final">
+      <div class="plat-cta-content">
+        <div class="plat-cta-label">Nästa Steg</div>
+        <h2 class="plat-cta-title">Redo för Plåtarbete Som Håller?</h2>
+        <p class="plat-cta-subtitle">En gratis besiktning. En ärlig bedömning. Så vet du precis vad du behöver.</p>
+        <div class="plat-cta-buttons">
+          <a href="#contact" class="plat-btn-primary">Ring eller Mejla Oss</a>
+          <a href="index.html#contact" class="plat-btn-secondary">Gå till Kontaktformulär</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div class="footer-block footer-about">
+          <h3>Ferotect</h3>
+          <p class="footer-tagline">Takfirma i Skåne med fokus på planerade, trygga och hållbara takbyten.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/ferotect" title="Instagram" class="social-link" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <circle cx="17.5" cy="6.5" r="1.5"></circle>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/ferotect" title="Facebook" class="social-link" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 2h-3a6 6 0 0 0-6 6v3H7v4h2v8h4v-8h3l1-4h-4V8a2 2 0 0 1 2-2h1z"></path>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/ferotect" title="LinkedIn" class="social-link" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-block footer-info">
+          <h4>Adress</h4>
+          <a href="https://maps.google.com/?q=Ullstorp+bygata+77,+Önnestad,+Skåne" target="_blank" rel="noopener noreferrer" class="footer-info-item" style="text-decoration: none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <div>
+              <p class="footer-label">Besöksadress</p>
+              <p class="footer-value">Ullstorp bygata 77<br>Önnestad, Skåne</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="footer-block footer-info">
+          <h4>Kontakt</h4>
+          <div class="footer-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <div>
+              <p class="footer-label">Ring oss</p>
+              <a href="tel:0733451263" class="footer-value">073-345 1263</a>
+            </div>
+          </div>
+          <div class="footer-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <div>
+              <p class="footer-label">E-post</p>
+              <a href="mailto:hej@ferotect.se" class="footer-value">hej@ferotect.se</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-block footer-navigation">
+          <h4>Meny</h4>
+          <nav class="footer-nav">
+            <a href="index.html#top" class="footer-nav-link">Hem</a>
+            <a href="index.html#services" class="footer-nav-link">Vad vi står för</a>
+            <a href="index.html#why" class="footer-nav-link">Din takfirma i Skåne</a>
+            <a href="index.html#roofers" class="footer-nav-link">Våra värderingar</a>
+            <a href="index.html#contact" class="footer-nav-link">Kontakt</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Ferotect. Alla rättigheter reserverade.</p>
+        <div class="footer-bottom-links">
+          <a href="#" class="footer-bottom-link">Integritetspolicy</a>
+          <a href="#" class="footer-bottom-link">Användarvillkor</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
