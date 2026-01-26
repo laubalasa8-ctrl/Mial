@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Plåttak - Ferotect Takfirma i Skåne</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Plåttak från Ferotect – långtidshållbar lösning med modern design. Vi installerar bandtäckning, takpanneplåt och korrugerad plåt i Skåne.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function toggleAccordion(button) {
+      const item = button.parentElement;
+      const isActive = item.classList.contains('active');
+      
+      // Stäng alla andra items
+      document.querySelectorAll('.plat-nc-accordion-item').forEach(el => {
+        el.classList.remove('active');
+      });
+      
+      // Slå på/av denna item
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    }
+
+    function toggleKnowledge(header) {
+      const card = header.parentElement;
+      const isActive = card.classList.contains('active');
+      
+      // Stäng alla andra kort
+      document.querySelectorAll('.plat-knowledge-card').forEach(el => {
+        el.classList.remove('active');
+      });
+      
+      // Slå på/av detta kort
+      if (!isActive) {
+        card.classList.add('active');
+      }
+    }
+  </script>
+</head>
+<body class="plattaket-page">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a href="tel:0733451263" class="topbar-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        <div>
+          <p class="topbar-label">Ring oss direkt</p>
+          <p class="topbar-value">073-345 1263</p>
+        </div>
+      </a>
+      <a href="mailto:hej@ferotect.se" class="topbar-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <div>
+          <p class="topbar-label">Mejla oss</p>
+          <p class="topbar-value">hej@ferotect.se</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <header>
+    <div class="nav">
+      <div class="nav-left">
+        <a href="index.html">
+          <img src="Ferotect-logo.png" alt="Ferotect logotyp" class="logo-img">
+        </a>
+        <a href="index.html" class="nav-title">erotect</a>
+      </div>
+
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="index.html#top">Hem</a>
+          <div class="dropdown">
+            <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Tjänster</button>
+            <div class="dropdown-menu">
+              <a href="takbyte.html">Takbyte</a>
+              <a href="solceller.html">Solceller</a>
+              <a href="index.html#platslageri">Plåtslageri</a>
+              <a href="index.html#fasader">Fasader</a>
+            </div>
+          </div>
+          <a href="index.html#why">Varför Ferotect</a>
+          <a href="index.html#roofers">Takläggning</a>
+          <a href="index.html#contact">Kontakt</a>
+        </div>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div id="mobile-menu">
+    <ul>
+      <li><a href="index.html#top">Hem</a></li>
+      <li class="menu-item-with-dropdown">
+        <a href="takbyte.html" class="menu-toggle">Takbyte</a>
+        <ul class="dropdown-menu">
+          <li><a href="plattaket.html">Plåttak</a></li>
+          <li><a href="takbyte.html">Takpannor</a></li>
+          <li><a href="takbyte.html">Papptak</a></li>
+        </ul>
+      </li>
+      <li><a href="solceller.html">Solceller</a></li>
+      <li><a href="platslageri.html">Plåtslageri</a></li>
+      <li><a href="fasad.html">Fasad</a></li>
+      <li><a href="index.html#contact">Kontakt</a></li>
+    </ul>
+  </div>
+
+  <main id="top">
+    <!-- HERO SECTION -->
+    <section class="hero hero-plattaket">
+      <div>
+        <div class="frosted-box">
+          <div class="hero-kicker">Professionell Plåttäckning</div>
+          <h1>Plåttak som <span class="highlight">verkligen håller</span></h1>
+          <p class="hero-lead">
+            Plåttak är en långtidsinvestering som skyddar ditt hem från väder och vind. Vi installerar med precision så att din takfot förblir tät och funktionell i årtionden.
+          </p>
+          <div class="hero-cta-row">
+            <a href="index.html#contact" class="btn-primary">Boka kostnadsfri inspektion</a>
+            <a href="#services" class="btn-ghost">Se våra material</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRODUCTION SECTION -->
+    <!-- THE 4 PILLARS SECTION -->
+    <section class="plat-pillars-section">
+      <div class="container">
+        <div class="plat-pillars-header">
+          <h2 class="plat-pillars-title">Fyra Grundpelare För Ett Plåttak Som Håller</h2>
+          <p class="plat-pillars-subtitle">Skillnaden mellan ett tak som åldras med värdighet och ett som skapar problem långt innan det borde.</p>
+        </div>
+
+        <div class="plat-pillars-grid">
+          <!-- PILLAR 1 -->
+          <div class="plat-pillar fade-in-up">
+            <div class="plat-pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"></path>
+                <path d="M2 7l10 6 10-6M12 20v-8"></path>
+              </svg>
+            </div>
+            <h3 class="plat-pillar-title">Material</h3>
+            <p class="plat-pillar-description">Materialvalet avgör hur ett plåttak åldras över tid. Därför arbetar vi med material som är valda för lång livslängd, stabilitet och motståndskraft mot nordiskt väder.</p>
+            <ul class="plat-pillar-details">
+              <li>Utvalda för att klara stora temperaturväxlingar</li>
+              <li>Motståndskraftiga mot fukt, vind och korrosion</li>
+              <li>Byggda för att behålla både funktion och utseende över tid</li>
+              <li>Beprövade i miljöer där kraven är höga</li>
+            </ul>
+          </div>
+
+          <!-- PILLAR 2 -->
+          <div class="plat-pillar fade-in-up">
+            <div class="plat-pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 1 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+              </svg>
+            </div>
+            <h3 class="plat-pillar-title">Installation</h3>
+            <p class="plat-pillar-description">Ett plåttak blir aldrig bättre än hur det monteras. Därför arbetar vi metodiskt, noggrant och konsekvent – med fokus på täthet, funktion och långsiktig hållbarhet.</p>
+            <ul class="plat-pillar-details">
+              <li>Utförd med precision och ansvar i varje moment</li>
+              <li>Anpassad efter husets förutsättningar och takets utformning</li>
+              <li>Genomförd med fokus på täthet och säker funktion</li>
+              <li>Kontrollerad för att fungera i alla väderförhållanden</li>
+            </ul>
+          </div>
+
+          <!-- PILLAR 3 -->
+          <div class="plat-pillar fade-in-up">
+            <div class="plat-pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="1"></circle>
+                <circle cx="12" cy="12" r="5"></circle>
+                <circle cx="12" cy="12" r="9"></circle>
+              </svg>
+            </div>
+            <h3 class="plat-pillar-title">Detaljer</h3>
+            <p class="plat-pillar-description">Det är i detaljerna ett plåttak avgörs. Små beslut i utförandet gör stor skillnad för helheten, hållbarheten och hur taket fungerar över tid.</p>
+            <ul class="plat-pillar-details">
+              <li>Utförda med noggrannhet i varje moment</li>
+              <li>Genomtänkta för både funktion och helhetsintryck</li>
+              <li>Utförda med fokus på precision och passform</li>
+              <li>Avslutade med samma omsorg som helheten</li>
+            </ul>
+          </div>
+
+          <!-- PILLAR 4 -->
+          <div class="plat-pillar fade-in-up">
+            <div class="plat-pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <polyline points="9 12 11 14 15 10"></polyline>
+              </svg>
+            </div>
+            <h3 class="plat-pillar-title">Övervakning</h3>
+            <p class="plat-pillar-description">Ett plåttak ska fortsätta fungera som det är tänkt, även långt efter att arbetet är klart. Därför följer vi upp och säkerställer att helheten fungerar över tid – inte bara vid avslut.</p>
+            <ul class="plat-pillar-details">
+              <li>Uppföljning med fokus på långsiktig funktion</li>
+              <li>Tidig upptäckt av avvikelser innan de blir problem</li>
+              <li>Löpande ansvar för takets skick och prestanda</li>
+              <li>Trygghet som sträcker sig bortom installationen</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION - PREMIUM DESIGN -->
+    <section id="services" class="plat-services-premium-section">
+      <div class="container">
+        <div class="plat-services-header">
+          <h2 class="plat-services-title">Tre Material För Olika Behov</h2>
+          <p class="plat-services-subtitle">Välj det material som passar din situation och ditt hem bäst. Varje alternativ erbjuder långsiktig skydd med sin egen särskilda styrka.</p>
+        </div>
+
+        <div class="plat-services-premium-grid">
+          <!-- MATERIAL 1: BANDTÄCKNING -->
+          <div class="plat-service-premium-card fade-in-up">
+            <div class="plat-service-top">
+              <div class="plat-service-image-premium">
+                <img src="joy1.jpg" alt="Bandtäckning">
+                <div class="plat-service-overlay"></div>
+              </div>
+              <div class="plat-service-badge">Robust</div>
+            </div>
+            <div class="plat-service-body">
+              <h3>Bandtäckning</h3>
+              <p class="plat-service-description">Elegant och tidlös. Perfekt för traditionella och moderna hus som kräver både skönhet och långtidshållbarhet. En klassiker som aldrig går ur tiden.</p>
+              <a href="#contact" class="plat-service-link">Läs Mer →</a>
+            </div>
+          </div>
+
+          <!-- MATERIAL 2: TAKPANNEPLÅT -->
+          <div class="plat-service-premium-card fade-in-up">
+            <div class="plat-service-top">
+              <div class="plat-service-image-premium">
+                <img src="joy2.jpg" alt="Takpanneplåt">
+                <div class="plat-service-overlay"></div>
+              </div>
+              <div class="plat-service-badge">Sömlös</div>
+            </div>
+            <div class="plat-service-body">
+              <h3>Takpanneplåt</h3>
+              <p class="plat-service-description">Utformad för att smälta in i takets formspråk. Resultatet är ett lugnt och enhetligt uttryck utan skarpa brytningar.</p>
+              <a href="#contact" class="plat-service-link">Läs Mer →</a>
+            </div>
+          </div>
+
+          <!-- MATERIAL 3: KORRUGERAD PLÅT -->
+          <div class="plat-service-premium-card fade-in-up">
+            <div class="plat-service-top">
+              <div class="plat-service-image-premium">
+                <img src="joy3.jpg" alt="Korrugerad Plåt">
+                <div class="plat-service-overlay"></div>
+              </div>
+              <div class="plat-service-badge">Klassisk</div>
+            </div>
+            <div class="plat-service-body">
+              <h3>Korrugerad Plåt</h3>
+              <p class="plat-service-description">Form och funktion i balans. Ett plåttak som skyddar huset utan att kräva uppmärksamhet.</p>
+              <a href="#contact" class="plat-service-link">Läs Mer →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KNOWLEDGE CENTER SECTION -->
+    <section class="plat-knowledge-section">
+      <div class="plat-knowledge-bg"></div>
+      
+      <div class="container">
+        <div class="plat-knowledge-header">
+          <h2>Du Har Frågor.</h2>
+          <h2>Vi Har Svar.</h2>
+        </div>
+
+        <div class="plat-knowledge-grid">
+          <!-- RIGHT COLUMN - CARDS -->
+          <div class="plat-knowledge-cards-wrap">
+            <!-- CARD 1 -->
+            <div class="plat-knowledge-card">
+              <div class="plat-knowledge-card-header" onclick="toggleKnowledge(this)">
+                <div class="plat-knowledge-card-number">01</div>
+                <div class="plat-knowledge-card-title">Är ett plåttak ett långsiktigt val för mitt hus?</div>
+                <div class="plat-knowledge-card-toggle">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </div>
+              </div>
+              <div class="plat-knowledge-card-body">
+                <p>Ja – rätt utfört är ett plåttak gjort för att hålla över tid. Det är ett tak man sällan behöver tänka på, och som fortsätter fungera år efter år.</p>
+              </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="plat-knowledge-card">
+              <div class="plat-knowledge-card-header" onclick="toggleKnowledge(this)">
+                <div class="plat-knowledge-card-number">02</div>
+                <div class="plat-knowledge-card-title">Vad kostar ett plåttak i praktiken?</div>
+                <div class="plat-knowledge-card-toggle">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </div>
+              </div>
+              <div class="plat-knowledge-card-body">
+                <p>Det beror på mer än ytan. Materialval, detaljer och utförande avgör helheten – därför börjar vi alltid med en genomgång på plats.</p>
+              </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="plat-knowledge-card">
+              <div class="plat-knowledge-card-header" onclick="toggleKnowledge(this)">
+                <div class="plat-knowledge-card-number">03</div>
+                <div class="plat-knowledge-card-title">Vad behöver jag räkna med när det gäller underhåll?</div>
+                <div class="plat-knowledge-card-toggle">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </div>
+              </div>
+              <div class="plat-knowledge-card-body">
+                <p>Inte mycket. Ett plåttak är en lösning för dig som vill slippa återkommande takarbete och istället ha något som håller över tid.</p>
+              </div>
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="plat-knowledge-card">
+              <div class="plat-knowledge-card-header" onclick="toggleKnowledge(this)">
+                <div class="plat-knowledge-card-number">04</div>
+                <div class="plat-knowledge-card-title">Hur märker jag att mitt nuvarande tak börjar bli ett problem?</div>
+                <div class="plat-knowledge-card-toggle">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </div>
+              </div>
+              <div class="plat-knowledge-card-body">
+                <p>Tecken visar sig ofta gradvis, inte plötsligt. Små läckage, missfärgningar eller återkommande behov av åtgärder kan vara signaler på att takets funktion börjar nå sin gräns.</p>
+              </div>
+            </div>
+
+            <!-- CARD 5 -->
+            <div class="plat-knowledge-card">
+              <div class="plat-knowledge-card-header" onclick="toggleKnowledge(this)">
+                <div class="plat-knowledge-card-number">05</div>
+                <div class="plat-knowledge-card-title">Vem tar ansvar om något skulle uppstå efteråt?</div>
+                <div class="plat-knowledge-card-toggle">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </div>
+              </div>
+              <div class="plat-knowledge-card-body">
+                <p>Vi tar ansvar för helheten. Skulle något behöva ses över finns vi kvar och hanterar det på ett strukturerat och professionellt sätt.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="plat-cta-section">
+      <div class="container">
+        <div class="process-closing fade-in">
+          <h2 class="closing-title">Redo För Din Plåttaklösning?</h2>
+          <p class="closing-subtitle">Vi analyserar ditt hem och rekommenderar den bästa lösningen för dina behov.</p>
+          <a href="index.html#contact" class="closing-cta-btn">Boka Din Kostnadsfria Besiktning</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div class="footer-block footer-about">
+          <h3>Ferotect</h3>
+          <p class="footer-tagline">Takfirma i Skåne med fokus på planerade, trygga och hållbara takbyten.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/ferotect" title="Instagram" class="social-link" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <circle cx="17.5" cy="6.5" r="1.5"></circle>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/ferotect" title="Facebook" class="social-link" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 2h-3a6 6 0 0 0-6 6v3H7v4h2v8h4v-8h3l1-4h-4V8a2 2 0 0 1 2-2h1z"></path>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/ferotect" title="LinkedIn" class="social-link" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-block footer-info">
+          <h4>Adress</h4>
+          <a href="https://maps.google.com/?q=Ullstorp+bygata+77,+Önnestad,+Skåne" target="_blank" rel="noopener noreferrer" class="footer-info-item" style="text-decoration: none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <div>
+              <p class="footer-label">Besöksadress</p>
+              <p class="footer-value">Ullstorp bygata 77<br>Önnestad, Skåne</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="footer-block footer-info">
+          <h4>Kontakt</h4>
+          <div class="footer-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <div>
+              <p class="footer-label">Ring oss</p>
+              <a href="tel:0733451263" class="footer-value">073-345 1263</a>
+            </div>
+          </div>
+          <div class="footer-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <div>
+              <p class="footer-label">E-post</p>
+              <a href="mailto:hej@ferotect.se" class="footer-value">hej@ferotect.se</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-block footer-navigation">
+          <h4>Meny</h4>
+          <nav class="footer-nav">
+            <a href="index.html#top" class="footer-nav-link">Hem</a>
+            <a href="takbyte.html" class="footer-nav-link">Takbyte</a>
+            <a href="solceller.html" class="footer-nav-link">Solceller</a>
+            <a href="fasad.html" class="footer-nav-link">Fasad</a>
+            <a href="platslageri.html" class="footer-nav-link">Plåtslageri</a>
+            <a href="plattaket.html" class="footer-nav-link">Plåttak</a>
+            <a href="index.html#contact" class="footer-nav-link">Kontakt</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Ferotect. Alla rättigheter reserverade.</p>
+        <div class="footer-bottom-links">
+          <a href="#" class="footer-bottom-link">Integritetspolicy</a>
+          <a href="#" class="footer-bottom-link">Användarvillkor</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

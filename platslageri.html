@@ -72,7 +72,14 @@
   <div id="mobile-menu">
     <ul>
       <li><a href="index.html#top">Hem</a></li>
-      <li><a href="takbyte.html">Takbyte</a></li>
+      <li class="menu-item-with-dropdown">
+        <a href="takbyte.html" class="menu-toggle">Takbyte</a>
+        <ul class="dropdown-menu">
+          <li><a href="plattaket.html">Plåttak</a></li>
+          <li><a href="takbyte.html">Takpannor</a></li>
+          <li><a href="takbyte.html">Papptak</a></li>
+        </ul>
+      </li>
       <li><a href="solceller.html">Solceller</a></li>
       <li><a href="platslageri.html">Plåtslageri</a></li>
       <li><a href="fasad.html">Fasad</a></li>
@@ -91,8 +98,8 @@
             Vi installerar hängrännor, takfönster och skorstenar med stor noggrannhet. Vårt plåtarbete är anpassat för Skånes väder och utformat för att fungera pålitligt år efter år.
           </p>
           <div class="hero-cta-row">
-            <a href="#contact" class="btn-primary">Boka en kostnadsfri inspektion</a>
-            <a href="#services" class="btn-ghost">Våra Tjänster</a>
+            <a href="index.html#contact" class="btn-primary">Boka en kostnadsfri inspektion</a>
+            <a href="platslageri.html#process" class="btn-ghost">Våra Tjänster</a>
           </div>
         </div>
       </div>
@@ -174,48 +181,147 @@
       </div>
     </section>
 
-    <!-- TRUST SECTION -->
-    <section class="plat-trust">
-      <div class="plat-trust-content">
-        <h2 class="plat-trust-title">Varför Välja Oss för Plåtslageri?</h2>
-        <p class="plat-trust-subtitle">
-          Vi är inte bara plåtslagare – vi är takexperter som förstår att plåtarbetet är grunden för ett långlivat tak.
-        </p>
+    <!-- DETAILS SECTION - "Detaljer vi aldrig kompromissar med" -->
+    <section class="details-section">
+      <div class="details-container">
+        <div class="details-header fade-in">
+          <h2 class="details-title">Detaljer Vi Aldrig Kompromissar Med</h2>
+          <p class="details-lead">
+            Det är inte det man ser direkt som avgör hur länge ett plåtarbete håller.<br>
+            Det är detaljerna. Och där kompromissar vi aldrig.
+          </p>
+        </div>
 
-        <div class="plat-trust-cards">
-          <div class="plat-trust-card">
-            <div class="plat-trust-icon">🎯</div>
-            <h3>Handverksprecision</h3>
-            <p>Allt görs med millimeterprecision. Vi mäter två gånger, installerar en gång – rätt första gången, varje gång.</p>
+        <!-- Detail 1: Infästning -->
+        <div class="detail-item detail-item-1">
+          <div class="detail-content">
+            <h3 class="detail-heading">Infästning</h3>
+            <p class="detail-description">
+              Infästning handlar om långsiktig funktion. Vi anpassar metod och material efter underlag och rörelser i konstruktionen för att minska risken för släpp, ljud och onödigt slitage.
+            </p>
+            <div class="detail-highlight">
+              ✓ Anpassad infästning för material och underlag<br>
+              ✓ Tar höjd för materialens naturliga rörelser över året<br>
+              ✓ Utformat för långvarig stabilitet i utsatta lägen
+            </div>
           </div>
-
-          <div class="plat-trust-card">
-            <div class="plat-trust-icon">⏱️</div>
-            <h3>20+ År Hållbarhet</h3>
-            <p>Vi dimensionerar för långsiktighet. Dina rännor, skorsten och ventilation ska fungera perfekt i två decennier.</p>
+          <div class="detail-image">
+            <img src="plat9.jpg" alt="Professionell plåtinfästning och detaljarbete" loading="lazy">
+            <div class="detail-image-overlay"></div>
           </div>
+        </div>
 
-          <div class="plat-trust-card">
-            <div class="plat-trust-icon">✅</div>
-            <h3>Transparent Process</h3>
-            <p>Från första mötet till installationens sista skruv – du vet alltid vad som händer och varför.</p>
+        <!-- Detail 2: Avrinning -->
+        <div class="detail-item detail-item-2">
+          <div class="detail-image">
+            <img src="plat3.jpg" alt="Precis avrinning för vatten och nederbörd" loading="lazy">
+            <div class="detail-image-overlay"></div>
+          </div>
+          <div class="detail-content">
+            <h3 class="detail-heading">Avrinning</h3>
+            <p class="detail-description">
+              När vatten leds bort på rätt sätt minskar risken för skador. Vi planerar lutningar och avslut så att regn och smältvatten rinner undan som det ska, året runt.
+            </p>
+            <div class="detail-highlight">
+              ✓ Anpassad för regn och snö<br>
+              ✓ Fungerar under alla årstider<br>
+              ✓ Utformad för trygg avrinning även vid kraftigt väder
+            </div>
+          </div>
+        </div>
+
+        <!-- Detail 3: Rörelse i material -->
+        <div class="detail-item detail-item-3">
+          <div class="detail-content">
+            <h3 class="detail-heading">Rörelse i Material</h3>
+            <p class="detail-description">
+              Plåt påverkas av temperatur och årstid. Därför lämnar vi rätt spelrum i konstruktionen, så att materialet kan röra sig naturligt utan att orsaka skador eller läckage.
+            </p>
+            <div class="detail-highlight">
+              ✓ Rätt placerade expansionslösningar<br>
+              ✓ Minskad belastning i infästningar<br>
+              ✓ Utförande som följer materialets naturliga rörelse
+            </div>
+          </div>
+          <div class="detail-image">
+            <img src="plat10.jpg" alt="Plåtmaterial med rätt rörelseutrymme" loading="lazy">
+            <div class="detail-image-overlay"></div>
+          </div>
+        </div>
+
+        <!-- Detail 4: Avslut och genomföringar -->
+        <div class="detail-item detail-item-4">
+          <div class="detail-image">
+            <img src="plat11.jpg" alt="Perfekt tätning vid avslut och genomföringar" loading="lazy">
+            <div class="detail-image-overlay"></div>
+          </div>
+          <div class="detail-content">
+            <h3 class="detail-heading">Noggrant Utförda Detaljer</h3>
+            <p class="detail-description">
+              Övergångar och detaljer kräver extra omsorg. Därför arbetar vi noggrant med genomföringar, hörn och avslut för att säkerställa en hållbar och pålitlig lösning över tid.
+            </p>
+            <div class="detail-highlight">
+              ✓ Extra noggrann tätning där det behövs<br>
+              ✓ Välbeprövade metoder för hållbara fogar<br>
+              ✓ Erfarenhet av lösningar som fungerar i längden
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FINAL CTA -->
-    <section class="plat-cta-final">
-      <div class="plat-cta-content">
-        <div class="plat-cta-label">Nästa Steg</div>
-        <h2 class="plat-cta-title">Redo för Plåtarbete Som Håller?</h2>
-        <p class="plat-cta-subtitle">En gratis besiktning. En ärlig bedömning. Så vet du precis vad du behöver.</p>
-        <div class="plat-cta-buttons">
-          <a href="#contact" class="plat-btn-primary">Ring eller Mejla Oss</a>
-          <a href="index.html#contact" class="plat-btn-secondary">Gå till Kontaktformulär</a>
+    <!-- PROCESS SECTION - "Ett takbyte ska kännas enkelt" -->
+    <section class="process-section">
+      <div class="process-container">
+        <!-- Header -->
+        <div class="process-header fade-in">
+          <h2 class="process-title">Ett Takbyte Ska Kännas Enkelt</h2>
+          <div class="process-intro">
+            <p class="process-intro-text">
+              De flesta husägare drar sig inte för jobbet.<br>
+              De drar sig för osäkerheten.
+            </p>
+            <p class="process-intro-highlight">
+              Därför har vi gjort processen tydlig, lugn och förutsägbar – från första kontakt till färdigt arbete.
+            </p>
+          </div>
+        </div>
+
+        <!-- "Så går ett hembesök till" Section -->
+        <div class="process-visit-section">
+          
+          <div class="process-steps">
+            <!-- Step 1 -->
+            <div class="process-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h4 class="step-title">Vi Granskar & Förklarar</h4>
+                <p class="step-description">Vi granskar takets skick och befintliga detaljer, förklarar vad som behöver göras och varför, och ger dig en tydlig bild av omfattning och nästa steg.</p>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="process-step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h4 class="step-title">För Vem Passar Det?</h4>
+                <p class="step-description">För husägare som planerar takbyte eller plåtarbeten, vill förstå innan de bestämmer sig, och vill ha ett arbete gjort rätt från början.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Closing Statement -->
+        <div class="process-closing fade-in">
+          <h2 class="closing-title">Redo för Plåtarbete som Håller?</h2>
+          <p class="closing-subtitle">Vi tar hand om detaljer som andra missar</p>
+          <a href="index.html#contact" class="closing-cta-btn">Boka Hembesök</a>
         </div>
       </div>
     </section>
+      </div>
+    </section>
+
   </main>
 
   <!-- FOOTER -->
@@ -290,9 +396,11 @@
           <h4>Meny</h4>
           <nav class="footer-nav">
             <a href="index.html#top" class="footer-nav-link">Hem</a>
-            <a href="index.html#services" class="footer-nav-link">Vad vi står för</a>
-            <a href="index.html#why" class="footer-nav-link">Din takfirma i Skåne</a>
-            <a href="index.html#roofers" class="footer-nav-link">Våra värderingar</a>
+            <a href="takbyte.html" class="footer-nav-link">Takbyte</a>
+            <a href="solceller.html" class="footer-nav-link">Solceller</a>
+            <a href="fasad.html" class="footer-nav-link">Fasad</a>
+            <a href="platslageri.html" class="footer-nav-link">Plåtslageri</a>
+            <a href="bandtackning.html" class="footer-nav-link">Bandtäckning</a>
             <a href="index.html#contact" class="footer-nav-link">Kontakt</a>
           </nav>
         </div>
