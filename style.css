@@ -28,6 +28,7 @@ img { max-width: 100%; display: block; height: auto; }
 /* ===== TOPBAR ===== */
 .topbar { background: transparent; color: var(--text); font-size: 0.9rem; position: relative; z-index: 10; background-image: linear-gradient(135deg, rgba(42,54,72,0.45), rgba(42,54,72,0.45)), url('Hero-4.0.jpg'); background-size: cover; background-position: center; background-attachment: fixed; }
 body.takbyte-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.45), rgba(42,54,72,0.45)), url('hejdar.jpg'); }
+body.takpannor-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.45), rgba(42,54,72,0.45)), url('mami.jpg'); }
 body.fasad-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('fasad1.jpg'); }
 body.platslageri-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat1.jpg'); }
 body.plattaket-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat4.jpg'); background-attachment: fixed; }
@@ -6969,10 +6970,6 @@ body:has(.solar-hero) header { background: transparent; }
   }
 }
 
-  position: relative;
-  z-index: 1;
-}
-
 @media (max-width: 1024px) {
   .plat-timeline::before {
     left: 40px;
@@ -9910,3 +9907,489 @@ body:has(.solar-hero) header { background: transparent; }
   }
 }
 
+/* ===== TAKPANNOR PAGE ===== */
+
+/* Hero Section */
+.hero-takpannor {
+  background: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(0,88,204,0.4)), url('mami.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Intro Section */
+.takpannor-intro-section {
+  padding: 6rem 1.5rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f7fa 100%);
+}
+
+.takpannor-intro-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.takpannor-intro-header .section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 1rem;
+}
+
+.takpannor-intro-header .section-sub {
+  font-size: 1.1rem;
+  color: #5a5a5a;
+  line-height: 1.7;
+}
+
+.takpannor-intro-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.takpannor-intro-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  border: 2px solid #f0f0f0;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.takpannor-intro-card:hover {
+  border-color: #00d9ff;
+  box-shadow: 0 12px 30px rgba(0,217,255,0.15);
+  transform: translateY(-6px);
+}
+
+.intro-card-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #00d9ff, #0088cc);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+}
+
+.intro-card-icon svg {
+  width: 32px;
+  height: 32px;
+  stroke: white;
+  stroke-width: 2;
+}
+
+.takpannor-intro-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #111111;
+  font-weight: 600;
+}
+
+.takpannor-intro-card p {
+  font-size: 0.95rem;
+  color: #5a5a5a;
+  line-height: 1.6;
+}
+
+/* Advantages Section */
+.takpannor-advantages-section {
+  padding: 6rem 1.5rem;
+  background: #ffffff;
+}
+
+.takpannor-advantages-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.takpannor-advantages-header .section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 1rem;
+}
+
+.takpannor-advantages-header .section-sub {
+  font-size: 1.1rem;
+  color: #5a5a5a;
+  line-height: 1.7;
+}
+
+.takpannor-advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.advantage-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(0,217,255,0.08), rgba(0,136,204,0.08));
+  border: 2px solid rgba(0,217,255,0.2);
+  border-radius: 20px;
+  padding: 2.5rem;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.advantage-card:hover {
+  border-color: #00d9ff;
+  background: linear-gradient(135deg, rgba(0,217,255,0.15), rgba(0,136,204,0.12));
+  box-shadow: 0 20px 40px rgba(0,217,255,0.1);
+}
+
+.advantage-number {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00d9ff, #0088cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.advantage-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.advantage-text {
+  font-size: 0.95rem;
+  color: #5a5a5a;
+  line-height: 1.7;
+}
+
+.advantage-accent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #00d9ff, #0088cc);
+  border-radius: 2px;
+  transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.advantage-card:hover .advantage-accent {
+  width: 100%;
+}
+
+/* Knowledge Section */
+.takpannor-knowledge-section {
+  padding: 6rem 1.5rem;
+  background: linear-gradient(135deg, rgba(0,88,204,0.05), rgba(0,217,255,0.05));
+  position: relative;
+}
+
+.takpannor-knowledge-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.knowledge-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 1rem;
+}
+
+.knowledge-subtitle {
+  font-size: 1.1rem;
+  color: #5a5a5a;
+  line-height: 1.7;
+}
+
+.takpannor-knowledge-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.takpannor-knowledge-card {
+  background: white;
+  border: 2px solid #f0f0f0;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.takpannor-knowledge-card:hover {
+  border-color: #00d9ff;
+  box-shadow: 0 12px 30px rgba(0,217,255,0.1);
+}
+
+.takpannor-knowledge-header-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  cursor: pointer;
+  background: white;
+  transition: background 0.3s;
+}
+
+.takpannor-knowledge-card:hover .takpannor-knowledge-header-card {
+  background: rgba(0,217,255,0.05);
+}
+
+.knowledge-card-number {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00d9ff, #0088cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  min-width: 50px;
+}
+
+.knowledge-card-title {
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111111;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.knowledge-card-arrow {
+  width: 24px;
+  height: 24px;
+  color: #0088cc;
+  stroke-width: 3;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  flex-shrink: 0;
+}
+
+.takpannor-knowledge-card.active .knowledge-card-arrow {
+  transform: rotate(180deg);
+  color: #00d9ff;
+}
+
+.knowledge-card-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: rgba(0,217,255,0.03);
+}
+
+.takpannor-knowledge-card.active .knowledge-card-body {
+  max-height: 500px;
+}
+
+.knowledge-card-body p {
+  padding: 0 2rem 2rem 2rem;
+  color: #5a5a5a;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+/* CTA Section */
+.takpannor-cta-section {
+  position: relative;
+  padding: 8rem 1.5rem;
+  background: linear-gradient(135deg, rgba(42,54,72,0.6), rgba(0,88,204,0.5)), url('mami.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.takpannor-cta-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.35), rgba(0,88,204,0.35));
+  z-index: 1;
+}
+
+.takpannor-cta-container {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  text-align: center;
+}
+
+.takpannor-cta-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.takpannor-cta-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1.3;
+}
+
+.takpannor-cta-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.7;
+}
+
+.takpannor-cta-section .btn-primary {
+  margin-top: 1rem;
+}
+
+/* Animations for Takpannor */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+}
+
+/* Responsive Design for Takpannor */
+@media (max-width: 1024px) {
+  .takpannor-intro-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .takpannor-advantages-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .takpannor-knowledge-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .takpannor-intro-header .section-title,
+  .takpannor-advantages-header .section-title,
+  .knowledge-title {
+    font-size: 2rem;
+  }
+
+  .takpannor-intro-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .takpannor-advantages-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .takpannor-cta-section {
+    padding: 6rem 1.5rem;
+    min-height: 400px;
+  }
+
+  .takpannor-cta-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .takpannor-intro-section {
+    padding: 3rem 1rem;
+  }
+
+  .takpannor-advantages-section {
+    padding: 3rem 1rem;
+  }
+
+  .takpannor-knowledge-section {
+    padding: 3rem 1rem;
+  }
+
+  .takpannor-intro-header .section-title,
+  .takpannor-advantages-header .section-title,
+  .knowledge-title {
+    font-size: 1.6rem;
+  }
+
+  .takpannor-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .takpannor-intro-card {
+    padding: 1.5rem;
+  }
+
+  .takpannor-advantages-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .advantage-card {
+    padding: 1.5rem;
+  }
+
+  .advantage-number {
+    font-size: 2rem;
+  }
+
+  .advantage-title {
+    font-size: 1.1rem;
+  }
+
+  .takpannor-knowledge-header-card {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .knowledge-card-title {
+    font-size: 1rem;
+  }
+
+  .knowledge-card-number {
+    font-size: 1.5rem;
+    min-width: 40px;
+  }
+
+  .knowledge-card-body p {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .takpannor-cta-section {
+    padding: 4rem 1rem;
+    min-height: 350px;
+  }
+
+  .takpannor-cta-title {
+    font-size: 1.6rem;
+  }
+
+  .takpannor-cta-subtitle {
+    font-size: 0.95rem;
+  }
+}
