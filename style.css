@@ -9917,42 +9917,46 @@ body:has(.solar-hero) header { background: transparent; }
   background-attachment: fixed;
 }
 
-/* Intro Section */
-.takpannor-intro-section {
+/* Taket som gör huset klart Section */
+.takpannor-complete-section {
   padding: 6rem 1.5rem;
   background: linear-gradient(180deg, #ffffff 0%, #f5f7fa 100%);
 }
 
-.takpannor-intro-header {
+.takpannor-complete-header {
   text-align: center;
   margin-bottom: 4rem;
-  max-width: 700px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.takpannor-intro-header .section-title {
+.takpannor-complete-header .section-title {
   font-size: 2.5rem;
   font-weight: 700;
   color: #111111;
   margin-bottom: 1rem;
 }
 
-.takpannor-intro-header .section-sub {
+.takpannor-complete-header .section-sub {
   font-size: 1.1rem;
   color: #5a5a5a;
   line-height: 1.7;
 }
 
-.takpannor-intro-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 2rem;
-  max-width: 1100px;
+.takpannor-complete-content {
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.takpannor-intro-card {
+.takpannor-complete-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.takpannor-complete-card {
   background: white;
   border-radius: 16px;
   padding: 2rem;
@@ -9962,13 +9966,13 @@ body:has(.solar-hero) header { background: transparent; }
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-.takpannor-intro-card:hover {
+.takpannor-complete-card:hover {
   border-color: #00d9ff;
   box-shadow: 0 12px 30px rgba(0,217,255,0.15);
   transform: translateY(-6px);
 }
 
-.intro-card-icon {
+.complete-card-icon {
   width: 60px;
   height: 60px;
   background: linear-gradient(135deg, #00d9ff, #0088cc);
@@ -9980,24 +9984,76 @@ body:has(.solar-hero) header { background: transparent; }
   color: white;
 }
 
-.intro-card-icon svg {
+.complete-card-icon svg {
   width: 32px;
   height: 32px;
   stroke: white;
   stroke-width: 2;
 }
 
-.takpannor-intro-card h3 {
+.takpannor-complete-card h3 {
   font-size: 1.3rem;
   margin-bottom: 1rem;
   color: #111111;
   font-weight: 600;
 }
 
-.takpannor-intro-card p {
+.takpannor-complete-card p {
   font-size: 0.95rem;
   color: #5a5a5a;
   line-height: 1.6;
+}
+
+/* Images Section */
+.takpannor-complete-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.complete-image-large {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.complete-image-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.complete-image-large:hover img {
+  transform: scale(1.05);
+}
+
+.complete-image-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.complete-image-grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.complete-image-grid img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.complete-image-grid img:last-child {
+  grid-column: 1 / -1;
+  height: 200px;
 }
 
 /* Advantages Section */
@@ -10278,7 +10334,7 @@ body:has(.solar-hero) header { background: transparent; }
 
 /* Responsive Design for Takpannor */
 @media (max-width: 1024px) {
-  .takpannor-intro-section {
+  .takpannor-complete-section {
     padding: 4rem 1.5rem;
   }
 
@@ -10290,15 +10346,19 @@ body:has(.solar-hero) header { background: transparent; }
     padding: 4rem 1.5rem;
   }
 
-  .takpannor-intro-header .section-title,
+  .takpannor-complete-header .section-title,
   .takpannor-advantages-header .section-title,
   .knowledge-title {
     font-size: 2rem;
   }
 
-  .takpannor-intro-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .takpannor-complete-cards {
+    grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+
+  .takpannor-complete-images {
+    grid-template-columns: 1fr;
   }
 
   .takpannor-advantages-grid {
@@ -10317,7 +10377,7 @@ body:has(.solar-hero) header { background: transparent; }
 }
 
 @media (max-width: 640px) {
-  .takpannor-intro-section {
+  .takpannor-complete-section {
     padding: 3rem 1rem;
   }
 
@@ -10329,19 +10389,31 @@ body:has(.solar-hero) header { background: transparent; }
     padding: 3rem 1rem;
   }
 
-  .takpannor-intro-header .section-title,
+  .takpannor-complete-header .section-title,
   .takpannor-advantages-header .section-title,
   .knowledge-title {
     font-size: 1.6rem;
   }
 
-  .takpannor-intro-grid {
+  .takpannor-complete-cards {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
 
-  .takpannor-intro-card {
+  .takpannor-complete-card {
     padding: 1.5rem;
+  }
+
+  .takpannor-complete-images {
+    grid-template-columns: 1fr;
+  }
+
+  .complete-image-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .complete-image-grid img:last-child {
+    grid-column: 1;
   }
 
   .takpannor-advantages-grid {
