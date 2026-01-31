@@ -22,6 +22,32 @@
         card.classList.add('active');
       }
     }
+
+    // Comparison Filter Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const comparisonRows = document.querySelectorAll('.comparison-row[data-category]');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const filter = this.getAttribute('data-filter');
+          
+          // Update active button
+          filterBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+
+          // Filter rows
+          comparisonRows.forEach(row => {
+            if (filter === 'all') {
+              row.style.display = 'contents';
+            } else {
+              const category = row.getAttribute('data-category');
+              row.style.display = category === filter ? 'contents' : 'none';
+            }
+          });
+        });
+      });
+    });
   </script>
 </head>
 <body class="takpannor-page">
@@ -282,52 +308,354 @@ Bilderna visar resultatet – ett tak som nu känns stabilt, tryggt och redo fö
     </section>
 
     <!-- SECTION 3: ADVANTAGES -->
-    <section id="advantages" class="takpannor-advantages-section fade-in">
-      <div class="container">
-        <div class="takpannor-advantages-header">
-          <h2 class="section-title">Fem Fördelar Med Takpannor</h2>
-          <p class="section-sub">Varför takpannor är ett smart val för långsiktiga villaägare som vill kombinera skönhet med praktik.</p>
+    <!-- SECTION 3: INTERACTIVE COMPARISON -->
+    <section id="jämförelse" class="comparison-section fade-in">
+      <div class="comparison-container">
+        <div class="comparison-header">
+          <h2 class="section-title">Takpannor vs Andra Taktyper</h2>
+          <p class="section-sub">Jämför takpannor med andra alternativ på de kriterier som betyder mest för ditt hus</p>
         </div>
 
-        <div class="takpannor-advantages-grid">
-          <!-- ADVANTAGE 1 -->
-          <div class="advantage-card fade-in-up" style="animation-delay: 0.1s;">
-            <div class="advantage-number">01</div>
-            <h3 class="advantage-title">Klassisk Estetik Som Aldrig Dateras</h3>
-            <p class="advantage-text">Takpannor har använts i hundratals år och kommer att vara vackra i hundratals år till. Det är en design som alltid är aktuell och som höjer hela husets estetik och karaktär.</p>
-            <div class="advantage-accent"></div>
-          </div>
+        <!-- Filter Buttons -->
+        <div class="comparison-filter-buttons">
+          <button class="filter-btn active" data-filter="all">Visa Alla</button>
+          <button class="filter-btn" data-filter="aesthetic">Estetik</button>
+          <button class="filter-btn" data-filter="durability">Hållbarhet</button>
+          <button class="filter-btn" data-filter="price">Pris</button>
+          <button class="filter-btn" data-filter="environment">Miljö</button>
+        </div>
 
-          <!-- ADVANTAGE 2 -->
-          <div class="advantage-card fade-in-up" style="animation-delay: 0.2s;">
-            <div class="advantage-number">02</div>
-            <h3 class="advantage-title">Enorm Livslängd – 50+ År Utan Problem</h3>
-            <p class="advantage-text">Moderna takpannor håller 50-60 år eller mer. Det betyder färre byten under din tid som villaägare och långtidssäkerhet för din familj och egendom.</p>
-            <div class="advantage-accent"></div>
-          </div>
+        <!-- Comparison Table / Grid -->
+        <div class="comparison-wrapper">
+          <div class="comparison-table">
+            <!-- Header Row -->
+            <div class="comparison-row header-row">
+              <div class="comparison-cell criteria-cell">
+                <span>Kriterium</span>
+              </div>
+              <div class="comparison-cell takpannor-cell">
+                <div class="rooftype-badge takpannor">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                  </svg>
+                  <span>Takpannor</span>
+                </div>
+              </div>
+              <div class="comparison-cell metal-cell">
+                <div class="rooftype-badge metal">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  </svg>
+                  <span>Plåttak</span>
+                </div>
+              </div>
+              <div class="comparison-cell concrete-cell">
+                <div class="rooftype-badge concrete">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="8" cy="8" r="2"/>
+                    <circle cx="16" cy="8" r="2"/>
+                    <circle cx="12" cy="14" r="2"/>
+                    <circle cx="8" cy="20" r="2"/>
+                    <circle cx="16" cy="20" r="2"/>
+                  </svg>
+                  <span>Betongpannor</span>
+                </div>
+              </div>
+              <div class="comparison-cell bitumen-cell">
+                <div class="rooftype-badge bitumen">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 3h18v2H3V3zm0 4h18v14H3V7z"/>
+                  </svg>
+                  <span>Papptak</span>
+                </div>
+              </div>
+            </div>
 
-          <!-- ADVANTAGE 3 -->
-          <div class="advantage-card fade-in-up" style="animation-delay: 0.3s;">
-            <div class="advantage-number">03</div>
-            <h3 class="advantage-title">Utmärkt Väderresistans & Tätethet</h3>
-            <p class="advantage-text">Takpannor är designade för att stå emot regn, snö och ekstrem värme. Den överlappande konstruktionen skapar en naturlig tätethet som skyddar ditt hus under alla väderförhållanden.</p>
-            <div class="advantage-accent"></div>
-          </div>
+            <!-- Row 1: Estetik -->
+            <div class="comparison-row" data-category="aesthetic">
+              <div class="comparison-cell criteria-cell">
+                <span class="criteria-label">Estetik & Utseende</span>
+              </div>
+              <div class="comparison-cell takpannor-cell">
+                <div class="score-badge excellent">
+                  <span class="score-icon">★</span>
+                  <span class="score-text">Utmärkt</span>
+                </div>
+                <p class="score-detail">Klassisk, tidlös skönhet</p>
+              </div>
+              <div class="comparison-cell metal-cell">
+                <div class="score-badge good">
+                  <span class="score-icon">★</span>
+                  <span class="score-text">Bra</span>
+                </div>
+                <p class="score-detail">Modern men metallisk</p>
+              </div>
+              <div class="comparison-cell concrete-cell">
+                <div class="score-badge good">
+                  <span class="score-icon">★</span>
+                  <span class="score-text">Bra</span>
+                </div>
+                <p class="score-detail">Enformig look</p>
+              </div>
+              <div class="comparison-cell bitumen-cell">
+                <div class="score-badge average">
+                  <span class="score-icon">~</span>
+                  <span class="score-text">OK</span>
+                </div>
+                <p class="score-detail">Blir sliten snabbt</p>
+              </div>
+            </div>
 
-          <!-- ADVANTAGE 4 -->
-          <div class="advantage-card fade-in-up" style="animation-delay: 0.4s;">
-            <div class="advantage-number">04</div>
-            <h3 class="advantage-title">Enkelt Underhåll & Låga Kostnader</h3>
-            <p class="advantage-text">Takpannor kräver minimal underhållning. En gång var tionde år eller när behov är kan du göra enkla inspektioner. Kostnaderna för underhållning är mycket låga jämfört med andra taktyper.</p>
-            <div class="advantage-accent"></div>
-          </div>
+            <!-- Row 2: Livslängd -->
+            <div class="comparison-row" data-category="durability">
+              <div class="comparison-cell criteria-cell">
+                <span class="criteria-label">Livslängd</span>
+              </div>
+              <div class="comparison-cell takpannor-cell">
+                <div class="score-badge excellent">
+                  <span class="score-value">50-60 år</span>
+                </div>
+                <p class="score-detail">Generationers investment</p>
+              </div>
+              <div class="comparison-cell metal-cell">
+                <div class="score-badge good">
+                  <span class="score-value">30-40 år</span>
+                </div>
+                <p class="score-detail">Rostning möjlig</p>
+              </div>
+              <div class="comparison-cell concrete-cell">
+                <div class="score-badge good">
+                  <span class="score-value">35-50 år</span>
+                </div>
+                <p class="score-detail">Väder kan skada</p>
+              </div>
+              <div class="comparison-cell bitumen-cell">
+                <div class="score-badge average">
+                  <span class="score-value">15-25 år</span>
+                </div>
+                <p class="score-detail">Kräver ofta byte</p>
+              </div>
+            </div>
 
-          <!-- ADVANTAGE 5 -->
-          <div class="advantage-card fade-in-up" style="animation-delay: 0.5s;">
-            <div class="advantage-number">05</div>
-            <h3 class="advantage-title">Flexibel Design & Varianter</h3>
-            <p class="advantage-text">Takpannor finns i många färger och stilar. Du kan välja klassiskt rött, modernt mörkrött, svart eller andra nyanser som passar din husstil och dina önskemål perfekt.</p>
-            <div class="advantage-accent"></div>
+            <!-- Row 3: Väderresistans -->
+            <div class="comparison-row" data-category="durability">
+              <div class="comparison-cell criteria-cell">
+                <span class="criteria-label">Väderresistans</span>
+              </div>
+              <div class="comparison-cell takpannor-cell">
+                <div class="score-badge excellent">
+                  <span class="score-icon">✓</span>
+                  <span class="score-text">Excellent</span>
+                </div>
+                <p class="score-detail">Överlappande design</p>
+              </div>
+              <div class="comparison-cell metal-cell">
+                <div class="score-badge excellent">
+                  <span class="score-icon">✓</span>
+                  <span class="score-text">Excellent</span>
+                </div>
+                <p class="score-detail">Mycket robust</p>
+              </div>
+              <div class="comparison-cell concrete-cell">
+                <div class="score-badge good">
+                  <span class="score-icon">✓</span>
+                  <span class="score-text">Bra</span>
+                </div>
+                <p class="score-detail">Kan bli porös</p>
+              </div>
+              <div class="comparison-cell bitumen-cell">
+                <div class="score-badge average">
+                  <span class="score-icon">~</span>
+                  <span class="score-text">OK</span>
+                </div>
+                <p class="score-detail">UV-känsligt</p>
+              </div>
+            </div>
+
+            <!-- Row 4: Installationskostnad -->
+            <div class="comparison-row" data-category="price">
+              <div class="comparison-cell criteria-cell">
+                <span class="criteria-label">Installationskostnad</span>
+              </div>
+              <div class="comparison-cell takpannor-cell">
+                <div class="score-badge average">
+                  <span class="score-value">Medel</span>
+                </div>
+                <p class="score-detail">400-800 kr/m²</p>
+              </div>
+              <div class="comparison-cell metal-cell">
+                <div class="score-badge good">
+                  <span class="score-value">Låg-Medel</span>
+                </div>
+                <p class="score-detail">300-600 kr/m²</p>
+              </div>
+              <div class="comparison-cell concrete-cell">
+                <div class="score-badge average">
+                  <span class="score-value">Medel</span>
+                </div>
+                <p class="score-detail">350-700 kr/m²</p>
+              </div>
+              <div class="comparison-cell bitumen-cell">
+                <div class="score-badge good">
+                  <span class="score-value">Låg</span>
+                </div>
+                <p class="score-detail">200-400 kr/m²</p>
+              </div>
+            </div>
+
+            <!-- Row 5: Total Kostnad (50 år) -->
+            <div class="comparison-row" data-category="price">
+              <div class="comparison-cell criteria-cell">
+                <span class="criteria-label">Total Kostnad (50 år)</span>
+              </div>
+              <div class="comparison-cell takpannor-cell">
+                <div class="score-badge excellent">
+                  <span class="score-value">Lägsta</span>
+                </div>
+                <p class="score-detail">Minst byte</p>
+              </div>
+              <div class="comparison-cell metal-cell">
+                <div class="score-badge average">
+                  <span class="score-value">Medel</span>
+                </div>
+                <p class="score-detail">1-2 byte</p>
+              </div>
+              <div class="comparison-cell concrete-cell">
+                <div class="score-badge average">
+                  <span class="score-value">Medel</span>
+                </div>
+                <p class="score-detail">1-2 reparationer</p>
+              </div>
+              <div class="comparison-cell bitumen-cell">
+                <div class="score-badge poor">
+                  <span class="score-value">Högsta</span>
+                </div>
+                <p class="score-detail">2-3 byte</p>
+              </div>
+            </div>
+
+            <!-- Row 6: Miljöpåverkan -->
+            <div class="comparison-row" data-category="environment">
+              <div class="comparison-cell criteria-cell">
+                <span class="criteria-label">Miljöpåverkan</span>
+              </div>
+              <div class="comparison-cell takpannor-cell">
+                <div class="score-badge excellent">
+                  <span class="score-icon">🌱</span>
+                  <span class="score-text">Mycket låg</span>
+                </div>
+                <p class="score-detail">Långliv = mindre avfall</p>
+              </div>
+              <div class="comparison-cell metal-cell">
+                <div class="score-badge good">
+                  <span class="score-icon">🌱</span>
+                  <span class="score-text">Låg</span>
+                </div>
+                <p class="score-detail">Återvinningsbar</p>
+              </div>
+              <div class="comparison-cell concrete-cell">
+                <div class="score-badge average">
+                  <span class="score-icon">~</span>
+                  <span class="score-text">Medel</span>
+                </div>
+                <p class="score-detail">Svår att återvinna</p>
+              </div>
+              <div class="comparison-cell bitumen-cell">
+                <div class="score-badge average">
+                  <span class="score-icon">~</span>
+                  <span class="score-text">Medel</span>
+                </div>
+                <p class="score-detail">Ofta på deponi</p>
+              </div>
+            </div>
+
+            <!-- Row 7: Underhållning -->
+            <div class="comparison-row" data-category="durability">
+              <div class="comparison-cell criteria-cell">
+                <span class="criteria-label">Underhållning</span>
+              </div>
+              <div class="comparison-cell takpannor-cell">
+                <div class="score-badge excellent">
+                  <span class="score-icon">✓</span>
+                  <span class="score-text">Minimal</span>
+                </div>
+                <p class="score-detail">Var 10 år inspektion</p>
+              </div>
+              <div class="comparison-cell metal-cell">
+                <div class="score-badge good">
+                  <span class="score-icon">✓</span>
+                  <span class="score-text">Lågt</span>
+                </div>
+                <p class="score-detail">Var 5-10 år</p>
+              </div>
+              <div class="comparison-cell concrete-cell">
+                <div class="score-badge average">
+                  <span class="score-icon">~</span>
+                  <span class="score-text">Medel</span>
+                </div>
+                <p class="score-detail">Var 3-5 år</p>
+              </div>
+              <div class="comparison-cell bitumen-cell">
+                <div class="score-badge poor">
+                  <span class="score-icon">!</span>
+                  <span class="score-text">Högt</span>
+                </div>
+                <p class="score-detail">Regelbundna reparationer</p>
+              </div>
+            </div>
+
+            <!-- Row 8: Ljuddämpning -->
+            <div class="comparison-row" data-category="aesthetic">
+              <div class="comparison-cell criteria-cell">
+                <span class="criteria-label">Ljuddämpning</span>
+              </div>
+              <div class="comparison-cell takpannor-cell">
+                <div class="score-badge excellent">
+                  <span class="score-icon">✓</span>
+                  <span class="score-text">Utmärkt</span>
+                </div>
+                <p class="score-detail">Tyst och lugn</p>
+              </div>
+              <div class="comparison-cell metal-cell">
+                <div class="score-badge poor">
+                  <span class="score-icon">!</span>
+                  <span class="score-text">Dålig</span>
+                </div>
+                <p class="score-detail">Kan vara bullrig</p>
+              </div>
+              <div class="comparison-cell concrete-cell">
+                <div class="score-badge good">
+                  <span class="score-icon">✓</span>
+                  <span class="score-text">Bra</span>
+                </div>
+                <p class="score-detail">Rimligt tyst</p>
+              </div>
+              <div class="comparison-cell bitumen-cell">
+                <div class="score-badge excellent">
+                  <span class="score-icon">✓</span>
+                  <span class="score-text">Utmärkt</span>
+                </div>
+                <p class="score-detail">Mycket tyst</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary Box -->
+        <div class="comparison-summary">
+          <div class="summary-content">
+            <h3>Varför Fler Väljer Takpannor</h3>
+            <ul class="summary-list">
+              <li><span class="summary-icon">✓</span> <strong>50-60 års livslängd</strong> – en investering för generationer</li>
+              <li><span class="summary-icon">✓</span> <strong>Klassisk skönhet</strong> som aldrig går ur mode</li>
+              <li><span class="summary-icon">✓</span> <strong>Minimal underhållning</strong> – spara tid och pengar</li>
+              <li><span class="summary-icon">✓</span> <strong>Miljövänlig</strong> – långlivat material minskar avfall</li>
+              <li><span class="summary-icon">✓</span> <strong>Utmärkt väderresistans</strong> – skyddar ditt hus under alla förhållanden</li>
+            </ul>
+          </div>
+          <div class="summary-cta">
+            <p>Redo att höja ditt hus med takpannor?</p>
+            <a href="#cta" class="cta-btn primary">Boka Kostnadsfritt Möte</a>
           </div>
         </div>
       </div>
