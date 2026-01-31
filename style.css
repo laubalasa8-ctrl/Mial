@@ -28,7 +28,8 @@ img { max-width: 100%; display: block; height: auto; }
 /* ===== TOPBAR ===== */
 .topbar { background: transparent; color: var(--text); font-size: 0.9rem; position: relative; z-index: 10; background-image: linear-gradient(135deg, rgba(42,54,72,0.45), rgba(42,54,72,0.45)), url('Hero-4.0.jpg'); background-size: cover; background-position: center; background-attachment: fixed; }
 body.takbyte-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.45), rgba(42,54,72,0.45)), url('hejdar.jpg'); }
-body.takpannor-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.45), rgba(42,54,72,0.45)), url('mami.jpg'); }
+body.takpannor-page .topbar { background: url('tak2.jpg') fixed center/cover no-repeat; }
+body.takpannor-page .topbar-contact-item { background: transparent; border: 1px solid rgba(25,168,255,0.2); }
 body.fasad-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('fasad1.jpg'); }
 body.platslageri-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat1.jpg'); }
 body.plattaket-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat4.jpg'); background-attachment: fixed; }
@@ -359,6 +360,10 @@ header {
 }
 body.takbyte-page header {
   background-image: linear-gradient(135deg, rgba(42,54,72,0.45), rgba(42,54,72,0.45)), url('hejdar.jpg');
+}
+body.takpannor-page header {
+  background-image: url('tak2.jpg');
+  background-attachment: fixed;
 }
 body.fasad-page header {
   background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('fasad1.jpg');
@@ -9911,10 +9916,1037 @@ body:has(.solar-hero) header { background: transparent; }
 
 /* Hero Section */
 .hero-takpannor {
-  background: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(0,88,204,0.4)), url('mami.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background: url('tak2.jpg') fixed center/cover no-repeat;
+  padding: 0 1.5rem 5rem;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-takpannor > div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* PANNMODELLER & FÄRGER INTERACTIVE SELECTOR */
+.pannmodeller-section {
+  padding: 6rem 1.5rem;
+  background: #ffffff;
+  margin-top: 4.5rem;
+}
+
+.pannmodeller-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pannmodeller-header {
+  text-align: center;
+  margin-bottom: 6.25rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pannmodeller-header .section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #0088cc 0%, #00d9ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.pannmodeller-header .section-sub {
+  font-size: 1.1rem;
+  color: #5a5a5a;
+  line-height: 1.8;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 700px;
+  display: block;
+}
+
+.pannmodeller-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 3rem;
+  align-items: start;
+  margin-bottom: 4rem;
+}
+
+/* PANNMODELLER SELECTOR */
+.pannmodeller-selector {
+  background: white;
+  border: 2px solid #dddddd;
+  border-radius: 20px;
+  padding: 2.5rem;
+  height: fit-content;
+}
+
+.pannmodeller-selector h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #0088cc 0%, #00d9ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(0,217,255,0.3);
+}
+
+.pannmodeller-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 395px;
+  justify-content: space-around;
+}
+
+.pannmodell-btn {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.5rem;
+  background: #f9f9f9;
+  border: 2px solid #e5e5e5;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-align: left;
+  flex: 1;
+}
+
+.pannmodell-btn:hover {
+  border-color: #00d9ff;
+  background: rgba(0,217,255,0.05);
+  transform: translateX(4px);
+}
+
+.pannmodell-btn.active {
+  background: linear-gradient(135deg, rgba(0,217,255,0.15), rgba(0,136,204,0.1));
+  border-color: #00d9ff;
+  box-shadow: 0 8px 20px rgba(0,217,255,0.15);
+}
+
+.btn-icon {
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pannmodell-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.btn-text {
+  flex: 1;
+}
+
+.btn-text strong {
+  display: block;
+  color: #111111;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.btn-text span {
+  display: block;
+  color: #7a7a7a;
+  font-size: 0.85rem;
+}
+
+/* PREVIEW AREA */
+.pannmodeller-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.preview-image-container {
+  position: relative;
+  background: #f5f5f5;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 1 / 0.5;
+  border: 2px solid #e5e5e5;
+}
+
+.preview-house {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.preview-color-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #b8361e;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  transition: all 0.5s ease;
+}
+
+.preview-info {
+  background: linear-gradient(135deg, rgba(0,136,204,0.05) 0%, rgba(0,217,255,0.03) 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 2px solid rgba(0,217,255,0.2);
+}
+
+.preview-info h4 {
+  font-size: 1.3rem;
+  background: linear-gradient(135deg, #0088cc 0%, #00d9ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.preview-info p {
+  font-size: 0.95rem;
+  color: #5a5a5a;
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+/* FÄRGER SELECTOR */
+.färger-selector {
+  grid-column: 1 / -1;
+  background: white;
+  border: 2px solid #dddddd;
+  border-radius: 20px;
+  padding: 2.5rem;
+}
+
+.färger-selector h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(0,217,255,0.2);
+}
+
+.färger-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 1.2rem;
+}
+
+.färg-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.färg-swatch {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.färg-option:hover .färg-swatch {
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.färg-option.active .färg-swatch {
+  border-color: #00d9ff;
+  box-shadow: 0 0 0 4px rgba(0,217,255,0.2), 0 8px 24px rgba(0,217,255,0.3);
+}
+
+.färg-name {
+  font-size: 0.85rem;
+  color: #5a5a5a;
+  text-align: center;
+  font-weight: 500;
+}
+
+.färg-option.active .färg-name {
+  color: #00d9ff;
+  font-weight: 700;
+}
+
+/* VALD FÄRG INFO */
+.vald-färg-info {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 2rem;
+  background: linear-gradient(135deg, rgba(0,217,255,0.08), rgba(0,136,204,0.05));
+  border: 2px solid rgba(0,217,255,0.3);
+  border-radius: 16px;
+  padding: 2.5rem;
+  align-items: start;
+}
+
+.färg-preview {
+  width: 180px;
+  height: 180px;
+  border-radius: 12px;
+  border: 3px solid rgba(0,217,255,0.4);
+  transition: all 0.5s ease;
+}
+
+.färg-details h4 {
+  font-size: 1.5rem;
+  color: #111111;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.färg-details p {
+  font-size: 0.95rem;
+  color: #5a5a5a;
+  margin-bottom: 0.5rem;
+}
+
+#färgRAL {
+  font-weight: 600;
+  color: #00688c;
+  font-family: 'Courier New', monospace;
+}
+
+.färg-beskrivning {
+  margin: 1rem 0 !important;
+  line-height: 1.7;
+}
+
+.färg-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #7a7a7a;
+  font-weight: 600;
+}
+
+.stat-value {
+  font-size: 0.95rem;
+  color: #111111;
+  font-weight: 700;
+}
+
+/* CTA SECTION */
+/* PANNMODELLER INFO SECTION */
+.pannmodeller-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.info-card {
+  background: linear-gradient(135deg, rgba(0,136,204,0.05) 0%, rgba(0,217,255,0.03) 100%);
+  border: 2px solid rgba(0,217,255,0.15);
+  border-radius: 16px;
+  padding: 2.5rem;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.info-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0,217,255,0.3);
+  box-shadow: 0 20px 40px rgba(0,136,204,0.1);
+}
+
+.info-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0088cc 0%, #00d9ff 100%);
+  border-radius: 12px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.info-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: white;
+}
+
+.info-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #0088cc 0%, #00d9ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.8rem;
+}
+
+.info-card p {
+  font-size: 0.9rem;
+  color: #5a5a5a;
+  line-height: 1.6;
+}
+
+/* TAKPANNOR SHOWCASE */
+.takpannor-showcase {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.showcase-card {
+  max-width: 900px;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid rgba(0,217,255,0.2);
+  box-shadow: 0 20px 60px rgba(0,136,204,0.12);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.showcase-card:hover {
+  box-shadow: 0 30px 80px rgba(0,136,204,0.18);
+  border-color: rgba(0,217,255,0.3);
+}
+
+.showcase-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #f5f7fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.showcase-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease;
+}
+
+.showcase-label {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: rgba(0,136,204,0.95);
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  backdrop-filter: blur(8px);
+}
+
+.showcase-content {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  order: -1;
+  height: 100%;
+}
+
+.showcase-right {
+  order: -1;
+}
+
+.showcase-left {
+  order: -1;
+}
+
+.showcase-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #0088cc 0%, #00d9ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.showcase-card p {
+  font-size: 0.95rem;
+  color: #5a5a5a;
+  line-height: 1.7;
+}
+
+.pannmodeller-cta {
+  text-align: center;
+  background: linear-gradient(135deg, rgba(0,217,255,0.12), rgba(0,136,204,0.08));
+  border: 2px solid rgba(0,217,255,0.3);
+  border-radius: 20px;
+  padding: 3rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.pannmodeller-cta h3 {
+  font-size: 1.8rem;
+  color: #111111;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.pannmodeller-cta p {
+  font-size: 1.05rem;
+  color: #5a5a5a;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .pannmodeller-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .vald-färg-info {
+    grid-template-columns: 1fr;
+  }
+
+  .färg-preview {
+    width: 100%;
+    max-width: 180px;
+  }
+
+  .färger-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .pannmodeller-section {
+    padding: 3rem 1rem;
+  }
+
+  .pannmodeller-header .section-title {
+    font-size: 2rem;
+  }
+
+  .pannmodeller-selector,
+  .färger-selector,
+  .vald-färg-info {
+    padding: 1.5rem;
+  }
+
+  .pannmodeller-buttons {
+    gap: 0.8rem;
+  }
+
+  .pannmodell-btn {
+    padding: 1.2rem;
+    gap: 1rem;
+  }
+
+  .btn-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+  }
+
+  .färger-grid {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 1rem;
+  }
+
+  .färg-swatch {
+    width: 60px;
+    height: 60px;
+  }
+
+  .pannmodeller-cta {
+    padding: 2rem 1.5rem;
+  }
+
+  .pannmodeller-cta h3 {
+    font-size: 1.4rem;
+  }
+}
+
+/* TAKPANNOR EXPLAINED SECTION - NEW */
+.takpannor-explained-section {
+  padding: 6rem 1.5rem;
+  background: #ffffff;
+}
+
+.takpannor-explained-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.takpannor-explained-header .section-title {
+  font-size: 3.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #0088cc 0%, #00d9ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.2rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.takpannor-explained-header .section-sub {
+  font-size: 1.15rem;
+  color: #5a5a5a;
+  line-height: 1.8;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Ingress Box */
+.takpannor-ingress-box {
+  background: linear-gradient(135deg, rgba(0,217,255,0.1), rgba(0,136,204,0.1));
+  border: 2px solid rgba(0,217,255,0.3);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-bottom: 4rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ingress-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #00d9ff, #0088cc);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ingress-icon svg {
+  width: 40px;
+  height: 40px;
+  stroke: white;
+  stroke-width: 2;
+}
+
+.ingress-content h3 {
+  font-size: 1.4rem;
+  color: #111111;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.ingress-content p {
+  font-size: 1rem;
+  color: #5a5a5a;
+  line-height: 1.8;
+}
+
+/* Key Questions Grid */
+.takpannor-key-questions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto 4rem;
+}
+
+.key-question-card:nth-child(3) {
+  grid-column: 1 / -1;
+  max-width: 100%;
+  margin: 0;
+}
+
+.key-question-card:nth-child(3) .question-number {
+  margin-bottom: 1.5rem;
+}
+
+.key-question-card:nth-child(3) .benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.key-question-card:nth-child(3) .benefit-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.key-question-card:nth-child(3) .benefit-icon {
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.key-question-card:nth-child(3) .benefit-text {
+  text-align: left;
+}
+
+.key-question-card {
+  background: white;
+  border: 2px solid #dddddd;
+  border-radius: 16px;
+  padding: 2.5rem;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.key-question-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #00d9ff, #0088cc);
+}
+
+.key-question-card:hover {
+  border-color: #00d9ff;
+  box-shadow: 0 12px 32px rgba(0,217,255,0.15);
+  transform: translateY(-4px);
+}
+
+.question-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #00d9ff, #0088cc);
+  border-radius: 12px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.key-question-card h3 {
+  font-size: 1.4rem;
+  color: #111111;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.question-intro {
+  font-size: 0.95rem;
+  color: #5a5a5a;
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+/* Checklist Section */
+.checklist-section {
+  margin-top: 1.5rem;
+}
+
+.section-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111111;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.feature-checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin: 1.5rem 0;
+}
+
+.feature-checklist li {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.check-icon {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #00d9ff, #0088cc);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.feature-checklist li div {
+  flex: 1;
+}
+
+.feature-checklist strong {
+  color: #111111;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.feature-checklist li div {
+  font-size: 0.95rem;
+  color: #5a5a5a;
+  line-height: 1.6;
+}
+
+.cta-text {
+  background: rgba(0,217,255,0.08);
+  padding: 1.2rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  color: #00688c;
+  font-weight: 600;
+  margin-top: 1.5rem;
+}
+
+/* Material Comparison */
+.material-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.material-option h4 {
+  font-size: 1.1rem;
+  color: #111111;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #00d9ff;
+}
+
+.material-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.material-features li {
+  font-size: 0.9rem;
+  color: #5a5a5a;
+  line-height: 1.5;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.material-features li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #00d9ff;
+  font-weight: 700;
+}
+
+.choice-guide {
+  background: #f5f7fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-top: 1.5rem;
+}
+
+.choice-guide p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #5a5a5a;
+}
+
+.choice-guide p:first-child {
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 0.8rem;
+}
+
+.highlight-bold {
+  color: #00d9ff;
+  font-weight: 700;
+}
+
+/* Benefits List */
+.benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.benefit-item {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  padding: 1rem;
+  background: rgba(0,217,255,0.05);
+  border-radius: 12px;
+}
+
+.benefit-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #00d9ff, #0088cc);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.benefit-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: white;
+  stroke-width: 2;
+}
+
+.benefit-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #5a5a5a;
+}
+
+.benefit-text strong {
+  color: #111111;
+  display: inline;
+}
+
+/* Maintenance Tasks */
+.maintenance-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.task-item {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.2rem;
+  background: white;
+  border: 1px solid #dddddd;
+  border-radius: 12px;
+  align-items: flex-start;
+}
+
+.task-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  width: 40px;
+  text-align: center;
+}
+
+.task-content {
+  flex: 1;
+  font-size: 0.95rem;
+  color: #5a5a5a;
+  line-height: 1.6;
+}
+
+.task-content strong {
+  color: #111111;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.maintenance-summary {
+  background: linear-gradient(135deg, rgba(0,217,255,0.1), rgba(0,136,204,0.1));
+  border: 2px solid rgba(0,217,255,0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.maintenance-summary p {
+  font-size: 1rem;
+  color: #5a5a5a;
+  line-height: 1.7;
+}
+
+.maintenance-summary strong {
+  color: #111111;
+}
+
+/* Bottom CTA */
+.takpannor-explained-cta {
+  background: linear-gradient(135deg, rgba(0,217,255,0.12), rgba(0,136,204,0.08));
+  border: 2px solid rgba(0,217,255,0.3);
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.takpannor-explained-cta h3 {
+  font-size: 1.8rem;
+  color: #111111;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.takpannor-explained-cta p {
+  font-size: 1.05rem;
+  color: #5a5a5a;
+  line-height: 1.8;
+  margin-bottom: 2rem;
 }
 
 /* Intro Section */
@@ -10208,7 +11240,7 @@ body:has(.solar-hero) header { background: transparent; }
 .takpannor-cta-section {
   position: relative;
   padding: 8rem 1.5rem;
-  background: linear-gradient(135deg, rgba(42,54,72,0.6), rgba(0,88,204,0.5)), url('mami.jpg');
+  background: linear-gradient(135deg, rgba(42,54,72,0.6), rgba(0,88,204,0.5)), url('tak2.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -10316,6 +11348,19 @@ body:has(.solar-hero) header { background: transparent; }
   }
 }
 
+@media (max-width: 768px) {
+  .takpannor-key-questions {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .key-question-card:nth-child(3) {
+    grid-column: auto;
+    max-width: none;
+    margin: 0;
+  }
+}
+
 @media (max-width: 640px) {
   .takpannor-intro-section {
     padding: 3rem 1rem;
@@ -10390,6 +11435,101 @@ body:has(.solar-hero) header { background: transparent; }
   }
 
   .takpannor-cta-subtitle {
+    font-size: 0.95rem;
+  }
+
+  /* Mobile Responsive for New Explained Section */
+  .takpannor-explained-header .section-title {
+    font-size: 2rem;
+  }
+
+  .takpannor-explained-header .section-sub {
+    font-size: 1rem;
+  }
+
+  .takpannor-ingress-box {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .ingress-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .ingress-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ingress-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .ingress-content p {
+    font-size: 0.9rem;
+  }
+
+  .key-question-card {
+    padding: 1.5rem;
+  }
+
+  .key-question-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .material-comparison {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .material-option h4 {
+    font-size: 1rem;
+  }
+
+  .material-features li {
+    font-size: 0.85rem;
+  }
+
+  .benefit-item {
+    gap: 1rem;
+    padding: 0.8rem;
+  }
+
+  .benefit-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .benefit-text {
+    font-size: 0.9rem;
+  }
+
+  .task-item {
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .task-icon {
+    font-size: 1.5rem;
+    width: 35px;
+  }
+
+  .task-content {
+    font-size: 0.9rem;
+  }
+
+  .takpannor-explained-cta {
+    padding: 2rem 1.5rem;
+  }
+
+  .takpannor-explained-cta h3 {
+    font-size: 1.4rem;
+  }
+
+  .takpannor-explained-cta p {
     font-size: 0.95rem;
   }
 }

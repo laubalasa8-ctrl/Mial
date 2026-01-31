@@ -104,70 +104,179 @@
     <section class="hero hero-takpannor">
       <div>
         <div class="frosted-box">
-          <div class="hero-kicker">Tidlös Elegans & Beprövad Hållbarhet</div>
-          <h1>Takpannor som <span class="highlight">håller i generationer</span></h1>
+          <div class="hero-kicker">Kvalitet, Form och Funktion i Balans</div>
+          <h1>Takpannor som passar <span>ditt hus</span></h1>
           <p class="hero-lead">
-            Takpannor är ett val för framtiden – klassisk skönhet kombinerat med moderna material. Vi installerar med precision så att ditt hem får ett tak som både skyddar och förgyller i årtionden.
+            Vi hjälper dig att välja och lägga takpannor som fungerar för just ditt hem. Med fokus på noggrant arbete och beprövade material skapar vi tak som håller över tid — både i uttryck och i funktion.
           </p>
           <div class="hero-cta-row">
-            <a href="index.html#contact" class="btn-primary">Boka kostnadsfri inspektion</a>
-            <a href="#advantages" class="btn-ghost">Läs mer om takpannor</a>
+            <a href="index.html#contact" class="btn-primary">Få kostnadsfri offert</a>
+            <a href="#ge-ditt-hus-nytt-uttryck" class="btn-ghost">Läs mer...</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: INTRODUCTION -->
-    <section class="takpannor-intro-section fade-in">
-      <div class="container">
-        <div class="takpannor-intro-header">
-          <h2 class="section-title">Vad är Takpannor?</h2>
-          <p class="section-sub">Takpannor är ett av världens mest använda takbetäckningsmaterial. Kombinationen av klassisk design och moderna prestanda gör det till ett populärt val för villaägare.</p>
+    <!-- SECTION 2: PANNMODELLER & FÄRGER - INTERACTIVE SELECTOR -->
+    <section class="pannmodeller-section fade-in" id="ge-ditt-hus-nytt-uttryck">
+      <div class="pannmodeller-container">
+        <div class="pannmodeller-header">
+          <h2 class="section-title">Ge ditt hus ett nytt uttryck</h2>
+          <p class="section-sub">Takets färg och form sätter känslan för hela fastigheten. Utforska våra utvalda takpannor och upplev hur de ser ut i verkliga miljöer.</p>
         </div>
 
-        <div class="takpannor-intro-grid">
-          <div class="takpannor-intro-card fade-in-up" style="animation-delay: 0.1s;">
-            <div class="intro-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-              </svg>
+        <div class="pannmodeller-layout">
+          <!-- PANNMODELLER SELECTOR -->
+          <div class="pannmodeller-selector">
+            <h3>Välj panna</h3>
+            <div class="pannmodeller-buttons">
+              <button class="pannmodell-btn active" data-model="spansk">
+                <div class="btn-icon">
+                  <img src="dubbelkupig.png" alt="Dubbelkupig Panna" class="pannmodell-img">
+                </div>
+                <div class="btn-text">
+                  <strong>Dubbelkupig Panna</strong>
+                  <span>Klassisk profil med två kupor</span>
+                </div>
+              </button>
+              <button class="pannmodell-btn" data-model="nederländsk">
+                <div class="btn-icon">
+                  <img src="enkupig.png" alt="Enkupig Panna" class="pannmodell-img">
+                </div>
+                <div class="btn-text">
+                  <strong>Enkupig Panna</strong>
+                  <span>Klassisk och ren profil</span>
+                </div>
+              </button>
+              <button class="pannmodell-btn" data-model="fransk">
+                <div class="btn-icon">
+                  <img src="lertegel.png" alt="Lertegel Panna" class="pannmodell-img">
+                </div>
+                <div class="btn-text">
+                  <strong>Lertegel Panna</strong>
+                  <span>Äkta material som åldras vackert</span>
+                </div>
+              </button>
             </div>
-            <h3>Långvarig Design</h3>
-            <p>Takpannor ger ditt hus ett klassiskt, tidlöst uttryck som aldrig går ur tiden. Välkänd och älskad design som ökar husets värde.</p>
           </div>
 
-          <div class="takpannor-intro-card fade-in-up" style="animation-delay: 0.2s;">
-            <div class="intro-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path>
-                <polyline points="10 16 6 12 7.41 10.59 10 13.17 16.59 6.58 18 8"></polyline>
-              </svg>
+          <!-- PREVIEW AREA -->
+          <div class="pannmodeller-preview">
+            <div class="preview-image-container">
+              <img id="previewHouseImage" src="clara1.png" alt="Hustakrend med takpannor" class="preview-house">
+              <div class="preview-color-overlay" id="colorOverlay" style="background-color: #b8361e;"></div>
             </div>
-            <h3>Proven Material</h3>
-            <p>Hundratals år av erfarenhet och moderna produktionsmetoder skapar ett material med dokumenterad hållbarhet och prestanda.</p>
+            <div class="preview-info">
+              <h4 id="selectedModelName">Spansk Takpanna</h4>
+              <p id="selectedModelDescription">Den klassiska spanska pannorna är tidlös och funktionell. Den karakteristiska rundningen gör att vatten naturligt rinner av.</p>
+            </div>
           </div>
 
-          <div class="takpannor-intro-card fade-in-up" style="animation-delay: 0.3s;">
-            <div class="intro-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-              </svg>
+        </div>
+
+        <!-- BEFORE/AFTER SHOWCASE -->
+        <div class="takpannor-showcase">
+          <div class="showcase-card">
+            <div class="showcase-content">
+              <h3>Före och efter – ett tak i bättre skick</h3>
+              <p id="showcaseText">Det här taket hade blivit påverkat av många år med väder och vind. Inget som syntes tydligt på håll, men tillräckligt för att det var dags att göra en ordentlig genomgång.
+
+Vid arbetet gick vi igenom takets delar steg för steg och åtgärdade det som behövdes. Med nya takpannor och ett noggrant utfört grundarbete fick huset ett bättre skydd och ett mer enhetligt uttryck.
+
+Bilderna visar resultatet – ett tak som nu känns stabilt, tryggt och redo för många år framöver.</p>
             </div>
-            <h3>Miljövänligt Val</h3>
-            <p>Naturliga material med lågt miljöavtryck. Takpannor kan återvinnas helt och hållet vid slutet av sin långa livscykel.</p>
+            <div class="showcase-image-container">
+              <img id="showcaseImage" src="before.png" alt="Tak transformation" class="showcase-image">
+              <div class="showcase-label" id="showcaseLabel">FÖRE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: TAKPANNOR EXPLAINED - COMPREHENSIVE GUIDE -->
+    <section class="takpannor-explained-section fade-in">
+      <div class="takpannor-explained-header">
+        <h2 class="section-title">Rätt Takpannor För Rätt Förutsättningar</h2>
+        <p class="section-sub">Takpannor är en av de mest beprövade taklösningarna. Men rätt val handlar om mer än bara utseende.</p>
+      </div>
+
+      <!-- INGRESS BOX -->
+      <div class="takpannor-ingress-box fade-in-up">
+        <div class="ingress-content">
+          <h3>Vad skiljer en bra takpannmontage från en dålig?</h3>
+          <p>Det handlar om rätt lutning på taket, rätt underlag och dimensionering, samt skicklig montage av detaljer runt skorsten och rännor. Vi hjälper dig genom hela processen från inspektion till slutresultat.</p>
+        </div>
+      </div>
+
+        <!-- FOUR KEY QUESTIONS GRID -->
+        <div class="takpannor-key-questions">
+          
+          <!-- QUESTION 1: Passar takpannor mitt hus? -->
+          <div class="key-question-card fade-in-up" style="animation-delay: 0.1s;">
+            <div class="question-number">1</div>
+            <h3>Passar Takpannor Mitt Hus?</h3>
+            <p class="question-intro"><strong>Kort svar:</strong> Oftast ja – om takets lutning och konstruktion är rätt.</p>
+            
+            <div class="checklist-section">
+              <p class="section-label">Det här Behöver Stämma:</p>
+              <ul class="feature-checklist">
+                <li>
+                  <span class="check-icon">✓</span>
+                  <div>
+                    <strong>Taklutning:</strong> Takpannor kräver vanligtvis en viss lutning för att fungera optimalt (exakt gräns beror på pannmodell)
+                  </div>
+                </li>
+                <li>
+                  <span class="check-icon">✓</span>
+                  <div>
+                    <strong>Bärighet:</strong> Takpannor väger mer än t.ex. plåt – därför ska underlag och läkt vara rätt dimensionerade
+                  </div>
+                </li>
+                <li>
+                  <span class="check-icon">✓</span>
+                  <div>
+                    <strong>Detaljer:</strong> Skorsten, ränndalar, genomföringar och nock är där kvaliteten märks mest
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
 
-          <div class="takpannor-intro-card fade-in-up" style="animation-delay: 0.4s;">
-            <div class="intro-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                <path d="M7 11V7a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v4"></path>
-              </svg>
+          <!-- QUESTION 2: Betong eller Lertegel -->
+          <div class="key-question-card fade-in-up" style="animation-delay: 0.2s;">
+            <div class="question-number">2</div>
+            <h3>Betongpannor eller Lertegel?</h3>
+            <p class="question-intro"><strong>Vad är Skillnaden?</strong></p>
+            
+            <div class="material-comparison">
+              <div class="material-option">
+                <h4>Betongpannor</h4>
+                <ul class="material-features">
+                  <li>Ofta prisvärda och jämna i form</li>
+                  <li>Bra val när du vill ha mycket för pengarna</li>
+                  <li>Finns i många färger och ytbehandlingar</li>
+                </ul>
+              </div>
+
+              <div class="material-option">
+                <h4>Lertegelpannor</h4>
+                <ul class="material-features">
+                  <li>Klassisk känsla och naturlig karaktär</li>
+                  <li>Ofta valda för tidlöst utseende och "rätt" look på klassiska hus</li>
+                  <li>Åldras snyggt och passar särskilt bra på villor</li>
+                </ul>
+              </div>
             </div>
-            <h3>Säker Investering</h3>
-            <p>Ett tak med takpannor är en värdeökning för ditt hus. Potentiella köpare uppskättar klassisk stil och dokumenterad hållbarhet.</p>
           </div>
+
+        </div>
+
+        <!-- BOTTOM CTA -->
+        <div class="takpannor-explained-cta fade-in-up">
+          <h3>Ska Vi Titta På Ditt Tak Tillsammans?</h3>
+          <p>Att byta tak är inget litet beslut. Därför erbjuder vi ett kostnadsfritt hembesök där vi går igenom ditt tak i lugn och ro. Du får en ärlig genomgång, tydliga svar och rekommendationer som passar just ditt hus.</p>
+          <a href="index.html#contact" class="btn-primary">Boka Ditt Kostnadsfria Hembesök</a>
         </div>
       </div>
     </section>

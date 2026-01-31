@@ -317,6 +317,99 @@ if (header) {
   });
 }
 
+// ===== PANNMODELLER & FÄRGER INTERACTIVE SELECTOR =====
+const pannmodellerData = {
+  spansk: {
+    name: 'Dubbelkupig Takpanna',
+    description: 'Ett säkert val som håller över tid. Den dubbelkupiga betongpannan kombinerar klassisk form med modern funktion. De mjuka kuporna ger taket ett levande uttryck samtidigt som konstruktionen leder bort regn och smältvatten effektivt. Ett pålitligt och stilrent val som passar lika bra på traditionella villor som på moderna bostäder.',
+    image: 'clara1.png',
+    färger: [
+      { name: 'Svart Granit', color: '#2a2a2a', ral: 'RAL 9005', desc: 'Elegant svart med granit-finish. Modernt och tidlöst val som passar många husstil.' },
+      { name: 'Brun', color: '#6d4c3d', ral: 'RAL 8003', desc: 'Varm jordnära brun ton som skapar en klassisk och naturlig känsla.' },
+      { name: 'Grön', color: '#3d6b2d', ral: 'RAL 6035', desc: 'Naturnära mörkgrön som harmoniserar perfekt med omgivningen.' },
+      { name: 'Tegelröd', color: '#a44536', ral: 'RAL 3012', desc: 'Klassisk tegelröd som passar traditionella svenska villor utmärkt.' },
+      { name: 'Röd', color: '#c84c2a', ral: 'RAL 3020', desc: 'Levande röd färg som ger ett klassiskt och varmt intryck.' },
+      { name: 'Mellangrå', color: '#7a8285', ral: 'RAL 7030', desc: 'Neutral mellangrå som passar moderna och klassiska hus lika väl.' },
+      { name: 'Vinröd', color: '#7d2f47', ral: 'RAL 3005', desc: 'Djup vinröd som skapar elegans och klassisk skönhet.' },
+      { name: 'Ljusgrå', color: '#a8b0b5', ral: 'RAL 7035', desc: 'Ljus silvergrå som ger ett luftigt och modernt uttryck.' },
+      { name: 'Mörkgrå', color: '#4a5360', ral: 'RAL 7016', desc: 'Mörkgrå med elegant kantslip för ett sofistikerat utseende.' }
+    ]
+  },
+  nederländsk: {
+    name: 'Enkupig Takpanna',
+    description: 'Enkupig takpanna – modernt och stilrent. Den enkupiga takpannan har en rak och enkel form som ger huset ett modernt utseende. Den passar dig som vill ha ett stilrent tak med tydliga linjer och ett lugnt helhetsintryck. Ett populärt val vid nybyggen och moderna hus.',
+    image: 'clara2.png',
+    färger: [
+      { name: 'Svart Granit', color: '#2a2a2a', ral: 'RAL 9005', desc: 'Rent och modernt med granit-finish. Perfekt för moderna byggen.' },
+      { name: 'Brun', color: '#6d4c3d', ral: 'RAL 8003', desc: 'Varm brun ton som ger en naturlig och inviterande känsla.' },
+      { name: 'Grön', color: '#3d6b2d', ral: 'RAL 6035', desc: 'Mörkgrön för ekodesign och naturharmoni.' },
+      { name: 'Tegelröd', color: '#a44536', ral: 'RAL 3012', desc: 'Klassisk tegelröd i modern pannform.' },
+      { name: 'Röd', color: '#c84c2a', ral: 'RAL 3020', desc: 'Kraftfull röd som skapar stark visuell effekt.' },
+      { name: 'Mellangrå', color: '#7a8285', ral: 'RAL 7030', desc: 'Balanserad grå ton som passar modernt och klassiskt.' },
+      { name: 'Vinröd', color: '#7d2f47', ral: 'RAL 3005', desc: 'Sofistikerad vinröd för exklusiv design.' },
+      { name: 'Ljusgrå', color: '#a8b0b5', ral: 'RAL 7035', desc: 'Ljus grå som skapar ett luftigt nordiskt intryck.' },
+      { name: 'Mörkgrå', color: '#4a5360', ral: 'RAL 7016', desc: 'Mörkgrå för ett modern och diskret uttryck.' }
+    ]
+  },
+  fransk: {
+    name: 'Lertegel Takpanna',
+    description: 'Lertegelpanna – klassiskt och levande tak. Lertegelpannor ger huset ett tidlöst och naturligt utseende. Den varma färgen och de mjuka formerna gör att taket får liv och karaktär som bara blir finare med åren. Ett självklart val för dig som vill ha ett klassiskt, gediget och mer exklusivt tak.',
+    image: 'clara3.jpg',
+    färger: [
+      { name: 'Svart Granit', color: '#2a2a2a', ral: 'RAL 9005', desc: 'Klassisk svart granit för ultimate elegans.' },
+      { name: 'Brun', color: '#6d4c3d', ral: 'RAL 8003', desc: 'Varm brun för klassiska gamla villor.' },
+      { name: 'Grön', color: '#3d6b2d', ral: 'RAL 6035', desc: 'Naturnära grön för klassisk harmoni.' },
+      { name: 'Tegelröd', color: '#a44536', ral: 'RAL 3012', desc: 'Varm tegelröd för gamla svenska gårdar.' },
+      { name: 'Röd', color: '#c84c2a', ral: 'RAL 3020', desc: 'Klassisk röd som passar perfekt på franska pannor.' },
+      { name: 'Mellangrå', color: '#7a8285', ral: 'RAL 7030', desc: 'Elegant mellangrå för klassisk elegans.' },
+      { name: 'Vinröd', color: '#7d2f47', ral: 'RAL 3005', desc: 'Djup vinröd för ultimate klassisk skönhet.' },
+      { name: 'Ljusgrå', color: '#a8b0b5', ral: 'RAL 7035', desc: 'Ljus silvergrå för sofistikerat uttryck.' },
+      { name: 'Mörkgrå', color: '#4a5360', ral: 'RAL 7016', desc: 'Mörkgrå för raffinerad klassisk design.' }
+    ]
+  }
+};
+
+// Initialize pannmodeller selector
+document.addEventListener('DOMContentLoaded', function() {
+  initPannmodellerSelector();
+});
+
+function initPannmodellerSelector() {
+  const pannmodellBtns = document.querySelectorAll('.pannmodell-btn');
+  
+  if (!pannmodellBtns.length) return;
+
+  // Set initial model
+  updatePannmodell('spansk');
+
+  // Add click handlers to pannmodell buttons
+  pannmodellBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      pannmodellBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const model = this.dataset.model;
+      updatePannmodell(model);
+    });
+  });
+}
+
+function updatePannmodell(model) {
+  const data = pannmodellerData[model];
+  if (!data) return;
+
+  // Update model name and description
+  const nameElement = document.getElementById('selectedModelName');
+  const descElement = document.getElementById('selectedModelDescription');
+  const imageElement = document.getElementById('previewHouseImage');
+  
+  if (nameElement) nameElement.textContent = data.name;
+  if (descElement) descElement.textContent = data.description;
+
+  // Update preview image
+  if (imageElement) imageElement.src = data.image;
+}
+
+
 // ===== CALL FORM =====
 const callForm = document.getElementById('call-phone');
 const callSubmit = document.querySelector('.call-form-submit');
@@ -345,3 +438,41 @@ if (callSubmit) {
     }
   });
 }
+
+// ===== TAKPANNOR SHOWCASE BEFORE/AFTER =====
+document.addEventListener('DOMContentLoaded', function() {
+  const showcaseImage = document.getElementById('showcaseImage');
+  const showcaseLabel = document.getElementById('showcaseLabel');
+
+  if (showcaseImage) {
+    const showcaseData = [
+      {
+        image: 'before.png',
+        label: 'FÖRE'
+      },
+      {
+        image: 'after.png',
+        label: 'EFTER'
+      }
+    ];
+
+    let currentIndex = 0;
+    
+    function updateShowcase() {
+      const data = showcaseData[currentIndex];
+      showcaseImage.style.opacity = '0';
+      
+      setTimeout(() => {
+        showcaseImage.src = data.image;
+        showcaseLabel.textContent = data.label;
+        showcaseImage.style.opacity = '1';
+      }, 300);
+    }
+
+    // Change image every 4 seconds automatically
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % showcaseData.length;
+      updateShowcase();
+    }, 4000);
+  }
+});
