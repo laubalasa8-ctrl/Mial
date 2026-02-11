@@ -476,3 +476,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 4000);
   }
 });
+
+// ===== MATERIALS SELECTOR =====
+document.addEventListener('DOMContentLoaded', function() {
+  const materialButtons = document.querySelectorAll('.material-btn');
+  const materialItems = document.querySelectorAll('.material-item');
+
+  if (materialButtons.length > 0 && materialItems.length > 0) {
+    materialButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const materialType = this.getAttribute('data-material');
+        
+        // Remove active class from all buttons and items
+        materialButtons.forEach(btn => btn.classList.remove('active'));
+        materialItems.forEach(item => item.classList.remove('active'));
+        
+        // Add active class to clicked button and corresponding item
+        this.classList.add('active');
+        const activeItem = document.querySelector(`.material-item[data-material="${materialType}"]`);
+        if (activeItem) {
+          activeItem.classList.add('active');
+        }
+      });
+    });
+  }
+});
