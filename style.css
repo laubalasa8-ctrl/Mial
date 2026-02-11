@@ -13702,3 +13702,374 @@ body:has(.solar-hero) header { background: transparent; }
     font-size: 0.95rem;
   }
 }
+
+/* ===== INSTALLATION SECTION (PAPPTAK) ===== */
+.installation-section {
+  padding: 4rem 1.5rem;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.installation-section > .papptak-container {
+  width: 100%;
+}
+
+.installation-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  width: 100%;
+}
+
+.installation-header .section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: var(--text);
+}
+
+.installation-header .section-sub {
+  font-size: 1.1rem;
+  color: var(--blue);
+  font-weight: 600;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.installation-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  max-width: 1300px;
+  margin: 0 auto 3rem;
+}
+
+.installation-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.installation-image-left {
+  grid-column: 1;
+  display: none;
+}
+
+.installation-image-right {
+  grid-column: 2;
+}
+
+.installation-img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+.installation-label {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  background: rgba(25, 168, 255, 0.95);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  backdrop-filter: blur(8px);
+}
+
+.installation-middle {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.installation-point {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+}
+
+.installation-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--blue);
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+}
+
+.installation-text h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--text);
+}
+
+.installation-text p {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+.installation-cta {
+  text-align: center;
+  background: rgba(25, 168, 255, 0.05);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(25, 168, 255, 0.1);
+}
+
+.installation-cta p {
+  font-size: 1.05rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.installation-cta strong {
+  color: var(--blue);
+}
+
+/* ===== RESPONSIVE: INSTALLATION ===== */
+@media (max-width: 1024px) {
+  .installation-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .installation-image-right {
+    display: none;
+  }
+
+  .installation-header .section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .installation-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .installation-header .section-title {
+    font-size: 1.7rem;
+  }
+
+  .installation-header .section-sub {
+    font-size: 0.95rem;
+  }
+
+  .installation-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .installation-middle {
+    grid-template-columns: 1fr;
+  }
+
+  .installation-img {
+    height: 280px;
+  }
+
+  .installation-cta {
+    padding: 1.5rem;
+  }
+
+  .installation-cta p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .installation-section {
+    padding: 2rem 1rem;
+  }
+
+  .installation-header {
+    margin-bottom: 2rem;
+  }
+
+  .installation-header .section-title {
+    font-size: 1.4rem;
+  }
+
+  .installation-content {
+    gap: 1rem;
+  }
+
+  .installation-img {
+    height: 220px;
+  }
+
+  .installation-label {
+    bottom: 1rem;
+    left: 1rem;
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .installation-text h3 {
+    font-size: 1rem;
+  }
+
+  .installation-text p {
+    font-size: 0.85rem;
+  }
+
+  .installation-cta p {
+    font-size: 0.85rem;
+  }
+}
+
+/* ===== CTA FEROTECT SECTION ===== */
+.papptak-cta-section-ferotect {
+  position: relative;
+  padding: 10rem 1.5rem;
+  overflow: hidden;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  width: 100vw;
+}
+
+.cta-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: 0;
+}
+
+.papptak-cta-section-ferotect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.papptak-cta-section-ferotect .papptak-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.cta-ferotect-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cta-ferotect-title {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1.1;
+}
+
+.cta-ferotect-subtitle {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin: 0 auto;
+}
+
+.btn-cta-ferotect {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: var(--blue);
+  color: white;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all var(--transition-smooth);
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-cta-ferotect:hover {
+  background: var(--blue-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(25, 168, 255, 0.3);
+}
+
+/* ===== RESPONSIVE: CTA FEROTECT ===== */
+@media (max-width: 1024px) {
+  .cta-ferotect-title {
+    font-size: 2.5rem;
+  }
+
+  .cta-ferotect-subtitle {
+    font-size: 1rem;
+  }
+
+  .papptak-cta-section-ferotect {
+    padding: 8rem 1.5rem;
+    min-height: 550px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cta-ferotect-title {
+    font-size: 2rem;
+  }
+
+  .cta-ferotect-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .btn-cta-ferotect {
+    width: 100%;
+    text-align: center;
+  }
+
+  .papptak-cta-section-ferotect {
+    padding: 6rem 1.5rem;
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cta-ferotect-title {
+    font-size: 1.6rem;
+  }
+
+  .cta-ferotect-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .btn-cta-ferotect {
+    padding: 0.8rem 2rem;
+    font-size: 0.9rem;
+  }
+
+  .papptak-cta-section-ferotect {
+    padding: 4rem 1rem;
+    min-height: 400px;
+  }
+}
