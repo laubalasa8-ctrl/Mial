@@ -7,6 +7,20 @@ if (yearElement) {
 // ===== HAMBURGER MENU =====
 const hamburgerBtn = document.getElementById('hamburger-btn');
 const mobileMenu = document.getElementById('mobile-menu');
+const closeBtn = document.getElementById('mobile-menu-close');
+
+const closeMenu = () => {
+  hamburgerBtn.classList.remove('active');
+  mobileMenu.classList.remove('is-active');
+  
+  // Reset all dropdowns
+  document.querySelectorAll('.mobile-submenu.active').forEach(menu => {
+    menu.classList.remove('active');
+  });
+  document.querySelectorAll('.mobile-menu-toggle').forEach(btn => {
+    btn.setAttribute('aria-expanded', 'false');
+  });
+};
 
 if (hamburgerBtn && mobileMenu) {
   hamburgerBtn.addEventListener('click', function() {
@@ -14,21 +28,136 @@ if (hamburgerBtn && mobileMenu) {
     mobileMenu.classList.toggle('is-active');
   });
 
-  const mobileLinks = mobileMenu.querySelectorAll('a');
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      hamburgerBtn.classList.remove('active');
-      mobileMenu.classList.remove('is-active');
+  // Close button handler
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeMenu);
+  }
+
+  // Handle dropdown toggles
+  const toggleButtons = mobileMenu.querySelectorAll('.mobile-menu-toggle');
+  toggleButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      const submenu = this.nextElementSibling;
+      const isActive = submenu.classList.contains('active');
+      
+      // Close all other submenus
+      document.querySelectorAll('.mobile-submenu.active').forEach(menu => {
+        if (menu !== submenu) {
+          menu.classList.remove('active');
+          menu.previousElementSibling.setAttribute('aria-expanded', 'false');
+        }
+      });
+      
+      // Toggle current submenu
+      submenu.classList.toggle('active');
+      this.setAttribute('aria-expanded', !isActive);
     });
   });
 
+  // Close menu when a link is clicked
+  const mobileLinks = mobileMenu.querySelectorAll('.mobile-menu-link');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      closeMenu();
+    });
+  });
+
+  // Close menu when clicking outside
   document.addEventListener('click', function(event) {
     if (!mobileMenu.contains(event.target) && !hamburgerBtn.contains(event.target)) {
-      hamburgerBtn.classList.remove('active');
-      mobileMenu.classList.remove('is-active');
+      closeMenu();
     }
   });
 }
+
+// ===== BEFORE & AFTER REVEAL =====
+(function() {
+  const card = document.getElementById('ba-card');
+  const btn = document.getElementById('ba-btn');
+  const tag = document.getElementById('ba-tag');
+  const btnText = document.getElementById('ba-btn-text');
+  const tapHint = document.getElementById('ba-tap-hint');
+  if (!card || !btn) return;
+
+  let isAfter = false;
+  let animating = false;
+
+  function toggle() {
+    if (animating) return;
+    animating = true;
+
+    if (tapHint) tapHint.style.opacity = '0';
+
+    if (!isAfter) {
+      card.classList.remove('unrevealing');
+      card.classList.add('revealed');
+      tag.textContent = 'Efter';
+      btnText.textContent = 'Visa före';
+    } else {
+      card.classList.remove('revealed');
+      card.classList.add('unrevealing');
+      tag.textContent = 'Före';
+      btnText.textContent = 'Visa efter';
+    }
+
+    isAfter = !isAfter;
+    setTimeout(function() { animating = false; }, 800);
+  }
+
+  btn.addEventListener('click', toggle);
+  card.addEventListener('click', toggle);
+})();
+
+// ===== COMPARISON TABLE INTERACTIVE =====
+(function() {
+  const table = document.getElementById('compare-table');
+  if (!table) return;
+
+  const rows = table.querySelectorAll('.compare-row[data-edge]');
+  const verdict = document.getElementById('compare-verdict');
+  const verdictText = verdict ? verdict.querySelector('.compare-verdict-text') : null;
+  const tip = document.getElementById('compare-tip');
+
+  let revealedCount = 0;
+  const totalRows = rows.length;
+
+  function updateVerdict() {
+    if (revealedCount === 0) return;
+
+    if (revealedCount < totalRows) {
+      const remaining = totalRows - revealedCount;
+      verdictText.textContent = `${revealedCount} av ${totalRows} jämförda – klicka vidare för att se alla`;
+    } else {
+      // All revealed – show gentle conclusion
+      verdict.classList.add('complete');
+      verdictText.innerHTML = `Tack för att du utforskade! Båda är bra lösningar – men med längre livslängd, mindre underhåll och lägre totalkostnad är bandtäckning ofta det tryggaste valet.`;
+
+      // Show the CTA tip
+      if (tip) {
+        setTimeout(function() { tip.classList.add('visible'); }, 600);
+      }
+    }
+  }
+
+  rows.forEach(row => {
+    row.addEventListener('click', function() {
+      if (this.classList.contains('revealed')) return;
+
+      this.classList.add('revealed');
+      revealedCount++;
+
+      const edge = this.getAttribute('data-edge');
+      if (edge === 'band') {
+        this.classList.add('edge-band');
+      } else if (edge === 'pann') {
+        this.classList.add('edge-pann');
+      }
+
+      updateVerdict();
+    });
+  });
+})();
 
 // ===== HERO NOTE CTA BUTTON =====
 const heroNote = document.querySelector('.hero-note');

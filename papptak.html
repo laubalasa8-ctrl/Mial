@@ -73,20 +73,33 @@
   </header>
 
   <div id="mobile-menu">
-    <ul>
-      <li><a href="index.html#top">Hem</a></li>
-      <li class="menu-item-with-dropdown">
-        <a href="takbyte.html" class="menu-toggle">Takbyte</a>
-        <ul class="dropdown-menu">
-          <li><a href="plattaket.html">Plåttak</a></li>
-          <li><a href="takpannor.html">Takpannor</a></li>
-          <li><a href="papptak.html">Papptak</a></li>
+    <div class="mobile-menu-header">
+      <h2>Meny</h2>
+      <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Stäng meny">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <ul class="mobile-menu-list">
+      <li><a href="index.html#top" class="mobile-menu-link">Hem</a></li>
+      <li class="mobile-menu-item-dropdown">
+        <button class="mobile-menu-toggle" aria-expanded="false">
+          <span>Takbyte</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+        <ul class="mobile-submenu">
+          <li><a href="plattaket.html" class="mobile-menu-link">Plåttak</a></li>
+          <li><a href="takpannor.html" class="mobile-menu-link">Takpannor</a></li>
+          <li><a href="papptak.html" class="mobile-menu-link">Papptak</a></li>
         </ul>
       </li>
-      <li><a href="solceller.html">Solceller</a></li>
-      <li><a href="platslageri.html">Plåtslageri</a></li>
-      <li><a href="fasad.html">Fasad</a></li>
-      <li><a href="index.html#contact">Kontakt</a></li>
+      <li><a href="solceller.html" class="mobile-menu-link">Solceller</a></li>
+      <li><a href="fasad.html" class="mobile-menu-link">Fasad</a></li>
+      <li><a href="platslageri.html" class="mobile-menu-link">Plåtslageri</a></li>
+      <li><a href="index.html#contact" class="mobile-menu-link mobile-menu-link-contact">Kontakt</a></li>
     </ul>
   </div>
 
@@ -98,7 +111,7 @@
           <div class="hero-kicker">Genomtänkt och hållbar taklösning</div>
           <h1>Papptak för moderna och klassiska <span>hus</span></h1>
           <p class="hero-lead">
-            Papptak är ett beprövat val när man vill ha en tät, stilren och långsiktigt hållbar lösning. Vi arbetar med noggrant utvalda material och monterar med fokus på detaljer, livslängd och ett slutresultat som håller över tid. Vi tar hand om både nyinstallation, renovering och underhåll – alltid enligt branschstandard och utan genvägar.
+            Papptak är ett tryggt och beprövat val för dig som vill ha ett tätt och hållbart tak. Vi arbetar med bra material och lägger stor vikt vid detaljer och ett noggrant utfört arbete. Oavsett om det gäller nytt tak, renovering eller underhåll gör vi jobbet enligt branschstandard – utan genvägar.
           </p>
           <div class="hero-cta-row">
             <a href="index.html#contact" class="btn-primary">Få kostnadsfri offert</a>
@@ -341,7 +354,7 @@
     <section class="installation-section fade-in" id="installation">
       <div class="papptak-container">
         <div class="installation-header">
-          <h2 class="section-title">Hur Professionell Installation Förändrar Allt</h2>
+          <h2 class="section-title">Rätt Utfört Från Början</h2>
           <p class="section-sub">Utförandet avgör resultatet</p>
         </div>
 

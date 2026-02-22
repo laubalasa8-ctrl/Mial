@@ -99,20 +99,33 @@
   </header>
 
   <div id="mobile-menu">
-    <ul>
-      <li><a href="index.html#top">Hem</a></li>
-      <li class="menu-item-with-dropdown">
-        <a href="takbyte.html" class="menu-toggle">Takbyte</a>
-        <ul class="dropdown-menu">
-          <li><a href="plattaket.html">Plåttak</a></li>
-          <li><a href="takpannor.html">Takpannor</a></li>
-          <li><a href="papptak.html">Papptak</a></li>
+    <div class="mobile-menu-header">
+      <h2>Meny</h2>
+      <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Stäng meny">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <ul class="mobile-menu-list">
+      <li><a href="index.html#top" class="mobile-menu-link">Hem</a></li>
+      <li class="mobile-menu-item-dropdown">
+        <button class="mobile-menu-toggle" aria-expanded="false">
+          <span>Takbyte</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+        <ul class="mobile-submenu">
+          <li><a href="plattaket.html" class="mobile-menu-link">Plåttak</a></li>
+          <li><a href="takpannor.html" class="mobile-menu-link">Takpannor</a></li>
+          <li><a href="papptak.html" class="mobile-menu-link">Papptak</a></li>
         </ul>
       </li>
-      <li><a href="solceller.html">Solceller</a></li>
-      <li><a href="platslageri.html">Plåtslageri</a></li>
-      <li><a href="fasad.html">Fasad</a></li>
-      <li><a href="index.html#contact">Kontakt</a></li>
+      <li><a href="solceller.html" class="mobile-menu-link">Solceller</a></li>
+      <li><a href="fasad.html" class="mobile-menu-link">Fasad</a></li>
+      <li><a href="platslageri.html" class="mobile-menu-link">Plåtslageri</a></li>
+      <li><a href="index.html#contact" class="mobile-menu-link mobile-menu-link-contact">Kontakt</a></li>
     </ul>
   </div>
 
@@ -153,13 +166,7 @@
               </svg>
             </div>
             <h3 class="plat-pillar-title">Material</h3>
-            <p class="plat-pillar-description">Materialvalet avgör hur ett plåttak åldras över tid. Därför arbetar vi med material som är valda för lång livslängd, stabilitet och motståndskraft mot nordiskt väder.</p>
-            <ul class="plat-pillar-details">
-              <li>Utvalda för att klara stora temperaturväxlingar</li>
-              <li>Motståndskraftiga mot fukt, vind och korrosion</li>
-              <li>Byggda för att behålla både funktion och utseende över tid</li>
-              <li>Beprövade i miljöer där kraven är höga</li>
-            </ul>
+            <p class="plat-pillar-description">Utvalda för nordiskt klimat – tål temperaturväxlingar, fukt och vind utan att tappa funktion eller utseende.</p>
           </div>
 
           <!-- PILLAR 2 -->
@@ -170,13 +177,7 @@
               </svg>
             </div>
             <h3 class="plat-pillar-title">Installation</h3>
-            <p class="plat-pillar-description">Ett plåttak blir aldrig bättre än hur det monteras. Därför arbetar vi metodiskt, noggrant och konsekvent – med fokus på täthet, funktion och långsiktig hållbarhet.</p>
-            <ul class="plat-pillar-details">
-              <li>Utförd med precision och ansvar i varje moment</li>
-              <li>Anpassad efter husets förutsättningar och takets utformning</li>
-              <li>Genomförd med fokus på täthet och säker funktion</li>
-              <li>Kontrollerad för att fungera i alla väderförhållanden</li>
-            </ul>
+            <p class="plat-pillar-description">Metodisk montering anpassad efter husets förutsättningar – med fokus på täthet och långsiktig hållbarhet.</p>
           </div>
 
           <!-- PILLAR 3 -->
@@ -189,13 +190,7 @@
               </svg>
             </div>
             <h3 class="plat-pillar-title">Detaljer</h3>
-            <p class="plat-pillar-description">Det är i detaljerna ett plåttak avgörs. Små beslut i utförandet gör stor skillnad för helheten, hållbarheten och hur taket fungerar över tid.</p>
-            <ul class="plat-pillar-details">
-              <li>Utförda med noggrannhet i varje moment</li>
-              <li>Genomtänkta för både funktion och helhetsintryck</li>
-              <li>Utförda med fokus på precision och passform</li>
-              <li>Avslutade med samma omsorg som helheten</li>
-            </ul>
+            <p class="plat-pillar-description">Små beslut i utförandet gör stor skillnad. Vi avslutar varje moment med samma precision som helheten.</p>
           </div>
 
           <!-- PILLAR 4 -->
@@ -207,13 +202,7 @@
               </svg>
             </div>
             <h3 class="plat-pillar-title">Övervakning</h3>
-            <p class="plat-pillar-description">Ett plåttak ska fortsätta fungera som det är tänkt, även långt efter att arbetet är klart. Därför följer vi upp och säkerställer att helheten fungerar över tid – inte bara vid avslut.</p>
-            <ul class="plat-pillar-details">
-              <li>Uppföljning med fokus på långsiktig funktion</li>
-              <li>Tidig upptäckt av avvikelser innan de blir problem</li>
-              <li>Löpande ansvar för takets skick och prestanda</li>
-              <li>Trygghet som sträcker sig bortom installationen</li>
-            </ul>
+            <p class="plat-pillar-description">Vi följer upp efter installation och fångar avvikelser innan de blir problem – trygghet bortom avslut.</p>
           </div>
         </div>
       </div>
@@ -240,7 +229,7 @@
             <div class="plat-service-body">
               <h3>Bandtäckning</h3>
               <p class="plat-service-description">Elegant och tidlös. Perfekt för traditionella och moderna hus som kräver både skönhet och långtidshållbarhet. En klassiker som aldrig går ur tiden.</p>
-              <a href="#contact" class="plat-service-link">Läs Mer →</a>
+              <a href="bandtackning.html" class="plat-service-link">Läs Mer →</a>
             </div>
           </div>
 
@@ -382,13 +371,17 @@
     </section>
 
     <!-- CTA SECTION -->
-    <section class="plat-cta-section">
-      <div class="container">
-        <div class="process-closing fade-in">
-          <h2 class="closing-title">Redo För Din Plåttaklösning?</h2>
-          <p class="closing-subtitle">Vi analyserar ditt hem och rekommenderar den bästa lösningen för dina behov.</p>
-          <a href="index.html#contact" class="closing-cta-btn">Boka Din Kostnadsfria Besiktning</a>
-        </div>
+    <section class="band-cta fade-in">
+      <div class="band-cta-bg" style="background-image: url('joy5.jpg');"></div>
+      <div class="band-cta-overlay"></div>
+      <div class="band-cta-content">
+        <p class="band-cta-kicker">Redo att börja?</p>
+        <h2 class="band-cta-title">Ditt nya plåttak börjar här</h2>
+        <p class="band-cta-text">Berätta om ditt projekt – vi återkommer inom 24 timmar med en kostnadsfri bedömning.</p>
+        <a href="index.html#contact" class="band-cta-btn">
+          Kontakta oss
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
     </section>
   </main>
