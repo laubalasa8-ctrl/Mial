@@ -15103,3 +15103,814 @@ body:has(.solar-hero) header { background: transparent; }
     min-height: 400px;
   }
 }
+
+/* ============================================================
+   MOBILE & RESPONSIVE OPTIMIZATION - GLOBAL FIXES
+   ============================================================ */
+
+/* CRITICAL: Prevent horizontal scroll from 100vw elements */
+html, body { overflow-x: hidden; }
+
+/* CRITICAL: Fix background-attachment: fixed on iOS (breaks parallax) */
+@media (max-width: 1024px) {
+  .topbar,
+  header,
+  .hero,
+  .hero-takbyte,
+  .hero-fasad,
+  .hero-platslageri,
+  .hero-plattaket,
+  .hero-papptak,
+  .hero-bandtackning,
+  .solar-hero,
+  .plat-hero,
+  .papptak-page .topbar,
+  .papptak-page header,
+  .bandtackning-page .topbar,
+  .bandtackning-page header,
+  body.plattaket-page .topbar,
+  body.plattaket-page header,
+  body.plattaket-page .hero-plattaket,
+  body.takbyte-page .topbar,
+  body.takpannor-page .topbar,
+  body.fasad-page .topbar,
+  body.platslageri-page .topbar,
+  #contact-cta,
+  .cta-section,
+  .cta-fasad,
+  .renovation-section,
+  .fasad-process {
+    background-attachment: scroll !important;
+  }
+}
+
+/* CRITICAL: Fix hero heights - allow content overflow */
+@media (max-width: 768px) {
+  .hero-papptak,
+  .hero-bandtackning {
+    height: auto !important;
+    min-height: 100vh;
+  }
+
+  .hero {
+    height: auto !important;
+    min-height: 100vh;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .hero-takbyte,
+  .hero-fasad,
+  .hero-platslageri,
+  .hero-plattaket {
+    padding: 0 1.2rem 3rem;
+  }
+
+  .hero-papptak,
+  .hero-bandtackning {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 1.2rem;
+  }
+
+  /* Frosted box mobile optimization */
+  .frosted-box {
+    padding: 2.5rem 1.8rem;
+    margin-top: -8rem;
+    max-width: 100%;
+    border-radius: 20px;
+  }
+
+  .frosted-box h1 {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    margin-bottom: 1rem;
+  }
+
+  .frosted-box .hero-lead {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.65;
+  }
+
+  .frosted-box .hero-kicker {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+  }
+
+  .frosted-box .hero-cta-row {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .frosted-box .hero-cta-row .btn-primary,
+  .frosted-box .hero-cta-row .btn-ghost {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* ===== BANDTACKNING PAGE - MOBILE ===== */
+@media (max-width: 768px) {
+  /* Benefits grid: stack to single column */
+  .benefits-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  .benefits-divider-line {
+    display: none;
+  }
+
+  .benefits-image-section {
+    height: 280px;
+    order: -1;
+  }
+
+  .benefits-content-section {
+    padding: 0;
+  }
+
+  .benefit-item {
+    padding: 1.5rem 0;
+  }
+
+  /* Included grid: 2 columns on tablet, stays readable */
+  .included-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem;
+  }
+
+  .included-card {
+    padding: 1.5rem 1.2rem;
+  }
+
+  .included-card-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .included-card h3 {
+    font-size: 1rem;
+  }
+
+  .included-card p {
+    font-size: 0.85rem;
+  }
+
+  /* Expectations grid */
+  .expectations-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  /* Trust strip */
+  .included-trust-strip {
+    flex-direction: row;
+    gap: 2rem;
+    padding: 1.5rem;
+  }
+
+  /* Compare section */
+  .compare-table {
+    font-size: 0.85rem;
+  }
+
+  .compare-header {
+    padding: 1rem;
+  }
+
+  .compare-row {
+    padding: 0.8rem 1rem;
+  }
+
+  /* Before/After reveal */
+  .ba-reveal-section {
+    padding: 3rem 1.2rem;
+  }
+
+  .ba-card {
+    max-width: 100%;
+    border-radius: 16px;
+  }
+
+  .ba-image-wrap {
+    height: 300px;
+  }
+}
+
+/* ===== PAPPTAK PAGE - MOBILE ===== */
+@media (max-width: 768px) {
+  /* Chevron grid: stack vertically */
+  .why-chevron,
+  .why-chevron-1,
+  .why-chevron-2 {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  .why-chevron-image {
+    height: 250px;
+  }
+
+  .why-benefit-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .why-benefit-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .why-benefit-text h3 {
+    font-size: 1.05rem;
+  }
+
+  .why-benefit-text p {
+    font-size: 0.9rem;
+  }
+
+  /* Transformation: stack vertically */
+  .transformation-showcase {
+    flex-direction: column !important;
+    flex-wrap: wrap !important;
+    gap: 1.5rem;
+  }
+
+  .transformation-arrow {
+    transform: rotate(90deg);
+    width: 48px;
+    height: 48px;
+  }
+
+  .transformation-img {
+    height: 240px;
+  }
+
+  .transformation-header .section-title {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+  }
+
+  /* Materials section */
+  .material-item {
+    grid-template-columns: 1fr !important;
+  }
+
+  .material-image {
+    height: 220px;
+  }
+
+  .materials-buttons {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .material-btn {
+    flex: 1;
+    min-width: 0;
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* ===== PLATTAKET PAGE - MOBILE ===== */
+@media (max-width: 768px) {
+  .plat-pillars-section {
+    padding: 4rem 1.2rem;
+  }
+
+  .plat-pillars-title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .plat-pillars-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .plat-pillar {
+    padding: 1.8rem 1.5rem;
+  }
+
+  .plat-pillar-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .plat-pillar-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .plat-pillar-title {
+    font-size: 1.15rem;
+  }
+
+  .plat-pillar-description {
+    font-size: 0.9rem;
+  }
+
+  /* Services premium grid */
+  .plat-services-premium-grid {
+    gap: 1.5rem;
+  }
+
+  .plat-service-image-premium {
+    height: 200px;
+  }
+
+  .plat-service-body h3 {
+    font-size: 1.15rem;
+  }
+
+  .plat-service-description {
+    font-size: 0.9rem;
+  }
+
+  /* Knowledge section */
+  .plat-knowledge-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+}
+
+/* ===== SOLCELLER PAGE - MOBILE ===== */
+@media (max-width: 768px) {
+  .solar-hero {
+    padding: 120px 1.2rem 60px !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .solar-hero-content {
+    max-width: 100%;
+  }
+
+  .solar-hero-title {
+    font-size: clamp(1.8rem, 5vw, 2.5rem) !important;
+  }
+
+  .solar-hero-box {
+    padding: 2rem !important;
+    max-width: 100% !important;
+  }
+
+  .solar-expertise-wrapper {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  .solar-expertise-image {
+    height: 250px;
+  }
+
+  .solar-products-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+
+  .solar-planning-wrapper {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  .why-ferotect-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+
+  .solar-cta-final {
+    padding: 4rem 1.5rem !important;
+  }
+}
+
+/* ===== FASAD PAGE - MOBILE ===== */
+@media (max-width: 768px) {
+  .cta-fasad {
+    background-attachment: scroll !important;
+  }
+
+  .warning-signs-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .warning-sign-card {
+    padding: 1.5rem;
+  }
+
+  .timeline-container {
+    padding-left: 1rem;
+  }
+
+  .timeline-item {
+    padding-left: 2rem;
+  }
+}
+
+/* ===== PLATSLAGERI PAGE - MOBILE ===== */
+@media (max-width: 768px) {
+  .plat-insights-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+
+  .plat-services-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+
+  .details-container {
+    gap: 3rem;
+  }
+
+  .detail-item {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+
+  .detail-image {
+    height: 220px;
+    order: -1;
+  }
+
+  .process-steps {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+}
+
+/* ===== TAKPANNOR PAGE - MOBILE ===== */
+@media (max-width: 768px) {
+  .pannmodeller-layout {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  .pannmodeller-selector {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 0.8rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .pannmodell-btn {
+    flex-shrink: 0;
+    min-width: auto;
+  }
+
+  .pannmodeller-preview {
+    height: 300px;
+  }
+
+  .showcase-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .premium-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+
+  .premium-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .key-question-card {
+    padding: 1.5rem;
+  }
+
+  .takpannor-key-questions {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* ===== TAKBYTE PAGE - MOBILE ===== */
+@media (max-width: 768px) {
+  .steps-container {
+    gap: 2rem 1.5rem;
+  }
+
+  .step-item {
+    padding: 1.8rem 1.5rem;
+  }
+
+  .step-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .step-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .step-title {
+    font-size: 1rem;
+  }
+
+  .step-description {
+    font-size: 0.88rem;
+  }
+
+  /* Contact CTA */
+  #contact-cta {
+    background-attachment: scroll !important;
+    padding: 4rem 1.5rem;
+  }
+
+  .contact-cta-container .section-title {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+  }
+}
+
+/* ===== INDEX PAGE - MOBILE ===== */
+@media (max-width: 768px) {
+  /* Stats section */
+  #stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .stat-number {
+    font-size: 2.2rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+  }
+
+  /* Why section */
+  .why-container {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  .why-image {
+    height: 280px !important;
+  }
+
+  .why-intro .why-container {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+    padding: 2.5rem 1.2rem;
+  }
+
+  .why-intro .why-image {
+    height: 280px !important;
+  }
+
+  .why-intro .why-content h2 {
+    font-size: 1.8rem;
+  }
+
+  /* Process/Method section */
+  .process-header .section-title,
+  #services .section-title {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+  }
+
+  /* Contact section */
+  #contact {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 3rem 1.2rem;
+  }
+
+  .contact-ferotect {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  .contact-form-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .contact-image-side {
+    display: none;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+}
+
+/* ===== FOOTER - MOBILE ===== */
+@media (max-width: 768px) {
+  #footer {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 3rem 1.2rem 1.5rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-block h3 {
+    font-size: 1.2rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .footer-bottom-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* ===== BAND CTA - MOBILE ===== */
+@media (max-width: 768px) {
+  .band-cta {
+    min-height: 50vh;
+  }
+
+  .band-cta-content {
+    padding: 3rem 1.5rem;
+  }
+
+  .band-cta-title {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+  }
+
+  .band-cta-text {
+    font-size: 0.95rem;
+  }
+
+  .band-cta-btn {
+    padding: 1rem 2.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* ===== GLOBAL TYPOGRAPHY - MOBILE CLAMP SAFETY ===== */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: clamp(1.5rem, 4.5vw, 2.2rem) !important;
+    letter-spacing: -0.5px;
+  }
+
+  .section-sub {
+    font-size: 0.95rem !important;
+    line-height: 1.7;
+  }
+
+  /* All full-bleed sections: reset 100vw to 100% */
+  #contact,
+  #footer,
+  .stats-section,
+  #contact-cta {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* ===== SMALL MOBILE (< 480px) ===== */
+@media (max-width: 480px) {
+  .frosted-box {
+    padding: 2rem 1.4rem;
+    margin-top: -6rem;
+    border-radius: 16px;
+  }
+
+  .frosted-box h1 {
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
+  }
+
+  .frosted-box .hero-lead {
+    font-size: 0.88rem;
+  }
+
+  .included-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .expectations-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .plat-pillars-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .plat-services-premium-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  #stats {
+    grid-template-columns: 1fr !important;
+  }
+
+  .stat-card {
+    padding: 1.2rem;
+  }
+
+  .stat-number {
+    font-size: 1.8rem;
+  }
+
+  .footer-grid {
+    gap: 1.5rem;
+  }
+
+  .band-cta-title {
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+  }
+
+  .solar-hero-title {
+    font-size: clamp(1.5rem, 5vw, 2rem) !important;
+  }
+
+  .compare-row {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .compare-header {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+  }
+
+  .compare-header span:first-child {
+    display: none;
+  }
+
+  .steps-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  .why-chevron-image {
+    height: 200px;
+  }
+
+  .transformation-img {
+    height: 200px;
+  }
+
+  .ba-image-wrap {
+    height: 240px;
+  }
+
+  /* Nav adjustments */
+  .logo-img {
+    height: 36px;
+  }
+
+  .nav-title {
+    font-size: 0.85rem;
+  }
+}
+
+/* ===== LARGE SCREENS (> 1400px) ===== */
+@media (min-width: 1400px) {
+  .hero {
+    padding-left: calc((100vw - var(--max-width)) / 2);
+    padding-right: calc((100vw - var(--max-width)) / 2);
+  }
+
+  .frosted-box {
+    max-width: 720px;
+  }
+
+  .benefits-grid {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .included-grid {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #contact {
+    padding-left: calc((100vw - 1200px) / 2);
+    padding-right: calc((100vw - 1200px) / 2);
+  }
+}
