@@ -6550,7 +6550,7 @@ body:has(.solar-hero) header { background: transparent; }
   .cta-fasad {
     padding: 8rem 1.5rem;
     min-height: 500px;
-    background-attachment: fixed;
+    background-attachment: scroll;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
   }
@@ -6579,7 +6579,7 @@ body:has(.solar-hero) header { background: transparent; }
 /* ==================== END CTA SECTION ==================== */
 @media (max-width: 768px) {
   .cta-section { padding: 4rem 1.5rem; background-attachment: scroll; }
-  .cta-fasad { background-attachment: fixed !important; }
+  .cta-fasad { background-attachment: scroll !important; }
   .cta-container { padding: 3rem 1.5rem; }
   .cta-container h2 { font-size: 1.8rem; margin-bottom: 1rem; }
   .cta-container p { font-size: 1rem; margin-bottom: 2rem; }
@@ -15113,18 +15113,70 @@ body:has(.solar-hero) header { background: transparent; }
 html { overflow-x: hidden; }
 
 /* ===== iOS Safari: background-attachment fix (MOBILE ONLY) ===== */
+/* On iOS, background-attachment: fixed renders background relative to   */
+/* the VIEWPORT not the element, causing extreme zoom / broken images.   */
+/* Fix: override ALL elements that use fixed attachment to scroll.       */
 @media (max-width: 600px) {
+
+  /* --- Header (sticky nav bar) - ALL pages --- */
+  header,
+  body.takbyte-page header,
+  body.takpannor-page header,
+  body.fasad-page header,
+  body.platslageri-page header,
+  body.plattaket-page header,
+  body:has(.solar-hero) header,
+  body:has(.plat-hero) header,
+  .papptak-page header,
+  .bandtackning-page header {
+    background-attachment: scroll !important;
+  }
+
+  /* --- Hero sections - ALL page variants --- */
+  .hero,
   .hero-takbyte,
   .hero-fasad,
   .hero-platslageri,
   .hero-plattaket,
   .hero-papptak,
   .hero-bandtackning,
-  .solar-hero,
+  .solar-hero {
+    background-attachment: scroll !important;
+  }
+
+  /* --- CTA / other fixed-bg sections --- */
   #contact-cta,
   .cta-section,
   .cta-fasad,
-  .renovation-section {
+  .renovation-section,
+  .band-cta,
+  .band-cta-bg,
+  .takpannor-cta-section,
+  .papptak-cta-section-ferotect,
+  .cta-background,
+  .plat-hero,
+  .solar-hero-background {
+    background-attachment: scroll !important;
+  }
+
+  /* --- Topbar (hidden on mobile but override just in case) --- */
+  .topbar,
+  body.takbyte-page .topbar,
+  body.takpannor-page .topbar,
+  body.fasad-page .topbar,
+  body.platslageri-page .topbar,
+  body.plattaket-page .topbar,
+  body:has(.solar-hero) .topbar,
+  body:has(.plat-hero) .topbar,
+  .papptak-page .topbar,
+  .bandtackning-page .topbar {
+    background-attachment: scroll !important;
+  }
+
+  /* --- Plattaket explicit overrides --- */
+  body.plattaket-page .topbar,
+  body.plattaket-page header,
+  body.plattaket-page .hero-plattaket {
     background-attachment: scroll !important;
   }
 
