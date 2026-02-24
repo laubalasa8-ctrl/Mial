@@ -521,7 +521,7 @@ section.stats-section { border-bottom: none; }
 }
 
 .takpanneplat-page .topbar {
-  background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat4.jpg');
+  background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('takpanneplat3.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -529,7 +529,7 @@ section.stats-section { border-bottom: none; }
 }
 
 .takpanneplat-page header {
-  background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat4.jpg');
+  background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('takpanneplat3.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -538,7 +538,7 @@ section.stats-section { border-bottom: none; }
 
 .hero-papptak { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('papp1.png'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .hero-bandtackning { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('joy1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.hero-takpanneplat { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat4.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.hero-takpanneplat { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('takpanneplat3.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .hero-takbyte > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
 .hero-fasad > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
 .hero-platslageri > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
