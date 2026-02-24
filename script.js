@@ -630,3 +630,79 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// ===== TAKPANNEPLÅT COMPARISON SLIDER =====
+(function() {
+  const slider = document.getElementById('tpp-slider');
+  const handle = document.getElementById('tpp-slider-handle');
+  const afterEl = document.getElementById('tpp-slider-after');
+  const hint = document.getElementById('tpp-drag-hint');
+
+  if (!slider || !handle || !afterEl) return;
+
+  let isDragging = false;
+  let hasInteracted = false;
+
+  function getPosition(e) {
+    const rect = slider.getBoundingClientRect();
+    let x;
+    if (e.touches) {
+      x = e.touches[0].clientX - rect.left;
+    } else {
+      x = e.clientX - rect.left;
+    }
+    // Clamp between 5% and 95%
+    const pct = Math.min(0.95, Math.max(0.05, x / rect.width));
+    return pct;
+  }
+
+  function updateSlider(pct) {
+    const percent = pct * 100;
+    handle.style.left = percent + '%';
+    afterEl.style.clipPath = 'inset(0 0 0 ' + percent + '%)';
+  }
+
+  function startDrag(e) {
+    e.preventDefault();
+    isDragging = true;
+    slider.classList.add('dragging');
+
+    if (!hasInteracted && hint) {
+      hint.classList.add('hidden');
+      hasInteracted = true;
+    }
+
+    updateSlider(getPosition(e));
+  }
+
+  function onDrag(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    updateSlider(getPosition(e));
+  }
+
+  function stopDrag() {
+    if (!isDragging) return;
+    isDragging = false;
+    slider.classList.remove('dragging');
+  }
+
+  // Mouse events
+  slider.addEventListener('mousedown', startDrag);
+  window.addEventListener('mousemove', onDrag);
+  window.addEventListener('mouseup', stopDrag);
+
+  // Touch events
+  slider.addEventListener('touchstart', startDrag, { passive: false });
+  window.addEventListener('touchmove', onDrag, { passive: false });
+  window.addEventListener('touchend', stopDrag);
+
+  // Click anywhere on slider to jump
+  slider.addEventListener('click', function(e) {
+    if (!hasInteracted && hint) {
+      hint.classList.add('hidden');
+      hasInteracted = true;
+    }
+    updateSlider(getPosition(e));
+  });
+})();

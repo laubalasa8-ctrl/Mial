@@ -115,11 +115,116 @@
           </p>
           <div class="hero-cta-row">
             <a href="index.html#contact" class="btn-primary">Få kostnadsfri offert</a>
-            <a href="#" class="btn-ghost">Läs mer...</a>
+            <a href="#seamless" class="btn-ghost">Läs mer...</a>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- SECTION 2: SÖMLÖS INTEGRATION – INTERACTIVE COMPARISON -->
+    <section class="tpp-compare-section" id="seamless">
+      <div class="tpp-compare-wrapper">
+
+        <!-- Header -->
+        <div class="tpp-compare-header fade-in">
+          <p class="tpp-compare-kicker">Se skillnaden direkt</p>
+          <h2 class="tpp-compare-title">Sömlös harmoni –<br>inte bara ett tak</h2>
+          <p class="tpp-compare-subtitle">Dra i reglaget och upplev hur takpanneplåt förvandlar hela husets uttryck. Samma konstruktion – helt ny känsla.</p>
+        </div>
+
+        <!-- Comparison Slider -->
+        <div class="tpp-slider-container fade-in">
+          <div class="tpp-slider" id="tpp-slider">
+            <!-- Before image (left side - "vanligt tak") -->
+            <div class="tpp-slider-before">
+              <img src="plat1.jpg" alt="Vanligt tak – före takpanneplåt" draggable="false">
+              <div class="tpp-slider-label tpp-label-before">
+                <span class="tpp-label-dot tpp-dot-before"></span>
+                Före
+              </div>
+            </div>
+
+            <!-- After image (right side - "takpanneplåt") -->
+            <div class="tpp-slider-after" id="tpp-slider-after">
+              <img src="plat2.jpg" alt="Takpanneplåt – sömlöst resultat" draggable="false">
+              <div class="tpp-slider-label tpp-label-after">
+                <span class="tpp-label-dot tpp-dot-after"></span>
+                Efter
+              </div>
+            </div>
+
+            <!-- Drag Handle -->
+            <div class="tpp-slider-handle" id="tpp-slider-handle">
+              <div class="tpp-handle-line"></div>
+              <div class="tpp-handle-grip" aria-label="Dra för att jämföra">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                  <path d="M8 4l-6 8 6 8"/>
+                  <path d="M16 4l6 8-6 8"/>
+                </svg>
+              </div>
+              <div class="tpp-handle-line"></div>
+            </div>
+
+            <!-- Drag hint -->
+            <div class="tpp-drag-hint" id="tpp-drag-hint">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              Dra för att jämföra
+            </div>
+          </div>
+
+          <!-- Stat badges floating below slider -->
+          <div class="tpp-slider-stats">
+            <div class="tpp-stat-badge fade-in-up">
+              <div class="tpp-stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <div class="tpp-stat-text">
+                <span class="tpp-stat-value">40+ år</span>
+                <span class="tpp-stat-label">Livslängd</span>
+              </div>
+            </div>
+            <div class="tpp-stat-badge fade-in-up" style="animation-delay: 0.1s;">
+              <div class="tpp-stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="tpp-stat-text">
+                <span class="tpp-stat-value">100%</span>
+                <span class="tpp-stat-label">Vattentätt</span>
+              </div>
+            </div>
+            <div class="tpp-stat-badge fade-in-up" style="animation-delay: 0.2s;">
+              <div class="tpp-stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <div class="tpp-stat-text">
+                <span class="tpp-stat-value">Sömlöst</span>
+                <span class="tpp-stat-label">Inga synliga fogar</span>
+              </div>
+            </div>
+            <div class="tpp-stat-badge fade-in-up" style="animation-delay: 0.3s;">
+              <div class="tpp-stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+              </div>
+              <div class="tpp-stat-text">
+                <span class="tpp-stat-value">Minimalt</span>
+                <span class="tpp-stat-label">Underhåll krävs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom CTA nudge -->
+        <div class="tpp-compare-cta fade-in">
+          <p class="tpp-compare-cta-text">Nyfiken på hur ditt tak kan se ut?</p>
+          <a href="index.html#contact" class="tpp-compare-cta-btn">
+            Boka kostnadsfri inspektion
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
   <footer id="footer">
