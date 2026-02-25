@@ -534,260 +534,278 @@
           <span class="tpp-explorer-badge">Interaktiv</span>
           <h2 class="tpp-explorer-title">Utforska ditt tak</h2>
           <p class="tpp-explorer-subtitle">Klicka på de olika lagren för att se hur ett takpannplåt-tak är uppbyggt — från nock till takfot.</p>
+          <p class="tpp-explorer-cta-hint">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 15l-2 5L9 9l11 4-5 2z"/><path d="M18.5 18.5L22 22"/></svg>
+            Klicka på ett lager för att läsa mer
+          </p>
         </div>
 
         <!-- Exploded Roof Visualization -->
         <div class="tpp-explorer-visual">
           <div class="tpp-explorer-roof">
-            <!-- Layer 1: Takpannplåt (top) — profiled steel panels -->
+
+            <!-- Layer 1: Takpannplåt (top) — profiled steel panels with wave pattern -->
             <div class="tpp-roof-layer tpp-layer-1 active" data-layer="pannplat" tabindex="0">
               <div class="tpp-layer-shape">
                 <svg viewBox="0 0 500 120" preserveAspectRatio="none">
                   <defs>
-                    <linearGradient id="grad-pannplat" x1="0" y1="0" x2="1" y2="0.6">
-                      <stop offset="0%" stop-color="#3a5068"/>
-                      <stop offset="50%" stop-color="#4a6a88"/>
-                      <stop offset="100%" stop-color="#35506a"/>
+                    <linearGradient id="grad-pannplat" x1="0" y1="0" x2="0.3" y2="1">
+                      <stop offset="0%" stop-color="#4a6e8e"/>
+                      <stop offset="40%" stop-color="#3d5f7e"/>
+                      <stop offset="100%" stop-color="#2e4d66"/>
+                    </linearGradient>
+                    <linearGradient id="grad-pannplat-shine" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="rgba(255,255,255,0.12)"/>
+                      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
                     </linearGradient>
                   </defs>
-                  <!-- Roof shape -->
-                  <polygon points="250,5 495,112 5,112" fill="url(#grad-pannplat)" stroke="#5a8ab4" stroke-width="1.5"/>
-                  <!-- Tile wave pattern - left side -->
-                  <path d="M80,95 Q95,88 110,95 Q125,102 140,95 Q155,88 170,95" stroke="#6a9ac4" stroke-width="1.2" fill="none" opacity="0.6"/>
-                  <path d="M55,105 Q70,98 85,105 Q100,112 115,105 Q130,98 145,105 Q160,112 175,105" stroke="#6a9ac4" stroke-width="1" fill="none" opacity="0.4"/>
-                  <path d="M120,78 Q135,71 150,78 Q165,85 180,78 Q195,71 210,78" stroke="#6a9ac4" stroke-width="1.2" fill="none" opacity="0.6"/>
-                  <!-- Tile wave pattern - right side -->
-                  <path d="M320,78 Q335,71 350,78 Q365,85 380,78 Q395,71 410,78" stroke="#6a9ac4" stroke-width="1.2" fill="none" opacity="0.6"/>
-                  <path d="M330,95 Q345,88 360,95 Q375,102 390,95 Q405,88 420,95" stroke="#6a9ac4" stroke-width="1.2" fill="none" opacity="0.6"/>
-                  <path d="M340,105 Q355,98 370,105 Q385,112 400,105 Q415,98 430,105 Q445,112 460,105" stroke="#6a9ac4" stroke-width="1" fill="none" opacity="0.4"/>
+                  <!-- Main roof shape -->
+                  <polygon points="250,4 498,114 2,114" fill="url(#grad-pannplat)" stroke="#5a88aa" stroke-width="1.2"/>
+                  <!-- Shine highlight on left slope -->
+                  <polygon points="250,8 126,61 130,58 250,6" fill="url(#grad-pannplat-shine)"/>
+                  <!-- Horizontal wave rows (tile profile look) -->
+                  <path d="M60,108 Q72,102 84,108 Q96,114 108,108 Q120,102 132,108 Q144,114 156,108 Q168,102 180,108 Q192,114 204,108 Q216,102 228,108" stroke="rgba(90,140,180,0.5)" stroke-width="1" fill="none"/>
+                  <path d="M272,108 Q284,102 296,108 Q308,114 320,108 Q332,102 344,108 Q356,114 368,108 Q380,102 392,108 Q404,114 416,108 Q428,102 440,108" stroke="rgba(90,140,180,0.5)" stroke-width="1" fill="none"/>
+                  <path d="M100,92 Q112,86 124,92 Q136,98 148,92 Q160,86 172,92 Q184,98 196,92" stroke="rgba(90,140,180,0.45)" stroke-width="0.9" fill="none"/>
+                  <path d="M304,92 Q316,86 328,92 Q340,98 352,92 Q364,86 376,92 Q388,98 400,92" stroke="rgba(90,140,180,0.45)" stroke-width="0.9" fill="none"/>
+                  <path d="M140,76 Q150,70 160,76 Q170,82 180,76 Q190,70 200,76" stroke="rgba(90,140,180,0.4)" stroke-width="0.8" fill="none"/>
+                  <path d="M300,76 Q310,70 320,76 Q330,82 340,76 Q350,70 360,76" stroke="rgba(90,140,180,0.4)" stroke-width="0.8" fill="none"/>
+                  <path d="M175,60 Q182,55 189,60 Q196,65 203,60" stroke="rgba(90,140,180,0.35)" stroke-width="0.7" fill="none"/>
+                  <path d="M297,60 Q304,55 311,60 Q318,65 325,60" stroke="rgba(90,140,180,0.35)" stroke-width="0.7" fill="none"/>
+                  <!-- Ridge cap (nockplåt) -->
+                  <path d="M232,10 Q250,0 268,10" stroke="#6a9abb" stroke-width="3" fill="none" stroke-linecap="round"/>
+                  <line x1="250" y1="4" x2="250" y2="10" stroke="#5a88aa" stroke-width="1.5"/>
                   <!-- Center ridge line -->
-                  <line x1="250" y1="12" x2="250" y2="108" stroke="#6a9ac4" stroke-width="1" opacity="0.35"/>
-                  <!-- Ridge cap -->
-                  <path d="M240,8 Q250,2 260,8" stroke="#5a8ab4" stroke-width="2.5" fill="none"/>
-                  <!-- Highlight shine -->
-                  <polygon points="250,15 200,55 200,50 250,10" fill="rgba(255,255,255,0.06)"/>
+                  <line x1="250" y1="14" x2="250" y2="110" stroke="rgba(80,130,170,0.2)" stroke-width="0.6"/>
+                  <!-- Panel vertical joints -->
+                  <line x1="250" y1="20" x2="158" y2="92" stroke="rgba(80,130,170,0.15)" stroke-width="0.6"/>
+                  <line x1="250" y1="20" x2="342" y2="92" stroke="rgba(80,130,170,0.15)" stroke-width="0.6"/>
+                  <!-- Drip edge bottom -->
+                  <line x1="6" y1="113" x2="494" y2="113" stroke="#4a7a9a" stroke-width="1.5"/>
                 </svg>
               </div>
               <span class="tpp-layer-label">Takpannplåt</span>
               <div class="tpp-layer-pulse"></div>
             </div>
 
-            <!-- Layer 2: Underlagspapp — rolled roofing felt -->
-            <div class="tpp-roof-layer tpp-layer-2" data-layer="underlag" tabindex="0">
+            <!-- Layer 2: Läkt — horizontal battens with vertical counter-battens -->
+            <div class="tpp-roof-layer tpp-layer-2" data-layer="lakt" tabindex="0">
               <div class="tpp-layer-shape">
-                <svg viewBox="0 0 500 48" preserveAspectRatio="none">
-                  <defs>
-                    <pattern id="felt-tex" width="20" height="20" patternUnits="userSpaceOnUse">
-                      <rect width="20" height="20" fill="#4a4a4a"/>
-                      <circle cx="5" cy="5" r="0.5" fill="rgba(255,255,255,0.06)"/>
-                      <circle cx="15" cy="12" r="0.4" fill="rgba(255,255,255,0.05)"/>
-                      <circle cx="10" cy="18" r="0.3" fill="rgba(255,255,255,0.04)"/>
-                    </pattern>
-                  </defs>
-                  <!-- Main sheet -->
-                  <rect x="25" y="4" width="450" height="36" rx="2" fill="url(#felt-tex)" stroke="rgba(100,100,100,0.4)" stroke-width="1"/>
-                  <!-- Overlap seams -->
-                  <rect x="25" y="4" width="115" height="36" rx="2" fill="rgba(60,60,60,0.3)" stroke="rgba(100,100,100,0.25)" stroke-width="0.5"/>
-                  <line x1="140" y1="4" x2="140" y2="40" stroke="rgba(80,80,80,0.5)" stroke-width="1.5" stroke-dasharray="3 2"/>
-                  <rect x="140" y="4" width="120" height="36" fill="rgba(55,55,55,0.15)"/>
-                  <line x1="260" y1="4" x2="260" y2="40" stroke="rgba(80,80,80,0.5)" stroke-width="1.5" stroke-dasharray="3 2"/>
-                  <rect x="260" y="4" width="120" height="36" fill="rgba(60,60,60,0.2)"/>
-                  <line x1="380" y1="4" x2="380" y2="40" stroke="rgba(80,80,80,0.5)" stroke-width="1.5" stroke-dasharray="3 2"/>
-                  <!-- Roll edge hint -->
-                  <ellipse cx="478" cy="22" rx="6" ry="16" fill="#555" stroke="rgba(100,100,100,0.3)" stroke-width="0.8"/>
-                </svg>
-              </div>
-              <span class="tpp-layer-label">Underlagspapp</span>
-              <div class="tpp-layer-pulse"></div>
-            </div>
-
-            <!-- Layer 3: Råspont (top) — tongue-and-groove boards -->
-            <div class="tpp-roof-layer tpp-layer-3" data-layer="raspont" tabindex="0">
-              <div class="tpp-layer-shape">
-                <svg viewBox="0 0 500 42" preserveAspectRatio="none">
-                  <defs>
-                    <linearGradient id="grad-raspont1" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#c9a96e"/>
-                      <stop offset="50%" stop-color="#b8944f"/>
-                      <stop offset="100%" stop-color="#a88040"/>
-                    </linearGradient>
-                  </defs>
-                  <!-- Individual tongue-and-groove planks -->
-                  <rect x="28" y="4" width="56" height="34" rx="1" fill="url(#grad-raspont1)" stroke="#9a7535" stroke-width="0.8"/>
-                  <rect x="86" y="4" width="56" height="34" rx="1" fill="#bfa058" stroke="#9a7535" stroke-width="0.8"/>
-                  <rect x="144" y="4" width="56" height="34" rx="1" fill="url(#grad-raspont1)" stroke="#9a7535" stroke-width="0.8"/>
-                  <rect x="202" y="4" width="56" height="34" rx="1" fill="#c4a560" stroke="#9a7535" stroke-width="0.8"/>
-                  <rect x="260" y="4" width="56" height="34" rx="1" fill="url(#grad-raspont1)" stroke="#9a7535" stroke-width="0.8"/>
-                  <rect x="318" y="4" width="56" height="34" rx="1" fill="#bfa058" stroke="#9a7535" stroke-width="0.8"/>
-                  <rect x="376" y="4" width="56" height="34" rx="1" fill="url(#grad-raspont1)" stroke="#9a7535" stroke-width="0.8"/>
-                  <rect x="434" y="4" width="42" height="34" rx="1" fill="#c4a560" stroke="#9a7535" stroke-width="0.8"/>
-                  <!-- Wood grain lines -->
-                  <line x1="55" y1="8" x2="55" y2="34" stroke="rgba(120,90,40,0.2)" stroke-width="0.5"/>
-                  <line x1="113" y1="10" x2="113" y2="36" stroke="rgba(120,90,40,0.2)" stroke-width="0.5"/>
-                  <line x1="171" y1="7" x2="171" y2="35" stroke="rgba(120,90,40,0.2)" stroke-width="0.5"/>
-                  <line x1="229" y1="9" x2="229" y2="33" stroke="rgba(120,90,40,0.2)" stroke-width="0.5"/>
-                  <line x1="287" y1="8" x2="287" y2="36" stroke="rgba(120,90,40,0.2)" stroke-width="0.5"/>
-                  <line x1="345" y1="10" x2="345" y2="34" stroke="rgba(120,90,40,0.2)" stroke-width="0.5"/>
-                  <line x1="403" y1="7" x2="403" y2="35" stroke="rgba(120,90,40,0.2)" stroke-width="0.5"/>
-                  <!-- Tongue-and-groove joints (small notches) -->
-                  <rect x="84" y="16" width="4" height="10" rx="0.5" fill="#a88040" opacity="0.6"/>
-                  <rect x="142" y="16" width="4" height="10" rx="0.5" fill="#a88040" opacity="0.6"/>
-                  <rect x="200" y="16" width="4" height="10" rx="0.5" fill="#a88040" opacity="0.6"/>
-                  <rect x="258" y="16" width="4" height="10" rx="0.5" fill="#a88040" opacity="0.6"/>
-                  <rect x="316" y="16" width="4" height="10" rx="0.5" fill="#a88040" opacity="0.6"/>
-                  <rect x="374" y="16" width="4" height="10" rx="0.5" fill="#a88040" opacity="0.6"/>
-                  <rect x="432" y="16" width="4" height="10" rx="0.5" fill="#a88040" opacity="0.6"/>
-                </svg>
-              </div>
-              <span class="tpp-layer-label">Råspont</span>
-              <div class="tpp-layer-pulse"></div>
-            </div>
-
-            <!-- Layer 4: Bärläkt & ströläkt — wooden battens -->
-            <div class="tpp-roof-layer tpp-layer-4" data-layer="lakt" tabindex="0">
-              <div class="tpp-layer-shape">
-                <svg viewBox="0 0 500 38" preserveAspectRatio="none">
+                <svg viewBox="0 0 500 44" preserveAspectRatio="none">
                   <defs>
                     <linearGradient id="grad-lakt" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#9a8060"/>
-                      <stop offset="100%" stop-color="#7a6545"/>
+                      <stop offset="0%" stop-color="#c8a86e"/>
+                      <stop offset="50%" stop-color="#b89858"/>
+                      <stop offset="100%" stop-color="#a88848"/>
+                    </linearGradient>
+                    <linearGradient id="grad-lakt2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#bfa060"/>
+                      <stop offset="100%" stop-color="#a08248"/>
                     </linearGradient>
                   </defs>
-                  <!-- Horizontal battens (bärläkt) -->
-                  <rect x="30" y="4" width="440" height="10" rx="2" fill="url(#grad-lakt)" stroke="#6a5535" stroke-width="0.8"/>
-                  <rect x="30" y="24" width="440" height="10" rx="2" fill="url(#grad-lakt)" stroke="#6a5535" stroke-width="0.8"/>
-                  <!-- Wood grain on battens -->
-                  <line x1="60" y1="6" x2="60" y2="12" stroke="rgba(90,70,40,0.3)" stroke-width="0.4"/>
-                  <line x1="150" y1="6" x2="150" y2="12" stroke="rgba(90,70,40,0.3)" stroke-width="0.4"/>
-                  <line x1="280" y1="6" x2="280" y2="12" stroke="rgba(90,70,40,0.3)" stroke-width="0.4"/>
-                  <line x1="400" y1="6" x2="400" y2="12" stroke="rgba(90,70,40,0.3)" stroke-width="0.4"/>
-                  <line x1="100" y1="26" x2="100" y2="32" stroke="rgba(90,70,40,0.3)" stroke-width="0.4"/>
-                  <line x1="220" y1="26" x2="220" y2="32" stroke="rgba(90,70,40,0.3)" stroke-width="0.4"/>
-                  <line x1="340" y1="26" x2="340" y2="32" stroke="rgba(90,70,40,0.3)" stroke-width="0.4"/>
-                  <!-- Vertical struts (ströläkt) connecting them -->
-                  <rect x="100" y="14" width="8" height="10" rx="1" fill="#8a7050" stroke="#6a5535" stroke-width="0.5"/>
-                  <rect x="200" y="14" width="8" height="10" rx="1" fill="#8a7050" stroke="#6a5535" stroke-width="0.5"/>
-                  <rect x="300" y="14" width="8" height="10" rx="1" fill="#8a7050" stroke="#6a5535" stroke-width="0.5"/>
-                  <rect x="400" y="14" width="8" height="10" rx="1" fill="#8a7050" stroke="#6a5535" stroke-width="0.5"/>
-                  <!-- Nail dots -->
-                  <circle cx="104" cy="8" r="1.5" fill="#5a4a30"/>
-                  <circle cx="204" cy="8" r="1.5" fill="#5a4a30"/>
-                  <circle cx="304" cy="8" r="1.5" fill="#5a4a30"/>
-                  <circle cx="404" cy="8" r="1.5" fill="#5a4a30"/>
+                  <!-- Horizontal bärläkt (3 rows) -->
+                  <rect x="28" y="2" width="444" height="8" rx="1.5" fill="url(#grad-lakt)" stroke="#8a7040" stroke-width="0.6"/>
+                  <rect x="28" y="18" width="444" height="8" rx="1.5" fill="url(#grad-lakt)" stroke="#8a7040" stroke-width="0.6"/>
+                  <rect x="28" y="34" width="444" height="8" rx="1.5" fill="url(#grad-lakt)" stroke="#8a7040" stroke-width="0.6"/>
+                  <!-- Wood grain on horizontal battens -->
+                  <line x1="80" y1="3" x2="80" y2="9" stroke="rgba(120,90,40,0.15)" stroke-width="0.4"/>
+                  <line x1="200" y1="3" x2="200" y2="9" stroke="rgba(120,90,40,0.15)" stroke-width="0.4"/>
+                  <line x1="350" y1="3" x2="350" y2="9" stroke="rgba(120,90,40,0.15)" stroke-width="0.4"/>
+                  <line x1="120" y1="19" x2="120" y2="25" stroke="rgba(120,90,40,0.15)" stroke-width="0.4"/>
+                  <line x1="300" y1="19" x2="300" y2="25" stroke="rgba(120,90,40,0.15)" stroke-width="0.4"/>
+                  <line x1="420" y1="35" x2="420" y2="41" stroke="rgba(120,90,40,0.15)" stroke-width="0.4"/>
+                  <!-- Vertical ströläkt (counter-battens) crossing behind -->
+                  <rect x="95" y="10" width="7" height="8" rx="1" fill="url(#grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
+                  <rect x="95" y="26" width="7" height="8" rx="1" fill="url(#grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
+                  <rect x="195" y="10" width="7" height="8" rx="1" fill="url(#grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
+                  <rect x="195" y="26" width="7" height="8" rx="1" fill="url(#grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
+                  <rect x="295" y="10" width="7" height="8" rx="1" fill="url(#grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
+                  <rect x="295" y="26" width="7" height="8" rx="1" fill="url(#grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
+                  <rect x="395" y="10" width="7" height="8" rx="1" fill="url(#grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
+                  <rect x="395" y="26" width="7" height="8" rx="1" fill="url(#grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
+                  <!-- Nail heads -->
+                  <circle cx="98" cy="6" r="1.2" fill="#6a5a30"/>
+                  <circle cx="198" cy="6" r="1.2" fill="#6a5a30"/>
+                  <circle cx="298" cy="6" r="1.2" fill="#6a5a30"/>
+                  <circle cx="398" cy="6" r="1.2" fill="#6a5a30"/>
+                  <circle cx="98" cy="22" r="1.2" fill="#6a5a30"/>
+                  <circle cx="198" cy="22" r="1.2" fill="#6a5a30"/>
+                  <circle cx="298" cy="22" r="1.2" fill="#6a5a30"/>
+                  <circle cx="398" cy="22" r="1.2" fill="#6a5a30"/>
                 </svg>
               </div>
               <span class="tpp-layer-label">Bärläkt &amp; ströläkt</span>
               <div class="tpp-layer-pulse"></div>
             </div>
 
-            <!-- Layer 5: Ventilationsspalt — air gap with flow arrows -->
-            <div class="tpp-roof-layer tpp-layer-5" data-layer="ventilation" tabindex="0">
+            <!-- Layer 3: Ventilationsspalt — clear air gap -->
+            <div class="tpp-roof-layer tpp-layer-3" data-layer="ventilation" tabindex="0">
               <div class="tpp-layer-shape">
-                <svg viewBox="0 0 500 32" preserveAspectRatio="none">
-                  <!-- Air gap outline -->
-                  <rect x="35" y="4" width="430" height="24" rx="3" fill="rgba(25,168,255,0.04)" stroke="rgba(25,168,255,0.25)" stroke-width="1" stroke-dasharray="10 5"/>
-                  <!-- Air flow arrows with motion -->
-                  <g opacity="0.7">
-                    <path d="M70 16 L100 16" stroke="#19A8FF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                    <polygon points="100,16 94,12 94,20" fill="#19A8FF" opacity="0.8"/>
+                <svg viewBox="0 0 500 30" preserveAspectRatio="none">
+                  <!-- Air gap boundary -->
+                  <rect x="30" y="3" width="440" height="24" rx="4" fill="rgba(25,168,255,0.03)" stroke="rgba(25,168,255,0.2)" stroke-width="1" stroke-dasharray="12 6"/>
+                  <!-- Animated-style airflow arrows -->
+                  <g opacity="0.6">
+                    <path d="M55 15 L85 15" stroke="#19A8FF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <polygon points="85,15 79,11.5 79,18.5" fill="#19A8FF"/>
                   </g>
-                  <g opacity="0.5">
-                    <path d="M160 16 L190 16" stroke="#19A8FF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                    <polygon points="190,16 184,12 184,20" fill="#19A8FF" opacity="0.8"/>
+                  <g opacity="0.45">
+                    <path d="M130 15 L160 15" stroke="#19A8FF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <polygon points="160,15 154,11.5 154,18.5" fill="#19A8FF"/>
                   </g>
-                  <g opacity="0.7">
-                    <path d="M250 16 L280 16" stroke="#19A8FF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                    <polygon points="280,16 274,12 274,20" fill="#19A8FF" opacity="0.8"/>
+                  <g opacity="0.65">
+                    <path d="M205 15 L235 15" stroke="#19A8FF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <polygon points="235,15 229,11.5 229,18.5" fill="#19A8FF"/>
                   </g>
-                  <g opacity="0.5">
-                    <path d="M340 16 L370 16" stroke="#19A8FF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                    <polygon points="370,16 364,12 364,20" fill="#19A8FF" opacity="0.8"/>
+                  <g opacity="0.45">
+                    <path d="M280 15 L310 15" stroke="#19A8FF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <polygon points="310,15 304,11.5 304,18.5" fill="#19A8FF"/>
                   </g>
-                  <g opacity="0.7">
-                    <path d="M420 16 L450 16" stroke="#19A8FF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                    <polygon points="450,16 444,12 444,20" fill="#19A8FF" opacity="0.8"/>
+                  <g opacity="0.6">
+                    <path d="M355 15 L385 15" stroke="#19A8FF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <polygon points="385,15 379,11.5 379,18.5" fill="#19A8FF"/>
                   </g>
-                  <!-- Text label inside -->
-                  <text x="250" y="19" text-anchor="middle" fill="rgba(25,168,255,0.2)" font-size="7" font-weight="600" letter-spacing="3">LUFTFLÖDE</text>
+                  <g opacity="0.45">
+                    <path d="M425 15 L455 15" stroke="#19A8FF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <polygon points="455,15 449,11.5 449,18.5" fill="#19A8FF"/>
+                  </g>
                 </svg>
               </div>
               <span class="tpp-layer-label">Ventilationsspalt</span>
               <div class="tpp-layer-pulse"></div>
             </div>
 
-            <!-- Layer 6: Råspont (bottom) — second layer of boards under ventilation -->
-            <div class="tpp-roof-layer tpp-layer-6" data-layer="raspont2" tabindex="0">
+            <!-- Layer 4: Underlagspapp — overlapping felt sheets -->
+            <div class="tpp-roof-layer tpp-layer-4" data-layer="underlag" tabindex="0">
               <div class="tpp-layer-shape">
-                <svg viewBox="0 0 500 42" preserveAspectRatio="none">
+                <svg viewBox="0 0 500 44" preserveAspectRatio="none">
                   <defs>
-                    <linearGradient id="grad-raspont2" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#c0985e"/>
-                      <stop offset="50%" stop-color="#b08848"/>
-                      <stop offset="100%" stop-color="#a07838"/>
+                    <pattern id="felt-tex" width="14" height="14" patternUnits="userSpaceOnUse">
+                      <rect width="14" height="14" fill="#505050"/>
+                      <circle cx="3" cy="3" r="0.4" fill="rgba(255,255,255,0.05)"/>
+                      <circle cx="10" cy="8" r="0.3" fill="rgba(255,255,255,0.04)"/>
+                      <circle cx="7" cy="12" r="0.35" fill="rgba(255,255,255,0.03)"/>
+                    </pattern>
+                    <linearGradient id="grad-felt" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#585858"/>
+                      <stop offset="100%" stop-color="#484848"/>
                     </linearGradient>
                   </defs>
-                  <!-- Individual tongue-and-groove planks -->
-                  <rect x="28" y="4" width="56" height="34" rx="1" fill="url(#grad-raspont2)" stroke="#8a6a30" stroke-width="0.8"/>
-                  <rect x="86" y="4" width="56" height="34" rx="1" fill="#b8944f" stroke="#8a6a30" stroke-width="0.8"/>
-                  <rect x="144" y="4" width="56" height="34" rx="1" fill="url(#grad-raspont2)" stroke="#8a6a30" stroke-width="0.8"/>
-                  <rect x="202" y="4" width="56" height="34" rx="1" fill="#bc9a55" stroke="#8a6a30" stroke-width="0.8"/>
-                  <rect x="260" y="4" width="56" height="34" rx="1" fill="url(#grad-raspont2)" stroke="#8a6a30" stroke-width="0.8"/>
-                  <rect x="318" y="4" width="56" height="34" rx="1" fill="#b8944f" stroke="#8a6a30" stroke-width="0.8"/>
-                  <rect x="376" y="4" width="56" height="34" rx="1" fill="url(#grad-raspont2)" stroke="#8a6a30" stroke-width="0.8"/>
-                  <rect x="434" y="4" width="42" height="34" rx="1" fill="#bc9a55" stroke="#8a6a30" stroke-width="0.8"/>
-                  <!-- Wood grain -->
-                  <line x1="55" y1="9" x2="55" y2="33" stroke="rgba(110,80,35,0.2)" stroke-width="0.5"/>
-                  <line x1="113" y1="7" x2="113" y2="35" stroke="rgba(110,80,35,0.2)" stroke-width="0.5"/>
-                  <line x1="171" y1="10" x2="171" y2="34" stroke="rgba(110,80,35,0.2)" stroke-width="0.5"/>
-                  <line x1="229" y1="8" x2="229" y2="36" stroke="rgba(110,80,35,0.2)" stroke-width="0.5"/>
-                  <line x1="287" y1="9" x2="287" y2="35" stroke="rgba(110,80,35,0.2)" stroke-width="0.5"/>
-                  <line x1="345" y1="7" x2="345" y2="33" stroke="rgba(110,80,35,0.2)" stroke-width="0.5"/>
-                  <line x1="403" y1="10" x2="403" y2="34" stroke="rgba(110,80,35,0.2)" stroke-width="0.5"/>
-                  <!-- Joints -->
-                  <rect x="84" y="16" width="4" height="10" rx="0.5" fill="#a07838" opacity="0.5"/>
-                  <rect x="142" y="16" width="4" height="10" rx="0.5" fill="#a07838" opacity="0.5"/>
-                  <rect x="200" y="16" width="4" height="10" rx="0.5" fill="#a07838" opacity="0.5"/>
-                  <rect x="258" y="16" width="4" height="10" rx="0.5" fill="#a07838" opacity="0.5"/>
-                  <rect x="316" y="16" width="4" height="10" rx="0.5" fill="#a07838" opacity="0.5"/>
-                  <rect x="374" y="16" width="4" height="10" rx="0.5" fill="#a07838" opacity="0.5"/>
-                  <rect x="432" y="16" width="4" height="10" rx="0.5" fill="#a07838" opacity="0.5"/>
+                  <!-- Base felt sheet -->
+                  <rect x="22" y="3" width="456" height="38" rx="2" fill="url(#felt-tex)" stroke="rgba(90,90,90,0.5)" stroke-width="0.8"/>
+                  <!-- Overlapping strip 1 -->
+                  <rect x="22" y="3" width="118" height="38" rx="2" fill="url(#grad-felt)" opacity="0.4"/>
+                  <line x1="140" y1="3" x2="140" y2="41" stroke="rgba(70,70,70,0.6)" stroke-width="1.8" stroke-dasharray="4 2"/>
+                  <!-- Overlapping strip 2 -->
+                  <rect x="140" y="3" width="118" height="38" fill="rgba(72,72,72,0.2)"/>
+                  <line x1="258" y1="3" x2="258" y2="41" stroke="rgba(70,70,70,0.6)" stroke-width="1.8" stroke-dasharray="4 2"/>
+                  <!-- Overlapping strip 3 -->
+                  <rect x="258" y="3" width="118" height="38" fill="rgba(65,65,65,0.25)"/>
+                  <line x1="376" y1="3" x2="376" y2="41" stroke="rgba(70,70,70,0.6)" stroke-width="1.8" stroke-dasharray="4 2"/>
+                  <!-- Roll end hint -->
+                  <ellipse cx="481" cy="22" rx="5" ry="17" fill="#5a5a5a" stroke="rgba(90,90,90,0.4)" stroke-width="0.7"/>
+                  <ellipse cx="481" cy="22" rx="2" ry="12" fill="#4a4a4a"/>
+                  <!-- Manufacturer marking -->
+                  <rect x="180" y="16" width="40" height="8" rx="1" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+                </svg>
+              </div>
+              <span class="tpp-layer-label">Underlagspapp</span>
+              <div class="tpp-layer-pulse"></div>
+            </div>
+
+            <!-- Layer 5: Råspont — tongue-and-groove boards 28×120 -->
+            <div class="tpp-roof-layer tpp-layer-5" data-layer="raspont" tabindex="0">
+              <div class="tpp-layer-shape">
+                <svg viewBox="0 0 500 46" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="grad-raspont" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#d4b87a"/>
+                      <stop offset="30%" stop-color="#c4a565"/>
+                      <stop offset="100%" stop-color="#b09050"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Individual planks with alternating tones -->
+                  <rect x="24" y="4" width="55" height="38" rx="1" fill="url(#grad-raspont)" stroke="#9a7a3a" stroke-width="0.7"/>
+                  <rect x="81" y="4" width="55" height="38" rx="1" fill="#c8a868" stroke="#9a7a3a" stroke-width="0.7"/>
+                  <rect x="138" y="4" width="55" height="38" rx="1" fill="url(#grad-raspont)" stroke="#9a7a3a" stroke-width="0.7"/>
+                  <rect x="195" y="4" width="55" height="38" rx="1" fill="#ccad6e" stroke="#9a7a3a" stroke-width="0.7"/>
+                  <rect x="252" y="4" width="55" height="38" rx="1" fill="url(#grad-raspont)" stroke="#9a7a3a" stroke-width="0.7"/>
+                  <rect x="309" y="4" width="55" height="38" rx="1" fill="#c8a868" stroke="#9a7a3a" stroke-width="0.7"/>
+                  <rect x="366" y="4" width="55" height="38" rx="1" fill="url(#grad-raspont)" stroke="#9a7a3a" stroke-width="0.7"/>
+                  <rect x="423" y="4" width="53" height="38" rx="1" fill="#ccad6e" stroke="#9a7a3a" stroke-width="0.7"/>
+                  <!-- Wood grain (curved lines inside planks) -->
+                  <path d="M40,10 Q48,22 40,35" stroke="rgba(140,105,50,0.15)" stroke-width="0.5" fill="none"/>
+                  <path d="M52,8 Q58,20 52,38" stroke="rgba(140,105,50,0.12)" stroke-width="0.4" fill="none"/>
+                  <path d="M100,12 Q108,24 100,36" stroke="rgba(140,105,50,0.15)" stroke-width="0.5" fill="none"/>
+                  <path d="M160,9 Q166,22 158,37" stroke="rgba(140,105,50,0.15)" stroke-width="0.5" fill="none"/>
+                  <path d="M218,11 Q224,23 216,36" stroke="rgba(140,105,50,0.12)" stroke-width="0.4" fill="none"/>
+                  <path d="M272,10 Q280,22 272,35" stroke="rgba(140,105,50,0.15)" stroke-width="0.5" fill="none"/>
+                  <path d="M332,12 Q338,24 330,37" stroke="rgba(140,105,50,0.15)" stroke-width="0.5" fill="none"/>
+                  <path d="M388,9 Q394,21 386,36" stroke="rgba(140,105,50,0.12)" stroke-width="0.4" fill="none"/>
+                  <path d="M446,11 Q452,23 444,36" stroke="rgba(140,105,50,0.15)" stroke-width="0.5" fill="none"/>
+                  <!-- Tongue-and-groove joints (interlocking profile) -->
+                  <rect x="78" y="14" width="5" height="18" rx="0.8" fill="#b09050" opacity="0.45"/>
+                  <rect x="135" y="14" width="5" height="18" rx="0.8" fill="#b09050" opacity="0.45"/>
+                  <rect x="192" y="14" width="5" height="18" rx="0.8" fill="#b09050" opacity="0.45"/>
+                  <rect x="249" y="14" width="5" height="18" rx="0.8" fill="#b09050" opacity="0.45"/>
+                  <rect x="306" y="14" width="5" height="18" rx="0.8" fill="#b09050" opacity="0.45"/>
+                  <rect x="363" y="14" width="5" height="18" rx="0.8" fill="#b09050" opacity="0.45"/>
+                  <rect x="420" y="14" width="5" height="18" rx="0.8" fill="#b09050" opacity="0.45"/>
+                  <!-- Knots (natural wood detail) -->
+                  <ellipse cx="65" cy="26" rx="3" ry="4" fill="rgba(120,85,35,0.2)" stroke="rgba(120,85,35,0.15)" stroke-width="0.4"/>
+                  <ellipse cx="240" cy="18" rx="2.5" ry="3.5" fill="rgba(120,85,35,0.18)" stroke="rgba(120,85,35,0.12)" stroke-width="0.4"/>
+                  <ellipse cx="400" cy="30" rx="2" ry="3" fill="rgba(120,85,35,0.15)" stroke="rgba(120,85,35,0.1)" stroke-width="0.4"/>
                 </svg>
               </div>
               <span class="tpp-layer-label">Råspont</span>
               <div class="tpp-layer-pulse"></div>
             </div>
 
-            <!-- Layer 7: Takstol — triangular truss -->
-            <div class="tpp-roof-layer tpp-layer-7" data-layer="takstol" tabindex="0">
+            <!-- Layer 6: Takstol — triangular truss structure -->
+            <div class="tpp-roof-layer tpp-layer-6" data-layer="takstol" tabindex="0">
               <div class="tpp-layer-shape">
-                <svg viewBox="0 0 500 70" preserveAspectRatio="none">
+                <svg viewBox="0 0 500 75" preserveAspectRatio="none">
                   <defs>
                     <linearGradient id="grad-takstol" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#8a7560"/>
-                      <stop offset="100%" stop-color="#6a5a48"/>
+                      <stop offset="0%" stop-color="#9a8568"/>
+                      <stop offset="100%" stop-color="#7a6850"/>
+                    </linearGradient>
+                    <linearGradient id="grad-takstol2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#8a7558"/>
+                      <stop offset="100%" stop-color="#6a5a45"/>
                     </linearGradient>
                   </defs>
-                  <!-- Triangular truss frame -->
-                  <!-- Bottom chord -->
-                  <rect x="40" y="52" width="420" height="10" rx="2" fill="url(#grad-takstol)" stroke="#5a4a38" stroke-width="0.8"/>
-                  <!-- Left rafter -->
-                  <polygon points="50,52 250,6 258,10 58,55" fill="url(#grad-takstol)" stroke="#5a4a38" stroke-width="0.8"/>
-                  <!-- Right rafter -->
-                  <polygon points="450,52 250,6 242,10 442,55" fill="url(#grad-takstol)" stroke="#5a4a38" stroke-width="0.8"/>
-                  <!-- King post (center vertical) -->
-                  <rect x="246" y="10" width="8" height="42" rx="1" fill="#7a6550" stroke="#5a4a38" stroke-width="0.5"/>
-                  <!-- Struts (diagonal braces) -->
-                  <polygon points="170,52 246,22 250,26 178,54" fill="#7a6550" stroke="#5a4a38" stroke-width="0.5" opacity="0.8"/>
-                  <polygon points="330,52 254,22 250,26 322,54" fill="#7a6550" stroke="#5a4a38" stroke-width="0.5" opacity="0.8"/>
-                  <!-- Connection plates (gussets) -->
-                  <circle cx="250" cy="10" r="4" fill="#9a8a70" stroke="#5a4a38" stroke-width="0.8"/>
-                  <circle cx="55" cy="55" r="3" fill="#9a8a70" stroke="#5a4a38" stroke-width="0.8"/>
-                  <circle cx="445" cy="55" r="3" fill="#9a8a70" stroke="#5a4a38" stroke-width="0.8"/>
+                  <!-- Bottom chord (underram) -->
+                  <rect x="35" y="56" width="430" height="12" rx="2" fill="url(#grad-takstol)" stroke="#5a4a38" stroke-width="0.8"/>
                   <!-- Wood grain on bottom chord -->
-                  <line x1="100" y1="54" x2="100" y2="60" stroke="rgba(80,65,45,0.3)" stroke-width="0.4"/>
-                  <line x1="200" y1="54" x2="200" y2="60" stroke="rgba(80,65,45,0.3)" stroke-width="0.4"/>
-                  <line x1="300" y1="54" x2="300" y2="60" stroke="rgba(80,65,45,0.3)" stroke-width="0.4"/>
-                  <line x1="400" y1="54" x2="400" y2="60" stroke="rgba(80,65,45,0.3)" stroke-width="0.4"/>
+                  <line x1="80" y1="58" x2="80" y2="66" stroke="rgba(80,65,45,0.2)" stroke-width="0.3"/>
+                  <line x1="180" y1="58" x2="180" y2="66" stroke="rgba(80,65,45,0.2)" stroke-width="0.3"/>
+                  <line x1="320" y1="58" x2="320" y2="66" stroke="rgba(80,65,45,0.2)" stroke-width="0.3"/>
+                  <line x1="420" y1="58" x2="420" y2="66" stroke="rgba(80,65,45,0.2)" stroke-width="0.3"/>
+                  <!-- Left rafter (takstolsben) -->
+                  <polygon points="48,56 250,5 258,9 56,59" fill="url(#grad-takstol2)" stroke="#5a4a38" stroke-width="0.7"/>
+                  <!-- Right rafter -->
+                  <polygon points="452,56 250,5 242,9 444,59" fill="url(#grad-takstol2)" stroke="#5a4a38" stroke-width="0.7"/>
+                  <!-- King post (hängstång — center vertical) -->
+                  <rect x="246" y="9" width="8" height="47" rx="1.5" fill="#7a6550" stroke="#5a4a38" stroke-width="0.6"/>
+                  <!-- Left diagonal brace (tryckstång) -->
+                  <polygon points="160,56 246,22 250,26 168,58" fill="#7a6550" stroke="#5a4a38" stroke-width="0.5" opacity="0.85"/>
+                  <!-- Right diagonal brace -->
+                  <polygon points="340,56 254,22 250,26 332,58" fill="#7a6550" stroke="#5a4a38" stroke-width="0.5" opacity="0.85"/>
+                  <!-- Gusset plates (spikplåtar — steel connection plates) -->
+                  <rect x="243" y="3" width="14" height="14" rx="1" fill="#b0a890" stroke="#8a8070" stroke-width="0.6" opacity="0.7"/>
+                  <rect x="42" y="52" width="16" height="14" rx="1" fill="#b0a890" stroke="#8a8070" stroke-width="0.6" opacity="0.7"/>
+                  <rect x="442" y="52" width="16" height="14" rx="1" fill="#b0a890" stroke="#8a8070" stroke-width="0.6" opacity="0.7"/>
+                  <!-- Small dots on gusset plates -->
+                  <circle cx="248" cy="9" r="0.8" fill="#7a7060"/>
+                  <circle cx="252" cy="9" r="0.8" fill="#7a7060"/>
+                  <circle cx="248" cy="13" r="0.8" fill="#7a7060"/>
+                  <circle cx="252" cy="13" r="0.8" fill="#7a7060"/>
+                  <!-- Wood grain on rafters -->
+                  <line x1="150" y1="36" x2="155" y2="40" stroke="rgba(80,65,45,0.15)" stroke-width="0.3"/>
+                  <line x1="200" y1="22" x2="205" y2="26" stroke="rgba(80,65,45,0.15)" stroke-width="0.3"/>
+                  <line x1="350" y1="36" x2="345" y2="40" stroke="rgba(80,65,45,0.15)" stroke-width="0.3"/>
+                  <line x1="300" y1="22" x2="295" y2="26" stroke="rgba(80,65,45,0.15)" stroke-width="0.3"/>
                 </svg>
               </div>
               <span class="tpp-layer-label">Takstol</span>
@@ -800,22 +818,52 @@
             <div class="tpp-explorer-info-card active" data-info="pannplat">
               <div class="tpp-info-number">01</div>
               <h3>Takpannplåt</h3>
-              <p>Det yttersta skiktet som skyddar mot väder och vind. Tillverkad av profilerad stålplåt med polymerbeläggning som ger en klassisk takpanne-look med modern prestanda. UV-beständig och motståndskraftig mot korrosion.</p>
+              <p>Det yttersta skiktet som skyddar mot väder och vind. Profilerad stålplåt som efterliknar klassiska takpannor — men utan vikten. Färgbeständig och korrosionsskyddad i upp till 40 år.</p>
               <div class="tpp-info-specs">
                 <div class="tpp-info-spec">
                   <span class="tpp-spec-label">Tjocklek</span>
                   <span class="tpp-spec-val">0,5 mm stål</span>
                 </div>
                 <div class="tpp-info-spec">
-                  <span class="tpp-spec-label">Beläggning</span>
-                  <span class="tpp-spec-val">Polyester/PUR</span>
+                  <span class="tpp-spec-label">Ytskikt</span>
+                  <span class="tpp-spec-val">Färgbeständig beläggning</span>
+                </div>
+              </div>
+            </div>
+            <div class="tpp-explorer-info-card" data-info="lakt">
+              <div class="tpp-info-number">02</div>
+              <h3>Bärläkt &amp; ströläkt</h3>
+              <p>Horisontella bärläkt ger fäste för takpanneplåten, vertikala ströläkt skapar ventilationsspalten. Tillsammans bildar de ett rutnät som säkrar plåtens infästning och luftcirkulation under taket.</p>
+              <div class="tpp-info-specs">
+                <div class="tpp-info-spec">
+                  <span class="tpp-spec-label">Material</span>
+                  <span class="tpp-spec-val">Gran</span>
+                </div>
+                <div class="tpp-info-spec">
+                  <span class="tpp-spec-label">Dimension</span>
+                  <span class="tpp-spec-val">25×50 mm</span>
+                </div>
+              </div>
+            </div>
+            <div class="tpp-explorer-info-card" data-info="ventilation">
+              <div class="tpp-info-number">03</div>
+              <h3>Ventilationsspalt</h3>
+              <p>Luftspalten mellan underlagspapp och läkt är avgörande. Den ventilerar bort fukt, förhindrar kondens och förlänger takets livslängd avsevärt. Luft strömmar in vid takfoten och ut vid nocken.</p>
+              <div class="tpp-info-specs">
+                <div class="tpp-info-spec">
+                  <span class="tpp-spec-label">Spalt</span>
+                  <span class="tpp-spec-val">Min 25 mm</span>
+                </div>
+                <div class="tpp-info-spec">
+                  <span class="tpp-spec-label">Flöde</span>
+                  <span class="tpp-spec-val">Naturlig konvektion</span>
                 </div>
               </div>
             </div>
             <div class="tpp-explorer-info-card" data-info="underlag">
-              <div class="tpp-info-number">02</div>
+              <div class="tpp-info-number">04</div>
               <h3>Underlagspapp</h3>
-              <p>Diffusionsöppen duk som släpper igenom fukt inifrån men stoppar vatten utifrån. Fungerar som ett extra skydd under plåten och säkrar täthet vid eventuellt kondens.</p>
+              <p>Diffusionsöppen duk som släpper igenom fukt inifrån men stoppar vatten utifrån. Fungerar som ett extra skydd under läkten och säkrar täthet vid eventuellt kondens.</p>
               <div class="tpp-info-specs">
                 <div class="tpp-info-spec">
                   <span class="tpp-spec-label">Typ</span>
@@ -828,54 +876,9 @@
               </div>
             </div>
             <div class="tpp-explorer-info-card" data-info="raspont">
-              <div class="tpp-info-number">03</div>
-              <h3>Råspont</h3>
-              <p>Spontade brädor som bildar ett stabilt, sammanhängande underlag för underlagspappen. Råsponten ger taket struktur och stöd, och skapar en plan yta att fästa tätskiktet på.</p>
-              <div class="tpp-info-specs">
-                <div class="tpp-info-spec">
-                  <span class="tpp-spec-label">Material</span>
-                  <span class="tpp-spec-val">Gran, not &amp; fjäder</span>
-                </div>
-                <div class="tpp-info-spec">
-                  <span class="tpp-spec-label">Dimension</span>
-                  <span class="tpp-spec-val">22×120 mm</span>
-                </div>
-              </div>
-            </div>
-            <div class="tpp-explorer-info-card" data-info="lakt">
-              <div class="tpp-info-number">04</div>
-              <h3>Bärläkt &amp; ströläkt</h3>
-              <p>Träribbor som skapar luftspalt och ger fäste för takpanneplåten. Ströläkten monteras vertikalt på undertaket, bärläkten horisontellt ovanpå — detta skapar ventilationsspalten.</p>
-              <div class="tpp-info-specs">
-                <div class="tpp-info-spec">
-                  <span class="tpp-spec-label">Material</span>
-                  <span class="tpp-spec-val">Tryckimpregnerat trä</span>
-                </div>
-                <div class="tpp-info-spec">
-                  <span class="tpp-spec-label">Dimension</span>
-                  <span class="tpp-spec-val">25×38 / 45×70 mm</span>
-                </div>
-              </div>
-            </div>
-            <div class="tpp-explorer-info-card" data-info="ventilation">
               <div class="tpp-info-number">05</div>
-              <h3>Ventilationsspalt</h3>
-              <p>Luftspalten mellan underlagspapp och plåt är avgörande. Den ventilerar bort fukt, förhindrar kondens och förlänger takets livslängd avsevärt. Luft strömmar in vid takfoten och ut vid nocken.</p>
-              <div class="tpp-info-specs">
-                <div class="tpp-info-spec">
-                  <span class="tpp-spec-label">Spalt</span>
-                  <span class="tpp-spec-val">Min 25 mm</span>
-                </div>
-                <div class="tpp-info-spec">
-                  <span class="tpp-spec-label">Flöde</span>
-                  <span class="tpp-spec-val">Naturlig konvektion</span>
-                </div>
-              </div>
-            </div>
-            <div class="tpp-explorer-info-card" data-info="raspont2">
-              <div class="tpp-info-number">06</div>
-              <h3>Råspont (underliggande)</h3>
-              <p>Det undre lagret av spontade brädor som sitter direkt på takstolarna. Ger taket sin grundläggande bärande yta och fungerar som bas för hela takkonstruktionen ovanför.</p>
+              <h3>Råspont</h3>
+              <p>Spontade granbrädor som bildar ett stabilt, sammanhängande underlag för underlagspappen. Råsponten ger taket struktur och stöd, och skapar en plan yta att fästa tätskiktet på.</p>
               <div class="tpp-info-specs">
                 <div class="tpp-info-spec">
                   <span class="tpp-spec-label">Material</span>
@@ -883,12 +886,12 @@
                 </div>
                 <div class="tpp-info-spec">
                   <span class="tpp-spec-label">Dimension</span>
-                  <span class="tpp-spec-val">22×120 mm</span>
+                  <span class="tpp-spec-val">28×120 mm</span>
                 </div>
               </div>
             </div>
             <div class="tpp-explorer-info-card" data-info="takstol">
-              <div class="tpp-info-number">07</div>
+              <div class="tpp-info-number">06</div>
               <h3>Takstol</h3>
               <p>Bärande konstruktion som fördelar takets vikt ned till väggarna. Vid byte till takpannplåt behöver takstolen sällan förstärkas tack vare materialets låga vikt — en stor fördel vid renovering.</p>
               <div class="tpp-info-specs">
@@ -908,11 +911,10 @@
         <!-- Layer navigation dots -->
         <div class="tpp-explorer-dots">
           <button class="tpp-dot active" data-dot="pannplat" aria-label="Takpannplåt"></button>
-          <button class="tpp-dot" data-dot="underlag" aria-label="Underlagspapp"></button>
-          <button class="tpp-dot" data-dot="raspont" aria-label="Råspont"></button>
           <button class="tpp-dot" data-dot="lakt" aria-label="Bärläkt"></button>
           <button class="tpp-dot" data-dot="ventilation" aria-label="Ventilation"></button>
-          <button class="tpp-dot" data-dot="raspont2" aria-label="Råspont under"></button>
+          <button class="tpp-dot" data-dot="underlag" aria-label="Underlagspapp"></button>
+          <button class="tpp-dot" data-dot="raspont" aria-label="Råspont"></button>
           <button class="tpp-dot" data-dot="takstol" aria-label="Takstol"></button>
         </div>
 

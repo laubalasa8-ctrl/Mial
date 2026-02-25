@@ -16490,6 +16490,33 @@ body:has(.solar-hero) header { background: transparent; }
   line-height: 1.65;
 }
 
+/* CTA hint — click prompt */
+.tpp-explorer-cta-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #19A8FF;
+  margin-top: 1rem;
+  padding: 0.45rem 1rem;
+  border-radius: 50px;
+  background: rgba(25,168,255,0.06);
+  border: 1px solid rgba(25,168,255,0.15);
+  animation: tppHintPulse 2.5s ease-in-out infinite;
+}
+
+.tpp-explorer-cta-hint svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+@keyframes tppHintPulse {
+  0%, 100% { opacity: 0.7; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-1px); }
+}
+
 /* Main Visual Area */
 .tpp-explorer-visual {
   display: grid;
@@ -16609,7 +16636,7 @@ body:has(.solar-hero) header { background: transparent; }
 /* Info Panel */
 .tpp-explorer-info {
   position: relative;
-  min-height: 340px;
+  min-height: 280px;
 }
 
 .tpp-explorer-info-card {
@@ -16623,8 +16650,8 @@ body:has(.solar-hero) header { background: transparent; }
   pointer-events: none;
   background: #fff;
   border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 20px;
-  padding: 2.5rem;
+  border-radius: 16px;
+  padding: 1.8rem;
   box-shadow: 0 2px 12px rgba(0,0,0,0.05);
 }
 
@@ -16636,29 +16663,29 @@ body:has(.solar-hero) header { background: transparent; }
 }
 
 .tpp-info-number {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   font-weight: 900;
   color: rgba(25,168,255,0.08);
   position: absolute;
-  top: 1.2rem;
-  right: 1.8rem;
+  top: 1rem;
+  right: 1.4rem;
   line-height: 1;
   letter-spacing: -2px;
 }
 
 .tpp-explorer-info-card h3 {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: #111;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.6rem;
   letter-spacing: -0.5px;
 }
 
 .tpp-explorer-info-card p {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: rgba(0,0,0,0.5);
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
+  line-height: 1.65;
+  margin-bottom: 1rem;
 }
 
 .tpp-info-specs {
@@ -16754,17 +16781,17 @@ body:has(.solar-hero) header { background: transparent; }
     font-size: 0.72rem;
   }
   .tpp-explorer-info-card {
-    padding: 1.8rem;
+    padding: 1.4rem;
   }
   .tpp-info-number {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 }
 
 @media (max-width: 480px) {
-  .tpp-explorer-info-card { padding: 1.4rem; border-radius: 14px; }
-  .tpp-explorer-info-card h3 { font-size: 1.15rem; }
-  .tpp-explorer-info-card p { font-size: 0.88rem; }
+  .tpp-explorer-info-card { padding: 1.2rem; border-radius: 12px; }
+  .tpp-explorer-info-card h3 { font-size: 1.05rem; }
+  .tpp-explorer-info-card p { font-size: 0.85rem; }
   .tpp-info-specs { flex-direction: column; gap: 0.8rem; }
   .tpp-layer-label { display: none; }
   .tpp-explorer-title { font-size: clamp(1.6rem, 5vw, 2.2rem); }
