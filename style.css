@@ -15570,6 +15570,498 @@ body:has(.solar-hero) header { background: transparent; }
   }
 }
 
+/* ===== TAKPANNEPLÅT USP SECTION ===== */
+
+.tpp-usp-section {
+  padding: 7rem 1.5rem;
+  background: linear-gradient(180deg, #f8fbff 0%, #ffffff 40%, #f0f7ff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.tpp-usp-section::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0,136,204,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: tppUspOrb1 8s ease-in-out infinite;
+}
+
+.tpp-usp-section::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0,217,255,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: tppUspOrb2 10s ease-in-out infinite;
+}
+
+@keyframes tppUspOrb1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  50% { transform: translate(-30px, 30px) scale(1.15); opacity: 1; }
+}
+
+@keyframes tppUspOrb2 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  50% { transform: translate(20px, -20px) scale(1.1); opacity: 0.8; }
+}
+
+.tpp-usp-wrapper {
+  max-width: 1260px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Header ---- */
+.tpp-usp-header {
+  text-align: center;
+  margin-bottom: 4.5rem;
+}
+
+.tpp-usp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, rgba(0,136,204,0.1), rgba(0,217,255,0.08));
+  color: #0088cc;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 0.6rem 1.4rem;
+  border-radius: 50px;
+  border: 1px solid rgba(0,136,204,0.15);
+  margin-bottom: 1.5rem;
+  animation: tppBadgeGlow 3s ease-in-out infinite;
+}
+
+@keyframes tppBadgeGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,136,204,0); }
+  50% { box-shadow: 0 0 20px 4px rgba(0,136,204,0.12); }
+}
+
+.tpp-usp-title {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #111;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 1.2rem;
+}
+
+.tpp-usp-accent {
+  background: linear-gradient(135deg, #0088cc, #00d9ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tpp-usp-subtitle {
+  font-size: 1.15rem;
+  color: #5a5a5a;
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+/* ---- Chevron Grid ---- */
+.tpp-usp-chevron {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* ---- Image Column ---- */
+.tpp-usp-image-col {
+  position: relative;
+}
+
+.tpp-usp-image-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: visible;
+  height: 520px;
+}
+
+.tpp-usp-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,136,204,0.15), 0 8px 24px rgba(0,0,0,0.08);
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
+}
+
+.tpp-usp-image-wrapper:hover img {
+  transform: scale(1.03);
+  box-shadow: 0 25px 70px rgba(0,136,204,0.2), 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Image glow effect */
+.tpp-usp-image-glow {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 40px;
+  background: radial-gradient(ellipse, rgba(0,136,204,0.2) 0%, transparent 70%);
+  filter: blur(15px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Floating badges */
+.tpp-usp-float-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,136,204,0.1);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #111;
+  z-index: 5;
+  white-space: nowrap;
+}
+
+.tpp-usp-float-badge svg {
+  color: #0088cc;
+  flex-shrink: 0;
+}
+
+.tpp-float-top {
+  top: 20px;
+  right: -20px;
+  animation: tppFloatUp 4s ease-in-out infinite;
+}
+
+.tpp-float-bottom {
+  bottom: 40px;
+  left: -20px;
+  animation: tppFloatDown 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+@keyframes tppFloatUp {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes tppFloatDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* ---- USP Points Column ---- */
+.tpp-usp-points-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.tpp-usp-points {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* USP Card */
+.tpp-usp-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.4rem;
+  padding: 1.8rem 2rem;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(0,136,204,0.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  cursor: default;
+}
+
+.tpp-usp-card:hover {
+  transform: translateY(-4px) translateX(4px);
+  box-shadow: 0 16px 48px rgba(0,136,204,0.12), 0 4px 16px rgba(0,0,0,0.06);
+  border-color: rgba(0,136,204,0.2);
+}
+
+/* Shine sweep effect on hover */
+.tpp-usp-card-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.tpp-usp-card:hover .tpp-usp-card-shine {
+  left: 120%;
+}
+
+/* Card number */
+.tpp-usp-card-number {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: rgba(0,136,204,0.05);
+  line-height: 1;
+  pointer-events: none;
+  transition: color 0.4s ease;
+}
+
+.tpp-usp-card:hover .tpp-usp-card-number {
+  color: rgba(0,136,204,0.1);
+}
+
+/* Card icon */
+.tpp-usp-card-icon {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, rgba(0,136,204,0.08), rgba(0,217,255,0.05));
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+.tpp-usp-card-icon svg {
+  width: 36px;
+  height: 36px;
+  transition: transform 0.4s ease;
+}
+
+.tpp-usp-card:hover .tpp-usp-card-icon {
+  background: linear-gradient(135deg, rgba(0,136,204,0.15), rgba(0,217,255,0.1));
+  transform: scale(1.05);
+}
+
+.tpp-usp-card:hover .tpp-usp-card-icon svg {
+  transform: rotate(-3deg) scale(1.08);
+}
+
+/* Card content */
+.tpp-usp-card-content h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.tpp-usp-card:hover .tpp-usp-card-content h3 {
+  color: #0088cc;
+}
+
+.tpp-usp-card-content p {
+  font-size: 0.92rem;
+  color: #5a5a5a;
+  line-height: 1.65;
+}
+
+/* ---- CTA ---- */
+.tpp-usp-cta {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.tpp-usp-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1rem 2.2rem;
+  background: linear-gradient(135deg, #0088cc, #006daa);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 24px rgba(0,136,204,0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.tpp-usp-cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transition: left 0.5s ease;
+}
+
+.tpp-usp-cta-btn:hover::before {
+  left: 100%;
+}
+
+.tpp-usp-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0,136,204,0.35);
+  background: linear-gradient(135deg, #009ee6, #0077bb);
+}
+
+.tpp-usp-cta-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.tpp-usp-cta-btn:hover svg {
+  transform: translateX(4px);
+}
+
+.tpp-usp-cta-sub {
+  margin-top: 0.8rem;
+  font-size: 0.82rem;
+  color: #999;
+  font-weight: 500;
+}
+
+/* ---- Staggered Entrance Animations ---- */
+.tpp-usp-card {
+  opacity: 0;
+  transform: translateY(30px) translateX(-20px);
+  animation: tppUspCardIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+.tpp-usp-card[data-usp="1"] { animation-delay: 0.2s; }
+.tpp-usp-card[data-usp="2"] { animation-delay: 0.45s; }
+.tpp-usp-card[data-usp="3"] { animation-delay: 0.7s; }
+
+@keyframes tppUspCardIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+}
+
+.tpp-usp-image-wrapper {
+  opacity: 0;
+  transform: translateX(-40px) scale(0.95);
+  animation: tppUspImgIn 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.1s forwards;
+}
+
+@keyframes tppUspImgIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.tpp-usp-header {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: tppUspHeaderIn 0.6s ease-out forwards;
+}
+
+@keyframes tppUspHeaderIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tpp-usp-cta {
+  opacity: 0;
+  animation: tppUspCtaIn 0.5s ease-out 1s forwards;
+}
+
+@keyframes tppUspCtaIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---- Responsive 1024px ---- */
+@media (max-width: 1024px) {
+  .tpp-usp-section { padding: 5rem 1.2rem; }
+  .tpp-usp-header { margin-bottom: 3.5rem; }
+  .tpp-usp-title { font-size: 2.6rem; }
+  .tpp-usp-subtitle { font-size: 1.05rem; }
+  .tpp-usp-chevron { gap: 3rem; }
+  .tpp-usp-image-wrapper { height: 440px; }
+  .tpp-usp-card { padding: 1.5rem 1.6rem; }
+  .tpp-usp-card-icon { width: 56px; height: 56px; }
+  .tpp-usp-card-icon svg { width: 32px; height: 32px; }
+}
+
+/* ---- Responsive 768px ---- */
+@media (max-width: 768px) {
+  .tpp-usp-section { padding: 4rem 1rem; }
+  .tpp-usp-header { margin-bottom: 2.5rem; }
+  .tpp-usp-title { font-size: 2.1rem; letter-spacing: -0.5px; }
+  .tpp-usp-subtitle { font-size: 0.95rem; line-height: 1.7; }
+  .tpp-usp-chevron {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .tpp-usp-image-wrapper { height: 320px; }
+  .tpp-float-top { top: 12px; right: 10px; }
+  .tpp-float-bottom { bottom: 20px; left: 10px; }
+  .tpp-usp-card { padding: 1.3rem 1.4rem; gap: 1rem; }
+  .tpp-usp-card-number { font-size: 2.5rem; }
+  .tpp-usp-card-icon { width: 52px; height: 52px; border-radius: 12px; }
+  .tpp-usp-card-icon svg { width: 28px; height: 28px; }
+  .tpp-usp-card-content h3 { font-size: 1.05rem; }
+  .tpp-usp-card-content p { font-size: 0.88rem; }
+}
+
+/* ---- Responsive 480px ---- */
+@media (max-width: 480px) {
+  .tpp-usp-section { padding: 3rem 0.8rem; }
+  .tpp-usp-badge { font-size: 0.75rem; padding: 0.5rem 1rem; }
+  .tpp-usp-title { font-size: 1.7rem; letter-spacing: -0.3px; }
+  .tpp-usp-title br { display: none; }
+  .tpp-usp-subtitle { font-size: 0.88rem; }
+  .tpp-usp-image-wrapper { height: 260px; border-radius: 14px; }
+  .tpp-usp-image-wrapper img { border-radius: 14px; }
+  .tpp-usp-float-badge { font-size: 0.75rem; padding: 0.5rem 0.8rem; border-radius: 10px; }
+  .tpp-float-top { top: 8px; right: 6px; }
+  .tpp-float-bottom { bottom: 12px; left: 6px; }
+  .tpp-usp-card { padding: 1.1rem 1.2rem; gap: 0.9rem; border-radius: 12px; }
+  .tpp-usp-card-number { font-size: 2rem; top: 8px; right: 10px; }
+  .tpp-usp-card-icon { width: 46px; height: 46px; border-radius: 10px; }
+  .tpp-usp-card-icon svg { width: 24px; height: 24px; }
+  .tpp-usp-card-content h3 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .tpp-usp-card-content p { font-size: 0.82rem; line-height: 1.5; }
+  .tpp-usp-cta-btn { width: 100%; justify-content: center; padding: 0.9rem 1.5rem; font-size: 0.95rem; }
+}
+
 /* ============================================================
    MOBILE RESPONSIVE FIXES v2 - SAFE (does NOT touch heroes,
    fullbleed widths, or background-attachment on desktop/tablet)
