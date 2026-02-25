@@ -351,267 +351,412 @@
       </div>
     </section>
 
-    <!-- ===== JÄMFÖRELSE – Takpannplåt vs andra tak ===== -->
+    <!-- ===== FAKTA – Takmaterial i jämförelse ===== -->
     <section class="tpp-compare-table-section">
       <div class="tpp-ct-container">
 
         <!-- Header -->
         <div class="tpp-ct-header">
-          <span class="tpp-ct-badge">Jämförelse</span>
-          <h2 class="tpp-ct-title">Takpannplåt vs<br>andra takmaterial</h2>
-          <p class="tpp-ct-subtitle">Se varför allt fler villaägare väljer takpannplåt framför traditionella alternativ.</p>
+          <span class="tpp-ct-badge">Fakta &amp; egenskaper</span>
+          <h2 class="tpp-ct-title">Takmaterial<br>i jämförelse</h2>
+          <p class="tpp-ct-subtitle">Varje takmaterial har sina styrkor. Här presenterar vi fakta och egenskaper så att du kan göra ett välgrundat val.</p>
         </div>
 
-        <!-- Tab Switcher -->
-        <div class="tpp-ct-tabs">
-          <button class="tpp-ct-tab active" data-tab="overview">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
-            Översikt
+        <!-- Material Cards (replaces tab system) -->
+        <div class="tpp-ct-material-selector">
+          <button class="tpp-ct-mat-btn active" data-material="takpannplat">
+            <span class="tpp-ct-mat-dot" style="--dot: #19A8FF;"></span>
+            Takpannplåt
           </button>
-          <button class="tpp-ct-tab" data-tab="details">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-            Detaljerad
+          <button class="tpp-ct-mat-btn" data-material="betongpannor">
+            <span class="tpp-ct-mat-dot" style="--dot: #a78bfa;"></span>
+            Betongpannor
+          </button>
+          <button class="tpp-ct-mat-btn" data-material="papptak">
+            <span class="tpp-ct-mat-dot" style="--dot: #fbbf24;"></span>
+            Papptak
           </button>
         </div>
 
-        <!-- Overview Table -->
-        <div class="tpp-ct-panel active" id="tpp-panel-overview">
-          <div class="tpp-ct-table">
-            <!-- Table Header -->
-            <div class="tpp-ct-row tpp-ct-row-header">
-              <div class="tpp-ct-cell tpp-ct-cell-label">Egenskap</div>
-              <div class="tpp-ct-cell tpp-ct-cell-highlight">
-                <div class="tpp-ct-winner-badge">Populärast</div>
-                Takpannplåt
-              </div>
-              <div class="tpp-ct-cell">Betongpannor</div>
-              <div class="tpp-ct-cell">Papptak</div>
+        <!-- Fact Cards Grid -->
+        <div class="tpp-ct-facts-grid">
+
+          <!-- Livslängd -->
+          <div class="tpp-ct-fact-card" data-anim="card">
+            <div class="tpp-ct-fact-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
             </div>
-            <!-- Rows -->
-            <div class="tpp-ct-row" data-anim="row">
-              <div class="tpp-ct-cell tpp-ct-cell-label">Livslängd</div>
-              <div class="tpp-ct-cell tpp-ct-cell-highlight"><span class="tpp-ct-val tpp-ct-val-best">50+ år</span></div>
-              <div class="tpp-ct-cell"><span class="tpp-ct-val">30–40 år</span></div>
-              <div class="tpp-ct-cell"><span class="tpp-ct-val tpp-ct-val-weak">15–25 år</span></div>
-            </div>
-            <div class="tpp-ct-row" data-anim="row">
-              <div class="tpp-ct-cell tpp-ct-cell-label">Vikt per m²</div>
-              <div class="tpp-ct-cell tpp-ct-cell-highlight"><span class="tpp-ct-val tpp-ct-val-best">~5 kg</span></div>
-              <div class="tpp-ct-cell"><span class="tpp-ct-val tpp-ct-val-weak">~43 kg</span></div>
-              <div class="tpp-ct-cell"><span class="tpp-ct-val">~8 kg</span></div>
-            </div>
-            <div class="tpp-ct-row" data-anim="row">
-              <div class="tpp-ct-cell tpp-ct-cell-label">Underhåll</div>
-              <div class="tpp-ct-cell tpp-ct-cell-highlight">
-                <svg class="tpp-ct-check" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                Minimalt
+            <h3>Livslängd</h3>
+            <div class="tpp-ct-fact-values">
+              <div class="tpp-ct-fact-item active" data-mat="takpannplat">
+                <span class="tpp-ct-fact-num" data-count="50">0</span><span class="tpp-ct-fact-suffix">+ år</span>
+                <p>Stålkärna med polymerbeläggning som inte åldras som traditionella material.</p>
               </div>
-              <div class="tpp-ct-cell">
-                <svg class="tpp-ct-x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4757" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                Regelbundet
+              <div class="tpp-ct-fact-item" data-mat="betongpannor">
+                <span class="tpp-ct-fact-num" data-count="40">0</span><span class="tpp-ct-fact-suffix"> år</span>
+                <p>Beprövat och pålitligt. Kan bli porösa med tiden men håller länge med rätt underhåll.</p>
               </div>
-              <div class="tpp-ct-cell">
-                <svg class="tpp-ct-x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4757" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                Frekvent
+              <div class="tpp-ct-fact-item" data-mat="papptak">
+                <span class="tpp-ct-fact-num" data-count="20">0</span><span class="tpp-ct-fact-suffix"> år</span>
+                <p>Prisvärt och funktionellt. Kräver omlägning efter ca 15–25 år beroende på kvalitet.</p>
               </div>
-            </div>
-            <div class="tpp-ct-row" data-anim="row">
-              <div class="tpp-ct-cell tpp-ct-cell-label">Mossbildning</div>
-              <div class="tpp-ct-cell tpp-ct-cell-highlight">
-                <svg class="tpp-ct-check" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                Motståndskraftigt
-              </div>
-              <div class="tpp-ct-cell">
-                <svg class="tpp-ct-x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4757" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                Mycket vanligt
-              </div>
-              <div class="tpp-ct-cell">
-                <svg class="tpp-ct-x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4757" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                Förekommer
-              </div>
-            </div>
-            <div class="tpp-ct-row" data-anim="row">
-              <div class="tpp-ct-cell tpp-ct-cell-label">Snöhantering</div>
-              <div class="tpp-ct-cell tpp-ct-cell-highlight">
-                <svg class="tpp-ct-check" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                Utmärkt
-              </div>
-              <div class="tpp-ct-cell"><span class="tpp-ct-val">Bra</span></div>
-              <div class="tpp-ct-cell"><span class="tpp-ct-val tpp-ct-val-weak">Risk för skador</span></div>
-            </div>
-            <div class="tpp-ct-row" data-anim="row">
-              <div class="tpp-ct-cell tpp-ct-cell-label">Estetik</div>
-              <div class="tpp-ct-cell tpp-ct-cell-highlight">
-                <svg class="tpp-ct-check" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                Klassisk + modern
-              </div>
-              <div class="tpp-ct-cell"><span class="tpp-ct-val">Klassisk</span></div>
-              <div class="tpp-ct-cell"><span class="tpp-ct-val tpp-ct-val-weak">Begränsad</span></div>
-            </div>
-            <div class="tpp-ct-row" data-anim="row">
-              <div class="tpp-ct-cell tpp-ct-cell-label">Garanti</div>
-              <div class="tpp-ct-cell tpp-ct-cell-highlight"><span class="tpp-ct-val tpp-ct-val-best">Upp till 50 år</span></div>
-              <div class="tpp-ct-cell"><span class="tpp-ct-val">10–30 år</span></div>
-              <div class="tpp-ct-cell"><span class="tpp-ct-val tpp-ct-val-weak">5–10 år</span></div>
             </div>
           </div>
 
-          <!-- Score Summary -->
-          <div class="tpp-ct-scores">
-            <div class="tpp-ct-score tpp-ct-score-highlight" data-score="97">
-              <div class="tpp-ct-score-ring">
-                <svg viewBox="0 0 100 100">
-                  <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(25,168,255,0.15)" stroke-width="6"/>
-                  <circle class="tpp-ct-ring-fill" cx="50" cy="50" r="42" fill="none" stroke="#19A8FF" stroke-width="6" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" transform="rotate(-90 50 50)"/>
-                </svg>
-                <span class="tpp-ct-score-num">0</span>
-              </div>
-              <span class="tpp-ct-score-label">Takpannplåt</span>
+          <!-- Vikt -->
+          <div class="tpp-ct-fact-card" data-anim="card">
+            <div class="tpp-ct-fact-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg>
             </div>
-            <div class="tpp-ct-score" data-score="68">
-              <div class="tpp-ct-score-ring">
-                <svg viewBox="0 0 100 100">
-                  <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6"/>
-                  <circle class="tpp-ct-ring-fill" cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="6" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" transform="rotate(-90 50 50)"/>
-                </svg>
-                <span class="tpp-ct-score-num">0</span>
+            <h3>Vikt per m²</h3>
+            <div class="tpp-ct-fact-values">
+              <div class="tpp-ct-fact-item active" data-mat="takpannplat">
+                <span class="tpp-ct-fact-num" data-count="5">0</span><span class="tpp-ct-fact-suffix"> kg</span>
+                <p>Extremt lätt — belastar inte takstolen. Perfekt vid renovering av äldre hus.</p>
               </div>
-              <span class="tpp-ct-score-label">Betongpannor</span>
-            </div>
-            <div class="tpp-ct-score" data-score="42">
-              <div class="tpp-ct-score-ring">
-                <svg viewBox="0 0 100 100">
-                  <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6"/>
-                  <circle class="tpp-ct-ring-fill" cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="6" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" transform="rotate(-90 50 50)"/>
-                </svg>
-                <span class="tpp-ct-score-num">0</span>
+              <div class="tpp-ct-fact-item" data-mat="betongpannor">
+                <span class="tpp-ct-fact-num" data-count="43">0</span><span class="tpp-ct-fact-suffix"> kg</span>
+                <p>Tung och stabil. Kräver att takstolen dimensioneras för vikten.</p>
               </div>
-              <span class="tpp-ct-score-label">Papptak</span>
+              <div class="tpp-ct-fact-item" data-mat="papptak">
+                <span class="tpp-ct-fact-num" data-count="8">0</span><span class="tpp-ct-fact-suffix"> kg</span>
+                <p>Lätt material som fungerar på de flesta takkonstruktioner utan förstärkning.</p>
+              </div>
             </div>
           </div>
+
+          <!-- Underhåll -->
+          <div class="tpp-ct-fact-card" data-anim="card">
+            <div class="tpp-ct-fact-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3>Underhåll</h3>
+            <div class="tpp-ct-fact-values">
+              <div class="tpp-ct-fact-item active" data-mat="takpannplat">
+                <span class="tpp-ct-fact-label">Minimalt</span>
+                <p>Slät yta som inte samlar mossa. Behöver sällan mer än en visuell kontroll.</p>
+              </div>
+              <div class="tpp-ct-fact-item" data-mat="betongpannor">
+                <span class="tpp-ct-fact-label">Regelbundet</span>
+                <p>Mossa och lav kan växa på ytan. Spruckna pannor bör bytas ut vid behov.</p>
+              </div>
+              <div class="tpp-ct-fact-item" data-mat="papptak">
+                <span class="tpp-ct-fact-label">Återkommande</span>
+                <p>Skarvar och fogar behöver inspekteras. Känsligare för mekanisk påverkan.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Snöhantering -->
+          <div class="tpp-ct-fact-card" data-anim="card">
+            <div class="tpp-ct-fact-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25"/><path d="M8 16h.01M8 20h.01M12 18h.01M12 22h.01M16 16h.01M16 20h.01"/></svg>
+            </div>
+            <h3>Klimattålighet</h3>
+            <div class="tpp-ct-fact-values">
+              <div class="tpp-ct-fact-item active" data-mat="takpannplat">
+                <span class="tpp-ct-fact-label">Mycket stark</span>
+                <p>Hanterar snölast, hagel och kraftig vind utan problem. Slät yta låter snö glida av.</p>
+              </div>
+              <div class="tpp-ct-fact-item" data-mat="betongpannor">
+                <span class="tpp-ct-fact-label">Stark</span>
+                <p>God klimattålighet. Tål snö bra men kan spricka vid kraftiga temperaturväxlingar.</p>
+              </div>
+              <div class="tpp-ct-fact-item" data-mat="papptak">
+                <span class="tpp-ct-fact-label">Godkänd</span>
+                <p>Fungerar väl i normalt klimat. Extra känsligt vid stående vatten och extrem kyla.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Estetik -->
+          <div class="tpp-ct-fact-card" data-anim="card">
+            <div class="tpp-ct-fact-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <h3>Estetik</h3>
+            <div class="tpp-ct-fact-values">
+              <div class="tpp-ct-fact-item active" data-mat="takpannplat">
+                <span class="tpp-ct-fact-label">Modern + klassisk</span>
+                <p>Ser ut som traditionell takpanna men i en modern, enhetlig yta. Finns i flera färger.</p>
+              </div>
+              <div class="tpp-ct-fact-item" data-mat="betongpannor">
+                <span class="tpp-ct-fact-label">Klassisk</span>
+                <p>Det mest traditionella utseendet. Tidlöst och uppskattat av många villaägare.</p>
+              </div>
+              <div class="tpp-ct-fact-item" data-mat="papptak">
+                <span class="tpp-ct-fact-label">Enkel</span>
+                <p>Mer diskret utseende. Passar bra för garage, förråd och byggnader med låg lutning.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pris -->
+          <div class="tpp-ct-fact-card" data-anim="card">
+            <div class="tpp-ct-fact-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h3>Prisläge</h3>
+            <div class="tpp-ct-fact-values">
+              <div class="tpp-ct-fact-item active" data-mat="takpannplat">
+                <span class="tpp-ct-fact-label">Medel–hög</span>
+                <p>Högre startkostnad men lägre totalkostnad över tid tack vare minimal skötsel och lång livslängd.</p>
+              </div>
+              <div class="tpp-ct-fact-item" data-mat="betongpannor">
+                <span class="tpp-ct-fact-label">Medel</span>
+                <p>Konkurrenskraftigt pris. Beprövat val som balanserar kostnad och kvalitet väl.</p>
+              </div>
+              <div class="tpp-ct-fact-item" data-mat="papptak">
+                <span class="tpp-ct-fact-label">Låg</span>
+                <p>Lägst materialkostnad. Bra alternativ för budgetmedvetna projekt och tillbyggnader.</p>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        <!-- Detailed Panel -->
-        <div class="tpp-ct-panel" id="tpp-panel-details">
-          <div class="tpp-ct-details-grid">
-
-            <div class="tpp-ct-detail-card" data-anim="card">
-              <div class="tpp-ct-detail-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-              </div>
-              <h3>Livslängd &amp; hållbarhet</h3>
-              <p>Takpannplåt håller <strong>50+ år</strong> utan att förlora sin form eller färg. Betongpannor spricker med tiden och papptak kräver omlägning redan efter 15 år.</p>
-              <div class="tpp-ct-detail-bar">
-                <div class="tpp-ct-bar-track">
-                  <div class="tpp-ct-bar-fill" data-width="97" style="--bar-color: #19A8FF;"></div>
-                </div>
-                <span>Takpannplåt 97%</span>
-              </div>
-              <div class="tpp-ct-detail-bar">
-                <div class="tpp-ct-bar-track">
-                  <div class="tpp-ct-bar-fill" data-width="65" style="--bar-color: rgba(255,255,255,0.3);"></div>
-                </div>
-                <span>Betongpannor 65%</span>
-              </div>
-              <div class="tpp-ct-detail-bar">
-                <div class="tpp-ct-bar-track">
-                  <div class="tpp-ct-bar-fill" data-width="35" style="--bar-color: rgba(255,255,255,0.15);"></div>
-                </div>
-                <span>Papptak 35%</span>
-              </div>
-            </div>
-
-            <div class="tpp-ct-detail-card" data-anim="card">
-              <div class="tpp-ct-detail-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <h3>Väderbeständighet</h3>
-              <p>Klarar snö, regn, hagel och UV utan att tappa prestanda. Stålkärnan gör panelen <strong>extremt tålig</strong> mot alla väderförhållanden i Norden.</p>
-              <div class="tpp-ct-detail-bar">
-                <div class="tpp-ct-bar-track">
-                  <div class="tpp-ct-bar-fill" data-width="95" style="--bar-color: #19A8FF;"></div>
-                </div>
-                <span>Takpannplåt 95%</span>
-              </div>
-              <div class="tpp-ct-detail-bar">
-                <div class="tpp-ct-bar-track">
-                  <div class="tpp-ct-bar-fill" data-width="70" style="--bar-color: rgba(255,255,255,0.3);"></div>
-                </div>
-                <span>Betongpannor 70%</span>
-              </div>
-              <div class="tpp-ct-detail-bar">
-                <div class="tpp-ct-bar-track">
-                  <div class="tpp-ct-bar-fill" data-width="40" style="--bar-color: rgba(255,255,255,0.15);"></div>
-                </div>
-                <span>Papptak 40%</span>
-              </div>
-            </div>
-
-            <div class="tpp-ct-detail-card" data-anim="card">
-              <div class="tpp-ct-detail-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-              </div>
-              <h3>Underhåll &amp; skötsel</h3>
-              <p>Takpannplåt kräver <strong>nästan inget underhåll</strong>. Inga spruckna pannor att byta, ingen mossa att skrapa bort. Spara både tid och pengar.</p>
-              <div class="tpp-ct-detail-bar">
-                <div class="tpp-ct-bar-track">
-                  <div class="tpp-ct-bar-fill" data-width="98" style="--bar-color: #19A8FF;"></div>
-                </div>
-                <span>Takpannplåt 98%</span>
-              </div>
-              <div class="tpp-ct-detail-bar">
-                <div class="tpp-ct-bar-track">
-                  <div class="tpp-ct-bar-fill" data-width="45" style="--bar-color: rgba(255,255,255,0.3);"></div>
-                </div>
-                <span>Betongpannor 45%</span>
-              </div>
-              <div class="tpp-ct-detail-bar">
-                <div class="tpp-ct-bar-track">
-                  <div class="tpp-ct-bar-fill" data-width="30" style="--bar-color: rgba(255,255,255,0.15);"></div>
-                </div>
-                <span>Papptak 30%</span>
-              </div>
-            </div>
-
-            <div class="tpp-ct-detail-card" data-anim="card">
-              <div class="tpp-ct-detail-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-              </div>
-              <h3>Estetik &amp; design</h3>
-              <p>Klassisk takpannelook i modernt material. Finns i <strong>flera färger och profiler</strong>. Ger taket ett enhetligt och stilrent uttryck som håller i decennier.</p>
-              <div class="tpp-ct-detail-bar">
-                <div class="tpp-ct-bar-track">
-                  <div class="tpp-ct-bar-fill" data-width="92" style="--bar-color: #19A8FF;"></div>
-                </div>
-                <span>Takpannplåt 92%</span>
-              </div>
-              <div class="tpp-ct-detail-bar">
-                <div class="tpp-ct-bar-track">
-                  <div class="tpp-ct-bar-fill" data-width="75" style="--bar-color: rgba(255,255,255,0.3);"></div>
-                </div>
-                <span>Betongpannor 75%</span>
-              </div>
-              <div class="tpp-ct-detail-bar">
-                <div class="tpp-ct-bar-track">
-                  <div class="tpp-ct-bar-fill" data-width="25" style="--bar-color: rgba(255,255,255,0.15);"></div>
-                </div>
-                <span>Papptak 25%</span>
-              </div>
-            </div>
-
+        <!-- Summary bar -->
+        <div class="tpp-ct-summary" data-anim="card">
+          <div class="tpp-ct-summary-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
           </div>
-        </div>
-
-        <!-- Bottom CTA -->
-        <div class="tpp-ct-bottom">
-          <p class="tpp-ct-bottom-text">Valet är enkelt. <strong>Takpannplåt</strong> vinner på nästan alla punkter.</p>
-          <a href="#footer" class="tpp-ct-cta">
-            Boka kostnadsfri besiktning
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+          <p>Alla takmaterial har sina användningsområden. <strong>Takpannplåt</strong> utmärker sig genom sin kombination av låg vikt, lång livslängd och minimalt underhåll — egenskaper som gör det till ett starkt alternativ för den som vill ha ett tak som håller länge.</p>
         </div>
 
       </div>
+    </section>
+
+    <!-- ===== INTERAKTIV TAK-EXPLORER ===== -->
+    <section class="tpp-explorer-section" id="tak-explorer">
+      <div class="tpp-explorer-container">
+
+        <div class="tpp-explorer-header">
+          <span class="tpp-explorer-badge">Interaktiv</span>
+          <h2 class="tpp-explorer-title">Utforska ditt tak</h2>
+          <p class="tpp-explorer-subtitle">Klicka på de olika lagren för att se hur ett takpannplåt-tak är uppbyggt — från nock till takfot.</p>
+        </div>
+
+        <!-- Exploded Roof Visualization -->
+        <div class="tpp-explorer-visual">
+          <div class="tpp-explorer-roof">
+            <!-- Layer 1: Takpannplåt (top) -->
+            <div class="tpp-roof-layer tpp-layer-1 active" data-layer="pannplat" tabindex="0">
+              <div class="tpp-layer-shape">
+                <svg viewBox="0 0 500 120" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="grad-pannplat" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#2a3a4a"/>
+                      <stop offset="100%" stop-color="#1a2a3a"/>
+                    </linearGradient>
+                  </defs>
+                  <polygon points="250,5 490,110 10,110" fill="url(#grad-pannplat)" stroke="rgba(25,168,255,0.3)" stroke-width="1.5"/>
+                  <!-- Panel lines -->
+                  <line x1="250" y1="15" x2="90" y2="105" stroke="rgba(25,168,255,0.15)" stroke-width="0.8"/>
+                  <line x1="250" y1="15" x2="170" y2="105" stroke="rgba(25,168,255,0.15)" stroke-width="0.8"/>
+                  <line x1="250" y1="15" x2="250" y2="105" stroke="rgba(25,168,255,0.15)" stroke-width="0.8"/>
+                  <line x1="250" y1="15" x2="330" y2="105" stroke="rgba(25,168,255,0.15)" stroke-width="0.8"/>
+                  <line x1="250" y1="15" x2="410" y2="105" stroke="rgba(25,168,255,0.15)" stroke-width="0.8"/>
+                </svg>
+              </div>
+              <span class="tpp-layer-label">Takpannplåt</span>
+              <div class="tpp-layer-pulse"></div>
+            </div>
+
+            <!-- Layer 2: Underlagspapp -->
+            <div class="tpp-roof-layer tpp-layer-2" data-layer="underlag" tabindex="0">
+              <div class="tpp-layer-shape">
+                <svg viewBox="0 0 500 50" preserveAspectRatio="none">
+                  <rect x="30" y="5" width="440" height="40" rx="3" fill="#3a3a3a" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                  <line x1="50" y1="5" x2="50" y2="45" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+                  <line x1="130" y1="5" x2="130" y2="45" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+                  <line x1="210" y1="5" x2="210" y2="45" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+                  <line x1="290" y1="5" x2="290" y2="45" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+                  <line x1="370" y1="5" x2="370" y2="45" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+                  <line x1="450" y1="5" x2="450" y2="45" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+                </svg>
+              </div>
+              <span class="tpp-layer-label">Underlagspapp</span>
+              <div class="tpp-layer-pulse"></div>
+            </div>
+
+            <!-- Layer 3: Läkt -->
+            <div class="tpp-roof-layer tpp-layer-3" data-layer="lakt" tabindex="0">
+              <div class="tpp-layer-shape">
+                <svg viewBox="0 0 500 35" preserveAspectRatio="none">
+                  <rect x="40" y="5" width="420" height="25" rx="2" fill="#5a4a3a" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                  <!-- Läkt lines -->
+                  <rect x="80" y="8" width="8" height="19" rx="1" fill="#6b5a48"/>
+                  <rect x="160" y="8" width="8" height="19" rx="1" fill="#6b5a48"/>
+                  <rect x="240" y="8" width="8" height="19" rx="1" fill="#6b5a48"/>
+                  <rect x="320" y="8" width="8" height="19" rx="1" fill="#6b5a48"/>
+                  <rect x="400" y="8" width="8" height="19" rx="1" fill="#6b5a48"/>
+                </svg>
+              </div>
+              <span class="tpp-layer-label">Bärläkt &amp; ströläkt</span>
+              <div class="tpp-layer-pulse"></div>
+            </div>
+
+            <!-- Layer 4: Ventilation -->
+            <div class="tpp-roof-layer tpp-layer-4" data-layer="ventilation" tabindex="0">
+              <div class="tpp-layer-shape">
+                <svg viewBox="0 0 500 30" preserveAspectRatio="none">
+                  <rect x="45" y="5" width="410" height="20" rx="2" fill="transparent" stroke="rgba(25,168,255,0.2)" stroke-width="1" stroke-dasharray="8 4"/>
+                  <!-- Air flow arrows -->
+                  <path d="M100 15 L120 15 L116 11 M120 15 L116 19" stroke="rgba(25,168,255,0.4)" stroke-width="1.2" fill="none"/>
+                  <path d="M200 15 L220 15 L216 11 M220 15 L216 19" stroke="rgba(25,168,255,0.4)" stroke-width="1.2" fill="none"/>
+                  <path d="M300 15 L320 15 L316 11 M320 15 L316 19" stroke="rgba(25,168,255,0.4)" stroke-width="1.2" fill="none"/>
+                  <path d="M400 15 L420 15 L416 11 M420 15 L416 19" stroke="rgba(25,168,255,0.4)" stroke-width="1.2" fill="none"/>
+                </svg>
+              </div>
+              <span class="tpp-layer-label">Ventilationsspalt</span>
+              <div class="tpp-layer-pulse"></div>
+            </div>
+
+            <!-- Layer 5: Isolering -->
+            <div class="tpp-roof-layer tpp-layer-5" data-layer="isolering" tabindex="0">
+              <div class="tpp-layer-shape">
+                <svg viewBox="0 0 500 55" preserveAspectRatio="none">
+                  <rect x="35" y="5" width="430" height="45" rx="3" fill="#4a3a5a" stroke="rgba(167,139,250,0.2)" stroke-width="1"/>
+                  <!-- Insulation texture -->
+                  <circle cx="80" cy="20" r="6" fill="rgba(167,139,250,0.1)" stroke="rgba(167,139,250,0.15)" stroke-width="0.5"/>
+                  <circle cx="140" cy="32" r="8" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.12)" stroke-width="0.5"/>
+                  <circle cx="220" cy="18" r="7" fill="rgba(167,139,250,0.1)" stroke="rgba(167,139,250,0.15)" stroke-width="0.5"/>
+                  <circle cx="300" cy="35" r="6" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.12)" stroke-width="0.5"/>
+                  <circle cx="370" cy="22" r="9" fill="rgba(167,139,250,0.1)" stroke="rgba(167,139,250,0.15)" stroke-width="0.5"/>
+                  <circle cx="430" cy="30" r="5" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.12)" stroke-width="0.5"/>
+                </svg>
+              </div>
+              <span class="tpp-layer-label">Isolering</span>
+              <div class="tpp-layer-pulse"></div>
+            </div>
+
+            <!-- Layer 6: Takstol -->
+            <div class="tpp-roof-layer tpp-layer-6" data-layer="takstol" tabindex="0">
+              <div class="tpp-layer-shape">
+                <svg viewBox="0 0 500 60" preserveAspectRatio="none">
+                  <!-- Main beam -->
+                  <rect x="30" y="40" width="440" height="12" rx="2" fill="#7a6a5a" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                  <!-- Vertical supports -->
+                  <rect x="100" y="8" width="10" height="35" rx="1" fill="#8a7a6a"/>
+                  <rect x="200" y="8" width="10" height="35" rx="1" fill="#8a7a6a"/>
+                  <rect x="300" y="8" width="10" height="35" rx="1" fill="#8a7a6a"/>
+                  <rect x="400" y="8" width="10" height="35" rx="1" fill="#8a7a6a"/>
+                </svg>
+              </div>
+              <span class="tpp-layer-label">Takstol</span>
+              <div class="tpp-layer-pulse"></div>
+            </div>
+          </div>
+
+          <!-- Info Panel (shows when layer is clicked) -->
+          <div class="tpp-explorer-info">
+            <div class="tpp-explorer-info-card active" data-info="pannplat">
+              <div class="tpp-info-number">01</div>
+              <h3>Takpannplåt</h3>
+              <p>Det yttersta skiktet som skyddar mot väder och vind. Tillverkad av profilerad stålplåt med polymerbeläggning som ger en klassisk takpanne-look med modern prestanda. UV-beständig och motståndskraftig mot korrosion.</p>
+              <div class="tpp-info-specs">
+                <div class="tpp-info-spec">
+                  <span class="tpp-spec-label">Tjocklek</span>
+                  <span class="tpp-spec-val">0,5 mm stål</span>
+                </div>
+                <div class="tpp-info-spec">
+                  <span class="tpp-spec-label">Beläggning</span>
+                  <span class="tpp-spec-val">Polyester/PUR</span>
+                </div>
+              </div>
+            </div>
+            <div class="tpp-explorer-info-card" data-info="underlag">
+              <div class="tpp-info-number">02</div>
+              <h3>Underlagspapp</h3>
+              <p>Diffusionsöppen duk som släpper igenom fukt inifrån men stoppar vatten utifrån. Fungerar som ett extra skydd under plåten och säkrar täthet vid eventuellt kondens.</p>
+              <div class="tpp-info-specs">
+                <div class="tpp-info-spec">
+                  <span class="tpp-spec-label">Typ</span>
+                  <span class="tpp-spec-val">Diffusionsöppen</span>
+                </div>
+                <div class="tpp-info-spec">
+                  <span class="tpp-spec-label">Funktion</span>
+                  <span class="tpp-spec-val">Fuktspärr</span>
+                </div>
+              </div>
+            </div>
+            <div class="tpp-explorer-info-card" data-info="lakt">
+              <div class="tpp-info-number">03</div>
+              <h3>Bärläkt &amp; ströläkt</h3>
+              <p>Träribbor som skapar luftspalt och ger fäste för takpanneplåten. Ströläkten monteras vertikalt på undertaket, bärläkten horisontellt ovanpå — detta skapar ventilationsspalten.</p>
+              <div class="tpp-info-specs">
+                <div class="tpp-info-spec">
+                  <span class="tpp-spec-label">Material</span>
+                  <span class="tpp-spec-val">Tryckimpregnerat trä</span>
+                </div>
+                <div class="tpp-info-spec">
+                  <span class="tpp-spec-label">Dimension</span>
+                  <span class="tpp-spec-val">25×38 / 45×70 mm</span>
+                </div>
+              </div>
+            </div>
+            <div class="tpp-explorer-info-card" data-info="ventilation">
+              <div class="tpp-info-number">04</div>
+              <h3>Ventilationsspalt</h3>
+              <p>Luftspalten mellan underlagspapp och plåt är avgörande. Den ventilerar bort fukt, förhindrar kondens och förlänger takets livslängd avsevärt. Luft strömmar in vid takfoten och ut vid nocken.</p>
+              <div class="tpp-info-specs">
+                <div class="tpp-info-spec">
+                  <span class="tpp-spec-label">Spalt</span>
+                  <span class="tpp-spec-val">Min 25 mm</span>
+                </div>
+                <div class="tpp-info-spec">
+                  <span class="tpp-spec-label">Flöde</span>
+                  <span class="tpp-spec-val">Naturlig konvektion</span>
+                </div>
+              </div>
+            </div>
+            <div class="tpp-explorer-info-card" data-info="isolering">
+              <div class="tpp-info-number">05</div>
+              <h3>Isolering</h3>
+              <p>Mineralull eller liknande isoleringsmaterial som håller värmen inne vintertid och ute sommartid. Rätt isolering minskar energiförbrukningen och förbättrar boendeklimatet markant.</p>
+              <div class="tpp-info-specs">
+                <div class="tpp-info-spec">
+                  <span class="tpp-spec-label">Typ</span>
+                  <span class="tpp-spec-val">Mineralull</span>
+                </div>
+                <div class="tpp-info-spec">
+                  <span class="tpp-spec-label">Tjocklek</span>
+                  <span class="tpp-spec-val">300–400 mm</span>
+                </div>
+              </div>
+            </div>
+            <div class="tpp-explorer-info-card" data-info="takstol">
+              <div class="tpp-info-number">06</div>
+              <h3>Takstol</h3>
+              <p>Bärande konstruktion som fördelar takets vikt ned till väggarna. Vid byte till takpannplåt behöver takstolen sällan förstärkas tack vare materialets låga vikt — en stor fördel vid renovering.</p>
+              <div class="tpp-info-specs">
+                <div class="tpp-info-spec">
+                  <span class="tpp-spec-label">Material</span>
+                  <span class="tpp-spec-val">Konstruktionsvirke</span>
+                </div>
+                <div class="tpp-info-spec">
+                  <span class="tpp-spec-label">Fördel</span>
+                  <span class="tpp-spec-val">Ingen förstärkning krävs</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Layer navigation dots -->
+        <div class="tpp-explorer-dots">
+          <button class="tpp-dot active" data-dot="pannplat" aria-label="Takpannplåt"></button>
+          <button class="tpp-dot" data-dot="underlag" aria-label="Underlagspapp"></button>
+          <button class="tpp-dot" data-dot="lakt" aria-label="Bärläkt"></button>
+          <button class="tpp-dot" data-dot="ventilation" aria-label="Ventilation"></button>
+          <button class="tpp-dot" data-dot="isolering" aria-label="Isolering"></button>
+          <button class="tpp-dot" data-dot="takstol" aria-label="Takstol"></button>
+        </div>
+
+      </div>
+
+      <!-- Floating particles -->
+      <div class="tpp-explorer-particles" aria-hidden="true"></div>
     </section>
 
   </main>

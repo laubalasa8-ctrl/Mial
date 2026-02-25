@@ -708,71 +708,66 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 /* ============================================================
-   TPP COMPARISON TABLE – Tabs, Animations, Score Rings
+   TPP FACTS COMPARISON – Material Switcher + Count-up
    ============================================================ */
 (function() {
   var section = document.querySelector('.tpp-compare-table-section');
   if (!section) return;
 
-  /* ---- Tab switching ---- */
-  var tabs = section.querySelectorAll('.tpp-ct-tab');
-  var panels = section.querySelectorAll('.tpp-ct-panel');
+  /* ---- Material selector ---- */
+  var matBtns = section.querySelectorAll('.tpp-ct-mat-btn');
+  var factItems = section.querySelectorAll('.tpp-ct-fact-item');
 
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      var target = tab.getAttribute('data-tab');
-      tabs.forEach(function(t) { t.classList.remove('active'); });
-      tab.classList.add('active');
-      panels.forEach(function(p) {
-        p.classList.remove('active');
-        if (p.id === 'tpp-panel-' + target) {
-          // Slight delay for transition
-          setTimeout(function() { p.classList.add('active'); }, 50);
+  matBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var mat = btn.getAttribute('data-material');
+      matBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+
+      factItems.forEach(function(item) {
+        item.classList.remove('active');
+        if (item.getAttribute('data-mat') === mat) {
+          setTimeout(function() { item.classList.add('active'); }, 50);
         }
       });
-      // Re-trigger animations in the new panel
-      setTimeout(function() { animateVisible(); }, 100);
+
+      // Re-run count animation for visible numbers
+      countUpNumbers(true);
     });
   });
 
-  /* ---- Scroll-based row/card animations ---- */
+  /* ---- Scroll-based card animations ---- */
   function animateVisible() {
-    var items = section.querySelectorAll('[data-anim="row"], [data-anim="card"]');
+    var items = section.querySelectorAll('[data-anim="card"]');
     items.forEach(function(item, i) {
       var rect = item.getBoundingClientRect();
       if (rect.top < window.innerHeight - 60) {
         setTimeout(function() {
           item.classList.add('tpp-ct-visible');
-        }, i * 80);
+        }, i * 100);
       }
     });
   }
 
-  /* ---- Score ring animation ---- */
-  var scoreAnimated = false;
-  function animateScores() {
-    if (scoreAnimated) return;
-    var scores = section.querySelectorAll('.tpp-ct-score');
-    if (!scores.length) return;
-    var firstRect = scores[0].getBoundingClientRect();
-    if (firstRect.top > window.innerHeight - 80) return;
-    scoreAnimated = true;
+  /* ---- Count-up for numbers ---- */
+  var counted = false;
+  function countUpNumbers(force) {
+    var nums = section.querySelectorAll('.tpp-ct-fact-item.active .tpp-ct-fact-num');
+    if (!nums.length) return;
+    if (!force) {
+      if (counted) return;
+      var firstRect = nums[0].getBoundingClientRect();
+      if (firstRect.top > window.innerHeight - 80) return;
+    }
+    counted = true;
 
-    scores.forEach(function(scoreEl) {
-      var target = parseInt(scoreEl.getAttribute('data-score'), 10);
-      var circle = scoreEl.querySelector('.tpp-ct-ring-fill');
-      var numEl = scoreEl.querySelector('.tpp-ct-score-num');
-      if (!circle || !numEl) return;
-
-      // Circumference = 2πr = 2 * π * 42 ≈ 264
-      var circumference = 264;
-      var offset = circumference - (circumference * target / 100);
-      circle.style.strokeDashoffset = offset;
-
-      // Count up number
+    nums.forEach(function(numEl) {
+      var target = parseInt(numEl.getAttribute('data-count'), 10);
+      if (isNaN(target)) return;
       var current = 0;
-      var duration = 1500;
-      var step = Math.ceil(target / (duration / 16));
+      var duration = 1200;
+      var step = Math.max(1, Math.ceil(target / (duration / 16)));
+      numEl.textContent = '0';
       var counter = setInterval(function() {
         current += step;
         if (current >= target) {
@@ -784,33 +779,116 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  /* ---- Progress bar animation ---- */
-  var barsAnimated = false;
-  function animateBars() {
-    if (barsAnimated) return;
-    var bars = section.querySelectorAll('.tpp-ct-bar-fill');
-    if (!bars.length) return;
-    var firstRect = bars[0].getBoundingClientRect();
-    if (firstRect.top > window.innerHeight - 40) return;
-    barsAnimated = true;
-
-    bars.forEach(function(bar, i) {
-      var w = bar.getAttribute('data-width');
-      bar.style.setProperty('--target-width', w);
-      setTimeout(function() {
-        bar.classList.add('tpp-ct-animated');
-      }, i * 60);
-    });
-  }
-
   /* ---- Combined scroll handler ---- */
   function onScroll() {
     animateVisible();
-    animateScores();
-    animateBars();
+    countUpNumbers(false);
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  // Initial check
   setTimeout(onScroll, 300);
+})();
+
+/* ============================================================
+   TPP INTERACTIVE ROOF EXPLORER
+   ============================================================ */
+(function() {
+  var section = document.querySelector('.tpp-explorer-section');
+  if (!section) return;
+
+  var layers = section.querySelectorAll('.tpp-roof-layer');
+  var infoCards = section.querySelectorAll('.tpp-explorer-info-card');
+  var dots = section.querySelectorAll('.tpp-dot');
+
+  function setActive(layerName) {
+    layers.forEach(function(l) {
+      l.classList.toggle('active', l.getAttribute('data-layer') === layerName);
+    });
+    infoCards.forEach(function(c) {
+      c.classList.toggle('active', c.getAttribute('data-info') === layerName);
+    });
+    dots.forEach(function(d) {
+      d.classList.toggle('active', d.getAttribute('data-dot') === layerName);
+    });
+  }
+
+  // Layer click
+  layers.forEach(function(layer) {
+    layer.addEventListener('click', function() {
+      setActive(layer.getAttribute('data-layer'));
+    });
+    layer.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setActive(layer.getAttribute('data-layer'));
+      }
+    });
+  });
+
+  // Dot click
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      setActive(dot.getAttribute('data-dot'));
+    });
+  });
+
+  // Keyboard navigation (arrow keys)
+  var layerNames = [];
+  layers.forEach(function(l) { layerNames.push(l.getAttribute('data-layer')); });
+
+  section.addEventListener('keydown', function(e) {
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+    e.preventDefault();
+    var currentIdx = -1;
+    layers.forEach(function(l, i) {
+      if (l.classList.contains('active')) currentIdx = i;
+    });
+    if (e.key === 'ArrowDown') currentIdx = Math.min(currentIdx + 1, layerNames.length - 1);
+    if (e.key === 'ArrowUp') currentIdx = Math.max(currentIdx - 1, 0);
+    setActive(layerNames[currentIdx]);
+    layers[currentIdx].focus();
+  });
+
+  /* ---- Generate floating particles ---- */
+  var particleContainer = section.querySelector('.tpp-explorer-particles');
+  if (particleContainer) {
+    for (var i = 0; i < 20; i++) {
+      var p = document.createElement('div');
+      p.className = 'tpp-particle';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.animationDuration = (8 + Math.random() * 12) + 's';
+      p.style.animationDelay = (Math.random() * 10) + 's';
+      p.style.width = (2 + Math.random() * 3) + 'px';
+      p.style.height = p.style.width;
+      p.style.opacity = (0.15 + Math.random() * 0.25);
+      particleContainer.appendChild(p);
+    }
+  }
+
+  /* ---- Auto-cycle layers (stops on interaction) ---- */
+  var autoInterval;
+  var userInteracted = false;
+  var currentAutoIdx = 0;
+
+  function startAuto() {
+    autoInterval = setInterval(function() {
+      if (userInteracted) { clearInterval(autoInterval); return; }
+      currentAutoIdx = (currentAutoIdx + 1) % layerNames.length;
+      setActive(layerNames[currentAutoIdx]);
+    }, 4000);
+  }
+
+  // Only start auto-cycle when section is visible
+  var observer = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !userInteracted) {
+      startAuto();
+    }
+  }, { threshold: 0.3 });
+  observer.observe(section);
+
+  // Stop auto on any user click in section
+  section.addEventListener('click', function() {
+    userInteracted = true;
+    if (autoInterval) clearInterval(autoInterval);
+  });
 })();
