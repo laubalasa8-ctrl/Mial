@@ -16520,8 +16520,8 @@ body:has(.solar-hero) header { background: transparent; }
 /* Main Visual Area */
 .tpp-explorer-visual {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 4rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
   align-items: center;
 }
 
@@ -16532,6 +16532,7 @@ body:has(.solar-hero) header { background: transparent; }
   gap: 10px;
   position: relative;
   perspective: 800px;
+  max-width: 480px;
 }
 
 .tpp-roof-layer {
@@ -16587,6 +16588,7 @@ body:has(.solar-hero) header { background: transparent; }
   white-space: nowrap;
   transition: all 0.4s ease;
   padding-left: 12px;
+  z-index: 10;
 }
 
 .tpp-layer-label::before {
