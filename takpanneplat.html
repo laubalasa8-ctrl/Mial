@@ -76,7 +76,6 @@
     <div class="mobile-menu-header">
       <div class="mobile-menu-brand">
         <img src="Ferotect-logo.png" alt="Ferotect" class="mobile-menu-logo">
-        <span>Ferotect</span>
       </div>
       <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Stäng meny">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -349,6 +348,269 @@
           </div>
 
         </div>
+      </div>
+    </section>
+
+    <!-- ===== JÄMFÖRELSE – Takpannplåt vs andra tak ===== -->
+    <section class="tpp-compare-table-section">
+      <div class="tpp-ct-container">
+
+        <!-- Header -->
+        <div class="tpp-ct-header">
+          <span class="tpp-ct-badge">Jämförelse</span>
+          <h2 class="tpp-ct-title">Takpannplåt vs<br>andra takmaterial</h2>
+          <p class="tpp-ct-subtitle">Se varför allt fler villaägare väljer takpannplåt framför traditionella alternativ.</p>
+        </div>
+
+        <!-- Tab Switcher -->
+        <div class="tpp-ct-tabs">
+          <button class="tpp-ct-tab active" data-tab="overview">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
+            Översikt
+          </button>
+          <button class="tpp-ct-tab" data-tab="details">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            Detaljerad
+          </button>
+        </div>
+
+        <!-- Overview Table -->
+        <div class="tpp-ct-panel active" id="tpp-panel-overview">
+          <div class="tpp-ct-table">
+            <!-- Table Header -->
+            <div class="tpp-ct-row tpp-ct-row-header">
+              <div class="tpp-ct-cell tpp-ct-cell-label">Egenskap</div>
+              <div class="tpp-ct-cell tpp-ct-cell-highlight">
+                <div class="tpp-ct-winner-badge">Populärast</div>
+                Takpannplåt
+              </div>
+              <div class="tpp-ct-cell">Betongpannor</div>
+              <div class="tpp-ct-cell">Papptak</div>
+            </div>
+            <!-- Rows -->
+            <div class="tpp-ct-row" data-anim="row">
+              <div class="tpp-ct-cell tpp-ct-cell-label">Livslängd</div>
+              <div class="tpp-ct-cell tpp-ct-cell-highlight"><span class="tpp-ct-val tpp-ct-val-best">50+ år</span></div>
+              <div class="tpp-ct-cell"><span class="tpp-ct-val">30–40 år</span></div>
+              <div class="tpp-ct-cell"><span class="tpp-ct-val tpp-ct-val-weak">15–25 år</span></div>
+            </div>
+            <div class="tpp-ct-row" data-anim="row">
+              <div class="tpp-ct-cell tpp-ct-cell-label">Vikt per m²</div>
+              <div class="tpp-ct-cell tpp-ct-cell-highlight"><span class="tpp-ct-val tpp-ct-val-best">~5 kg</span></div>
+              <div class="tpp-ct-cell"><span class="tpp-ct-val tpp-ct-val-weak">~43 kg</span></div>
+              <div class="tpp-ct-cell"><span class="tpp-ct-val">~8 kg</span></div>
+            </div>
+            <div class="tpp-ct-row" data-anim="row">
+              <div class="tpp-ct-cell tpp-ct-cell-label">Underhåll</div>
+              <div class="tpp-ct-cell tpp-ct-cell-highlight">
+                <svg class="tpp-ct-check" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                Minimalt
+              </div>
+              <div class="tpp-ct-cell">
+                <svg class="tpp-ct-x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4757" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                Regelbundet
+              </div>
+              <div class="tpp-ct-cell">
+                <svg class="tpp-ct-x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4757" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                Frekvent
+              </div>
+            </div>
+            <div class="tpp-ct-row" data-anim="row">
+              <div class="tpp-ct-cell tpp-ct-cell-label">Mossbildning</div>
+              <div class="tpp-ct-cell tpp-ct-cell-highlight">
+                <svg class="tpp-ct-check" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                Motståndskraftigt
+              </div>
+              <div class="tpp-ct-cell">
+                <svg class="tpp-ct-x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4757" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                Mycket vanligt
+              </div>
+              <div class="tpp-ct-cell">
+                <svg class="tpp-ct-x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4757" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                Förekommer
+              </div>
+            </div>
+            <div class="tpp-ct-row" data-anim="row">
+              <div class="tpp-ct-cell tpp-ct-cell-label">Snöhantering</div>
+              <div class="tpp-ct-cell tpp-ct-cell-highlight">
+                <svg class="tpp-ct-check" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                Utmärkt
+              </div>
+              <div class="tpp-ct-cell"><span class="tpp-ct-val">Bra</span></div>
+              <div class="tpp-ct-cell"><span class="tpp-ct-val tpp-ct-val-weak">Risk för skador</span></div>
+            </div>
+            <div class="tpp-ct-row" data-anim="row">
+              <div class="tpp-ct-cell tpp-ct-cell-label">Estetik</div>
+              <div class="tpp-ct-cell tpp-ct-cell-highlight">
+                <svg class="tpp-ct-check" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                Klassisk + modern
+              </div>
+              <div class="tpp-ct-cell"><span class="tpp-ct-val">Klassisk</span></div>
+              <div class="tpp-ct-cell"><span class="tpp-ct-val tpp-ct-val-weak">Begränsad</span></div>
+            </div>
+            <div class="tpp-ct-row" data-anim="row">
+              <div class="tpp-ct-cell tpp-ct-cell-label">Garanti</div>
+              <div class="tpp-ct-cell tpp-ct-cell-highlight"><span class="tpp-ct-val tpp-ct-val-best">Upp till 50 år</span></div>
+              <div class="tpp-ct-cell"><span class="tpp-ct-val">10–30 år</span></div>
+              <div class="tpp-ct-cell"><span class="tpp-ct-val tpp-ct-val-weak">5–10 år</span></div>
+            </div>
+          </div>
+
+          <!-- Score Summary -->
+          <div class="tpp-ct-scores">
+            <div class="tpp-ct-score tpp-ct-score-highlight" data-score="97">
+              <div class="tpp-ct-score-ring">
+                <svg viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(25,168,255,0.15)" stroke-width="6"/>
+                  <circle class="tpp-ct-ring-fill" cx="50" cy="50" r="42" fill="none" stroke="#19A8FF" stroke-width="6" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" transform="rotate(-90 50 50)"/>
+                </svg>
+                <span class="tpp-ct-score-num">0</span>
+              </div>
+              <span class="tpp-ct-score-label">Takpannplåt</span>
+            </div>
+            <div class="tpp-ct-score" data-score="68">
+              <div class="tpp-ct-score-ring">
+                <svg viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6"/>
+                  <circle class="tpp-ct-ring-fill" cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="6" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" transform="rotate(-90 50 50)"/>
+                </svg>
+                <span class="tpp-ct-score-num">0</span>
+              </div>
+              <span class="tpp-ct-score-label">Betongpannor</span>
+            </div>
+            <div class="tpp-ct-score" data-score="42">
+              <div class="tpp-ct-score-ring">
+                <svg viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6"/>
+                  <circle class="tpp-ct-ring-fill" cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="6" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" transform="rotate(-90 50 50)"/>
+                </svg>
+                <span class="tpp-ct-score-num">0</span>
+              </div>
+              <span class="tpp-ct-score-label">Papptak</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detailed Panel -->
+        <div class="tpp-ct-panel" id="tpp-panel-details">
+          <div class="tpp-ct-details-grid">
+
+            <div class="tpp-ct-detail-card" data-anim="card">
+              <div class="tpp-ct-detail-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <h3>Livslängd &amp; hållbarhet</h3>
+              <p>Takpannplåt håller <strong>50+ år</strong> utan att förlora sin form eller färg. Betongpannor spricker med tiden och papptak kräver omlägning redan efter 15 år.</p>
+              <div class="tpp-ct-detail-bar">
+                <div class="tpp-ct-bar-track">
+                  <div class="tpp-ct-bar-fill" data-width="97" style="--bar-color: #19A8FF;"></div>
+                </div>
+                <span>Takpannplåt 97%</span>
+              </div>
+              <div class="tpp-ct-detail-bar">
+                <div class="tpp-ct-bar-track">
+                  <div class="tpp-ct-bar-fill" data-width="65" style="--bar-color: rgba(255,255,255,0.3);"></div>
+                </div>
+                <span>Betongpannor 65%</span>
+              </div>
+              <div class="tpp-ct-detail-bar">
+                <div class="tpp-ct-bar-track">
+                  <div class="tpp-ct-bar-fill" data-width="35" style="--bar-color: rgba(255,255,255,0.15);"></div>
+                </div>
+                <span>Papptak 35%</span>
+              </div>
+            </div>
+
+            <div class="tpp-ct-detail-card" data-anim="card">
+              <div class="tpp-ct-detail-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3>Väderbeständighet</h3>
+              <p>Klarar snö, regn, hagel och UV utan att tappa prestanda. Stålkärnan gör panelen <strong>extremt tålig</strong> mot alla väderförhållanden i Norden.</p>
+              <div class="tpp-ct-detail-bar">
+                <div class="tpp-ct-bar-track">
+                  <div class="tpp-ct-bar-fill" data-width="95" style="--bar-color: #19A8FF;"></div>
+                </div>
+                <span>Takpannplåt 95%</span>
+              </div>
+              <div class="tpp-ct-detail-bar">
+                <div class="tpp-ct-bar-track">
+                  <div class="tpp-ct-bar-fill" data-width="70" style="--bar-color: rgba(255,255,255,0.3);"></div>
+                </div>
+                <span>Betongpannor 70%</span>
+              </div>
+              <div class="tpp-ct-detail-bar">
+                <div class="tpp-ct-bar-track">
+                  <div class="tpp-ct-bar-fill" data-width="40" style="--bar-color: rgba(255,255,255,0.15);"></div>
+                </div>
+                <span>Papptak 40%</span>
+              </div>
+            </div>
+
+            <div class="tpp-ct-detail-card" data-anim="card">
+              <div class="tpp-ct-detail-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+              </div>
+              <h3>Underhåll &amp; skötsel</h3>
+              <p>Takpannplåt kräver <strong>nästan inget underhåll</strong>. Inga spruckna pannor att byta, ingen mossa att skrapa bort. Spara både tid och pengar.</p>
+              <div class="tpp-ct-detail-bar">
+                <div class="tpp-ct-bar-track">
+                  <div class="tpp-ct-bar-fill" data-width="98" style="--bar-color: #19A8FF;"></div>
+                </div>
+                <span>Takpannplåt 98%</span>
+              </div>
+              <div class="tpp-ct-detail-bar">
+                <div class="tpp-ct-bar-track">
+                  <div class="tpp-ct-bar-fill" data-width="45" style="--bar-color: rgba(255,255,255,0.3);"></div>
+                </div>
+                <span>Betongpannor 45%</span>
+              </div>
+              <div class="tpp-ct-detail-bar">
+                <div class="tpp-ct-bar-track">
+                  <div class="tpp-ct-bar-fill" data-width="30" style="--bar-color: rgba(255,255,255,0.15);"></div>
+                </div>
+                <span>Papptak 30%</span>
+              </div>
+            </div>
+
+            <div class="tpp-ct-detail-card" data-anim="card">
+              <div class="tpp-ct-detail-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <h3>Estetik &amp; design</h3>
+              <p>Klassisk takpannelook i modernt material. Finns i <strong>flera färger och profiler</strong>. Ger taket ett enhetligt och stilrent uttryck som håller i decennier.</p>
+              <div class="tpp-ct-detail-bar">
+                <div class="tpp-ct-bar-track">
+                  <div class="tpp-ct-bar-fill" data-width="92" style="--bar-color: #19A8FF;"></div>
+                </div>
+                <span>Takpannplåt 92%</span>
+              </div>
+              <div class="tpp-ct-detail-bar">
+                <div class="tpp-ct-bar-track">
+                  <div class="tpp-ct-bar-fill" data-width="75" style="--bar-color: rgba(255,255,255,0.3);"></div>
+                </div>
+                <span>Betongpannor 75%</span>
+              </div>
+              <div class="tpp-ct-detail-bar">
+                <div class="tpp-ct-bar-track">
+                  <div class="tpp-ct-bar-fill" data-width="25" style="--bar-color: rgba(255,255,255,0.15);"></div>
+                </div>
+                <span>Papptak 25%</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="tpp-ct-bottom">
+          <p class="tpp-ct-bottom-text">Valet är enkelt. <strong>Takpannplåt</strong> vinner på nästan alla punkter.</p>
+          <a href="#footer" class="tpp-ct-cta">
+            Boka kostnadsfri besiktning
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
       </div>
     </section>
 

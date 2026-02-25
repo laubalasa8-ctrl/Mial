@@ -706,3 +706,111 @@ document.addEventListener('DOMContentLoaded', function() {
     updateSlider(getPosition(e));
   });
 })();
+
+/* ============================================================
+   TPP COMPARISON TABLE – Tabs, Animations, Score Rings
+   ============================================================ */
+(function() {
+  var section = document.querySelector('.tpp-compare-table-section');
+  if (!section) return;
+
+  /* ---- Tab switching ---- */
+  var tabs = section.querySelectorAll('.tpp-ct-tab');
+  var panels = section.querySelectorAll('.tpp-ct-panel');
+
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var target = tab.getAttribute('data-tab');
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      panels.forEach(function(p) {
+        p.classList.remove('active');
+        if (p.id === 'tpp-panel-' + target) {
+          // Slight delay for transition
+          setTimeout(function() { p.classList.add('active'); }, 50);
+        }
+      });
+      // Re-trigger animations in the new panel
+      setTimeout(function() { animateVisible(); }, 100);
+    });
+  });
+
+  /* ---- Scroll-based row/card animations ---- */
+  function animateVisible() {
+    var items = section.querySelectorAll('[data-anim="row"], [data-anim="card"]');
+    items.forEach(function(item, i) {
+      var rect = item.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 60) {
+        setTimeout(function() {
+          item.classList.add('tpp-ct-visible');
+        }, i * 80);
+      }
+    });
+  }
+
+  /* ---- Score ring animation ---- */
+  var scoreAnimated = false;
+  function animateScores() {
+    if (scoreAnimated) return;
+    var scores = section.querySelectorAll('.tpp-ct-score');
+    if (!scores.length) return;
+    var firstRect = scores[0].getBoundingClientRect();
+    if (firstRect.top > window.innerHeight - 80) return;
+    scoreAnimated = true;
+
+    scores.forEach(function(scoreEl) {
+      var target = parseInt(scoreEl.getAttribute('data-score'), 10);
+      var circle = scoreEl.querySelector('.tpp-ct-ring-fill');
+      var numEl = scoreEl.querySelector('.tpp-ct-score-num');
+      if (!circle || !numEl) return;
+
+      // Circumference = 2πr = 2 * π * 42 ≈ 264
+      var circumference = 264;
+      var offset = circumference - (circumference * target / 100);
+      circle.style.strokeDashoffset = offset;
+
+      // Count up number
+      var current = 0;
+      var duration = 1500;
+      var step = Math.ceil(target / (duration / 16));
+      var counter = setInterval(function() {
+        current += step;
+        if (current >= target) {
+          current = target;
+          clearInterval(counter);
+        }
+        numEl.textContent = current;
+      }, 16);
+    });
+  }
+
+  /* ---- Progress bar animation ---- */
+  var barsAnimated = false;
+  function animateBars() {
+    if (barsAnimated) return;
+    var bars = section.querySelectorAll('.tpp-ct-bar-fill');
+    if (!bars.length) return;
+    var firstRect = bars[0].getBoundingClientRect();
+    if (firstRect.top > window.innerHeight - 40) return;
+    barsAnimated = true;
+
+    bars.forEach(function(bar, i) {
+      var w = bar.getAttribute('data-width');
+      bar.style.setProperty('--target-width', w);
+      setTimeout(function() {
+        bar.classList.add('tpp-ct-animated');
+      }, i * 60);
+    });
+  }
+
+  /* ---- Combined scroll handler ---- */
+  function onScroll() {
+    animateVisible();
+    animateScores();
+    animateBars();
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  // Initial check
+  setTimeout(onScroll, 300);
+})();
