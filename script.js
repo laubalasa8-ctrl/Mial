@@ -726,13 +726,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
       factItems.forEach(function(item) {
         item.classList.remove('active');
-        if (item.getAttribute('data-mat') === mat) {
-          setTimeout(function() { item.classList.add('active'); }, 50);
-        }
       });
 
-      // Re-run count animation for visible numbers
-      countUpNumbers(true);
+      setTimeout(function() {
+        factItems.forEach(function(item) {
+          if (item.getAttribute('data-mat') === mat) {
+            item.classList.add('active');
+          }
+        });
+        // Re-run count animation after items are active
+        countUpNumbers(true);
+      }, 60);
     });
   });
 
