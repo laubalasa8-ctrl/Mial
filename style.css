@@ -16842,7 +16842,8 @@ html { overflow-x: hidden; }
   .hero-papptak,
   .hero-bandtackning,
   .hero-takpanneplat,
-  .solar-hero {
+  .solar-hero,
+  .terms-hero {
     background-attachment: scroll !important;
   }
 
@@ -17033,25 +17034,13 @@ html { overflow-x: hidden; }
   display: flex;
   align-items: center;
   overflow: hidden;
-}
-
-.terms-hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.terms-hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 40%;
-}
-
-.terms-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(0,0,0,0.74) 0%, rgba(0,30,60,0.6) 100%);
+  background-image: linear-gradient(135deg, rgba(0,0,0,0.72) 0%, rgba(0,30,60,0.6) 100%), url('plat2.jpg');
+  background-size: cover;
+  background-position: center 40%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
 
 /* Hero Decorative SVGs */
@@ -17888,6 +17877,9 @@ html { overflow-x: hidden; }
 @media (max-width: 768px) {
   .terms-hero {
     min-height: 420px;
+    background-attachment: scroll;
+    margin-left: 0;
+    width: 100%;
   }
   .terms-hero-content {
     padding: 110px 1.5rem 55px;
