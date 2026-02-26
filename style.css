@@ -32,7 +32,7 @@ body.takpannor-page .topbar { background: url('tak2.jpg') fixed center/cover no-
 body.takpannor-page .topbar-contact-item { background: transparent; border: 1px solid rgba(25,168,255,0.2); }
 body.fasad-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('fasad1.jpg'); }
 body.platslageri-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat1.jpg'); }
-body.terms-body .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat2.jpg'); }
+body.terms-body .topbar { background-image: linear-gradient(135deg, rgba(0,0,0,0.72) 0%, rgba(0,30,60,0.6) 100%), url('plat2.jpg'); }
 body.plattaket-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat4.jpg'); background-attachment: fixed; }
 body.plattaket-page header { background-attachment: fixed; }
 body.plattaket-page .hero-plattaket { background-attachment: fixed; }
@@ -373,7 +373,7 @@ body.platslageri-page header {
   background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat1.jpg');
 }
 body.terms-body header {
-  background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat2.jpg');
+  background-image: linear-gradient(135deg, rgba(0,0,0,0.72) 0%, rgba(0,30,60,0.6) 100%), url('plat2.jpg');
 }
 body.plattaket-page header {
   background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat4.jpg');
@@ -17104,7 +17104,7 @@ html { overflow-x: hidden; }
   max-width: 720px;
   margin: 0 auto;
   text-align: center;
-  padding: 140px 2rem 80px;
+  padding: 100px 2rem 100px;
   color: #fff;
 }
 
@@ -17878,11 +17878,11 @@ html { overflow-x: hidden; }
   .terms-hero {
     min-height: 420px;
     background-attachment: scroll;
-    margin-left: 0;
-    width: 100%;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
   }
   .terms-hero-content {
-    padding: 110px 1.5rem 55px;
+    padding: 90px 1.5rem 70px;
   }
   .terms-hero-content h1 {
     font-size: clamp(1.8rem, 6vw, 2.6rem);
@@ -17937,7 +17937,7 @@ html { overflow-x: hidden; }
 
 @media (max-width: 480px) {
   .terms-hero-content {
-    padding: 95px 1rem 40px;
+    padding: 80px 1rem 60px;
   }
   .terms-hero-content > p {
     font-size: 0.95rem;
