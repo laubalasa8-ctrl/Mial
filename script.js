@@ -1265,7 +1265,7 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 /* ═══════════════════════════════════════════════════════
-   TAKFALL & AVRINNING — Slope + drainage interactive (v3)
+   TAKFALL & AVRINNING — Single-slope interactive (v4)
    ═══════════════════════════════════════════════════════ */
 (function() {
   var section = document.querySelector('.slope-section');
@@ -1294,33 +1294,28 @@ document.addEventListener('DOMContentLoaded', function() {
   var valRisk = indicatorVals[1];
   var valWind = indicatorVals[2];
 
-  // Pooling water
-  var poolL = section.querySelector('.slope-pool-l');
-  var poolR = section.querySelector('.slope-pool-r');
+  // Pool
+  var pool = section.querySelector('.slope-pool');
 
-  // Geometry
-  var RIDGE_X = 280;
-  var EAVE_Y = 225;
-  var BASE_LEFT_X = 72;
-  var BASE_RIGHT_X = 488;
-  var HALF_SPAN = RIDGE_X - BASE_LEFT_X;
+  // Single-slope geometry
+  // Left side is HIGH, right side is LOW (eave)
+  var HIGH_X = 80;   // left edge (high side)
+  var LOW_X = 470;    // right edge (low/eave side)
+  var EAVE_Y = 210;   // wall top / eave baseline
+  var SPAN = LOW_X - HIGH_X; // 390
 
   // Roof elements
-  var roofLeftEls = section.querySelectorAll('.slope-roof-left');
-  var roofRightEls = section.querySelectorAll('.slope-roof-right');
-  var nock = section.querySelector('.slope-nock');
-  var dripL = section.querySelector('.slope-drip-l');
-  var dripR = section.querySelector('.slope-drip-r');
-  var corrLs = section.querySelectorAll('.slope-corr-l');
-  var corrRs = section.querySelectorAll('.slope-corr-r');
+  var roofMains = section.querySelectorAll('.slope-roof-main');
+  var corrMs = section.querySelectorAll('.slope-corr-m');
+  var fasciaHigh = section.querySelector('.slope-fascia-high');
+  var fasciaLow = section.querySelector('.slope-fascia-low');
   var chimney = section.querySelector('.slope-chimney');
+  var gutterPath = section.querySelector('.slope-gutter-path');
+  var downpipe = section.querySelector('.slope-downpipe');
 
-  // Drops
-  var leftDrops = section.querySelectorAll('[class*="sd-l"]');
-  var rightDrops = section.querySelectorAll('[class*="sd-r"]');
-  var gutterDripL = section.querySelector('.sgd-l');
+  // Drops — single direction
+  var drops = section.querySelectorAll('[class*="sd-m"]');
   var gutterDripR = section.querySelector('.sgd-r');
-  var splashL = section.querySelector('.slope-splash-l');
   var splashR = section.querySelector('.slope-splash-r');
   var rainLines = section.querySelectorAll('.slope-rain');
 
@@ -1332,11 +1327,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // Explanation data
   var explanations = {
     low: { status: 'Låg lutning', statusClass: 'slope-status-low', range: '6–14° — kräver extra tätning',
-      text: 'Vid låg lutning rinner vatten av långsamt. Det kan bli kvarstående vatten på takytan som leder till läckage, mögel och is-dammar vintertid. Kräver noggrant tätskikt under plåten.' },
-    mid: { status: 'Standard lutning', statusClass: 'slope-status-mid', range: '14–22° rekommenderat',
-      text: 'Vid optimal lutning har taket en utmärkt balans. Vatten rinner av i normal takt utan att skapa belastning. Det här är det idealiska intervallet för korrugerad plåt i Skåne.' },
+      text: 'Vid låg lutning rinner vatten av långsamt. Det kan samlas vatten på takytan vilket leder till läckage och fuktskador. Kräver noggrant tätskikt under plåten.' },
+    mid: { status: 'Optimal lutning', statusClass: 'slope-status-mid', range: '14–22° — rekommenderat',
+      text: 'Taket har utmärkt balans — vatten rinner av i lagom takt utan att vinden får för mycket grepp. Det idealiska intervallet för korrugerad plåt i Skåne.' },
     high: { status: 'Brant lutning', statusClass: 'slope-status-high', range: '22–45° — stark dränering',
-      text: 'Vatten och snö lämnar taket omedelbart. Utmärkt dränering men vinden får mer grepp — kräver starkare infästning med fler skruvar per m².' }
+      text: 'Vatten och snö lämnar taket direkt. Utmärkt dränering men vinden får mer grepp — kräver starkare infästning med fler skruvar per m².' }
   };
 
   function getRange(a) { return a < 15 ? 'low' : a < 23 ? 'mid' : 'high'; }
@@ -1363,9 +1358,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if(fillRisk) fillRisk.style.width = ri + '%';
     if(fillWind) fillWind.style.width = wi + '%';
 
-    var sL = ['Mycket långsam','Långsam','Normal','Snabb','Mycket snabb'];
-    var rL = ['Mycket låg','Låg','Medel','Hög','Mycket hög'];
-    var wL = ['Minimal','Låg','Medel','Hög','Mycket hög'];
+    // Short labels that fit
+    var sL = ['Mkt långsam','Långsam','Normal','Snabb','Mkt snabb'];
+    var rL = ['Mkt låg','Låg','Medel','Hög','Mkt hög'];
+    var wL = ['Minimal','Låg','Medel','Hög','Mkt hög'];
     function pick(p, l) { return l[Math.min(4, Math.floor(p / 20))]; }
     if(valSpeed) valSpeed.textContent = pick(sp, sL);
     if(valRisk) valRisk.textContent = pick(ri, rL);
@@ -1376,141 +1372,180 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function updateRoof(angle) {
     var rad = degToRad(angle);
-    var rise = Math.tan(rad) * HALF_SPAN;
-    var ridgeY = Math.max(EAVE_Y - rise, 30);
+    var rise = Math.tan(rad) * SPAN;
+    var highY = Math.max(EAVE_Y - rise, 30);
 
-    var leftPts = BASE_LEFT_X+','+EAVE_Y+' '+RIDGE_X+','+ridgeY+' '+RIDGE_X+','+EAVE_Y;
-    var rightPts = RIDGE_X+','+ridgeY+' '+BASE_RIGHT_X+','+EAVE_Y+' '+RIDGE_X+','+EAVE_Y;
-    roofLeftEls.forEach(function(el){ el.setAttribute('points', leftPts); });
-    roofRightEls.forEach(function(el){ el.setAttribute('points', rightPts); });
+    // Single-slope roof: 4 corners — high-left top, low-right top (eave), low-right bottom, high-left bottom
+    var pts = HIGH_X+','+highY+' '+LOW_X+','+EAVE_Y+' '+LOW_X+','+(EAVE_Y+10)+' '+HIGH_X+','+(highY+10);
+    roofMains.forEach(function(el){ el.setAttribute('points', pts); });
 
-    if(nock) { nock.setAttribute('x', RIDGE_X-12); nock.setAttribute('y', ridgeY-5); }
+    // Corrugation lines — run from left to right along the slope
+    var corrOffsets = [0.13, 0.3, 0.5, 0.7, 0.85];
+    corrMs.forEach(function(l, i) {
+      var t = corrOffsets[i] || 0.5;
+      var x1 = HIGH_X + t * SPAN * 0.15;
+      var y1 = highY + t * (EAVE_Y - highY) * 0.15 + 3;
+      var x2 = LOW_X - 2;
+      var y2 = EAVE_Y + 3;
+      l.setAttribute('x1', x1); l.setAttribute('y1', y1);
+      l.setAttribute('x2', x2); l.setAttribute('y2', y2);
+    });
 
+    // Fascia boards
+    if(fasciaHigh) { fasciaHigh.setAttribute('y', highY - 3); fasciaHigh.setAttribute('height', 16); }
+    if(fasciaLow) { fasciaLow.setAttribute('y', EAVE_Y - 3); fasciaLow.setAttribute('height', 16); }
+
+    // Chimney — sits on the high side of the roof
     if(chimney) {
-      var chimX = RIDGE_X + HALF_SPAN * 0.42;
-      var chimBaseY = ridgeY + (EAVE_Y - ridgeY) * 0.42;
-      var chimTopY = Math.max(chimBaseY - 44, 15);
+      var chimX = HIGH_X + SPAN * 0.16;
+      var chimBaseY = highY + (EAVE_Y - highY) * 0.16 + 5;
+      var chimTopY = Math.max(chimBaseY - 55, 15);
       var rects = chimney.querySelectorAll('rect');
-      if(rects[0]){ rects[0].setAttribute('x', chimX-12); rects[0].setAttribute('y', chimTopY); rects[0].setAttribute('height', chimBaseY - chimTopY); }
-      if(rects[1]){ rects[1].setAttribute('x', chimX-15); rects[1].setAttribute('y', chimTopY-3); }
+      if(rects[0]){ rects[0].setAttribute('x', chimX); rects[0].setAttribute('y', chimTopY); rects[0].setAttribute('height', chimBaseY - chimTopY); }
+      if(rects[1]){ rects[1].setAttribute('x', chimX-3); rects[1].setAttribute('y', chimTopY-4); }
+      var brickLines = chimney.querySelectorAll('line');
+      brickLines.forEach(function(bl, i) {
+        var by = chimTopY + 15 + i * 15;
+        if(by < chimBaseY - 5) {
+          bl.setAttribute('x1', chimX); bl.setAttribute('x2', chimX + 26);
+          bl.setAttribute('y1', by); bl.setAttribute('y2', by);
+          bl.style.display = '';
+        } else { bl.style.display = 'none'; }
+      });
     }
 
-    var offsets = [0.18, 0.35, 0.52, 0.7];
-    corrLs.forEach(function(l, i) {
-      var t = offsets[i]||0.3;
-      l.setAttribute('x1', BASE_LEFT_X + t*HALF_SPAN); l.setAttribute('y1', EAVE_Y - (EAVE_Y-ridgeY)*t);
-      l.setAttribute('x2', RIDGE_X-4); l.setAttribute('y2', ridgeY + (EAVE_Y-ridgeY)*0.02);
-    });
-    corrRs.forEach(function(l, i) {
-      var t = offsets[i]||0.3;
-      l.setAttribute('x1', RIDGE_X+4); l.setAttribute('y1', ridgeY + (EAVE_Y-ridgeY)*0.02);
-      l.setAttribute('x2', RIDGE_X + t*HALF_SPAN); l.setAttribute('y2', EAVE_Y - (EAVE_Y-ridgeY)*t);
-    });
+    // Gutter position — tracks the eave (right/low side)
+    if(gutterPath) {
+      var gy = EAVE_Y + 3;
+      gutterPath.setAttribute('d', 'M'+(LOW_X-8)+' '+gy+' Q'+(LOW_X-8)+' '+(gy+10)+' '+(LOW_X-2)+' '+(gy+10)+' L'+(LOW_X+8)+' '+(gy+10)+' Q'+(LOW_X+14)+' '+(gy+10)+' '+(LOW_X+14)+' '+gy);
+    }
+    if(downpipe) {
+      downpipe.setAttribute('y', EAVE_Y + 13);
+      downpipe.setAttribute('height', 340 - EAVE_Y - 13);
+    }
 
-    if(dripL){ dripL.setAttribute('y1', EAVE_Y); dripL.setAttribute('y2', EAVE_Y+7); }
-    if(dripR){ dripR.setAttribute('y1', EAVE_Y); dripR.setAttribute('y2', EAVE_Y+7); }
-
+    // Angle arc (at the low/eave end)
     if(arcPath) {
       var arcR = 35;
-      arcPath.setAttribute('d', 'M'+(RIDGE_X+arcR)+','+EAVE_Y+' A'+arcR+','+arcR+' 0 0,0 '+(RIDGE_X+arcR*Math.cos(rad))+','+(EAVE_Y-arcR*Math.sin(rad)));
+      var arcStartX = LOW_X - arcR;
+      arcPath.setAttribute('d', 'M'+arcStartX+','+EAVE_Y+' A'+arcR+','+arcR+' 0 0,0 '+(LOW_X - arcR*Math.cos(rad))+','+(EAVE_Y - arcR*Math.sin(rad)));
     }
     if(angleText) {
       angleText.textContent = angle + '°';
-      var lr = degToRad(angle/2);
-      angleText.setAttribute('x', RIDGE_X + 48*Math.cos(lr));
-      angleText.setAttribute('y', EAVE_Y - 48*Math.sin(lr) + 5);
+      var lr = degToRad(angle / 2);
+      angleText.setAttribute('x', LOW_X - 50 * Math.cos(lr));
+      angleText.setAttribute('y', EAVE_Y - 50 * Math.sin(lr) + 4);
     }
 
+    // Speed badge
     var st = 'Avrinning: ', dc = 'var(--blue)';
-    if(angle<10){st+='Mycket låg';dc='rgba(200,120,20,0.7)';}else if(angle<15){st+='Låg';dc='rgba(200,150,40,0.7)';}else if(angle<23){st+='Normal';}else if(angle<35){st+='Snabb';dc='#2eaa5c';}else{st+='Mycket snabb';dc='#1a8a4a';}
+    if(angle<10){st+='Mkt låg';dc='rgba(200,120,20,0.7)';}
+    else if(angle<15){st+='Låg';dc='rgba(200,150,40,0.7)';}
+    else if(angle<23){st+='Normal';}
+    else if(angle<35){st+='Snabb';dc='#2eaa5c';}
+    else{st+='Mkt snabb';dc='#1a8a4a';}
     if(speedLabel) speedLabel.textContent = st;
     if(speedDot) speedDot.setAttribute('fill', dc);
 
+    // Risk badge
     if(riskLabel) {
       if(angle<10){riskLabel.textContent='⚠ Hög risk';riskLabel.setAttribute('fill','rgba(200,60,30,0.85)');}
       else if(angle<15){riskLabel.textContent='⚠ Kräver tätning';riskLabel.setAttribute('fill','rgba(200,120,20,0.85)');}
       else if(angle<23){riskLabel.textContent='✓ Optimal';riskLabel.setAttribute('fill','var(--blue)');}
       else if(angle<35){riskLabel.textContent='✓ Utmärkt';riskLabel.setAttribute('fill','#2eaa5c');}
-      else{riskLabel.textContent='✓✓ Max';riskLabel.setAttribute('fill','#1a8a4a');}
+      else{riskLabel.textContent='✓✓ Max dränering';riskLabel.setAttribute('fill','#1a8a4a');}
     }
 
+    // Rain opacity
     var rainOp = 0.15 + (1 - (angle-6)/39)*0.2;
     rainLines.forEach(function(r){r.style.opacity=rainOp;});
 
-    var poolOp = angle<12 ? (12-angle)/6*0.35 : 0;
-    if(poolL) poolL.setAttribute('opacity', poolOp);
-    if(poolR) poolR.setAttribute('opacity', poolOp);
+    // Pool on roof surface (at low angles, near eave)
+    var poolOp = angle < 12 ? (12 - angle) / 6 * 0.4 : 0;
+    if(pool) { pool.setAttribute('opacity', poolOp); pool.setAttribute('cy', EAVE_Y + 3); }
 
-    updateDrops(angle, ridgeY);
-    updateGutterDrips(angle);
+    updateDrops(angle, highY);
+    updateGutterDrip(angle);
     updateExplanation(angle);
   }
 
-  function updateDrops(angle, ridgeY) {
+  function updateDrops(angle, highY) {
     animFrames.forEach(function(id){cancelAnimationFrame(id);});
     animFrames = [];
     var speed = 0.6 + (angle-6)/39*4;
     var dur = 2200/speed;
-    leftDrops.forEach(function(d,i){animDrop(d,'left',i,leftDrops.length,dur,ridgeY);});
-    rightDrops.forEach(function(d,i){animDrop(d,'right',i,rightDrops.length,dur,ridgeY);});
+    drops.forEach(function(d,i){ animDrop(d, i, drops.length, dur, highY); });
   }
 
-  function animDrop(drop, side, idx, total, dur, ridgeY) {
-    var delay = idx*(dur*0.18);
-    var off = 0.1+idx*(0.8/total);
-    var sx,sy,ex,ey;
-    if(side==='left'){sx=RIDGE_X-off*HALF_SPAN;sy=ridgeY+off*(EAVE_Y-ridgeY);ex=BASE_LEFT_X;ey=EAVE_Y+5;}
-    else{sx=RIDGE_X+off*HALF_SPAN;sy=ridgeY+off*(EAVE_Y-ridgeY);ex=BASE_RIGHT_X;ey=EAVE_Y+5;}
-    var st=null;
-    function step(ts){
-      if(!st)st=ts;var el=ts-st-delay;
-      if(el<0){drop.setAttribute('opacity','0');animFrames.push(requestAnimationFrame(step));return;}
-      var t=el/dur;if(t>1){st=ts;t=0;}
-      var cx=sx+(ex-sx)*t,cy=sy+(ey-sy)*t;
-      if(t>0.88)cy+=(t-0.88)*100;
-      var op=t<0.04?t/0.04*0.7:(t>0.9?(1-t)/0.1*0.7:0.7);
-      drop.setAttribute('cx',cx);drop.setAttribute('cy',cy);drop.setAttribute('opacity',op);
+  function animDrop(drop, idx, total, dur, highY) {
+    var delay = idx * (dur * 0.14);
+    var off = 0.05 + idx * (0.85 / total);
+    // Start somewhere along the roof, end at eave (right side)
+    var sx = HIGH_X + off * SPAN * 0.4;
+    var sy = highY + off * (EAVE_Y - highY) * 0.4;
+    var ex = LOW_X + 5;
+    var ey = EAVE_Y + 8;
+    var st = null;
+    function step(ts) {
+      if(!st) st = ts;
+      var el = ts - st - delay;
+      if(el < 0) { drop.setAttribute('opacity','0'); animFrames.push(requestAnimationFrame(step)); return; }
+      var t = el / dur;
+      if(t > 1) { st = ts; t = 0; }
+      var cx = sx + (ex - sx) * t;
+      var cy = sy + (ey - sy) * t;
+      if(t > 0.9) cy += (t - 0.9) * 80;
+      var op = t < 0.04 ? t/0.04*0.7 : (t > 0.9 ? (1-t)/0.1*0.7 : 0.7);
+      drop.setAttribute('cx', cx);
+      drop.setAttribute('cy', cy);
+      drop.setAttribute('opacity', op);
       animFrames.push(requestAnimationFrame(step));
     }
     animFrames.push(requestAnimationFrame(step));
   }
 
-  function updateGutterDrips(angle) {
+  function updateGutterDrip(angle) {
     gutterFrames.forEach(function(id){cancelAnimationFrame(id);});
     gutterFrames = [];
-    var sp = 0.5+(angle-6)/39*3, dd = 1200/sp;
-    if(gutterDripL) gutterDrip(gutterDripL,splashL,67,dd,0);
-    if(gutterDripR) gutterDrip(gutterDripR,splashR,493,dd,dd*0.4);
+    var sp = 0.5 + (angle-6)/39*3;
+    var dd = 1200/sp;
+    if(gutterDripR) animGutterDrip(gutterDripR, splashR, 492, dd, 0);
   }
 
-  function gutterDrip(drip,splash,cx,dur,delay) {
-    var sY=338,eY=356,st=null;
-    function step(ts){
-      if(!st)st=ts;var el=ts-st-delay;
-      if(el<0){drip.setAttribute('opacity','0');if(splash)splash.setAttribute('opacity','0');gutterFrames.push(requestAnimationFrame(step));return;}
-      var t=(el%(dur+400))/dur;
-      if(t>1){drip.setAttribute('opacity','0');if(splash){var p=(t-1)*dur/400;splash.setAttribute('opacity',Math.max(0,0.4-p*0.4));}gutterFrames.push(requestAnimationFrame(step));return;}
-      var cy=sY+(eY-sY)*t*t;
-      var op=t<0.1?t/0.1*0.6:(t>0.85?(1-t)/0.15*0.6:0.6);
-      drip.setAttribute('cx',cx);drip.setAttribute('cy',cy);drip.setAttribute('opacity',op);
-      if(splash&&t>0.85){splash.setAttribute('opacity',(t-0.85)/0.15*0.4);splash.setAttribute('rx',8+(t-0.85)/0.15*10);}else if(splash){splash.setAttribute('opacity','0');}
+  function animGutterDrip(drip, splash, cx, dur, delay) {
+    var sY = 346, eY = 356, st = null;
+    function step(ts) {
+      if(!st) st = ts;
+      var el = ts - st - delay;
+      if(el < 0) { drip.setAttribute('opacity','0'); if(splash) splash.setAttribute('opacity','0'); gutterFrames.push(requestAnimationFrame(step)); return; }
+      var t = (el % (dur + 400)) / dur;
+      if(t > 1) {
+        drip.setAttribute('opacity','0');
+        if(splash) { var p = (t-1)*dur/400; splash.setAttribute('opacity', Math.max(0, 0.4 - p*0.4)); }
+        gutterFrames.push(requestAnimationFrame(step)); return;
+      }
+      var cy = sY + (eY - sY) * t * t;
+      var op = t < 0.1 ? t/0.1*0.6 : (t > 0.85 ? (1-t)/0.15*0.6 : 0.6);
+      drip.setAttribute('cx', cx); drip.setAttribute('cy', cy); drip.setAttribute('opacity', op);
+      if(splash && t > 0.85) { splash.setAttribute('opacity', (t-0.85)/0.15*0.4); splash.setAttribute('rx', 8 + (t-0.85)/0.15*10); }
+      else if(splash) { splash.setAttribute('opacity','0'); }
       gutterFrames.push(requestAnimationFrame(step));
     }
     gutterFrames.push(requestAnimationFrame(step));
   }
 
   slider.addEventListener('input', function() {
-    var v=parseInt(this.value,10);
-    valueDisplay.textContent=v+'°';
-    presets.forEach(function(p){p.classList.toggle('slope-preset-active',parseInt(p.dataset.angle,10)===v);});
+    var v = parseInt(this.value, 10);
+    valueDisplay.textContent = v + '°';
+    presets.forEach(function(p){ p.classList.toggle('slope-preset-active', parseInt(p.dataset.angle,10) === v); });
     updateRoof(v);
   });
 
-  presets.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var v=parseInt(this.dataset.angle,10);
-      slider.value=v; valueDisplay.textContent=v+'°';
-      presets.forEach(function(p){p.classList.toggle('slope-preset-active',parseInt(p.dataset.angle,10)===v);});
+  presets.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var v = parseInt(this.dataset.angle, 10);
+      slider.value = v; valueDisplay.textContent = v + '°';
+      presets.forEach(function(p){ p.classList.toggle('slope-preset-active', parseInt(p.dataset.angle,10) === v); });
       updateRoof(v);
     });
   });
