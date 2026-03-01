@@ -1063,3 +1063,159 @@ document.addEventListener('DOMContentLoaded', function() {
     if (autoInterval) clearInterval(autoInterval);
   });
 })();
+
+/* ============================================================
+   KORRUGERAD: INTERACTIVE ROOF LAYERS EXPLAINER
+   ============================================================ */
+(function() {
+  var section = document.querySelector('.kor-layers-section');
+  if (!section) return;
+
+  var layers      = section.querySelectorAll('.kor-layer');
+  var infoCards   = section.querySelectorAll('.kor-info-card');
+  var dots        = section.querySelectorAll('.kor-dot');
+  var visual      = document.getElementById('korLayersVisual');
+  var toggleBtn   = document.getElementById('korToggleExplode');
+  var toggleText  = document.getElementById('korToggleText');
+  var progressBar = document.getElementById('korProgressFill');
+
+  var layerNames  = [];
+  layers.forEach(function(l) { layerNames.push(l.getAttribute('data-layer')); });
+  // layerNames order (bottom→top): konstruktion, isolering, underlag, lakt, plat
+
+  var currentIdx = layerNames.indexOf('plat'); // start at top layer
+
+  /* ---- Set Active Layer ---- */
+  function setActive(name) {
+    currentIdx = layerNames.indexOf(name);
+
+    layers.forEach(function(l) {
+      l.classList.toggle('active', l.getAttribute('data-layer') === name);
+    });
+    infoCards.forEach(function(c) {
+      c.classList.toggle('active', c.getAttribute('data-info') === name);
+    });
+    dots.forEach(function(d) {
+      d.classList.toggle('active', d.getAttribute('data-dot') === name);
+    });
+
+    // Progress bar: 0% at bottom layer, 100% at top
+    var pct = ((currentIdx + 1) / layerNames.length) * 100;
+    if (progressBar) progressBar.style.height = pct + '%';
+  }
+
+  /* ---- Layer click ---- */
+  layers.forEach(function(layer) {
+    layer.addEventListener('click', function() {
+      userClicked = true;
+      if (autoInterval) clearInterval(autoInterval);
+      setActive(layer.getAttribute('data-layer'));
+    });
+    layer.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        userClicked = true;
+        if (autoInterval) clearInterval(autoInterval);
+        setActive(layer.getAttribute('data-layer'));
+      }
+    });
+  });
+
+  /* ---- Dot click ---- */
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      userClicked = true;
+      if (autoInterval) clearInterval(autoInterval);
+      setActive(dot.getAttribute('data-dot'));
+    });
+  });
+
+  /* ---- Keyboard nav (arrows) ---- */
+  section.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowUp' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      userClicked = true;
+      if (autoInterval) clearInterval(autoInterval);
+      currentIdx = (currentIdx + 1) % layerNames.length;
+      setActive(layerNames[currentIdx]);
+    }
+    if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      userClicked = true;
+      if (autoInterval) clearInterval(autoInterval);
+      currentIdx = (currentIdx - 1 + layerNames.length) % layerNames.length;
+      setActive(layerNames[currentIdx]);
+    }
+  });
+
+  /* ---- Explode / Collapse toggle ---- */
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', function() {
+      visual.classList.toggle('exploded');
+      if (visual.classList.contains('exploded')) {
+        toggleText.textContent = 'Komprimera vy';
+      } else {
+        toggleText.textContent = 'Explodera vy';
+      }
+    });
+  }
+
+  /* ---- Create ambient particles ---- */
+  var particleContainer = section.querySelector('.kor-layers-particles');
+  if (particleContainer) {
+    for (var i = 0; i < 30; i++) {
+      var p = document.createElement('div');
+      p.className = 'kor-p';
+      p.style.left = (Math.random() * 100) + '%';
+      p.style.animationDuration = (8 + Math.random() * 14) + 's';
+      p.style.animationDelay = (Math.random() * 12) + 's';
+      var size = (2 + Math.random() * 3);
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.opacity = (0.1 + Math.random() * 0.25);
+      particleContainer.appendChild(p);
+    }
+  }
+
+  /* ---- Auto-cycle (stops on user interaction) ---- */
+  var autoInterval;
+  var userClicked = false;
+  var autoIdx = currentIdx;
+
+  function startAutoCycle() {
+    autoInterval = setInterval(function() {
+      if (userClicked) { clearInterval(autoInterval); return; }
+      autoIdx = (autoIdx + 1) % layerNames.length;
+      setActive(layerNames[autoIdx]);
+    }, 3500);
+  }
+
+  // Start auto-cycle when section is visible
+  var korObserver = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !userClicked) {
+      startAutoCycle();
+    }
+  }, { threshold: 0.25 });
+  korObserver.observe(section);
+
+  /* ---- Scroll-triggered entrance animation ---- */
+  var layerEls = Array.from(layers);
+  var entranceObserver = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) {
+      layerEls.forEach(function(el, i) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px) scale(0.95)';
+        setTimeout(function() {
+          el.style.transition = 'opacity 0.6s ease, transform 0.6s cubic-bezier(0.34,1.56,0.64,1)';
+          el.style.opacity = '1';
+          el.style.transform = '';
+        }, i * 150);
+      });
+      entranceObserver.unobserve(section);
+    }
+  }, { threshold: 0.15 });
+  entranceObserver.observe(section);
+
+  // Initialize progress
+  setActive('plat');
+})();

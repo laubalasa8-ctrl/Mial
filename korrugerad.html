@@ -140,11 +140,478 @@
           </p>
           <div class="hero-cta-row">
             <a href="index.html#contact" class="btn-primary">Få kostnadsfri offert</a>
-            <a href="#" class="btn-ghost">Läs mer...</a>
+            <a href="#tak-lager" class="btn-ghost">Läs mer...</a>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- ===== BYGG UPP TAKET LAGER FÖR LAGER ===== -->
+    <section class="kor-layers-section fade-in" id="tak-lager">
+      <div class="kor-layers-container">
+
+        <!-- Floating ambient particles -->
+        <div class="kor-layers-particles" aria-hidden="true"></div>
+
+        <!-- Header -->
+        <div class="kor-layers-header">
+          <span class="kor-layers-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Visuell explainer
+          </span>
+          <h2 class="kor-layers-title">Bygg upp taket<br><span>lager för lager</span></h2>
+          <p class="kor-layers-subtitle">Klicka på varje lager för att se hur ett professionellt korrugerat plåttak är konstruerat — från stomme till färdigt tak.</p>
+        </div>
+
+        <!-- Main interactive area -->
+        <div class="kor-layers-content">
+
+          <!-- Left: Exploded roof visualization -->
+          <div class="kor-layers-visual" id="korLayersVisual">
+
+            <!-- Progress bar (left edge) -->
+            <div class="kor-layers-progress" aria-hidden="true">
+              <div class="kor-layers-progress-fill" id="korProgressFill"></div>
+            </div>
+
+            <!-- Layer 5 (bottom): Konstruktion — roof trusses / rafters -->
+            <div class="kor-layer" data-layer="konstruktion" tabindex="0">
+              <div class="kor-layer-num">05</div>
+              <div class="kor-layer-shape">
+                <svg viewBox="0 0 520 100" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="kor-grad-konst" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#a08060"/>
+                      <stop offset="50%" stop-color="#8a6a48"/>
+                      <stop offset="100%" stop-color="#7a5a38"/>
+                    </linearGradient>
+                    <linearGradient id="kor-grad-konst-side" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stop-color="#6a4a28"/>
+                      <stop offset="100%" stop-color="#8a6a48"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Takstol triangles (trusses) -->
+                  <g opacity="0.9">
+                    <!-- Truss 1 -->
+                    <polygon points="80,88 130,28 180,88" fill="none" stroke="url(#kor-grad-konst)" stroke-width="5" stroke-linejoin="round"/>
+                    <line x1="105" y1="58" x2="155" y2="58" stroke="#8a6a48" stroke-width="3"/>
+                    <line x1="130" y1="28" x2="130" y2="88" stroke="#8a6a48" stroke-width="2.5"/>
+                    <!-- Truss 2 -->
+                    <polygon points="200,88 260,22 320,88" fill="none" stroke="url(#kor-grad-konst)" stroke-width="5" stroke-linejoin="round"/>
+                    <line x1="230" y1="55" x2="290" y2="55" stroke="#8a6a48" stroke-width="3"/>
+                    <line x1="260" y1="22" x2="260" y2="88" stroke="#8a6a48" stroke-width="2.5"/>
+                    <!-- Truss 3 -->
+                    <polygon points="340,88 390,28 440,88" fill="none" stroke="url(#kor-grad-konst)" stroke-width="5" stroke-linejoin="round"/>
+                    <line x1="365" y1="58" x2="415" y2="58" stroke="#8a6a48" stroke-width="3"/>
+                    <line x1="390" y1="28" x2="390" y2="88" stroke="#8a6a48" stroke-width="2.5"/>
+                  </g>
+                  <!-- Horizontal hammarband (wall plate) -->
+                  <rect x="50" y="84" width="420" height="10" rx="2" fill="url(#kor-grad-konst)" stroke="#6a4a28" stroke-width="0.8"/>
+                  <!-- Wood grain detail -->
+                  <line x1="100" y1="86" x2="100" y2="92" stroke="rgba(90,60,20,0.2)" stroke-width="0.5"/>
+                  <line x1="200" y1="86" x2="200" y2="92" stroke="rgba(90,60,20,0.2)" stroke-width="0.5"/>
+                  <line x1="300" y1="86" x2="300" y2="92" stroke="rgba(90,60,20,0.2)" stroke-width="0.5"/>
+                  <line x1="400" y1="86" x2="400" y2="92" stroke="rgba(90,60,20,0.2)" stroke-width="0.5"/>
+                  <!-- Joint plates (spikplåtar) -->
+                  <rect x="122" y="80" width="16" height="14" rx="1" fill="rgba(180,180,180,0.4)" stroke="rgba(140,140,140,0.4)" stroke-width="0.5"/>
+                  <rect x="252" y="76" width="16" height="14" rx="1" fill="rgba(180,180,180,0.4)" stroke="rgba(140,140,140,0.4)" stroke-width="0.5"/>
+                  <rect x="382" y="80" width="16" height="14" rx="1" fill="rgba(180,180,180,0.4)" stroke="rgba(140,140,140,0.4)" stroke-width="0.5"/>
+                </svg>
+              </div>
+              <span class="kor-layer-tag">Konstruktion</span>
+              <div class="kor-layer-glow"></div>
+            </div>
+
+            <!-- Layer 4: Isolering — mineral wool batts -->
+            <div class="kor-layer" data-layer="isolering" tabindex="0">
+              <div class="kor-layer-num">04</div>
+              <div class="kor-layer-shape">
+                <svg viewBox="0 0 520 55" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="kor-grad-iso" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#f5d060"/>
+                      <stop offset="40%" stop-color="#e8c040"/>
+                      <stop offset="100%" stop-color="#d4aa30"/>
+                    </linearGradient>
+                    <pattern id="kor-iso-fibers" width="20" height="20" patternUnits="userSpaceOnUse">
+                      <path d="M0 10 Q5 6 10 10 Q15 14 20 10" stroke="rgba(200,160,30,0.3)" stroke-width="0.6" fill="none"/>
+                      <path d="M0 5 Q5 1 10 5 Q15 9 20 5" stroke="rgba(200,160,30,0.2)" stroke-width="0.5" fill="none"/>
+                      <path d="M0 15 Q5 11 10 15 Q15 19 20 15" stroke="rgba(200,160,30,0.25)" stroke-width="0.5" fill="none"/>
+                    </pattern>
+                  </defs>
+                  <!-- Base insulation block -->
+                  <rect x="48" y="4" width="424" height="46" rx="3" fill="url(#kor-grad-iso)"/>
+                  <rect x="48" y="4" width="424" height="46" rx="3" fill="url(#kor-iso-fibers)"/>
+                  <!-- Section dividers (batt seams) -->
+                  <line x1="154" y1="4" x2="154" y2="50" stroke="rgba(180,140,20,0.35)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <line x1="260" y1="4" x2="260" y2="50" stroke="rgba(180,140,20,0.35)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <line x1="366" y1="4" x2="366" y2="50" stroke="rgba(180,140,20,0.35)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <!-- Fluffy edge highlight -->
+                  <path d="M48 4 Q90 0 154 4 Q200 8 260 4 Q320 0 366 4 Q420 8 472 4" stroke="rgba(255,220,80,0.5)" stroke-width="1.5" fill="none"/>
+                  <!-- Thickness indicators -->
+                  <text x="260" y="30" text-anchor="middle" font-size="10" fill="rgba(140,100,10,0.5)" font-weight="600" font-family="Inter, sans-serif">300 mm</text>
+                </svg>
+              </div>
+              <span class="kor-layer-tag">Isolering</span>
+              <div class="kor-layer-glow"></div>
+            </div>
+
+            <!-- Layer 3: Underlag — plywood / OSB board -->
+            <div class="kor-layer" data-layer="underlag" tabindex="0">
+              <div class="kor-layer-num">03</div>
+              <div class="kor-layer-shape">
+                <svg viewBox="0 0 520 40" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="kor-grad-underlag" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#6a6a6a"/>
+                      <stop offset="50%" stop-color="#585858"/>
+                      <stop offset="100%" stop-color="#4a4a4a"/>
+                    </linearGradient>
+                    <pattern id="kor-underlag-tex" width="16" height="16" patternUnits="userSpaceOnUse">
+                      <rect width="16" height="16" fill="#585858"/>
+                      <circle cx="4" cy="4" r="0.5" fill="rgba(255,255,255,0.06)"/>
+                      <circle cx="12" cy="10" r="0.4" fill="rgba(255,255,255,0.04)"/>
+                      <circle cx="8" cy="14" r="0.3" fill="rgba(255,255,255,0.05)"/>
+                    </pattern>
+                  </defs>
+                  <!-- Underlagspapp / board -->
+                  <rect x="42" y="3" width="436" height="34" rx="2" fill="url(#kor-grad-underlag)" stroke="rgba(80,80,80,0.6)" stroke-width="0.8"/>
+                  <rect x="42" y="3" width="436" height="34" rx="2" fill="url(#kor-underlag-tex)"/>
+                  <!-- Overlap seams -->
+                  <line x1="180" y1="3" x2="180" y2="37" stroke="rgba(90,90,90,0.5)" stroke-width="1.2" stroke-dasharray="5 3"/>
+                  <line x1="340" y1="3" x2="340" y2="37" stroke="rgba(90,90,90,0.5)" stroke-width="1.2" stroke-dasharray="5 3"/>
+                  <!-- Staple marks -->
+                  <g opacity="0.35">
+                    <rect x="100" y="12" width="3" height="8" rx="0.5" fill="#888"/>
+                    <rect x="220" y="16" width="3" height="8" rx="0.5" fill="#888"/>
+                    <rect x="300" y="10" width="3" height="8" rx="0.5" fill="#888"/>
+                    <rect x="400" y="14" width="3" height="8" rx="0.5" fill="#888"/>
+                  </g>
+                  <!-- Label -->
+                  <text x="260" y="24" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.25)" font-weight="600" font-family="Inter, sans-serif">UNDERLAGSPAPP</text>
+                </svg>
+              </div>
+              <span class="kor-layer-tag">Underlag</span>
+              <div class="kor-layer-glow"></div>
+            </div>
+
+            <!-- Layer 2: Läkt — battens / counter-battens -->
+            <div class="kor-layer" data-layer="lakt" tabindex="0">
+              <div class="kor-layer-num">02</div>
+              <div class="kor-layer-shape">
+                <svg viewBox="0 0 520 50" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="kor-grad-lakt" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#c8a86e"/>
+                      <stop offset="50%" stop-color="#b89858"/>
+                      <stop offset="100%" stop-color="#a08040"/>
+                    </linearGradient>
+                    <linearGradient id="kor-grad-lakt2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#bfa060"/>
+                      <stop offset="100%" stop-color="#9a7838"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Horizontal battens (bärläkt) -->
+                  <rect x="38" y="3" width="444" height="10" rx="2" fill="url(#kor-grad-lakt)" stroke="#8a7040" stroke-width="0.7"/>
+                  <rect x="38" y="20" width="444" height="10" rx="2" fill="url(#kor-grad-lakt)" stroke="#8a7040" stroke-width="0.7"/>
+                  <rect x="38" y="37" width="444" height="10" rx="2" fill="url(#kor-grad-lakt)" stroke="#8a7040" stroke-width="0.7"/>
+                  <!-- Wood grain -->
+                  <line x1="90" y1="4" x2="90" y2="12" stroke="rgba(120,90,40,0.15)" stroke-width="0.5"/>
+                  <line x1="210" y1="4" x2="210" y2="12" stroke="rgba(120,90,40,0.15)" stroke-width="0.5"/>
+                  <line x1="370" y1="4" x2="370" y2="12" stroke="rgba(120,90,40,0.15)" stroke-width="0.5"/>
+                  <line x1="150" y1="21" x2="150" y2="29" stroke="rgba(120,90,40,0.15)" stroke-width="0.5"/>
+                  <line x1="310" y1="21" x2="310" y2="29" stroke="rgba(120,90,40,0.15)" stroke-width="0.5"/>
+                  <line x1="440" y1="38" x2="440" y2="46" stroke="rgba(120,90,40,0.15)" stroke-width="0.5"/>
+                  <!-- Vertical counter-battens (ströläkt) -->
+                  <rect x="110" y="13" width="8" height="7" rx="1" fill="url(#kor-grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
+                  <rect x="110" y="30" width="8" height="7" rx="1" fill="url(#kor-grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
+                  <rect x="218" y="13" width="8" height="7" rx="1" fill="url(#kor-grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
+                  <rect x="218" y="30" width="8" height="7" rx="1" fill="url(#kor-grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
+                  <rect x="326" y="13" width="8" height="7" rx="1" fill="url(#kor-grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
+                  <rect x="326" y="30" width="8" height="7" rx="1" fill="url(#kor-grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
+                  <rect x="420" y="13" width="8" height="7" rx="1" fill="url(#kor-grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
+                  <rect x="420" y="30" width="8" height="7" rx="1" fill="url(#kor-grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
+                  <!-- Nail heads -->
+                  <circle cx="114" cy="8" r="1.5" fill="#6a5a30"/>
+                  <circle cx="222" cy="8" r="1.5" fill="#6a5a30"/>
+                  <circle cx="330" cy="8" r="1.5" fill="#6a5a30"/>
+                  <circle cx="424" cy="8" r="1.5" fill="#6a5a30"/>
+                  <circle cx="114" cy="25" r="1.5" fill="#6a5a30"/>
+                  <circle cx="222" cy="25" r="1.5" fill="#6a5a30"/>
+                  <circle cx="330" cy="25" r="1.5" fill="#6a5a30"/>
+                  <circle cx="424" cy="25" r="1.5" fill="#6a5a30"/>
+                </svg>
+              </div>
+              <span class="kor-layer-tag">Läkt</span>
+              <div class="kor-layer-glow"></div>
+            </div>
+
+            <!-- Layer 1 (top): Korrugerad plåt — corrugated steel sheet -->
+            <div class="kor-layer active" data-layer="plat" tabindex="0">
+              <div class="kor-layer-num">01</div>
+              <div class="kor-layer-shape">
+                <svg viewBox="0 0 520 70" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="kor-grad-plat" x1="0" y1="0" x2="0.2" y2="1">
+                      <stop offset="0%" stop-color="#5a8aaa"/>
+                      <stop offset="40%" stop-color="#4a7a9a"/>
+                      <stop offset="100%" stop-color="#3a6a8a"/>
+                    </linearGradient>
+                    <linearGradient id="kor-grad-shine" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="rgba(255,255,255,0.18)"/>
+                      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Base corrugated sheet -->
+                  <rect x="32" y="4" width="456" height="62" rx="3" fill="url(#kor-grad-plat)" stroke="#4a7a9a" stroke-width="1"/>
+                  <!-- Corrugation ridges — the signature wave pattern -->
+                  <path d="M32 20 Q48 10 64 20 Q80 30 96 20 Q112 10 128 20 Q144 30 160 20 Q176 10 192 20 Q208 30 224 20 Q240 10 256 20 Q272 30 288 20 Q304 10 320 20 Q336 30 352 20 Q368 10 384 20 Q400 30 416 20 Q432 10 448 20 Q464 30 488 20" stroke="rgba(80,140,180,0.5)" stroke-width="1.2" fill="none"/>
+                  <path d="M32 35 Q48 25 64 35 Q80 45 96 35 Q112 25 128 35 Q144 45 160 35 Q176 25 192 35 Q208 45 224 35 Q240 25 256 35 Q272 45 288 35 Q304 25 320 35 Q336 45 352 35 Q368 25 384 35 Q400 45 416 35 Q432 25 448 35 Q464 45 488 35" stroke="rgba(80,140,180,0.4)" stroke-width="1" fill="none"/>
+                  <path d="M32 50 Q48 40 64 50 Q80 60 96 50 Q112 40 128 50 Q144 60 160 50 Q176 40 192 50 Q208 60 224 50 Q240 40 256 50 Q272 60 288 50 Q304 40 320 50 Q336 60 352 50 Q368 40 384 50 Q400 60 416 50 Q432 40 448 50 Q464 60 488 50" stroke="rgba(80,140,180,0.35)" stroke-width="0.9" fill="none"/>
+                  <!-- Shine / reflection -->
+                  <rect x="32" y="4" width="456" height="22" rx="3" fill="url(#kor-grad-shine)"/>
+                  <!-- Screw heads -->
+                  <circle cx="80" cy="20" r="2.2" fill="#3a6070" stroke="#2a5060" stroke-width="0.5"/>
+                  <line x1="78.5" y1="20" x2="81.5" y2="20" stroke="#2a5060" stroke-width="0.5"/>
+                  <circle cx="160" cy="20" r="2.2" fill="#3a6070" stroke="#2a5060" stroke-width="0.5"/>
+                  <line x1="158.5" y1="20" x2="161.5" y2="20" stroke="#2a5060" stroke-width="0.5"/>
+                  <circle cx="260" cy="20" r="2.2" fill="#3a6070" stroke="#2a5060" stroke-width="0.5"/>
+                  <line x1="258.5" y1="20" x2="261.5" y2="20" stroke="#2a5060" stroke-width="0.5"/>
+                  <circle cx="360" cy="20" r="2.2" fill="#3a6070" stroke="#2a5060" stroke-width="0.5"/>
+                  <line x1="358.5" y1="20" x2="361.5" y2="20" stroke="#2a5060" stroke-width="0.5"/>
+                  <circle cx="440" cy="20" r="2.2" fill="#3a6070" stroke="#2a5060" stroke-width="0.5"/>
+                  <line x1="438.5" y1="20" x2="441.5" y2="20" stroke="#2a5060" stroke-width="0.5"/>
+                  <!-- Overlap joint line -->
+                  <line x1="260" y1="4" x2="260" y2="66" stroke="rgba(50,100,130,0.25)" stroke-width="1"/>
+                  <!-- Drip edge -->
+                  <line x1="32" y1="64" x2="488" y2="64" stroke="#3a6a8a" stroke-width="2"/>
+                </svg>
+              </div>
+              <span class="kor-layer-tag">Plåt</span>
+              <div class="kor-layer-glow"></div>
+            </div>
+
+            <!-- Explode / Collapse toggle -->
+            <button class="kor-layers-toggle" id="korToggleExplode" title="Explodera / Komprimera">
+              <svg class="kor-toggle-icon-explode" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l-4 4m0 0h5m-5 0v-5"/><path d="M17 7l4-4m0 0h-5m5 0v5"/></svg>
+              <svg class="kor-toggle-icon-collapse" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14h5v5"/><path d="M20 10h-5V5"/></svg>
+              <span id="korToggleText">Explodera vy</span>
+            </button>
+          </div>
+
+          <!-- Right: Info panel -->
+          <div class="kor-layers-info" id="korLayersInfo">
+
+            <!-- Plåt info -->
+            <div class="kor-info-card active" data-info="plat">
+              <div class="kor-info-icon">
+                <svg viewBox="0 0 48 48" fill="none">
+                  <rect x="4" y="8" width="40" height="32" rx="4" stroke="#19A8FF" stroke-width="2.5"/>
+                  <path d="M4 18 Q12 12 20 18 Q28 24 36 18 Q40 15 44 18" stroke="#19A8FF" stroke-width="1.5" opacity="0.5"/>
+                  <path d="M4 28 Q12 22 20 28 Q28 34 36 28 Q40 25 44 28" stroke="#19A8FF" stroke-width="1.5" opacity="0.4"/>
+                </svg>
+              </div>
+              <div class="kor-info-step">Lager 01</div>
+              <h3>Korrugerad plåt</h3>
+              <p>Den yttre, väderskyddande ytan. Vågprofilen ger exceptionell styrka trots minimal vikt och leder vatten effektivt nedåt. Plastisol- eller polyesterbelagd för maximal livslängd.</p>
+              <div class="kor-info-specs">
+                <div class="kor-spec">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+                  <div>
+                    <span class="kor-spec-label">Livslängd</span>
+                    <span class="kor-spec-val">40–60 år</span>
+                  </div>
+                </div>
+                <div class="kor-spec">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M12 3v18M5 8h14l-2 13H7L5 8z"/></svg>
+                  <div>
+                    <span class="kor-spec-label">Tjocklek</span>
+                    <span class="kor-spec-val">0.5–0.7 mm</span>
+                  </div>
+                </div>
+                <div class="kor-spec">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+                  <div>
+                    <span class="kor-spec-label">Vattentäthet</span>
+                    <span class="kor-spec-val">100 %</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Läkt info -->
+            <div class="kor-info-card" data-info="lakt">
+              <div class="kor-info-icon">
+                <svg viewBox="0 0 48 48" fill="none">
+                  <rect x="4" y="10" width="40" height="6" rx="2" stroke="#c8a86e" stroke-width="2.5"/>
+                  <rect x="4" y="22" width="40" height="6" rx="2" stroke="#c8a86e" stroke-width="2.5"/>
+                  <rect x="4" y="34" width="40" height="6" rx="2" stroke="#c8a86e" stroke-width="2.5"/>
+                  <rect x="14" y="16" width="5" height="6" rx="1" fill="#c8a86e" opacity="0.4"/>
+                  <rect x="29" y="16" width="5" height="6" rx="1" fill="#c8a86e" opacity="0.4"/>
+                  <rect x="14" y="28" width="5" height="6" rx="1" fill="#c8a86e" opacity="0.4"/>
+                  <rect x="29" y="28" width="5" height="6" rx="1" fill="#c8a86e" opacity="0.4"/>
+                </svg>
+              </div>
+              <div class="kor-info-step">Lager 02</div>
+              <h3>Bärläkt &amp; ströläkt</h3>
+              <p>Horisontella och vertikala träreglar som skapar ventilationsutrymme och ger plåten en stabil infästningsgrund. Ströläkten säkerställer luftcirkulation under plåten.</p>
+              <div class="kor-info-specs">
+                <div class="kor-spec">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8a86e" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                  <div>
+                    <span class="kor-spec-label">Dimension</span>
+                    <span class="kor-spec-val">25×38 mm</span>
+                  </div>
+                </div>
+                <div class="kor-spec">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8a86e" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                  <div>
+                    <span class="kor-spec-label">c/c avstånd</span>
+                    <span class="kor-spec-val">~350 mm</span>
+                  </div>
+                </div>
+                <div class="kor-spec">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8a86e" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+                  <div>
+                    <span class="kor-spec-label">Material</span>
+                    <span class="kor-spec-val">Tryckimpreg.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Underlag info -->
+            <div class="kor-info-card" data-info="underlag">
+              <div class="kor-info-icon">
+                <svg viewBox="0 0 48 48" fill="none">
+                  <rect x="4" y="12" width="40" height="24" rx="3" stroke="#6a6a6a" stroke-width="2.5"/>
+                  <line x1="18" y1="12" x2="18" y2="36" stroke="#6a6a6a" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <line x1="32" y1="12" x2="32" y2="36" stroke="#6a6a6a" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <rect x="10" y="20" width="4" height="8" rx="1" fill="#6a6a6a" opacity="0.35"/>
+                  <rect x="24" y="18" width="4" height="10" rx="1" fill="#6a6a6a" opacity="0.35"/>
+                  <rect x="38" y="20" width="4" height="8" rx="1" fill="#6a6a6a" opacity="0.35"/>
+                </svg>
+              </div>
+              <div class="kor-info-step">Lager 03</div>
+              <h3>Underlagspapp</h3>
+              <p>Det andra försvarslagret mot fukt. Underlagspappen fångar upp kondens och eventuellt inträngande vatten, och leder bort det till takfoten. Avgörande för takets långsiktiga hälsa.</p>
+              <div class="kor-info-specs">
+                <div class="kor-spec">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6a6a6a" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <div>
+                    <span class="kor-spec-label">Skydd</span>
+                    <span class="kor-spec-val">Klass T</span>
+                  </div>
+                </div>
+                <div class="kor-spec">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6a6a6a" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+                  <div>
+                    <span class="kor-spec-label">Ånggenomsläpp</span>
+                    <span class="kor-spec-val">Diffusionsöppen</span>
+                  </div>
+                </div>
+                <div class="kor-spec">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6a6a6a" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                  <div>
+                    <span class="kor-spec-label">Montering</span>
+                    <span class="kor-spec-val">Med överlapp</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Isolering info -->
+            <div class="kor-info-card" data-info="isolering">
+              <div class="kor-info-icon">
+                <svg viewBox="0 0 48 48" fill="none">
+                  <rect x="4" y="8" width="40" height="32" rx="4" stroke="#e8c040" stroke-width="2.5"/>
+                  <path d="M4 18 Q10 14 16 18 Q22 22 28 18 Q34 14 40 18 Q43 16 44 18" stroke="#e8c040" stroke-width="1.2" opacity="0.6"/>
+                  <path d="M4 28 Q10 24 16 28 Q22 32 28 28 Q34 24 40 28 Q43 26 44 28" stroke="#e8c040" stroke-width="1.2" opacity="0.5"/>
+                  <path d="M4 38 Q10 34 16 38 Q22 42 28 38 Q34 34 40 38 Q43 36 44 38" stroke="#e8c040" stroke-width="1.2" opacity="0.4"/>
+                </svg>
+              </div>
+              <div class="kor-info-step">Lager 04</div>
+              <h3>Isolering</h3>
+              <p>Mineralull eller cellplast som reglerar temperaturen i huset. Rätt isolering minskar energikostnaderna dramatiskt och skapar behagligt inomhusklimat året runt.</p>
+              <div class="kor-info-specs">
+                <div class="kor-spec">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8c040" stroke-width="2"><path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z"/></svg>
+                  <div>
+                    <span class="kor-spec-label">U-värde</span>
+                    <span class="kor-spec-val">0.13 W/m²K</span>
+                  </div>
+                </div>
+                <div class="kor-spec">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8c040" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                  <div>
+                    <span class="kor-spec-label">Tjocklek</span>
+                    <span class="kor-spec-val">300 mm</span>
+                  </div>
+                </div>
+                <div class="kor-spec">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8c040" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <div>
+                    <span class="kor-spec-label">Brandklass</span>
+                    <span class="kor-spec-val">A1 (obrännbar)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Konstruktion info -->
+            <div class="kor-info-card" data-info="konstruktion">
+              <div class="kor-info-icon">
+                <svg viewBox="0 0 48 48" fill="none">
+                  <path d="M10 42L24 6l14 36" stroke="#a08060" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+                  <line x1="16" y1="28" x2="32" y2="28" stroke="#a08060" stroke-width="2"/>
+                  <line x1="24" y1="6" x2="24" y2="42" stroke="#a08060" stroke-width="1.5" stroke-dasharray="3 2"/>
+                  <circle cx="24" cy="6" r="2" fill="#a08060"/>
+                  <circle cx="10" cy="42" r="2" fill="#a08060"/>
+                  <circle cx="38" cy="42" r="2" fill="#a08060"/>
+                </svg>
+              </div>
+              <div class="kor-info-step">Lager 05</div>
+              <h3>Takkonstruktion</h3>
+              <p>Takstolarna bär hela takets vikt och fördelar lasterna till väggarna. Vi kontrollerar alltid konstruktionens skick och förstärker vid behov innan nytt tak läggs.</p>
+              <div class="kor-info-specs">
+                <div class="kor-spec">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a08060" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                  <div>
+                    <span class="kor-spec-label">Dimension</span>
+                    <span class="kor-spec-val">45×195 mm</span>
+                  </div>
+                </div>
+                <div class="kor-spec">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a08060" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <div>
+                    <span class="kor-spec-label">Bärighet</span>
+                    <span class="kor-spec-val">C24-klass</span>
+                  </div>
+                </div>
+                <div class="kor-spec">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a08060" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                  <div>
+                    <span class="kor-spec-label">c/c avstånd</span>
+                    <span class="kor-spec-val">~1200 mm</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Navigation dots -->
+            <div class="kor-layers-dots">
+              <button class="kor-dot active" data-dot="plat" title="Plåt"></button>
+              <button class="kor-dot" data-dot="lakt" title="Läkt"></button>
+              <button class="kor-dot" data-dot="underlag" title="Underlag"></button>
+              <button class="kor-dot" data-dot="isolering" title="Isolering"></button>
+              <button class="kor-dot" data-dot="konstruktion" title="Konstruktion"></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- FOOTER -->

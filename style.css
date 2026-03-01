@@ -731,6 +731,461 @@ section.stats-section { border-bottom: none; }
 .hero-cta-row { display: flex; flex-wrap: wrap; gap: 1rem; }
 .hero-note { font-size: 0.9rem; color: rgba(255,255,255,0.98); margin-top: 2rem; font-weight: 500; max-width: 550px; text-shadow: 0 2px 8px rgba(0,0,0,0.6), 0 4px 12px rgba(0,0,0,0.4); }
 
+/* ============================================================
+   KORRUGERAD: INTERACTIVE ROOF LAYERS EXPLAINER
+   ============================================================ */
+.kor-layers-section {
+  position: relative;
+  padding: 6rem 1.5rem 7rem;
+  background: linear-gradient(180deg, #0d1b2a 0%, #1b2d44 40%, #162536 70%, #0d1b2a 100%);
+  overflow: hidden;
+  border-bottom: none;
+}
+
+.kor-layers-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* -- Ambient particles -- */
+.kor-layers-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.kor-layers-particles .kor-p {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(25,168,255,0.25);
+  animation: korParticleFloat linear infinite;
+}
+@keyframes korParticleFloat {
+  0%   { transform: translateY(110%) scale(0); opacity: 0; }
+  10%  { opacity: 1; transform: translateY(90%) scale(1); }
+  90%  { opacity: 0.8; }
+  100% { transform: translateY(-10%) scale(0.5); opacity: 0; }
+}
+
+/* -- Header -- */
+.kor-layers-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.kor-layers-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  background: rgba(25,168,255,0.08);
+  border: 1px solid rgba(25,168,255,0.2);
+  border-radius: 50px;
+  color: #19A8FF;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 1.5rem;
+  animation: korBadgePulse 3s ease-in-out infinite;
+}
+.kor-layers-badge svg {
+  flex-shrink: 0;
+}
+@keyframes korBadgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(25,168,255,0); }
+  50% { box-shadow: 0 0 20px 4px rgba(25,168,255,0.15); }
+}
+
+.kor-layers-title {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -1.2px;
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+}
+.kor-layers-title span {
+  background: linear-gradient(135deg, #19A8FF, #00d9ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.kor-layers-subtitle {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.45);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* -- Main content grid -- */
+.kor-layers-content {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* -- Visual (left side) -- */
+.kor-layers-visual {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 12px;
+  padding: 2rem 1rem 2rem 2.5rem;
+}
+
+/* Progress bar */
+.kor-layers-progress {
+  position: absolute;
+  left: 0;
+  top: 2rem;
+  bottom: 2rem;
+  width: 3px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.kor-layers-progress-fill {
+  width: 100%;
+  background: linear-gradient(180deg, #19A8FF, #00d9ff);
+  border-radius: 3px;
+  transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 20%;
+  box-shadow: 0 0 12px rgba(25,168,255,0.4);
+}
+
+/* -- Individual layer -- */
+.kor-layer {
+  position: relative;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 6px 12px 6px 0;
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid transparent;
+  background: transparent;
+}
+.kor-layer:hover {
+  transform: translateX(8px) scale(1.015);
+  background: rgba(25,168,255,0.03);
+  border-color: rgba(25,168,255,0.08);
+}
+.kor-layer.active {
+  transform: translateX(16px) scale(1.03);
+  background: rgba(25,168,255,0.06);
+  border-color: rgba(25,168,255,0.15);
+}
+
+/* Layer number watermark */
+.kor-layer-num {
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.04);
+  line-height: 1;
+  letter-spacing: -2px;
+  transition: color 0.4s ease;
+  pointer-events: none;
+  z-index: 5;
+}
+.kor-layer.active .kor-layer-num {
+  color: rgba(25,168,255,0.12);
+}
+
+/* SVG shape */
+.kor-layer-shape {
+  position: relative;
+  z-index: 2;
+}
+.kor-layer-shape svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25));
+  transition: filter 0.5s ease, transform 0.5s ease;
+}
+.kor-layer.active .kor-layer-shape svg {
+  filter: drop-shadow(0 6px 24px rgba(25,168,255,0.2)) drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+
+/* Tag label (right side) */
+.kor-layer-tag {
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%) translateX(100%);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.2);
+  white-space: nowrap;
+  transition: all 0.4s ease;
+  padding-left: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  z-index: 10;
+}
+.kor-layer-tag::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 8px;
+  height: 1px;
+  background: rgba(25,168,255,0.2);
+  transition: all 0.4s ease;
+}
+.kor-layer.active .kor-layer-tag {
+  color: #19A8FF;
+}
+.kor-layer.active .kor-layer-tag::before {
+  width: 14px;
+  background: #19A8FF;
+  box-shadow: 0 0 8px rgba(25,168,255,0.4);
+}
+
+/* Glow effect on active */
+.kor-layer-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(ellipse at center, rgba(25,168,255,0.08) 0%, transparent 70%);
+}
+.kor-layer.active .kor-layer-glow {
+  opacity: 1;
+}
+
+/* Explode / Collapse button */
+.kor-layers-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1.5rem auto 0;
+  padding: 0.6rem 1.4rem;
+  background: rgba(25,168,255,0.08);
+  border: 1px solid rgba(25,168,255,0.2);
+  border-radius: 50px;
+  color: #19A8FF;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.kor-layers-toggle:hover {
+  background: rgba(25,168,255,0.15);
+  border-color: rgba(25,168,255,0.35);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(25,168,255,0.2);
+}
+.kor-layers-toggle svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.kor-toggle-icon-collapse { display: none; }
+.kor-layers-visual.exploded .kor-toggle-icon-explode { display: none; }
+.kor-layers-visual.exploded .kor-toggle-icon-collapse { display: block; }
+
+/* Exploded state — increased spacing */
+.kor-layers-visual.exploded {
+  gap: 28px;
+}
+.kor-layers-visual.exploded .kor-layer {
+  transform: translateX(0) scale(1);
+}
+.kor-layers-visual.exploded .kor-layer.active {
+  transform: translateX(16px) scale(1.03);
+}
+
+/* -- Info panel (right side) -- */
+.kor-layers-info {
+  position: relative;
+  min-height: 380px;
+}
+
+.kor-info-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateY(24px) scale(0.97);
+  transition: all 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 2.2rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.kor-info-card.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  position: relative;
+}
+
+/* Icon */
+.kor-info-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(25,168,255,0.06);
+  border: 1px solid rgba(25,168,255,0.12);
+  border-radius: 14px;
+  margin-bottom: 1.2rem;
+}
+.kor-info-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* Step label */
+.kor-info-step {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #19A8FF;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.kor-info-card h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.7rem;
+  letter-spacing: -0.5px;
+}
+
+.kor-info-card p {
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
+  margin-bottom: 1.4rem;
+}
+
+/* Spec grid */
+.kor-info-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.kor-spec {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0.9rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+.kor-spec:hover {
+  background: rgba(25,168,255,0.05);
+  border-color: rgba(25,168,255,0.12);
+  transform: translateX(4px);
+}
+.kor-spec svg {
+  flex-shrink: 0;
+}
+.kor-spec div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.kor-spec-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.kor-spec-val {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Navigation dots */
+.kor-layers-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 2rem;
+}
+.kor-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 0;
+}
+.kor-dot:hover {
+  border-color: rgba(25,168,255,0.5);
+  background: rgba(25,168,255,0.15);
+}
+.kor-dot.active {
+  background: #19A8FF;
+  border-color: #19A8FF;
+  transform: scale(1.35);
+  box-shadow: 0 0 14px rgba(25,168,255,0.4);
+}
+
+/* ===== KOR LAYERS RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .kor-layers-content {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .kor-layers-visual {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .kor-layers-info {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .kor-layers-section { padding: 4rem 1rem 5rem; }
+  .kor-layers-visual {
+    padding: 1.5rem 0.5rem 1.5rem 2rem;
+  }
+  .kor-layer-tag { display: none; }
+  .kor-layers-progress { left: 0.2rem; }
+  .kor-info-card { padding: 1.5rem; border-radius: 14px; }
+  .kor-info-card h3 { font-size: 1.15rem; }
+  .kor-info-card p { font-size: 0.85rem; }
+  .kor-info-icon { width: 44px; height: 44px; border-radius: 10px; }
+  .kor-info-icon svg { width: 24px; height: 24px; }
+  .kor-layers-title { font-size: clamp(1.6rem, 6vw, 2.4rem); }
+  .kor-layers-subtitle { font-size: 0.92rem; }
+  .kor-layers-toggle { font-size: 0.72rem; padding: 0.5rem 1rem; }
+  .kor-spec { padding: 0.5rem 0.7rem; }
+}
+
 /* ===== BANDTÄCKNING BENEFITS SECTION ===== */
 .bandtackning-benefits-section {
   padding: 6rem 1.5rem;
