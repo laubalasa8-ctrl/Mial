@@ -214,97 +214,179 @@ accordionItems.forEach(item => {
 // ===== STEP DETAILS =====
 // Removed - step section is now static without expandable details
 
-// ===== COOKIE BANNER (MOBILE ONLY) =====
+// ===== COOKIE CONSENT – PREMIUM =====
 function initCookieBanner() {
-  const cookieBanner = document.getElementById('cookie-banner');
-  const cookieOverlay = document.getElementById('cookie-overlay');
-  const acceptBtn = document.getElementById('cookie-accept');
-  const rejectBtn = document.getElementById('cookie-reject');
-  const closeBtn = document.getElementById('cookie-close');
-  const infoToggle = document.getElementById('cookie-info-toggle');
-  const infoContent = document.getElementById('cookie-info-content');
-
-  if (!cookieBanner) return;
-
-  // Check if we're on mobile
-  const isMobile = window.innerWidth <= 600;
-  
-  // Check if user has already interacted with banner (within 30 days)
-  const cookieConsent = localStorage.getItem('cookieConsent');
-  const cookieTimestamp = localStorage.getItem('cookieTimestamp');
-  const thirtyDaysMs = 30 * 24 * 60 * 60 * 1000;
+  // Check if consent already stored (within 180 days)
+  const consent = localStorage.getItem('fc_consent');
+  const timestamp = localStorage.getItem('fc_timestamp');
+  const maxAge = 180 * 24 * 60 * 60 * 1000;
   const now = Date.now();
+  const hasConsent = consent && timestamp && (now - parseInt(timestamp)) < maxAge;
 
-  // Only show banner on mobile and if consent NOT already given
-  const hasConsent = cookieConsent && cookieTimestamp && (now - parseInt(cookieTimestamp)) < thirtyDaysMs;
-  
-  if (!isMobile || hasConsent) {
-    // Hide banner completely - don't show
-    cookieBanner.classList.remove('show');
-    cookieOverlay.style.display = 'none';
+  // Inject banner HTML into every page
+  const bannerHTML = `
+    <div class="fc-overlay" id="fc-overlay"></div>
+    <div class="fc-banner" id="fc-banner" role="dialog" aria-label="Cookie-inställningar">
+      <div class="fc-card">
+        <div class="fc-body">
+          <div class="fc-header">
+            <div class="fc-logo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="fc-title">Cookie-inställningar</h3>
+              <p class="fc-subtitle">Ferotect värnar om din integritet</p>
+            </div>
+          </div>
+          <p class="fc-desc">Vi använder cookies för att förbättra din upplevelse, analysera trafik och visa relevant innehåll. Välj vilka cookies du vill tillåta. <a href="anvandarvillkor.html">Läs mer</a></p>
+          <div class="fc-categories">
+            <div class="fc-cat">
+              <div class="fc-cat-info">
+                <div class="fc-cat-icon fc-icon-necessary">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div>
+                  <div class="fc-cat-label">Nödvändiga</div>
+                  <div class="fc-cat-detail">Krävs för grundläggande funktionalitet</div>
+                </div>
+              </div>
+              <label class="fc-toggle">
+                <input type="checkbox" checked disabled data-fc="necessary">
+                <span class="fc-toggle-track"></span>
+              </label>
+            </div>
+            <div class="fc-cat">
+              <div class="fc-cat-info">
+                <div class="fc-cat-icon fc-icon-analytics">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                </div>
+                <div>
+                  <div class="fc-cat-label">Analys</div>
+                  <div class="fc-cat-detail">Hjälper oss förstå besöksbeteenden</div>
+                </div>
+              </div>
+              <label class="fc-toggle">
+                <input type="checkbox" data-fc="analytics">
+                <span class="fc-toggle-track"></span>
+              </label>
+            </div>
+            <div class="fc-cat">
+              <div class="fc-cat-info">
+                <div class="fc-cat-icon fc-icon-marketing">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+                </div>
+                <div>
+                  <div class="fc-cat-label">Marknadsföring</div>
+                  <div class="fc-cat-detail">Personaliserat innehåll & annonser</div>
+                </div>
+              </div>
+              <label class="fc-toggle">
+                <input type="checkbox" data-fc="marketing">
+                <span class="fc-toggle-track"></span>
+              </label>
+            </div>
+          </div>
+          <div class="fc-actions">
+            <button class="fc-btn fc-btn-accept" id="fc-accept">Godkänn alla</button>
+            <button class="fc-btn fc-btn-reject" id="fc-reject">Spara val</button>
+          </div>
+        </div>
+        <div class="fc-footer">
+          <a href="anvandarvillkor.html">Användarvillkor & Integritetspolicy</a>
+        </div>
+      </div>
+    </div>
+    <button class="fc-reopen" id="fc-reopen" aria-label="Cookie-inställningar" title="Cookie-inställningar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <circle cx="8" cy="9" r="1.5" fill="currentColor" stroke="none"/>
+        <circle cx="15" cy="7" r="1" fill="currentColor" stroke="none"/>
+        <circle cx="16" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+        <circle cx="10" cy="15" r="1" fill="currentColor" stroke="none"/>
+        <circle cx="13" cy="11" r="0.8" fill="currentColor" stroke="none"/>
+      </svg>
+    </button>
+  `;
+  document.body.insertAdjacentHTML('beforeend', bannerHTML);
+
+  const banner = document.getElementById('fc-banner');
+  const overlay = document.getElementById('fc-overlay');
+  const acceptBtn = document.getElementById('fc-accept');
+  const rejectBtn = document.getElementById('fc-reject');
+  const reopenBtn = document.getElementById('fc-reopen');
+
+  // Restore previous choices to toggles
+  if (hasConsent) {
+    try {
+      const prefs = JSON.parse(consent);
+      document.querySelectorAll('[data-fc]').forEach(cb => {
+        const key = cb.getAttribute('data-fc');
+        if (key !== 'necessary' && prefs[key] !== undefined) {
+          cb.checked = prefs[key];
+        }
+      });
+    } catch(e) {}
+    // Show reopen button, hide banner
+    reopenBtn.classList.add('fc-show');
     return;
   }
 
-  // Show banner with animation ONLY if no consent recorded
+  // Show banner after short delay
   setTimeout(() => {
-    cookieBanner.classList.add('show');
-    cookieOverlay.style.display = 'block';
-  }, 500);
+    banner.classList.add('fc-show');
+    overlay.classList.add('fc-show');
+  }, 800);
 
-  // Handle info toggle
-  if (infoToggle && infoContent) {
-    infoToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isExpanded = infoToggle.getAttribute('aria-expanded') === 'true';
-      infoToggle.setAttribute('aria-expanded', !isExpanded);
-      infoContent.classList.toggle('show');
-    });
-  }
-
-  // Handle accept
-  acceptBtn.addEventListener('click', () => {
-    saveBannerChoice('all');
-  });
-
-  // Handle reject (only necessary cookies)
-  rejectBtn.addEventListener('click', () => {
-    saveBannerChoice('necessary');
-  });
-
-  // Handle close button
-  closeBtn.addEventListener('click', () => {
-    saveBannerChoice('necessary');
-  });
-
-  // Close overlay click - closes banner
-  cookieOverlay.addEventListener('click', () => {
-    saveBannerChoice('necessary');
-  });
-
-  function saveBannerChoice(choice) {
-    // Save choice and timestamp
-    localStorage.setItem('cookieConsent', choice);
-    localStorage.setItem('cookieTimestamp', Date.now().toString());
-    
-    // Hide banner immediately
-    closeBanner();
-  }
-
-  function closeBanner() {
-    cookieBanner.classList.remove('show');
-    cookieOverlay.style.display = 'none';
-    cookieBanner.style.display = 'none';
-  }
-
-  // Re-check on resize in case user goes from desktop to mobile
-  window.addEventListener('resize', () => {
-    const nowMobile = window.innerWidth <= 600;
-    const stillHasConsent = localStorage.getItem('cookieConsent') !== null;
-    
-    if (!nowMobile || stillHasConsent) {
-      cookieBanner.classList.remove('show');
-      cookieOverlay.style.display = 'none';
+  function saveAndClose(acceptAll) {
+    const prefs = { necessary: true };
+    if (acceptAll) {
+      prefs.analytics = true;
+      prefs.marketing = true;
+      // Check all toggles visually
+      document.querySelectorAll('[data-fc]').forEach(cb => {
+        if (!cb.disabled) cb.checked = true;
+      });
+    } else {
+      document.querySelectorAll('[data-fc]').forEach(cb => {
+        const key = cb.getAttribute('data-fc');
+        prefs[key] = cb.checked;
+      });
     }
+
+    localStorage.setItem('fc_consent', JSON.stringify(prefs));
+    localStorage.setItem('fc_timestamp', Date.now().toString());
+
+    // Closing animation
+    banner.classList.add('fc-closing');
+    overlay.classList.remove('fc-show');
+
+    setTimeout(() => {
+      banner.classList.remove('fc-show', 'fc-closing');
+      reopenBtn.classList.add('fc-show');
+    }, 400);
+  }
+
+  acceptBtn.addEventListener('click', () => saveAndClose(true));
+  rejectBtn.addEventListener('click', () => saveAndClose(false));
+
+  // Overlay click = save current selection
+  overlay.addEventListener('click', () => saveAndClose(false));
+
+  // Reopen banner
+  reopenBtn.addEventListener('click', () => {
+    reopenBtn.classList.remove('fc-show');
+    banner.classList.remove('fc-closing');
+    banner.classList.add('fc-show');
+    overlay.classList.add('fc-show');
+  });
+
+  // Track mouse position for accept button ripple
+  acceptBtn.addEventListener('mousemove', (e) => {
+    const rect = acceptBtn.getBoundingClientRect();
+    acceptBtn.style.setProperty('--x', ((e.clientX - rect.left) / rect.width * 100) + '%');
+    acceptBtn.style.setProperty('--y', ((e.clientY - rect.top) / rect.height * 100) + '%');
   });
 }
 
