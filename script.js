@@ -1065,7 +1065,7 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 /* ============================================================
-   KORRUGERAD: INTERACTIVE ROOF LAYERS EXPLAINER
+   KORRUGERAD: INTERACTIVE ROOF LAYERS (Light Theme)
    ============================================================ */
 (function() {
   var section = document.querySelector('.kor-layers-section');
@@ -1081,7 +1081,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var layerNames  = [];
   layers.forEach(function(l) { layerNames.push(l.getAttribute('data-layer')); });
-  // layerNames order (bottom→top): konstruktion, isolering, underlag, lakt, plat
+  // layerNames order (bottom→top): takstolar, raspont, underlag, lakt, plat
 
   var currentIdx = layerNames.indexOf('plat'); // start at top layer
 
@@ -1160,43 +1160,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  /* ---- Create ambient particles ---- */
-  var particleContainer = section.querySelector('.kor-layers-particles');
-  if (particleContainer) {
-    for (var i = 0; i < 30; i++) {
-      var p = document.createElement('div');
-      p.className = 'kor-p';
-      p.style.left = (Math.random() * 100) + '%';
-      p.style.animationDuration = (8 + Math.random() * 14) + 's';
-      p.style.animationDelay = (Math.random() * 12) + 's';
-      var size = (2 + Math.random() * 3);
-      p.style.width = size + 'px';
-      p.style.height = size + 'px';
-      p.style.opacity = (0.1 + Math.random() * 0.25);
-      particleContainer.appendChild(p);
-    }
-  }
-
-  /* ---- Auto-cycle (stops on user interaction) ---- */
-  var autoInterval;
+  /* ---- No auto-cycle — manual interaction only ---- */
+  var autoInterval = null;
   var userClicked = false;
-  var autoIdx = currentIdx;
-
-  function startAutoCycle() {
-    autoInterval = setInterval(function() {
-      if (userClicked) { clearInterval(autoInterval); return; }
-      autoIdx = (autoIdx + 1) % layerNames.length;
-      setActive(layerNames[autoIdx]);
-    }, 3500);
-  }
-
-  // Start auto-cycle when section is visible
-  var korObserver = new IntersectionObserver(function(entries) {
-    if (entries[0].isIntersecting && !userClicked) {
-      startAutoCycle();
-    }
-  }, { threshold: 0.25 });
-  korObserver.observe(section);
 
   /* ---- Scroll-triggered entrance animation ---- */
   var layerEls = Array.from(layers);
@@ -1218,4 +1184,301 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initialize progress
   setActive('plat');
+})();
+
+
+/* ═══════════════════════════════════════════════════════
+   VENTILATION & KONDENS SECTION
+   ═══════════════════════════════════════════════════════ */
+(function ventilationSection() {
+  const section = document.querySelector('.vent-section');
+  if (!section) return;
+
+  // ── Play / Pause ──
+  const playBtn = section.querySelector('.vent-play-btn');
+  const iconPause = section.querySelector('.vent-icon-pause');
+  const iconPlay  = section.querySelector('.vent-icon-play');
+  let isPaused = false;
+
+  if (playBtn) {
+    playBtn.addEventListener('click', () => {
+      isPaused = !isPaused;
+      section.classList.toggle('vent-paused', isPaused);
+      iconPause.style.display = isPaused ? 'none' : '';
+      iconPlay.style.display  = isPaused ? ''     : 'none';
+    });
+  }
+
+  // ── Layer highlight on click / hover ──
+  const layers   = section.querySelectorAll('.vent-layer');
+  const labels   = section.querySelectorAll('.vent-label-clickable');
+  let focusedTimer = null;
+
+  function highlightLayer(name) {
+    clearTimeout(focusedTimer);
+    section.classList.add('vent-highlight');
+    layers.forEach(l => {
+      l.classList.toggle('vent-layer-focused', l.dataset.ventLayer === name || name === 'airgap' && l.classList.contains('vent-airgap'));
+    });
+    labels.forEach(l => l.classList.toggle('vent-label-active', l.dataset.ventTarget === name));
+  }
+  function clearHighlight() {
+    focusedTimer = setTimeout(() => {
+      section.classList.remove('vent-highlight');
+      layers.forEach(l => l.classList.remove('vent-layer-focused'));
+      labels.forEach(l => l.classList.remove('vent-label-active'));
+      // Reset airgap as default active
+      const defaultLabel = section.querySelector('[data-vent-target="airgap"]');
+      if (defaultLabel) defaultLabel.classList.add('vent-label-active');
+    }, 250);
+  }
+
+  layers.forEach(layer => {
+    layer.addEventListener('mouseenter', () => highlightLayer(layer.dataset.ventLayer));
+    layer.addEventListener('mouseleave', clearHighlight);
+    layer.addEventListener('click', () => highlightLayer(layer.dataset.ventLayer));
+  });
+  labels.forEach(label => {
+    label.addEventListener('mouseenter', () => highlightLayer(label.dataset.ventTarget));
+    label.addEventListener('mouseleave', clearHighlight);
+    label.addEventListener('click', () => highlightLayer(label.dataset.ventTarget));
+  });
+
+  // ── Cards interactivity ──
+  const cards = section.querySelectorAll('.vent-card');
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      cards.forEach(c => c.classList.remove('vent-card-active'));
+      card.classList.add('vent-card-active');
+    });
+  });
+
+  // ── Intersection Observer — trigger entrance & start animations on scroll ──
+  const ventObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        section.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  ventObserver.observe(section);
+})();
+
+/* ═══════════════════════════════════════════════════════
+   TAKFALL & AVRINNING — Slope + drainage interactive
+   ═══════════════════════════════════════════════════════ */
+(function() {
+  var section = document.querySelector('.slope-section');
+  if (!section) return;
+
+  var slider = section.querySelector('.slope-slider');
+  var valueDisplay = section.querySelector('.slope-slider-value');
+  var presets = section.querySelectorAll('.slope-preset');
+  var angleText = section.querySelector('.slope-angle-text');
+  var arcPath = section.querySelector('.slope-arc');
+  var speedLabel = section.querySelector('.slope-speed-label');
+  var cards = section.querySelectorAll('.slope-card');
+
+  // Roof geometry
+  var RIDGE_X = 400;
+  var EAVE_Y = 210;
+  var BASE_LEFT_X = 120;
+  var BASE_RIGHT_X = 680;
+  var HALF_SPAN = RIDGE_X - BASE_LEFT_X; // 280
+
+  // Drop elements
+  var leftDrops = section.querySelectorAll('.sd-l1, .sd-l2, .sd-l3, .sd-l4, .sd-l5');
+  var rightDrops = section.querySelectorAll('.sd-r1, .sd-r2, .sd-r3, .sd-r4, .sd-r5');
+
+  var roofLeft = section.querySelector('.slope-roof-left') ? section.querySelectorAll('.slope-roof-left') : [];
+  var roofRight = section.querySelector('.slope-roof-right') ? section.querySelectorAll('.slope-roof-right') : [];
+  var nock = section.querySelector('.slope-nock');
+  var dripL = section.querySelector('.slope-drip-l');
+  var dripR = section.querySelector('.slope-drip-r');
+  var corrLs = section.querySelectorAll('.slope-corr-l');
+  var corrRs = section.querySelectorAll('.slope-corr-r');
+
+  var animFrames = [];
+
+  function degToRad(d) { return d * Math.PI / 180; }
+
+  function updateRoof(angle) {
+    var rad = degToRad(angle);
+    var rise = Math.tan(rad) * HALF_SPAN;
+    var ridgeY = EAVE_Y - rise;
+
+    // Clamp ridge
+    if (ridgeY < 30) ridgeY = 30;
+
+    // Update roof polygons
+    var leftPts = BASE_LEFT_X + ',' + EAVE_Y + ' ' + RIDGE_X + ',' + ridgeY + ' ' + RIDGE_X + ',' + EAVE_Y;
+    var rightPts = RIDGE_X + ',' + ridgeY + ' ' + BASE_RIGHT_X + ',' + EAVE_Y + ' ' + RIDGE_X + ',' + EAVE_Y;
+
+    roofLeft.forEach(function(el) { el.setAttribute('points', leftPts); });
+    roofRight.forEach(function(el) { el.setAttribute('points', rightPts); });
+
+    // Nock
+    if (nock) {
+      nock.setAttribute('x', RIDGE_X - 12);
+      nock.setAttribute('y', ridgeY - 5);
+    }
+
+    // Corrugation lines — left side (parametric lines from eave to ridge)
+    var corrOffsetsL = [0.2, 0.35, 0.5, 0.65];
+    corrLs.forEach(function(line, i) {
+      var t = corrOffsetsL[i] || 0.3;
+      var x1 = BASE_LEFT_X + t * HALF_SPAN;
+      var y1 = EAVE_Y - t * (EAVE_Y - ridgeY) * 0.3;
+      line.setAttribute('x1', x1);
+      line.setAttribute('y1', EAVE_Y - (EAVE_Y - ridgeY) * t * 0.4);
+      line.setAttribute('x2', RIDGE_X);
+      line.setAttribute('y2', ridgeY + (EAVE_Y - ridgeY) * (1 - t) * 0.15);
+    });
+
+    // Corrugation lines — right side
+    var corrOffsetsR = [0.2, 0.35, 0.5, 0.65];
+    corrRs.forEach(function(line, i) {
+      var t = corrOffsetsR[i] || 0.3;
+      line.setAttribute('x1', RIDGE_X);
+      line.setAttribute('y1', ridgeY + (EAVE_Y - ridgeY) * (1 - t) * 0.15);
+      line.setAttribute('x2', BASE_RIGHT_X - t * HALF_SPAN);
+      line.setAttribute('y2', EAVE_Y - (EAVE_Y - ridgeY) * t * 0.4);
+    });
+
+    // Arc
+    if (arcPath) {
+      var arcR = 40;
+      var endX = RIDGE_X + arcR * Math.cos(-rad);
+      var endY = EAVE_Y + arcR * Math.sin(-rad);
+      // Draw small arc from horizontal
+      arcPath.setAttribute('d', 'M' + (RIDGE_X + arcR) + ',' + EAVE_Y + ' A' + arcR + ',' + arcR + ' 0 0,0 ' + endX + ',' + endY);
+    }
+    if (angleText) {
+      angleText.textContent = angle + '°';
+      var labelRad = degToRad(angle / 2);
+      angleText.setAttribute('x', RIDGE_X + 52 * Math.cos(-labelRad));
+      angleText.setAttribute('y', EAVE_Y - 52 * Math.sin(labelRad) + 6);
+    }
+
+    // Speed label
+    var speedText = 'Avrinning: ';
+    if (angle < 10) speedText += 'Mycket låg';
+    else if (angle < 15) speedText += 'Låg';
+    else if (angle < 23) speedText += 'Normal';
+    else if (angle < 35) speedText += 'Snabb';
+    else speedText += 'Mycket snabb';
+    if (speedLabel) speedLabel.textContent = speedText;
+
+    // Highlight card
+    var range = angle < 15 ? 'low' : (angle < 23 ? 'mid' : 'high');
+    cards.forEach(function(c) {
+      c.classList.toggle('slope-card-active', c.dataset.slopeRange === range);
+    });
+
+    // Update drop animations
+    updateDrops(angle, ridgeY);
+  }
+
+  function updateDrops(angle, ridgeY) {
+    // Cancel previous animations
+    animFrames.forEach(function(id) { cancelAnimationFrame(id); });
+    animFrames = [];
+
+    var speed = 1 + (angle - 6) / 39 * 3; // 1x to 4x
+    var duration = 2500 / speed;
+
+    // Animate left drops
+    leftDrops.forEach(function(drop, i) {
+      animateDrop(drop, 'left', i, duration, ridgeY);
+    });
+    // Animate right drops
+    rightDrops.forEach(function(drop, i) {
+      animateDrop(drop, 'right', i, duration, ridgeY);
+    });
+  }
+
+  function animateDrop(drop, side, index, duration, ridgeY) {
+    var delay = index * (duration * 0.2);
+    var startOffset = 0.1 + index * 0.18;
+    if (startOffset > 0.85) startOffset = 0.85;
+
+    var startX, startY, endX, endY;
+    if (side === 'left') {
+      startX = RIDGE_X - startOffset * HALF_SPAN;
+      startY = ridgeY + startOffset * (EAVE_Y - ridgeY);
+      endX = BASE_LEFT_X;
+      endY = EAVE_Y + 10;
+    } else {
+      startX = RIDGE_X + startOffset * HALF_SPAN;
+      startY = ridgeY + startOffset * (EAVE_Y - ridgeY);
+      endX = BASE_RIGHT_X;
+      endY = EAVE_Y + 10;
+    }
+
+    var startTime = null;
+    function step(ts) {
+      if (!startTime) startTime = ts;
+      var elapsed = ts - startTime - delay;
+      if (elapsed < 0) {
+        drop.setAttribute('opacity', '0');
+        animFrames.push(requestAnimationFrame(step));
+        return;
+      }
+      var t = elapsed / duration;
+      if (t > 1) {
+        startTime = ts;
+        t = 0;
+      }
+      var cx = startX + (endX - startX) * t;
+      var cy = startY + (endY - startY) * t;
+
+      // Add slight drip at the end
+      if (t > 0.9) {
+        cy += (t - 0.9) * 80; // accelerate down at eave
+      }
+
+      var opacity = t < 0.05 ? t / 0.05 * 0.7 : (t > 0.92 ? (1 - t) / 0.08 * 0.7 : 0.7);
+      drop.setAttribute('cx', cx);
+      drop.setAttribute('cy', cy);
+      drop.setAttribute('opacity', opacity);
+      animFrames.push(requestAnimationFrame(step));
+    }
+    animFrames.push(requestAnimationFrame(step));
+  }
+
+  // Slider event
+  slider.addEventListener('input', function() {
+    var v = parseInt(this.value, 10);
+    valueDisplay.textContent = v + '°';
+    presets.forEach(function(p) {
+      p.classList.toggle('slope-preset-active', parseInt(p.dataset.angle, 10) === v);
+    });
+    updateRoof(v);
+  });
+
+  // Preset buttons
+  presets.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var v = parseInt(this.dataset.angle, 10);
+      slider.value = v;
+      valueDisplay.textContent = v + '°';
+      presets.forEach(function(p) {
+        p.classList.toggle('slope-preset-active', parseInt(p.dataset.angle, 10) === v);
+      });
+      updateRoof(v);
+    });
+  });
+
+  // Init
+  updateRoof(14);
+
+  // Entrance observer
+  var slopeObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        section.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  slopeObs.observe(section);
 })();

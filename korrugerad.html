@@ -150,17 +150,10 @@
     <section class="kor-layers-section fade-in" id="tak-lager">
       <div class="kor-layers-container">
 
-        <!-- Floating ambient particles -->
-        <div class="kor-layers-particles" aria-hidden="true"></div>
-
         <!-- Header -->
         <div class="kor-layers-header">
-          <span class="kor-layers-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-            Visuell explainer
-          </span>
           <h2 class="kor-layers-title">Bygg upp taket<br><span>lager för lager</span></h2>
-          <p class="kor-layers-subtitle">Klicka på varje lager för att se hur ett professionellt korrugerat plåttak är konstruerat — från stomme till färdigt tak.</p>
+          <p class="kor-layers-subtitle">Klicka på varje lager för att se hur ett professionellt korrugerat plåttak är konstruerat — från takstolar till färdigt tak.</p>
         </div>
 
         <!-- Main interactive area -->
@@ -174,217 +167,299 @@
               <div class="kor-layers-progress-fill" id="korProgressFill"></div>
             </div>
 
-            <!-- Layer 5 (bottom): Konstruktion — roof trusses / rafters -->
-            <div class="kor-layer" data-layer="konstruktion" tabindex="0">
+            <!-- Layer 5 (bottom): Takstolar — single detailed W-truss -->
+            <div class="kor-layer" data-layer="takstolar" tabindex="0">
               <div class="kor-layer-num">05</div>
               <div class="kor-layer-shape">
-                <svg viewBox="0 0 520 100" preserveAspectRatio="none">
+                <svg viewBox="0 0 520 110" preserveAspectRatio="none">
                   <defs>
-                    <linearGradient id="kor-grad-konst" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#a08060"/>
-                      <stop offset="50%" stop-color="#8a6a48"/>
-                      <stop offset="100%" stop-color="#7a5a38"/>
+                    <linearGradient id="kor-wood-main" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#c4a06a"/>
+                      <stop offset="30%" stop-color="#b08a50"/>
+                      <stop offset="60%" stop-color="#9a7640"/>
+                      <stop offset="100%" stop-color="#8a6634"/>
                     </linearGradient>
-                    <linearGradient id="kor-grad-konst-side" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stop-color="#6a4a28"/>
-                      <stop offset="100%" stop-color="#8a6a48"/>
+                    <linearGradient id="kor-wood-side" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stop-color="#7a5a2e"/>
+                      <stop offset="100%" stop-color="#9a7640"/>
                     </linearGradient>
-                  </defs>
-                  <!-- Takstol triangles (trusses) -->
-                  <g opacity="0.9">
-                    <!-- Truss 1 -->
-                    <polygon points="80,88 130,28 180,88" fill="none" stroke="url(#kor-grad-konst)" stroke-width="5" stroke-linejoin="round"/>
-                    <line x1="105" y1="58" x2="155" y2="58" stroke="#8a6a48" stroke-width="3"/>
-                    <line x1="130" y1="28" x2="130" y2="88" stroke="#8a6a48" stroke-width="2.5"/>
-                    <!-- Truss 2 -->
-                    <polygon points="200,88 260,22 320,88" fill="none" stroke="url(#kor-grad-konst)" stroke-width="5" stroke-linejoin="round"/>
-                    <line x1="230" y1="55" x2="290" y2="55" stroke="#8a6a48" stroke-width="3"/>
-                    <line x1="260" y1="22" x2="260" y2="88" stroke="#8a6a48" stroke-width="2.5"/>
-                    <!-- Truss 3 -->
-                    <polygon points="340,88 390,28 440,88" fill="none" stroke="url(#kor-grad-konst)" stroke-width="5" stroke-linejoin="round"/>
-                    <line x1="365" y1="58" x2="415" y2="58" stroke="#8a6a48" stroke-width="3"/>
-                    <line x1="390" y1="28" x2="390" y2="88" stroke="#8a6a48" stroke-width="2.5"/>
-                  </g>
-                  <!-- Horizontal hammarband (wall plate) -->
-                  <rect x="50" y="84" width="420" height="10" rx="2" fill="url(#kor-grad-konst)" stroke="#6a4a28" stroke-width="0.8"/>
-                  <!-- Wood grain detail -->
-                  <line x1="100" y1="86" x2="100" y2="92" stroke="rgba(90,60,20,0.2)" stroke-width="0.5"/>
-                  <line x1="200" y1="86" x2="200" y2="92" stroke="rgba(90,60,20,0.2)" stroke-width="0.5"/>
-                  <line x1="300" y1="86" x2="300" y2="92" stroke="rgba(90,60,20,0.2)" stroke-width="0.5"/>
-                  <line x1="400" y1="86" x2="400" y2="92" stroke="rgba(90,60,20,0.2)" stroke-width="0.5"/>
-                  <!-- Joint plates (spikplåtar) -->
-                  <rect x="122" y="80" width="16" height="14" rx="1" fill="rgba(180,180,180,0.4)" stroke="rgba(140,140,140,0.4)" stroke-width="0.5"/>
-                  <rect x="252" y="76" width="16" height="14" rx="1" fill="rgba(180,180,180,0.4)" stroke="rgba(140,140,140,0.4)" stroke-width="0.5"/>
-                  <rect x="382" y="80" width="16" height="14" rx="1" fill="rgba(180,180,180,0.4)" stroke="rgba(140,140,140,0.4)" stroke-width="0.5"/>
-                </svg>
-              </div>
-              <span class="kor-layer-tag">Konstruktion</span>
-              <div class="kor-layer-glow"></div>
-            </div>
-
-            <!-- Layer 4: Isolering — mineral wool batts -->
-            <div class="kor-layer" data-layer="isolering" tabindex="0">
-              <div class="kor-layer-num">04</div>
-              <div class="kor-layer-shape">
-                <svg viewBox="0 0 520 55" preserveAspectRatio="none">
-                  <defs>
-                    <linearGradient id="kor-grad-iso" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#f5d060"/>
-                      <stop offset="40%" stop-color="#e8c040"/>
-                      <stop offset="100%" stop-color="#d4aa30"/>
+                    <linearGradient id="kor-wood-hi" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="rgba(255,255,255,0.12)"/>
+                      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
                     </linearGradient>
-                    <pattern id="kor-iso-fibers" width="20" height="20" patternUnits="userSpaceOnUse">
-                      <path d="M0 10 Q5 6 10 10 Q15 14 20 10" stroke="rgba(200,160,30,0.3)" stroke-width="0.6" fill="none"/>
-                      <path d="M0 5 Q5 1 10 5 Q15 9 20 5" stroke="rgba(200,160,30,0.2)" stroke-width="0.5" fill="none"/>
-                      <path d="M0 15 Q5 11 10 15 Q15 19 20 15" stroke="rgba(200,160,30,0.25)" stroke-width="0.5" fill="none"/>
+                    <pattern id="kor-grain-ts" width="60" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(-2)">
+                      <path d="M0 3 Q15 1 30 3 Q45 5 60 3" stroke="rgba(100,70,25,0.12)" stroke-width="0.5" fill="none"/>
+                      <path d="M0 8 Q15 6 30 8 Q45 10 60 8" stroke="rgba(100,70,25,0.08)" stroke-width="0.4" fill="none"/>
                     </pattern>
                   </defs>
-                  <!-- Base insulation block -->
-                  <rect x="48" y="4" width="424" height="46" rx="3" fill="url(#kor-grad-iso)"/>
-                  <rect x="48" y="4" width="424" height="46" rx="3" fill="url(#kor-iso-fibers)"/>
-                  <!-- Section dividers (batt seams) -->
-                  <line x1="154" y1="4" x2="154" y2="50" stroke="rgba(180,140,20,0.35)" stroke-width="1.5" stroke-dasharray="4 3"/>
-                  <line x1="260" y1="4" x2="260" y2="50" stroke="rgba(180,140,20,0.35)" stroke-width="1.5" stroke-dasharray="4 3"/>
-                  <line x1="366" y1="4" x2="366" y2="50" stroke="rgba(180,140,20,0.35)" stroke-width="1.5" stroke-dasharray="4 3"/>
-                  <!-- Fluffy edge highlight -->
-                  <path d="M48 4 Q90 0 154 4 Q200 8 260 4 Q320 0 366 4 Q420 8 472 4" stroke="rgba(255,220,80,0.5)" stroke-width="1.5" fill="none"/>
-                  <!-- Thickness indicators -->
-                  <text x="260" y="30" text-anchor="middle" font-size="10" fill="rgba(140,100,10,0.5)" font-weight="600" font-family="Inter, sans-serif">300 mm</text>
+                  <!-- Single centered W-truss (full width, premium detail) -->
+                  <g>
+                    <!-- Top rafters -->
+                    <line x1="60" y1="96" x2="260" y2="8" stroke="url(#kor-wood-main)" stroke-width="8" stroke-linecap="round"/>
+                    <line x1="260" y1="8" x2="460" y2="96" stroke="url(#kor-wood-main)" stroke-width="8" stroke-linecap="round"/>
+                    <!-- Top rafter highlight -->
+                    <line x1="65" y1="93" x2="258" y2="7" stroke="rgba(255,255,255,0.07)" stroke-width="2.5"/>
+                    <line x1="262" y1="7" x2="455" y2="93" stroke="rgba(255,255,255,0.07)" stroke-width="2.5"/>
+                    <!-- Bottom chord -->
+                    <line x1="60" y1="96" x2="460" y2="96" stroke="url(#kor-wood-main)" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="60" y1="93" x2="460" y2="93" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+                    <!-- Horizontal tie beam -->
+                    <line x1="130" y1="55" x2="390" y2="55" stroke="#9a7640" stroke-width="6" stroke-linecap="round"/>
+                    <line x1="130" y1="53" x2="390" y2="53" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+                    <!-- King post (vertical center) -->
+                    <line x1="260" y1="8" x2="260" y2="96" stroke="#9a7640" stroke-width="5.5" stroke-linecap="round"/>
+                    <!-- W-diagonals -->
+                    <line x1="130" y1="55" x2="195" y2="96" stroke="#9a7640" stroke-width="4.5"/>
+                    <line x1="390" y1="55" x2="325" y2="96" stroke="#9a7640" stroke-width="4.5"/>
+                    <!-- Grain overlay on all members -->
+                    <line x1="60" y1="96" x2="260" y2="8" stroke="url(#kor-grain-ts)" stroke-width="7" opacity="0.4"/>
+                    <line x1="260" y1="8" x2="460" y2="96" stroke="url(#kor-grain-ts)" stroke-width="7" opacity="0.4"/>
+                    <!-- Spikplåtar (gusset plates) — metal connector plates -->
+                    <rect x="247" y="2" width="26" height="22" rx="2.5" fill="rgba(195,200,208,0.6)" stroke="rgba(150,155,160,0.55)" stroke-width="0.8"/>
+                    <!-- Gusset plate nail pattern -->
+                    <g fill="rgba(120,125,130,0.35)">
+                      <circle cx="253" cy="9" r="0.9"/><circle cx="258" cy="9" r="0.9"/><circle cx="263" cy="9" r="0.9"/><circle cx="268" cy="9" r="0.9"/>
+                      <circle cx="253" cy="15" r="0.9"/><circle cx="258" cy="15" r="0.9"/><circle cx="263" cy="15" r="0.9"/><circle cx="268" cy="15" r="0.9"/>
+                    </g>
+                    <!-- Left foot gusset -->
+                    <rect x="48" y="86" width="28" height="18" rx="2" fill="rgba(195,200,208,0.55)" stroke="rgba(150,155,160,0.45)" stroke-width="0.7"/>
+                    <g fill="rgba(120,125,130,0.3)">
+                      <circle cx="55" cy="92" r="0.8"/><circle cx="62" cy="92" r="0.8"/><circle cx="69" cy="92" r="0.8"/>
+                      <circle cx="55" cy="98" r="0.8"/><circle cx="62" cy="98" r="0.8"/><circle cx="69" cy="98" r="0.8"/>
+                    </g>
+                    <!-- Right foot gusset -->
+                    <rect x="444" y="86" width="28" height="18" rx="2" fill="rgba(195,200,208,0.55)" stroke="rgba(150,155,160,0.45)" stroke-width="0.7"/>
+                    <g fill="rgba(120,125,130,0.3)">
+                      <circle cx="451" cy="92" r="0.8"/><circle cx="458" cy="92" r="0.8"/><circle cx="465" cy="92" r="0.8"/>
+                      <circle cx="451" cy="98" r="0.8"/><circle cx="458" cy="98" r="0.8"/><circle cx="465" cy="98" r="0.8"/>
+                    </g>
+                    <!-- Tie-beam gusset plates -->
+                    <rect x="120" y="47" width="22" height="16" rx="2" fill="rgba(195,200,208,0.45)" stroke="rgba(150,155,160,0.35)" stroke-width="0.6"/>
+                    <rect x="378" y="47" width="22" height="16" rx="2" fill="rgba(195,200,208,0.45)" stroke="rgba(150,155,160,0.35)" stroke-width="0.6"/>
+                    <!-- Mid-web gusset plates -->
+                    <rect x="185" y="86" width="22" height="16" rx="1.5" fill="rgba(195,200,208,0.4)" stroke="rgba(150,155,160,0.3)" stroke-width="0.5"/>
+                    <rect x="315" y="86" width="22" height="16" rx="1.5" fill="rgba(195,200,208,0.4)" stroke="rgba(150,155,160,0.3)" stroke-width="0.5"/>
+                  </g>
                 </svg>
               </div>
-              <span class="kor-layer-tag">Isolering</span>
+              <span class="kor-layer-tag">Takstolar</span>
               <div class="kor-layer-glow"></div>
             </div>
 
-            <!-- Layer 3: Underlag — plywood / OSB board -->
+            <!-- Layer 4: Råspont — tongue and groove boards -->
+            <div class="kor-layer" data-layer="raspont" tabindex="0">
+              <div class="kor-layer-num">04</div>
+              <div class="kor-layer-shape">
+                <svg viewBox="0 0 520 48" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="kor-grad-rasp" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#dcc8a0"/>
+                      <stop offset="30%" stop-color="#ccb888"/>
+                      <stop offset="100%" stop-color="#bca878"/>
+                    </linearGradient>
+                    <pattern id="kor-grain-rasp" width="40" height="48" patternUnits="userSpaceOnUse">
+                      <path d="M0 6 Q10 4 20 6 Q30 8 40 6" stroke="rgba(140,100,50,0.1)" stroke-width="0.5" fill="none"/>
+                      <path d="M0 16 Q10 14 20 16 Q30 18 40 16" stroke="rgba(140,100,50,0.08)" stroke-width="0.4" fill="none"/>
+                      <path d="M0 26 Q10 24 20 26 Q30 28 40 26" stroke="rgba(140,100,50,0.06)" stroke-width="0.4" fill="none"/>
+                      <path d="M0 36 Q10 34 20 36 Q30 38 40 36" stroke="rgba(140,100,50,0.09)" stroke-width="0.4" fill="none"/>
+                      <circle cx="18" cy="22" r="3" fill="none" stroke="rgba(140,100,50,0.06)" stroke-width="0.4"/>
+                    </pattern>
+                  </defs>
+                  <!-- Individual boards with tongue-and-groove joints -->
+                  <rect x="38" y="3" width="72" height="42" rx="1" fill="url(#kor-grad-rasp)" stroke="rgba(160,130,80,0.4)" stroke-width="0.7"/>
+                  <rect x="38" y="3" width="72" height="42" rx="1" fill="url(#kor-grain-rasp)"/>
+                  <rect x="112" y="3" width="72" height="42" rx="1" fill="url(#kor-grad-rasp)" stroke="rgba(160,130,80,0.4)" stroke-width="0.7" opacity="0.95"/>
+                  <rect x="112" y="3" width="72" height="42" rx="1" fill="url(#kor-grain-rasp)"/>
+                  <rect x="186" y="3" width="72" height="42" rx="1" fill="url(#kor-grad-rasp)" stroke="rgba(160,130,80,0.4)" stroke-width="0.7"/>
+                  <rect x="186" y="3" width="72" height="42" rx="1" fill="url(#kor-grain-rasp)"/>
+                  <rect x="260" y="3" width="72" height="42" rx="1" fill="url(#kor-grad-rasp)" stroke="rgba(160,130,80,0.4)" stroke-width="0.7" opacity="0.97"/>
+                  <rect x="260" y="3" width="72" height="42" rx="1" fill="url(#kor-grain-rasp)"/>
+                  <rect x="334" y="3" width="72" height="42" rx="1" fill="url(#kor-grad-rasp)" stroke="rgba(160,130,80,0.4)" stroke-width="0.7"/>
+                  <rect x="334" y="3" width="72" height="42" rx="1" fill="url(#kor-grain-rasp)"/>
+                  <rect x="408" y="3" width="72" height="42" rx="1" fill="url(#kor-grad-rasp)" stroke="rgba(160,130,80,0.4)" stroke-width="0.7" opacity="0.96"/>
+                  <rect x="408" y="3" width="72" height="42" rx="1" fill="url(#kor-grain-rasp)"/>
+                  <!-- Tongue-and-groove joint lines -->
+                  <line x1="110" y1="3" x2="110" y2="45" stroke="rgba(140,105,55,0.3)" stroke-width="1.8"/>
+                  <line x1="111.5" y1="10" x2="111.5" y2="38" stroke="rgba(140,105,55,0.15)" stroke-width="0.8"/>
+                  <line x1="184" y1="3" x2="184" y2="45" stroke="rgba(140,105,55,0.3)" stroke-width="1.8"/>
+                  <line x1="185.5" y1="10" x2="185.5" y2="38" stroke="rgba(140,105,55,0.15)" stroke-width="0.8"/>
+                  <line x1="258" y1="3" x2="258" y2="45" stroke="rgba(140,105,55,0.3)" stroke-width="1.8"/>
+                  <line x1="259.5" y1="10" x2="259.5" y2="38" stroke="rgba(140,105,55,0.15)" stroke-width="0.8"/>
+                  <line x1="332" y1="3" x2="332" y2="45" stroke="rgba(140,105,55,0.3)" stroke-width="1.8"/>
+                  <line x1="333.5" y1="10" x2="333.5" y2="38" stroke="rgba(140,105,55,0.15)" stroke-width="0.8"/>
+                  <line x1="406" y1="3" x2="406" y2="45" stroke="rgba(140,105,55,0.3)" stroke-width="1.8"/>
+                  <line x1="407.5" y1="10" x2="407.5" y2="38" stroke="rgba(140,105,55,0.15)" stroke-width="0.8"/>
+                  <!-- Knot details -->
+                  <ellipse cx="78" cy="20" rx="4" ry="5" fill="none" stroke="rgba(120,80,30,0.12)" stroke-width="0.8"/>
+                  <ellipse cx="78" cy="20" rx="2" ry="2.5" fill="rgba(120,80,30,0.06)"/>
+                  <ellipse cx="230" cy="30" rx="3.5" ry="4.5" fill="none" stroke="rgba(120,80,30,0.1)" stroke-width="0.7"/>
+                  <ellipse cx="370" cy="16" rx="3" ry="4" fill="none" stroke="rgba(120,80,30,0.1)" stroke-width="0.7"/>
+                  <ellipse cx="450" cy="28" rx="4" ry="5" fill="none" stroke="rgba(120,80,30,0.08)" stroke-width="0.6"/>
+                </svg>
+              </div>
+              <span class="kor-layer-tag">Råspont</span>
+              <div class="kor-layer-glow"></div>
+            </div>
+
+            <!-- Layer 3: Underlagspapp -->
             <div class="kor-layer" data-layer="underlag" tabindex="0">
               <div class="kor-layer-num">03</div>
               <div class="kor-layer-shape">
-                <svg viewBox="0 0 520 40" preserveAspectRatio="none">
+                <svg viewBox="0 0 520 38" preserveAspectRatio="none">
                   <defs>
-                    <linearGradient id="kor-grad-underlag" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#6a6a6a"/>
-                      <stop offset="50%" stop-color="#585858"/>
-                      <stop offset="100%" stop-color="#4a4a4a"/>
+                    <linearGradient id="kor-grad-papp" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#555"/>
+                      <stop offset="50%" stop-color="#484848"/>
+                      <stop offset="100%" stop-color="#3e3e3e"/>
                     </linearGradient>
-                    <pattern id="kor-underlag-tex" width="16" height="16" patternUnits="userSpaceOnUse">
-                      <rect width="16" height="16" fill="#585858"/>
-                      <circle cx="4" cy="4" r="0.5" fill="rgba(255,255,255,0.06)"/>
-                      <circle cx="12" cy="10" r="0.4" fill="rgba(255,255,255,0.04)"/>
-                      <circle cx="8" cy="14" r="0.3" fill="rgba(255,255,255,0.05)"/>
+                    <pattern id="kor-papp-tex" width="10" height="10" patternUnits="userSpaceOnUse">
+                      <rect width="10" height="10" fill="#4a4a4a"/>
+                      <circle cx="2" cy="3" r="0.4" fill="rgba(255,255,255,0.04)"/>
+                      <circle cx="7" cy="7" r="0.3" fill="rgba(255,255,255,0.03)"/>
+                      <circle cx="5" cy="1" r="0.25" fill="rgba(255,255,255,0.03)"/>
                     </pattern>
                   </defs>
-                  <!-- Underlagspapp / board -->
-                  <rect x="42" y="3" width="436" height="34" rx="2" fill="url(#kor-grad-underlag)" stroke="rgba(80,80,80,0.6)" stroke-width="0.8"/>
-                  <rect x="42" y="3" width="436" height="34" rx="2" fill="url(#kor-underlag-tex)"/>
-                  <!-- Overlap seams -->
-                  <line x1="180" y1="3" x2="180" y2="37" stroke="rgba(90,90,90,0.5)" stroke-width="1.2" stroke-dasharray="5 3"/>
-                  <line x1="340" y1="3" x2="340" y2="37" stroke="rgba(90,90,90,0.5)" stroke-width="1.2" stroke-dasharray="5 3"/>
-                  <!-- Staple marks -->
-                  <g opacity="0.35">
-                    <rect x="100" y="12" width="3" height="8" rx="0.5" fill="#888"/>
-                    <rect x="220" y="16" width="3" height="8" rx="0.5" fill="#888"/>
-                    <rect x="300" y="10" width="3" height="8" rx="0.5" fill="#888"/>
-                    <rect x="400" y="14" width="3" height="8" rx="0.5" fill="#888"/>
+                  <!-- Three overlapping felt strips -->
+                  <rect x="36" y="2" width="175" height="34" rx="1.5" fill="url(#kor-grad-papp)" stroke="rgba(70,70,70,0.5)" stroke-width="0.6"/>
+                  <rect x="36" y="2" width="175" height="34" fill="url(#kor-papp-tex)"/>
+                  <rect x="196" y="2" width="175" height="34" rx="1.5" fill="url(#kor-grad-papp)" stroke="rgba(70,70,70,0.5)" stroke-width="0.6" opacity="0.97"/>
+                  <rect x="196" y="2" width="175" height="34" fill="url(#kor-papp-tex)"/>
+                  <rect x="356" y="2" width="128" height="34" rx="1.5" fill="url(#kor-grad-papp)" stroke="rgba(70,70,70,0.5)" stroke-width="0.6"/>
+                  <rect x="356" y="2" width="128" height="34" fill="url(#kor-papp-tex)"/>
+                  <!-- Overlap seams with thickness shadow -->
+                  <line x1="207" y1="2" x2="207" y2="36" stroke="rgba(30,30,30,0.5)" stroke-width="2"/>
+                  <line x1="209" y1="2" x2="209" y2="36" stroke="rgba(80,80,80,0.3)" stroke-width="0.8"/>
+                  <line x1="367" y1="2" x2="367" y2="36" stroke="rgba(30,30,30,0.5)" stroke-width="2"/>
+                  <line x1="369" y1="2" x2="369" y2="36" stroke="rgba(80,80,80,0.3)" stroke-width="0.8"/>
+                  <!-- Staple/tack marks -->
+                  <g opacity="0.4">
+                    <path d="M80 8 L80 14 M78 8 L82 8" stroke="#999" stroke-width="0.8"/>
+                    <path d="M140 12 L140 18 M138 12 L142 12" stroke="#999" stroke-width="0.8"/>
+                    <path d="M250 8 L250 14 M248 8 L252 8" stroke="#999" stroke-width="0.8"/>
+                    <path d="M320 14 L320 20 M318 14 L322 14" stroke="#999" stroke-width="0.8"/>
+                    <path d="M420 10 L420 16 M418 10 L422 10" stroke="#999" stroke-width="0.8"/>
                   </g>
-                  <!-- Label -->
-                  <text x="260" y="24" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.25)" font-weight="600" font-family="Inter, sans-serif">UNDERLAGSPAPP</text>
+                  <!-- "YEP 2500" print mark (brand marking on felt) -->
+                  <text x="120" y="24" font-size="5" fill="rgba(255,255,255,0.08)" font-weight="700" font-family="Inter, sans-serif" letter-spacing="2">YEP 2500</text>
+                  <text x="290" y="24" font-size="5" fill="rgba(255,255,255,0.08)" font-weight="700" font-family="Inter, sans-serif" letter-spacing="2">YEP 2500</text>
                 </svg>
               </div>
-              <span class="kor-layer-tag">Underlag</span>
+              <span class="kor-layer-tag">Underlagspapp</span>
               <div class="kor-layer-glow"></div>
             </div>
 
-            <!-- Layer 2: Läkt — battens / counter-battens -->
+            <!-- Layer 2: Bär- & ströläkt -->
             <div class="kor-layer" data-layer="lakt" tabindex="0">
               <div class="kor-layer-num">02</div>
               <div class="kor-layer-shape">
-                <svg viewBox="0 0 520 50" preserveAspectRatio="none">
+                <svg viewBox="0 0 520 52" preserveAspectRatio="none">
                   <defs>
-                    <linearGradient id="kor-grad-lakt" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#c8a86e"/>
-                      <stop offset="50%" stop-color="#b89858"/>
-                      <stop offset="100%" stop-color="#a08040"/>
+                    <linearGradient id="kor-grad-lakt-v2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#d4b888"/>
+                      <stop offset="35%" stop-color="#c4a870"/>
+                      <stop offset="100%" stop-color="#b09058"/>
                     </linearGradient>
-                    <linearGradient id="kor-grad-lakt2" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#bfa060"/>
-                      <stop offset="100%" stop-color="#9a7838"/>
+                    <linearGradient id="kor-grad-stro-v2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#c8a06a"/>
+                      <stop offset="100%" stop-color="#a88850"/>
                     </linearGradient>
+                    <pattern id="kor-grain-lakt" width="50" height="10" patternUnits="userSpaceOnUse">
+                      <path d="M0 4 Q12 2 25 4 Q38 6 50 4" stroke="rgba(130,90,35,0.1)" stroke-width="0.4" fill="none"/>
+                      <path d="M0 8 Q12 6 25 8 Q38 10 50 8" stroke="rgba(130,90,35,0.07)" stroke-width="0.3" fill="none"/>
+                    </pattern>
                   </defs>
-                  <!-- Horizontal battens (bärläkt) -->
-                  <rect x="38" y="3" width="444" height="10" rx="2" fill="url(#kor-grad-lakt)" stroke="#8a7040" stroke-width="0.7"/>
-                  <rect x="38" y="20" width="444" height="10" rx="2" fill="url(#kor-grad-lakt)" stroke="#8a7040" stroke-width="0.7"/>
-                  <rect x="38" y="37" width="444" height="10" rx="2" fill="url(#kor-grad-lakt)" stroke="#8a7040" stroke-width="0.7"/>
-                  <!-- Wood grain -->
-                  <line x1="90" y1="4" x2="90" y2="12" stroke="rgba(120,90,40,0.15)" stroke-width="0.5"/>
-                  <line x1="210" y1="4" x2="210" y2="12" stroke="rgba(120,90,40,0.15)" stroke-width="0.5"/>
-                  <line x1="370" y1="4" x2="370" y2="12" stroke="rgba(120,90,40,0.15)" stroke-width="0.5"/>
-                  <line x1="150" y1="21" x2="150" y2="29" stroke="rgba(120,90,40,0.15)" stroke-width="0.5"/>
-                  <line x1="310" y1="21" x2="310" y2="29" stroke="rgba(120,90,40,0.15)" stroke-width="0.5"/>
-                  <line x1="440" y1="38" x2="440" y2="46" stroke="rgba(120,90,40,0.15)" stroke-width="0.5"/>
-                  <!-- Vertical counter-battens (ströläkt) -->
-                  <rect x="110" y="13" width="8" height="7" rx="1" fill="url(#kor-grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
-                  <rect x="110" y="30" width="8" height="7" rx="1" fill="url(#kor-grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
-                  <rect x="218" y="13" width="8" height="7" rx="1" fill="url(#kor-grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
-                  <rect x="218" y="30" width="8" height="7" rx="1" fill="url(#kor-grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
-                  <rect x="326" y="13" width="8" height="7" rx="1" fill="url(#kor-grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
-                  <rect x="326" y="30" width="8" height="7" rx="1" fill="url(#kor-grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
-                  <rect x="420" y="13" width="8" height="7" rx="1" fill="url(#kor-grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
-                  <rect x="420" y="30" width="8" height="7" rx="1" fill="url(#kor-grad-lakt2)" stroke="#8a7040" stroke-width="0.4"/>
-                  <!-- Nail heads -->
-                  <circle cx="114" cy="8" r="1.5" fill="#6a5a30"/>
-                  <circle cx="222" cy="8" r="1.5" fill="#6a5a30"/>
-                  <circle cx="330" cy="8" r="1.5" fill="#6a5a30"/>
-                  <circle cx="424" cy="8" r="1.5" fill="#6a5a30"/>
-                  <circle cx="114" cy="25" r="1.5" fill="#6a5a30"/>
-                  <circle cx="222" cy="25" r="1.5" fill="#6a5a30"/>
-                  <circle cx="330" cy="25" r="1.5" fill="#6a5a30"/>
-                  <circle cx="424" cy="25" r="1.5" fill="#6a5a30"/>
+                  <!-- Horizontal bärläkt (3 battens) -->
+                  <rect x="36" y="2" width="448" height="11" rx="2" fill="url(#kor-grad-lakt-v2)" stroke="rgba(140,110,60,0.4)" stroke-width="0.7"/>
+                  <rect x="36" y="2" width="448" height="11" fill="url(#kor-grain-lakt)"/>
+                  <rect x="36" y="19" width="448" height="11" rx="2" fill="url(#kor-grad-lakt-v2)" stroke="rgba(140,110,60,0.4)" stroke-width="0.7"/>
+                  <rect x="36" y="19" width="448" height="11" fill="url(#kor-grain-lakt)"/>
+                  <rect x="36" y="38" width="448" height="11" rx="2" fill="url(#kor-grad-lakt-v2)" stroke="rgba(140,110,60,0.4)" stroke-width="0.7"/>
+                  <rect x="36" y="38" width="448" height="11" fill="url(#kor-grain-lakt)"/>
+                  <!-- End-grain on cut ends -->
+                  <rect x="36" y="2" width="3" height="11" rx="0.5" fill="rgba(160,120,60,0.3)"/>
+                  <rect x="36" y="19" width="3" height="11" rx="0.5" fill="rgba(160,120,60,0.3)"/>
+                  <rect x="36" y="38" width="3" height="11" rx="0.5" fill="rgba(160,120,60,0.3)"/>
+                  <!-- Vertical ströläkt (counter-battens crossing between) -->
+                  <rect x="105" y="13" width="9" height="6" rx="1.2" fill="url(#kor-grad-stro-v2)" stroke="rgba(130,100,50,0.35)" stroke-width="0.5"/>
+                  <rect x="105" y="30" width="9" height="8" rx="1.2" fill="url(#kor-grad-stro-v2)" stroke="rgba(130,100,50,0.35)" stroke-width="0.5"/>
+                  <rect x="215" y="13" width="9" height="6" rx="1.2" fill="url(#kor-grad-stro-v2)" stroke="rgba(130,100,50,0.35)" stroke-width="0.5"/>
+                  <rect x="215" y="30" width="9" height="8" rx="1.2" fill="url(#kor-grad-stro-v2)" stroke="rgba(130,100,50,0.35)" stroke-width="0.5"/>
+                  <rect x="325" y="13" width="9" height="6" rx="1.2" fill="url(#kor-grad-stro-v2)" stroke="rgba(130,100,50,0.35)" stroke-width="0.5"/>
+                  <rect x="325" y="30" width="9" height="8" rx="1.2" fill="url(#kor-grad-stro-v2)" stroke="rgba(130,100,50,0.35)" stroke-width="0.5"/>
+                  <rect x="430" y="13" width="9" height="6" rx="1.2" fill="url(#kor-grad-stro-v2)" stroke="rgba(130,100,50,0.35)" stroke-width="0.5"/>
+                  <rect x="430" y="30" width="9" height="8" rx="1.2" fill="url(#kor-grad-stro-v2)" stroke="rgba(130,100,50,0.35)" stroke-width="0.5"/>
+                  <!-- Galvanized ring nails -->
+                  <circle cx="109" cy="8" r="1.8" fill="rgba(180,185,190,0.6)" stroke="rgba(120,125,130,0.4)" stroke-width="0.4"/>
+                  <circle cx="219" cy="8" r="1.8" fill="rgba(180,185,190,0.6)" stroke="rgba(120,125,130,0.4)" stroke-width="0.4"/>
+                  <circle cx="329" cy="8" r="1.8" fill="rgba(180,185,190,0.6)" stroke="rgba(120,125,130,0.4)" stroke-width="0.4"/>
+                  <circle cx="434" cy="8" r="1.8" fill="rgba(180,185,190,0.6)" stroke="rgba(120,125,130,0.4)" stroke-width="0.4"/>
+                  <circle cx="109" cy="25" r="1.8" fill="rgba(180,185,190,0.6)" stroke="rgba(120,125,130,0.4)" stroke-width="0.4"/>
+                  <circle cx="219" cy="25" r="1.8" fill="rgba(180,185,190,0.6)" stroke="rgba(120,125,130,0.4)" stroke-width="0.4"/>
+                  <circle cx="329" cy="25" r="1.8" fill="rgba(180,185,190,0.6)" stroke="rgba(120,125,130,0.4)" stroke-width="0.4"/>
+                  <circle cx="434" cy="25" r="1.8" fill="rgba(180,185,190,0.6)" stroke="rgba(120,125,130,0.4)" stroke-width="0.4"/>
                 </svg>
               </div>
               <span class="kor-layer-tag">Läkt</span>
               <div class="kor-layer-glow"></div>
             </div>
 
-            <!-- Layer 1 (top): Korrugerad plåt — corrugated steel sheet -->
+            <!-- Layer 1 (top): Korrugerad plåt -->
             <div class="kor-layer active" data-layer="plat" tabindex="0">
               <div class="kor-layer-num">01</div>
               <div class="kor-layer-shape">
-                <svg viewBox="0 0 520 70" preserveAspectRatio="none">
+                <svg viewBox="0 0 520 72" preserveAspectRatio="none">
                   <defs>
-                    <linearGradient id="kor-grad-plat" x1="0" y1="0" x2="0.2" y2="1">
-                      <stop offset="0%" stop-color="#5a8aaa"/>
-                      <stop offset="40%" stop-color="#4a7a9a"/>
-                      <stop offset="100%" stop-color="#3a6a8a"/>
+                    <linearGradient id="kor-grad-plat-v2" x1="0" y1="0" x2="0.15" y2="1">
+                      <stop offset="0%" stop-color="#7aaabe"/>
+                      <stop offset="25%" stop-color="#6898b0"/>
+                      <stop offset="60%" stop-color="#5486a0"/>
+                      <stop offset="100%" stop-color="#467890"/>
                     </linearGradient>
-                    <linearGradient id="kor-grad-shine" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="rgba(255,255,255,0.18)"/>
+                    <linearGradient id="kor-shine-v2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="rgba(255,255,255,0.22)"/>
+                      <stop offset="40%" stop-color="rgba(255,255,255,0.08)"/>
                       <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
                     </linearGradient>
+                    <linearGradient id="kor-edge-v2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#5486a0"/>
+                      <stop offset="100%" stop-color="#3a6880"/>
+                    </linearGradient>
                   </defs>
-                  <!-- Base corrugated sheet -->
-                  <rect x="32" y="4" width="456" height="62" rx="3" fill="url(#kor-grad-plat)" stroke="#4a7a9a" stroke-width="1"/>
-                  <!-- Corrugation ridges — the signature wave pattern -->
-                  <path d="M32 20 Q48 10 64 20 Q80 30 96 20 Q112 10 128 20 Q144 30 160 20 Q176 10 192 20 Q208 30 224 20 Q240 10 256 20 Q272 30 288 20 Q304 10 320 20 Q336 30 352 20 Q368 10 384 20 Q400 30 416 20 Q432 10 448 20 Q464 30 488 20" stroke="rgba(80,140,180,0.5)" stroke-width="1.2" fill="none"/>
-                  <path d="M32 35 Q48 25 64 35 Q80 45 96 35 Q112 25 128 35 Q144 45 160 35 Q176 25 192 35 Q208 45 224 35 Q240 25 256 35 Q272 45 288 35 Q304 25 320 35 Q336 45 352 35 Q368 25 384 35 Q400 45 416 35 Q432 25 448 35 Q464 45 488 35" stroke="rgba(80,140,180,0.4)" stroke-width="1" fill="none"/>
-                  <path d="M32 50 Q48 40 64 50 Q80 60 96 50 Q112 40 128 50 Q144 60 160 50 Q176 40 192 50 Q208 60 224 50 Q240 40 256 50 Q272 60 288 50 Q304 40 320 50 Q336 60 352 50 Q368 40 384 50 Q400 60 416 50 Q432 40 448 50 Q464 60 488 50" stroke="rgba(80,140,180,0.35)" stroke-width="0.9" fill="none"/>
-                  <!-- Shine / reflection -->
-                  <rect x="32" y="4" width="456" height="22" rx="3" fill="url(#kor-grad-shine)"/>
-                  <!-- Screw heads -->
-                  <circle cx="80" cy="20" r="2.2" fill="#3a6070" stroke="#2a5060" stroke-width="0.5"/>
-                  <line x1="78.5" y1="20" x2="81.5" y2="20" stroke="#2a5060" stroke-width="0.5"/>
-                  <circle cx="160" cy="20" r="2.2" fill="#3a6070" stroke="#2a5060" stroke-width="0.5"/>
-                  <line x1="158.5" y1="20" x2="161.5" y2="20" stroke="#2a5060" stroke-width="0.5"/>
-                  <circle cx="260" cy="20" r="2.2" fill="#3a6070" stroke="#2a5060" stroke-width="0.5"/>
-                  <line x1="258.5" y1="20" x2="261.5" y2="20" stroke="#2a5060" stroke-width="0.5"/>
-                  <circle cx="360" cy="20" r="2.2" fill="#3a6070" stroke="#2a5060" stroke-width="0.5"/>
-                  <line x1="358.5" y1="20" x2="361.5" y2="20" stroke="#2a5060" stroke-width="0.5"/>
-                  <circle cx="440" cy="20" r="2.2" fill="#3a6070" stroke="#2a5060" stroke-width="0.5"/>
-                  <line x1="438.5" y1="20" x2="441.5" y2="20" stroke="#2a5060" stroke-width="0.5"/>
-                  <!-- Overlap joint line -->
-                  <line x1="260" y1="4" x2="260" y2="66" stroke="rgba(50,100,130,0.25)" stroke-width="1"/>
-                  <!-- Drip edge -->
-                  <line x1="32" y1="64" x2="488" y2="64" stroke="#3a6a8a" stroke-width="2"/>
+                  <!-- Main corrugated sheet body -->
+                  <rect x="30" y="3" width="460" height="63" rx="2.5" fill="url(#kor-grad-plat-v2)" stroke="rgba(70,120,150,0.5)" stroke-width="0.8"/>
+                  <!-- Corrugation profile ridges (trapezoid wave) -->
+                  <path d="M30 16 L42 10 L56 10 L68 16 L80 22 L92 22 L104 16 L116 10 L130 10 L142 16 L154 22 L166 22 L178 16 L190 10 L204 10 L216 16 L228 22 L240 22 L252 16 L264 10 L278 10 L290 16 L302 22 L314 22 L326 16 L338 10 L352 10 L364 16 L376 22 L388 22 L400 16 L412 10 L426 10 L438 16 L450 22 L462 22 L474 16 L486 10 L490 10" stroke="rgba(90,145,175,0.45)" stroke-width="1.1" fill="none"/>
+                  <path d="M30 34 L42 28 L56 28 L68 34 L80 40 L92 40 L104 34 L116 28 L130 28 L142 34 L154 40 L166 40 L178 34 L190 28 L204 28 L216 34 L228 40 L240 40 L252 34 L264 28 L278 28 L290 34 L302 40 L314 40 L326 34 L338 28 L352 28 L364 34 L376 40 L388 40 L400 34 L412 28 L426 28 L438 34 L450 40 L462 40 L474 34 L486 28 L490 28" stroke="rgba(90,145,175,0.35)" stroke-width="0.9" fill="none"/>
+                  <path d="M30 52 L42 46 L56 46 L68 52 L80 58 L92 58 L104 52 L116 46 L130 46 L142 52 L154 58 L166 58 L178 52 L190 46 L204 46 L216 52 L228 58 L240 58 L252 52 L264 46 L278 46 L290 52 L302 58 L314 58 L326 52 L338 46 L352 46 L364 52 L376 58 L388 58 L400 52 L412 46 L426 46 L438 52 L450 58 L462 58 L474 52 L486 46 L490 46" stroke="rgba(90,145,175,0.28)" stroke-width="0.8" fill="none"/>
+                  <!-- Shine / specular highlight strip -->
+                  <rect x="30" y="3" width="460" height="20" rx="2.5" fill="url(#kor-shine-v2)"/>
+                  <!-- Sheet overlap joint -->
+                  <line x1="260" y1="3" x2="260" y2="66" stroke="rgba(60,100,130,0.2)" stroke-width="1.5"/>
+                  <line x1="261.5" y1="3" x2="261.5" y2="66" stroke="rgba(100,150,180,0.1)" stroke-width="0.5"/>
+                  <!-- Hex-head self-drilling screws with EPDM washers -->
+                  <g>
+                    <circle cx="86" cy="16" r="3" fill="rgba(70,110,140,0.6)" stroke="rgba(50,90,120,0.5)" stroke-width="0.6"/>
+                    <circle cx="86" cy="16" r="4.5" fill="none" stroke="rgba(50,90,120,0.15)" stroke-width="0.8"/>
+                    <path d="M84.5 15 L87.5 17 M84.5 17 L87.5 15" stroke="rgba(40,70,90,0.4)" stroke-width="0.5"/>
+                  </g>
+                  <g>
+                    <circle cx="178" cy="16" r="3" fill="rgba(70,110,140,0.6)" stroke="rgba(50,90,120,0.5)" stroke-width="0.6"/>
+                    <circle cx="178" cy="16" r="4.5" fill="none" stroke="rgba(50,90,120,0.15)" stroke-width="0.8"/>
+                    <path d="M176.5 15 L179.5 17 M176.5 17 L179.5 15" stroke="rgba(40,70,90,0.4)" stroke-width="0.5"/>
+                  </g>
+                  <g>
+                    <circle cx="326" cy="16" r="3" fill="rgba(70,110,140,0.6)" stroke="rgba(50,90,120,0.5)" stroke-width="0.6"/>
+                    <circle cx="326" cy="16" r="4.5" fill="none" stroke="rgba(50,90,120,0.15)" stroke-width="0.8"/>
+                    <path d="M324.5 15 L327.5 17 M324.5 17 L327.5 15" stroke="rgba(40,70,90,0.4)" stroke-width="0.5"/>
+                  </g>
+                  <g>
+                    <circle cx="438" cy="16" r="3" fill="rgba(70,110,140,0.6)" stroke="rgba(50,90,120,0.5)" stroke-width="0.6"/>
+                    <circle cx="438" cy="16" r="4.5" fill="none" stroke="rgba(50,90,120,0.15)" stroke-width="0.8"/>
+                    <path d="M436.5 15 L439.5 17 M436.5 17 L439.5 15" stroke="rgba(40,70,90,0.4)" stroke-width="0.5"/>
+                  </g>
+                  <!-- Drip edge (fotplåt) -->
+                  <rect x="30" y="62" width="460" height="5" rx="1" fill="url(#kor-edge-v2)" stroke="rgba(50,90,120,0.3)" stroke-width="0.5"/>
+                  <line x1="30" y1="67" x2="490" y2="67" stroke="rgba(60,100,130,0.25)" stroke-width="1"/>
                 </svg>
               </div>
               <span class="kor-layer-tag">Plåt</span>
@@ -406,31 +481,53 @@
             <div class="kor-info-card active" data-info="plat">
               <div class="kor-info-icon">
                 <svg viewBox="0 0 48 48" fill="none">
-                  <rect x="4" y="8" width="40" height="32" rx="4" stroke="#19A8FF" stroke-width="2.5"/>
-                  <path d="M4 18 Q12 12 20 18 Q28 24 36 18 Q40 15 44 18" stroke="#19A8FF" stroke-width="1.5" opacity="0.5"/>
-                  <path d="M4 28 Q12 22 20 28 Q28 34 36 28 Q40 25 44 28" stroke="#19A8FF" stroke-width="1.5" opacity="0.4"/>
+                  <defs>
+                    <linearGradient id="ic-plat-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7aaabe"/><stop offset="40%" stop-color="#6898b0"/><stop offset="100%" stop-color="#5486a0"/></linearGradient>
+                    <linearGradient id="ic-plat-shine" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.25)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
+                    <linearGradient id="ic-plat-edge" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5486a0"/><stop offset="100%" stop-color="#3a6880"/></linearGradient>
+                  </defs>
+                  <!-- Sheet body -->
+                  <rect x="2" y="5" width="44" height="36" rx="2.5" fill="url(#ic-plat-body)"/>
+                  <!-- Specular shine strip -->
+                  <rect x="2" y="5" width="44" height="13" rx="2.5" fill="url(#ic-plat-shine)"/>
+                  <!-- Trapez corrugation profile (3 rows) -->
+                  <path d="M2 13 L6 9 L11 9 L15 13 L19 17 L24 17 L28 13 L32 9 L37 9 L41 13 L46 17" stroke="rgba(80,130,160,0.5)" stroke-width="0.9" fill="none"/>
+                  <path d="M2 22 L6 18 L11 18 L15 22 L19 26 L24 26 L28 22 L32 18 L37 18 L41 22 L46 26" stroke="rgba(80,130,160,0.38)" stroke-width="0.8" fill="none"/>
+                  <path d="M2 31 L6 27 L11 27 L15 31 L19 35 L24 35 L28 31 L32 27 L37 27 L41 31 L46 35" stroke="rgba(80,130,160,0.28)" stroke-width="0.7" fill="none"/>
+                  <!-- Sheet overlap seam -->
+                  <line x1="24" y1="5" x2="24" y2="41" stroke="rgba(50,90,120,0.15)" stroke-width="1"/>
+                  <!-- Hex screws with EPDM washer detail -->
+                  <circle cx="11" cy="13" r="2.2" fill="rgba(60,100,130,0.55)" stroke="rgba(45,85,115,0.45)" stroke-width="0.5"/>
+                  <circle cx="11" cy="13" r="3.4" fill="none" stroke="rgba(45,85,115,0.12)" stroke-width="0.6"/>
+                  <path d="M10 12.2 L12 13.8 M10 13.8 L12 12.2" stroke="rgba(35,65,85,0.35)" stroke-width="0.35"/>
+                  <circle cx="37" cy="22" r="2.2" fill="rgba(60,100,130,0.55)" stroke="rgba(45,85,115,0.45)" stroke-width="0.5"/>
+                  <circle cx="37" cy="22" r="3.4" fill="none" stroke="rgba(45,85,115,0.12)" stroke-width="0.6"/>
+                  <!-- Drip edge (fotplåt) -->
+                  <rect x="2" y="38" width="44" height="4" rx="1" fill="url(#ic-plat-edge)" stroke="rgba(50,90,120,0.25)" stroke-width="0.4"/>
+                  <!-- Bottom shadow line -->
+                  <line x1="2" y1="42" x2="46" y2="42" stroke="rgba(50,90,120,0.2)" stroke-width="0.8"/>
                 </svg>
               </div>
               <div class="kor-info-step">Lager 01</div>
               <h3>Korrugerad plåt</h3>
-              <p>Den yttre, väderskyddande ytan. Vågprofilen ger exceptionell styrka trots minimal vikt och leder vatten effektivt nedåt. Plastisol- eller polyesterbelagd för maximal livslängd.</p>
+              <p>Den yttre, väderskyddande ytan. Vågprofilen ger exceptionell styrka trots minimal vikt och leder vatten effektivt nedåt. Plastisol- eller polyesterbelagd för maximal livslängd och UV-skydd.</p>
               <div class="kor-info-specs">
                 <div class="kor-spec">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                   <div>
                     <span class="kor-spec-label">Livslängd</span>
-                    <span class="kor-spec-val">40–60 år</span>
+                    <span class="kor-spec-val">30–40 år</span>
                   </div>
                 </div>
                 <div class="kor-spec">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M12 3v18M5 8h14l-2 13H7L5 8z"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M12 3v18M5 8h14l-2 13H7L5 8z"/></svg>
                   <div>
                     <span class="kor-spec-label">Tjocklek</span>
                     <span class="kor-spec-val">0.5–0.7 mm</span>
                   </div>
                 </div>
                 <div class="kor-spec">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
                   <div>
                     <span class="kor-spec-label">Vattentäthet</span>
                     <span class="kor-spec-val">100 %</span>
@@ -443,38 +540,59 @@
             <div class="kor-info-card" data-info="lakt">
               <div class="kor-info-icon">
                 <svg viewBox="0 0 48 48" fill="none">
-                  <rect x="4" y="10" width="40" height="6" rx="2" stroke="#c8a86e" stroke-width="2.5"/>
-                  <rect x="4" y="22" width="40" height="6" rx="2" stroke="#c8a86e" stroke-width="2.5"/>
-                  <rect x="4" y="34" width="40" height="6" rx="2" stroke="#c8a86e" stroke-width="2.5"/>
-                  <rect x="14" y="16" width="5" height="6" rx="1" fill="#c8a86e" opacity="0.4"/>
-                  <rect x="29" y="16" width="5" height="6" rx="1" fill="#c8a86e" opacity="0.4"/>
-                  <rect x="14" y="28" width="5" height="6" rx="1" fill="#c8a86e" opacity="0.4"/>
-                  <rect x="29" y="28" width="5" height="6" rx="1" fill="#c8a86e" opacity="0.4"/>
+                  <defs>
+                    <linearGradient id="ic-lakt-bar" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d8c090"/><stop offset="100%" stop-color="#b89858"/></linearGradient>
+                    <linearGradient id="ic-lakt-stro" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c8a868"/><stop offset="100%" stop-color="#a88848"/></linearGradient>
+                  </defs>
+                  <!-- 3 horizontal bärläkt with depth -->
+                  <rect x="3" y="7" width="42" height="7" rx="1.8" fill="url(#ic-lakt-bar)" stroke="rgba(150,120,60,0.45)" stroke-width="0.7"/>
+                  <rect x="3" y="7" width="42" height="2.5" rx="1.8" fill="rgba(255,255,255,0.12)"/>
+                  <rect x="3" y="20" width="42" height="7" rx="1.8" fill="url(#ic-lakt-bar)" stroke="rgba(150,120,60,0.45)" stroke-width="0.7"/>
+                  <rect x="3" y="20" width="42" height="2.5" rx="1.8" fill="rgba(255,255,255,0.12)"/>
+                  <rect x="3" y="33" width="42" height="7" rx="1.8" fill="url(#ic-lakt-bar)" stroke="rgba(150,120,60,0.45)" stroke-width="0.7"/>
+                  <rect x="3" y="33" width="42" height="2.5" rx="1.8" fill="rgba(255,255,255,0.12)"/>
+                  <!-- End-grain -->
+                  <rect x="3" y="7" width="2.5" height="7" rx="0.8" fill="rgba(140,110,50,0.25)"/>
+                  <rect x="3" y="20" width="2.5" height="7" rx="0.8" fill="rgba(140,110,50,0.25)"/>
+                  <rect x="3" y="33" width="2.5" height="7" rx="0.8" fill="rgba(140,110,50,0.25)"/>
+                  <!-- Ströläkt crossing -->
+                  <rect x="14" y="14" width="7" height="6" rx="1.2" fill="url(#ic-lakt-stro)" stroke="rgba(140,110,50,0.35)" stroke-width="0.5"/>
+                  <rect x="30" y="14" width="7" height="6" rx="1.2" fill="url(#ic-lakt-stro)" stroke="rgba(140,110,50,0.35)" stroke-width="0.5"/>
+                  <rect x="14" y="27" width="7" height="6" rx="1.2" fill="url(#ic-lakt-stro)" stroke="rgba(140,110,50,0.35)" stroke-width="0.5"/>
+                  <rect x="30" y="27" width="7" height="6" rx="1.2" fill="url(#ic-lakt-stro)" stroke="rgba(140,110,50,0.35)" stroke-width="0.5"/>
+                  <!-- Ring nails -->
+                  <circle cx="17" cy="11" r="1.6" fill="rgba(175,180,185,0.55)" stroke="rgba(120,125,130,0.35)" stroke-width="0.4"/>
+                  <circle cx="33" cy="11" r="1.6" fill="rgba(175,180,185,0.55)" stroke="rgba(120,125,130,0.35)" stroke-width="0.4"/>
+                  <circle cx="17" cy="24" r="1.6" fill="rgba(175,180,185,0.55)" stroke="rgba(120,125,130,0.35)" stroke-width="0.4"/>
+                  <circle cx="33" cy="24" r="1.6" fill="rgba(175,180,185,0.55)" stroke="rgba(120,125,130,0.35)" stroke-width="0.4"/>
+                  <!-- Wood grain lines -->
+                  <path d="M8 9 Q15 8 25 9 Q35 10 42 9" stroke="rgba(130,95,35,0.08)" stroke-width="0.4" fill="none"/>
+                  <path d="M8 22 Q15 21 25 22 Q35 23 42 22" stroke="rgba(130,95,35,0.08)" stroke-width="0.4" fill="none"/>
                 </svg>
               </div>
               <div class="kor-info-step">Lager 02</div>
               <h3>Bärläkt &amp; ströläkt</h3>
-              <p>Horisontella och vertikala träreglar som skapar ventilationsutrymme och ger plåten en stabil infästningsgrund. Ströläkten säkerställer luftcirkulation under plåten.</p>
+              <p>Horisontella och vertikala träreglar som skapar ventilationsutrymme och ger plåten en stabil infästningsgrund. Ströläkten säkerställer luftcirkulation under plåten som förhindrar kondens.</p>
               <div class="kor-info-specs">
                 <div class="kor-spec">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8a86e" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(176,144,88,0.8)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
                   <div>
                     <span class="kor-spec-label">Dimension</span>
-                    <span class="kor-spec-val">25×38 mm</span>
+                    <span class="kor-spec-val">25×48 mm</span>
                   </div>
                 </div>
                 <div class="kor-spec">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8a86e" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(176,144,88,0.8)" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                   <div>
                     <span class="kor-spec-label">c/c avstånd</span>
                     <span class="kor-spec-val">~350 mm</span>
                   </div>
                 </div>
                 <div class="kor-spec">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8a86e" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(176,144,88,0.8)" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
                   <div>
                     <span class="kor-spec-label">Material</span>
-                    <span class="kor-spec-val">Tryckimpreg.</span>
+                    <span class="kor-spec-val">Gran</span>
                   </div>
                 </div>
               </div>
@@ -484,12 +602,28 @@
             <div class="kor-info-card" data-info="underlag">
               <div class="kor-info-icon">
                 <svg viewBox="0 0 48 48" fill="none">
-                  <rect x="4" y="12" width="40" height="24" rx="3" stroke="#6a6a6a" stroke-width="2.5"/>
-                  <line x1="18" y1="12" x2="18" y2="36" stroke="#6a6a6a" stroke-width="1.5" stroke-dasharray="4 3"/>
-                  <line x1="32" y1="12" x2="32" y2="36" stroke="#6a6a6a" stroke-width="1.5" stroke-dasharray="4 3"/>
-                  <rect x="10" y="20" width="4" height="8" rx="1" fill="#6a6a6a" opacity="0.35"/>
-                  <rect x="24" y="18" width="4" height="10" rx="1" fill="#6a6a6a" opacity="0.35"/>
-                  <rect x="38" y="20" width="4" height="8" rx="1" fill="#6a6a6a" opacity="0.35"/>
+                  <defs>
+                    <linearGradient id="ic-papp" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5a5a5a"/><stop offset="100%" stop-color="#404040"/></linearGradient>
+                    <pattern id="ic-papp-tex" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="0.3" fill="rgba(255,255,255,0.04)"/><circle cx="5" cy="5" r="0.2" fill="rgba(255,255,255,0.03)"/></pattern>
+                  </defs>
+                  <!-- 3 overlapping felt strips -->
+                  <rect x="3" y="10" width="18" height="28" rx="1.5" fill="url(#ic-papp)" stroke="rgba(65,65,65,0.5)" stroke-width="0.6"/>
+                  <rect x="3" y="10" width="18" height="28" fill="url(#ic-papp-tex)"/>
+                  <rect x="18" y="10" width="16" height="28" rx="1.5" fill="url(#ic-papp)" stroke="rgba(65,65,65,0.5)" stroke-width="0.6" opacity="0.97"/>
+                  <rect x="18" y="10" width="16" height="28" fill="url(#ic-papp-tex)"/>
+                  <rect x="31" y="10" width="14" height="28" rx="1.5" fill="url(#ic-papp)" stroke="rgba(65,65,65,0.5)" stroke-width="0.6"/>
+                  <rect x="31" y="10" width="14" height="28" fill="url(#ic-papp-tex)"/>
+                  <!-- Overlap seam shadows -->
+                  <line x1="20" y1="10" x2="20" y2="38" stroke="rgba(25,25,25,0.5)" stroke-width="1.5"/>
+                  <line x1="21" y1="10" x2="21" y2="38" stroke="rgba(80,80,80,0.2)" stroke-width="0.5"/>
+                  <line x1="33" y1="10" x2="33" y2="38" stroke="rgba(25,25,25,0.5)" stroke-width="1.5"/>
+                  <line x1="34" y1="10" x2="34" y2="38" stroke="rgba(80,80,80,0.2)" stroke-width="0.5"/>
+                  <!-- Staples (T-shape) -->
+                  <path d="M9 17 L9 22 M7.5 17 L10.5 17" stroke="rgba(155,155,155,0.4)" stroke-width="0.7" stroke-linecap="round"/>
+                  <path d="M26 20 L26 25 M24.5 20 L27.5 20" stroke="rgba(155,155,155,0.4)" stroke-width="0.7" stroke-linecap="round"/>
+                  <path d="M40 16 L40 21 M38.5 16 L41.5 16" stroke="rgba(155,155,155,0.4)" stroke-width="0.7" stroke-linecap="round"/>
+                  <!-- Brand print -->
+                  <text x="11" y="32" font-size="3.2" fill="rgba(255,255,255,0.06)" font-weight="700" font-family="Inter,sans-serif" letter-spacing="1.2">YEP</text>
                 </svg>
               </div>
               <div class="kor-info-step">Lager 03</div>
@@ -497,21 +631,21 @@
               <p>Det andra försvarslagret mot fukt. Underlagspappen fångar upp kondens och eventuellt inträngande vatten, och leder bort det till takfoten. Avgörande för takets långsiktiga hälsa.</p>
               <div class="kor-info-specs">
                 <div class="kor-spec">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6a6a6a" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(72,72,72,0.7)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                   <div>
                     <span class="kor-spec-label">Skydd</span>
                     <span class="kor-spec-val">Klass T</span>
                   </div>
                 </div>
                 <div class="kor-spec">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6a6a6a" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(72,72,72,0.7)" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
                   <div>
                     <span class="kor-spec-label">Ånggenomsläpp</span>
                     <span class="kor-spec-val">Diffusionsöppen</span>
                   </div>
                 </div>
                 <div class="kor-spec">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6a6a6a" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(72,72,72,0.7)" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
                   <div>
                     <span class="kor-spec-label">Montering</span>
                     <span class="kor-spec-val">Med överlapp</span>
@@ -520,79 +654,128 @@
               </div>
             </div>
 
-            <!-- Isolering info -->
-            <div class="kor-info-card" data-info="isolering">
+            <!-- Råspont info -->
+            <div class="kor-info-card" data-info="raspont">
               <div class="kor-info-icon">
                 <svg viewBox="0 0 48 48" fill="none">
-                  <rect x="4" y="8" width="40" height="32" rx="4" stroke="#e8c040" stroke-width="2.5"/>
-                  <path d="M4 18 Q10 14 16 18 Q22 22 28 18 Q34 14 40 18 Q43 16 44 18" stroke="#e8c040" stroke-width="1.2" opacity="0.6"/>
-                  <path d="M4 28 Q10 24 16 28 Q22 32 28 28 Q34 24 40 28 Q43 26 44 28" stroke="#e8c040" stroke-width="1.2" opacity="0.5"/>
-                  <path d="M4 38 Q10 34 16 38 Q22 42 28 38 Q34 34 40 38 Q43 36 44 38" stroke="#e8c040" stroke-width="1.2" opacity="0.4"/>
+                  <defs>
+                    <linearGradient id="ic-rasp" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#dcc8a0"/><stop offset="35%" stop-color="#ccb888"/><stop offset="100%" stop-color="#bca878"/></linearGradient>
+                    <pattern id="ic-rasp-grain" width="48" height="8" patternUnits="userSpaceOnUse">
+                      <path d="M0 3 Q12 1.5 24 3 Q36 4.5 48 3" stroke="rgba(140,100,50,0.09)" stroke-width="0.4" fill="none"/>
+                      <path d="M0 7 Q12 5.5 24 7 Q36 8.5 48 7" stroke="rgba(140,100,50,0.06)" stroke-width="0.3" fill="none"/>
+                    </pattern>
+                  </defs>
+                  <!-- 5 tongue-and-groove boards (cross-section showing T&G joint) -->
+                  <rect x="2" y="5" width="9.5" height="38" rx="0.8" fill="url(#ic-rasp)" stroke="rgba(160,130,80,0.4)" stroke-width="0.6"/>
+                  <rect x="2" y="5" width="9.5" height="38" fill="url(#ic-rasp-grain)"/>
+                  <rect x="12" y="5" width="9.5" height="38" rx="0.8" fill="url(#ic-rasp)" stroke="rgba(160,130,80,0.4)" stroke-width="0.6" opacity="0.96"/>
+                  <rect x="12" y="5" width="9.5" height="38" fill="url(#ic-rasp-grain)"/>
+                  <rect x="22" y="5" width="9.5" height="38" rx="0.8" fill="url(#ic-rasp)" stroke="rgba(160,130,80,0.4)" stroke-width="0.6"/>
+                  <rect x="22" y="5" width="9.5" height="38" fill="url(#ic-rasp-grain)"/>
+                  <rect x="32" y="5" width="9.5" height="38" rx="0.8" fill="url(#ic-rasp)" stroke="rgba(160,130,80,0.4)" stroke-width="0.6" opacity="0.97"/>
+                  <rect x="32" y="5" width="9.5" height="38" fill="url(#ic-rasp-grain)"/>
+                  <rect x="42" y="5" width="5" height="38" rx="0.8" fill="url(#ic-rasp)" stroke="rgba(160,130,80,0.4)" stroke-width="0.6"/>
+                  <!-- T&G joint lines (shadow + light edge) -->
+                  <line x1="11.5" y1="5" x2="11.5" y2="43" stroke="rgba(140,105,55,0.35)" stroke-width="1.4"/>
+                  <line x1="12.3" y1="10" x2="12.3" y2="38" stroke="rgba(140,105,55,0.12)" stroke-width="0.5"/>
+                  <line x1="21.5" y1="5" x2="21.5" y2="43" stroke="rgba(140,105,55,0.35)" stroke-width="1.4"/>
+                  <line x1="22.3" y1="10" x2="22.3" y2="38" stroke="rgba(140,105,55,0.12)" stroke-width="0.5"/>
+                  <line x1="31.5" y1="5" x2="31.5" y2="43" stroke="rgba(140,105,55,0.35)" stroke-width="1.4"/>
+                  <line x1="32.3" y1="10" x2="32.3" y2="38" stroke="rgba(140,105,55,0.12)" stroke-width="0.5"/>
+                  <line x1="41.5" y1="5" x2="41.5" y2="43" stroke="rgba(140,105,55,0.35)" stroke-width="1.4"/>
+                  <!-- Knots -->
+                  <ellipse cx="7" cy="18" rx="2.5" ry="3.2" fill="none" stroke="rgba(120,80,30,0.14)" stroke-width="0.7"/>
+                  <ellipse cx="7" cy="18" rx="1" ry="1.3" fill="rgba(120,80,30,0.05)"/>
+                  <ellipse cx="27" cy="33" rx="2" ry="2.6" fill="none" stroke="rgba(120,80,30,0.11)" stroke-width="0.6"/>
+                  <ellipse cx="37" cy="14" rx="1.8" ry="2.2" fill="none" stroke="rgba(120,80,30,0.1)" stroke-width="0.5"/>
+                  <!-- Board end cut highlight -->
+                  <rect x="2" y="5" width="9.5" height="1.5" rx="0.5" fill="rgba(255,255,255,0.08)"/>
+                  <rect x="12" y="5" width="9.5" height="1.5" rx="0.5" fill="rgba(255,255,255,0.06)"/>
+                  <rect x="22" y="5" width="9.5" height="1.5" rx="0.5" fill="rgba(255,255,255,0.08)"/>
+                  <rect x="32" y="5" width="9.5" height="1.5" rx="0.5" fill="rgba(255,255,255,0.06)"/>
                 </svg>
               </div>
               <div class="kor-info-step">Lager 04</div>
-              <h3>Isolering</h3>
-              <p>Mineralull eller cellplast som reglerar temperaturen i huset. Rätt isolering minskar energikostnaderna dramatiskt och skapar behagligt inomhusklimat året runt.</p>
+              <h3>Råspont</h3>
+              <p>Spontade brädor som skapar ett stabilt, plant underlag att lägga underlagspappen på. Råsponten binder samman takstolarna och ger taket dess grundform och styvhet.</p>
               <div class="kor-info-specs">
                 <div class="kor-spec">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8c040" stroke-width="2"><path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(188,168,120,0.8)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
                   <div>
-                    <span class="kor-spec-label">U-värde</span>
-                    <span class="kor-spec-val">0.13 W/m²K</span>
+                    <span class="kor-spec-label">Dimension</span>
+                    <span class="kor-spec-val">28×120 mm</span>
                   </div>
                 </div>
                 <div class="kor-spec">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8c040" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(188,168,120,0.8)" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
                   <div>
-                    <span class="kor-spec-label">Tjocklek</span>
-                    <span class="kor-spec-val">300 mm</span>
+                    <span class="kor-spec-label">Material</span>
+                    <span class="kor-spec-val">Gran, spontad</span>
                   </div>
                 </div>
                 <div class="kor-spec">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8c040" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(188,168,120,0.8)" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                   <div>
-                    <span class="kor-spec-label">Brandklass</span>
-                    <span class="kor-spec-val">A1 (obrännbar)</span>
+                    <span class="kor-spec-label">Funktion</span>
+                    <span class="kor-spec-val">Bärande underlag</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Konstruktion info -->
-            <div class="kor-info-card" data-info="konstruktion">
+            <!-- Takstolar info -->
+            <div class="kor-info-card" data-info="takstolar">
               <div class="kor-info-icon">
                 <svg viewBox="0 0 48 48" fill="none">
-                  <path d="M10 42L24 6l14 36" stroke="#a08060" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
-                  <line x1="16" y1="28" x2="32" y2="28" stroke="#a08060" stroke-width="2"/>
-                  <line x1="24" y1="6" x2="24" y2="42" stroke="#a08060" stroke-width="1.5" stroke-dasharray="3 2"/>
-                  <circle cx="24" cy="6" r="2" fill="#a08060"/>
-                  <circle cx="10" cy="42" r="2" fill="#a08060"/>
-                  <circle cx="38" cy="42" r="2" fill="#a08060"/>
+                  <defs>
+                    <linearGradient id="ic-ts-wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c4a06a"/><stop offset="100%" stop-color="#8a6634"/></linearGradient>
+                  </defs>
+                  <!-- Single W-truss, premium detail -->
+                  <!-- Top rafters -->
+                  <line x1="4" y1="42" x2="24" y2="5" stroke="url(#ic-ts-wood)" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="24" y1="5" x2="44" y2="42" stroke="url(#ic-ts-wood)" stroke-width="3" stroke-linecap="round"/>
+                  <!-- Highlight on rafters -->
+                  <line x1="5" y1="40" x2="24" y2="6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                  <!-- Bottom chord -->
+                  <line x1="4" y1="42" x2="44" y2="42" stroke="url(#ic-ts-wood)" stroke-width="3" stroke-linecap="round"/>
+                  <!-- Horizontal tie -->
+                  <line x1="12" y1="25" x2="36" y2="25" stroke="#9a7640" stroke-width="2.2" stroke-linecap="round"/>
+                  <!-- King post -->
+                  <line x1="24" y1="5" x2="24" y2="42" stroke="#9a7640" stroke-width="2" stroke-linecap="round"/>
+                  <!-- W diagonals -->
+                  <line x1="12" y1="25" x2="18" y2="42" stroke="#9a7640" stroke-width="1.6"/>
+                  <line x1="36" y1="25" x2="30" y2="42" stroke="#9a7640" stroke-width="1.6"/>
+                  <!-- Gusset plates -->
+                  <rect x="20" y="2" width="8" height="9" rx="1.5" fill="rgba(195,200,210,0.55)" stroke="rgba(150,155,160,0.45)" stroke-width="0.5"/>
+                  <rect x="1" y="38" width="8" height="7" rx="1.2" fill="rgba(195,200,210,0.5)" stroke="rgba(150,155,160,0.35)" stroke-width="0.4"/>
+                  <rect x="39" y="38" width="8" height="7" rx="1.2" fill="rgba(195,200,210,0.5)" stroke="rgba(150,155,160,0.35)" stroke-width="0.4"/>
+                  <rect x="9" y="22" width="7" height="6" rx="1" fill="rgba(195,200,210,0.4)" stroke="rgba(150,155,160,0.3)" stroke-width="0.4"/>
+                  <rect x="33" y="22" width="7" height="6" rx="1" fill="rgba(195,200,210,0.4)" stroke="rgba(150,155,160,0.3)" stroke-width="0.4"/>
                 </svg>
               </div>
               <div class="kor-info-step">Lager 05</div>
-              <h3>Takkonstruktion</h3>
-              <p>Takstolarna bär hela takets vikt och fördelar lasterna till väggarna. Vi kontrollerar alltid konstruktionens skick och förstärker vid behov innan nytt tak läggs.</p>
+              <h3>Takstolar</h3>
+              <p>Prefabricerade fackverk som bär hela takets vikt och fördelar lasterna till bärande väggar. Vi kontrollerar alltid takstolarnas skick och förstärker vid behov innan nytt tak läggs.</p>
               <div class="kor-info-specs">
                 <div class="kor-spec">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a08060" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(154,118,64,0.8)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                   <div>
-                    <span class="kor-spec-label">Dimension</span>
-                    <span class="kor-spec-val">45×195 mm</span>
+                    <span class="kor-spec-label">Funktion</span>
+                    <span class="kor-spec-val">Bär takets vikt</span>
                   </div>
                 </div>
                 <div class="kor-spec">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a08060" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(154,118,64,0.8)" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                   <div>
-                    <span class="kor-spec-label">Bärighet</span>
-                    <span class="kor-spec-val">C24-klass</span>
+                    <span class="kor-spec-label">Kontroll</span>
+                    <span class="kor-spec-val">Besiktas alltid</span>
                   </div>
                 </div>
                 <div class="kor-spec">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a08060" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(154,118,64,0.8)" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
                   <div>
-                    <span class="kor-spec-label">c/c avstånd</span>
-                    <span class="kor-spec-val">~1200 mm</span>
+                    <span class="kor-spec-label">Vid behov</span>
+                    <span class="kor-spec-val">Förstärks / byts</span>
                   </div>
                 </div>
               </div>
@@ -602,15 +785,519 @@
             <div class="kor-layers-dots">
               <button class="kor-dot active" data-dot="plat" title="Plåt"></button>
               <button class="kor-dot" data-dot="lakt" title="Läkt"></button>
-              <button class="kor-dot" data-dot="underlag" title="Underlag"></button>
-              <button class="kor-dot" data-dot="isolering" title="Isolering"></button>
-              <button class="kor-dot" data-dot="konstruktion" title="Konstruktion"></button>
+              <button class="kor-dot" data-dot="underlag" title="Underlagspapp"></button>
+              <button class="kor-dot" data-dot="raspont" title="Råspont"></button>
+              <button class="kor-dot" data-dot="takstolar" title="Takstolar"></button>
             </div>
           </div>
 
         </div>
       </div>
     </section>
+
+
+    <!-- ═══════ VENTILATION & KONDENS SECTION ═══════ -->
+    <section class="vent-section fade-in" id="ventilation">
+      <div class="vent-container">
+
+        <!-- Header -->
+        <div class="vent-header">
+          <span class="vent-badge">Ventilation & Kondens</span>
+          <h2>Hur luften räddar ditt tak</h2>
+          <p>Rätt ventilation under plåten är skillnaden mellan ett tak som håller i 40+ år och ett som ruttnar inifrån. Se hur ströläkten skapar en luftspalt som leder bort fukt — varje sekund, dygnet runt.</p>
+        </div>
+
+        <!-- Main SVG cross-section -->
+        <div class="vent-visual">
+          <svg class="vent-svg" viewBox="0 0 940 480" fill="none" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <!-- Material gradients -->
+              <linearGradient id="v-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e8f4fd"/><stop offset="100%" stop-color="#d0ebf8"/></linearGradient>
+              <linearGradient id="v-plat" x1="0" y1="0" x2="0.1" y2="1"><stop offset="0%" stop-color="#7aaabe"/><stop offset="25%" stop-color="#6898b0"/><stop offset="60%" stop-color="#5486a0"/><stop offset="100%" stop-color="#467890"/></linearGradient>
+              <linearGradient id="v-plat-shine" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.25)"/><stop offset="40%" stop-color="rgba(255,255,255,0.08)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
+              <linearGradient id="v-plat-edge" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5486a0"/><stop offset="100%" stop-color="#3a6880"/></linearGradient>
+              <linearGradient id="v-lakt" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d8c090"/><stop offset="100%" stop-color="#b89858"/></linearGradient>
+              <linearGradient id="v-lakt-hi" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.1)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
+              <linearGradient id="v-papp" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#555"/><stop offset="50%" stop-color="#484848"/><stop offset="100%" stop-color="#3e3e3e"/></linearGradient>
+              <linearGradient id="v-rasp" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#dcc8a0"/><stop offset="35%" stop-color="#ccb888"/><stop offset="100%" stop-color="#bca878"/></linearGradient>
+              <linearGradient id="v-warm" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="rgba(255,140,50,0.1)"/><stop offset="60%" stop-color="rgba(255,140,50,0.03)"/><stop offset="100%" stop-color="rgba(255,140,50,0)"/></linearGradient>
+              <linearGradient id="v-attic-wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#eee"/><stop offset="100%" stop-color="#ddd"/></linearGradient>
+              <!-- Patterns -->
+              <pattern id="v-grain" width="50" height="10" patternUnits="userSpaceOnUse"><path d="M0 4 Q12 2 25 4 Q38 6 50 4" stroke="rgba(140,100,50,0.07)" stroke-width="0.4" fill="none"/></pattern>
+              <pattern id="v-papp-tex" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="0.3" fill="rgba(255,255,255,0.04)"/><circle cx="7" cy="6" r="0.2" fill="rgba(255,255,255,0.03)"/></pattern>
+              <!-- Arrows -->
+              <marker id="v-arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 Z" fill="var(--blue)" opacity="0.7"/></marker>
+              <marker id="v-arrow-out" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 Z" fill="#2eaa5c" opacity="0.7"/></marker>
+              <marker id="v-arrow-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0 0 L8 3 L0 6 Z" fill="rgba(255,80,60,0.5)"/></marker>
+              <!-- Glow -->
+              <filter id="v-glow"><feGaussianBlur stdDeviation="5" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              <!-- Clip -->
+              <clipPath id="v-clip"><rect x="20" y="10" width="900" height="460" rx="8"/></clipPath>
+            </defs>
+
+            <g clip-path="url(#v-clip)">
+
+              <!-- ── BACKGROUND: Sky + outdoor weather ── -->
+              <rect x="20" y="10" width="900" height="80" fill="url(#v-sky)"/>
+              <!-- Rain/weather indication -->
+              <g opacity="0.15">
+                <line x1="100" y1="15" x2="95" y2="55" stroke="var(--blue)" stroke-width="1"/>
+                <line x1="250" y1="20" x2="245" y2="60" stroke="var(--blue)" stroke-width="0.8"/>
+                <line x1="420" y1="12" x2="415" y2="52" stroke="var(--blue)" stroke-width="1"/>
+                <line x1="580" y1="18" x2="575" y2="58" stroke="var(--blue)" stroke-width="0.8"/>
+                <line x1="720" y1="14" x2="715" y2="54" stroke="var(--blue)" stroke-width="0.9"/>
+                <line x1="850" y1="22" x2="845" y2="62" stroke="var(--blue)" stroke-width="0.7"/>
+              </g>
+
+              <!-- ═══ PLÅT — Corrugated metal sheet ═══ -->
+              <g class="vent-layer" data-vent-layer="plat">
+                <rect x="20" y="80" width="900" height="40" fill="url(#v-plat)" rx="2"/>
+                <rect x="20" y="80" width="900" height="16" fill="url(#v-plat-shine)" rx="2"/>
+                <!-- Corrugation profiles (trapezoid wave) -->
+                <path d="M20 92 L35 85 L50 85 L65 92 L80 99 L95 99 L110 92 L125 85 L140 85 L155 92 L170 99 L185 99 L200 92 L215 85 L230 85 L245 92 L260 99 L275 99 L290 92 L305 85 L320 85 L335 92 L350 99 L365 99 L380 92 L395 85 L410 85 L425 92 L440 99 L455 99 L470 92 L485 85 L500 85 L515 92 L530 99 L545 99 L560 92 L575 85 L590 85 L605 92 L620 99 L635 99 L650 92 L665 85 L680 85 L695 92 L710 99 L725 99 L740 92 L755 85 L770 85 L785 92 L800 99 L815 99 L830 92 L845 85 L860 85 L875 92 L890 99 L905 99 L920 92" stroke="rgba(80,130,160,0.4)" stroke-width="0.9" fill="none"/>
+                <path d="M20 106 L35 99 L50 99 L65 106 L80 113 L95 113 L110 106 L125 99 L140 99 L155 106 L170 113 L185 113 L200 106 L215 99 L230 99 L245 106 L260 113 L275 113 L290 106 L305 99 L320 99 L335 106 L350 113 L365 113 L380 106 L395 99 L410 99 L425 106 L440 113 L455 113 L470 106 L485 99 L500 99 L515 106 L530 113 L545 113 L560 106 L575 99 L590 99 L605 106 L620 113 L635 113 L650 106 L665 99 L680 99 L695 106 L710 113 L725 113 L740 106 L755 99 L770 99 L785 106 L800 113 L815 113 L830 106 L845 99 L860 99 L875 106 L890 113 L905 113 L920 106" stroke="rgba(80,130,160,0.25)" stroke-width="0.7" fill="none"/>
+                <!-- Sheet overlap seam -->
+                <line x1="460" y1="80" x2="460" y2="120" stroke="rgba(50,90,120,0.15)" stroke-width="1.5"/>
+                <!-- Hex screws with EPDM detail -->
+                <g>
+                  <circle cx="155" cy="96" r="4" fill="rgba(60,100,130,0.55)" stroke="rgba(45,85,115,0.45)" stroke-width="0.6"/>
+                  <circle cx="155" cy="96" r="6" fill="none" stroke="rgba(45,85,115,0.1)" stroke-width="0.7"/>
+                  <path d="M153.5 95 L156.5 97 M153.5 97 L156.5 95" stroke="rgba(35,65,85,0.3)" stroke-width="0.4"/>
+                </g>
+                <g>
+                  <circle cx="425" cy="96" r="4" fill="rgba(60,100,130,0.55)" stroke="rgba(45,85,115,0.45)" stroke-width="0.6"/>
+                  <circle cx="425" cy="96" r="6" fill="none" stroke="rgba(45,85,115,0.1)" stroke-width="0.7"/>
+                </g>
+                <g>
+                  <circle cx="695" cy="96" r="4" fill="rgba(60,100,130,0.55)" stroke="rgba(45,85,115,0.45)" stroke-width="0.6"/>
+                  <circle cx="695" cy="96" r="6" fill="none" stroke="rgba(45,85,115,0.1)" stroke-width="0.7"/>
+                </g>
+                <!-- Drip edge -->
+                <rect x="20" y="116" width="900" height="5" rx="1" fill="url(#v-plat-edge)"/>
+              </g>
+
+              <!-- ═══ LUFTSPALT (Ströläkt zone) — THE STAR ═══ -->
+              <g class="vent-layer vent-airgap" data-vent-layer="airgap">
+                <!-- Air gap background with subtle blue tint -->
+                <rect x="20" y="121" width="900" height="60" fill="rgba(200,235,255,0.1)"/>
+                <!-- Blue glow for emphasis -->
+                <rect x="20" y="135" width="900" height="30" fill="rgba(25,168,255,0.04)" rx="2"/>
+
+                <!-- Ströläkt battens (vertical counter-battens) — with wood grain detail -->
+                <g class="vent-strolakt">
+                  <rect x="90" y="121" width="26" height="60" fill="url(#v-lakt)" rx="2.5"/><rect x="90" y="121" width="26" height="60" fill="url(#v-grain)"/><rect x="90" y="121" width="26" height="8" fill="url(#v-lakt-hi)" rx="2.5"/>
+                  <rect x="250" y="121" width="26" height="60" fill="url(#v-lakt)" rx="2.5"/><rect x="250" y="121" width="26" height="60" fill="url(#v-grain)"/><rect x="250" y="121" width="26" height="8" fill="url(#v-lakt-hi)" rx="2.5"/>
+                  <rect x="420" y="121" width="26" height="60" fill="url(#v-lakt)" rx="2.5"/><rect x="420" y="121" width="26" height="60" fill="url(#v-grain)"/><rect x="420" y="121" width="26" height="8" fill="url(#v-lakt-hi)" rx="2.5"/>
+                  <rect x="590" y="121" width="26" height="60" fill="url(#v-lakt)" rx="2.5"/><rect x="590" y="121" width="26" height="60" fill="url(#v-grain)"/><rect x="590" y="121" width="26" height="8" fill="url(#v-lakt-hi)" rx="2.5"/>
+                  <rect x="750" y="121" width="26" height="60" fill="url(#v-lakt)" rx="2.5"/><rect x="750" y="121" width="26" height="60" fill="url(#v-grain)"/><rect x="750" y="121" width="26" height="8" fill="url(#v-lakt-hi)" rx="2.5"/>
+                </g>
+
+                <!-- ═══ AIR PARTICLES — flowing left-to-right ═══ -->
+                <g class="vent-air-particles">
+                  <circle class="vent-particle vp-1" cx="40" cy="145" r="5" fill="var(--blue)" opacity="0.55"/>
+                  <circle class="vent-particle vp-2" cx="150" cy="155" r="4" fill="var(--blue)" opacity="0.45"/>
+                  <circle class="vent-particle vp-3" cx="300" cy="140" r="5.5" fill="var(--blue)" opacity="0.5"/>
+                  <circle class="vent-particle vp-4" cx="470" cy="160" r="3.5" fill="var(--blue)" opacity="0.4"/>
+                  <circle class="vent-particle vp-5" cx="630" cy="148" r="5" fill="var(--blue)" opacity="0.5"/>
+                  <circle class="vent-particle vp-6" cx="790" cy="138" r="4" fill="var(--blue)" opacity="0.4"/>
+                  <circle class="vent-particle vp-7" cx="100" cy="165" r="3.5" fill="var(--blue)" opacity="0.35"/>
+                  <circle class="vent-particle vp-8" cx="220" cy="138" r="4.5" fill="var(--blue)" opacity="0.45"/>
+                  <circle class="vent-particle vp-9" cx="530" cy="152" r="4" fill="var(--blue)" opacity="0.4"/>
+                  <circle class="vent-particle vp-10" cx="700" cy="142" r="3.5" fill="var(--blue)" opacity="0.35"/>
+                </g>
+
+                <!-- Airflow direction arrows (dashed lines) -->
+                <g opacity="0.3">
+                  <line x1="40" y1="151" x2="130" y2="151" stroke="var(--blue)" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#v-arrow)"/>
+                  <line x1="180" y1="151" x2="310" y2="151" stroke="var(--blue)" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#v-arrow)"/>
+                  <line x1="350" y1="151" x2="480" y2="151" stroke="var(--blue)" stroke-width="1.4" stroke-dasharray="6 4" marker-end="url(#v-arrow)"/>
+                  <line x1="520" y1="151" x2="650" y2="151" stroke="var(--blue)" stroke-width="1.3" stroke-dasharray="6 4" marker-end="url(#v-arrow)"/>
+                  <line x1="690" y1="151" x2="820" y2="151" stroke="var(--blue)" stroke-width="1.2" stroke-dasharray="6 4" marker-end="url(#v-arrow)"/>
+                  <line x1="850" y1="151" x2="910" y2="151" stroke="var(--blue)" stroke-width="1.1" stroke-dasharray="6 4" marker-end="url(#v-arrow)"/>
+                </g>
+
+                <!-- Dimension annotation: "25–45 mm" -->
+                <g class="vent-dimension" opacity="0.55">
+                  <line x1="50" y1="125" x2="50" y2="177" stroke="var(--blue)" stroke-width="0.6"/>
+                  <line x1="46" y1="125" x2="54" y2="125" stroke="var(--blue)" stroke-width="0.6"/>
+                  <line x1="46" y1="177" x2="54" y2="177" stroke="var(--blue)" stroke-width="0.6"/>
+                  <text x="58" y="155" font-size="10" fill="var(--blue)" font-weight="600" font-family="Inter,sans-serif">25–45 mm</text>
+                </g>
+              </g>
+
+              <!-- ═══ UNDERLAGSPAPP ═══ -->
+              <g class="vent-layer" data-vent-layer="underlag">
+                <rect x="20" y="181" width="900" height="22" fill="url(#v-papp)" rx="1"/>
+                <rect x="20" y="181" width="900" height="22" fill="url(#v-papp-tex)"/>
+                <!-- Overlap seams -->
+                <line x1="300" y1="181" x2="300" y2="203" stroke="rgba(25,25,25,0.45)" stroke-width="2"/>
+                <line x1="302" y1="181" x2="302" y2="203" stroke="rgba(80,80,80,0.2)" stroke-width="0.6"/>
+                <line x1="600" y1="181" x2="600" y2="203" stroke="rgba(25,25,25,0.45)" stroke-width="2"/>
+                <line x1="602" y1="181" x2="602" y2="203" stroke="rgba(80,80,80,0.2)" stroke-width="0.6"/>
+                <!-- Staples -->
+                <g opacity="0.35">
+                  <path d="M150 186 L150 193 M148 186 L152 186" stroke="#999" stroke-width="0.7"/>
+                  <path d="M450 188 L450 195 M448 188 L452 188" stroke="#999" stroke-width="0.7"/>
+                  <path d="M750 186 L750 193 M748 186 L752 186" stroke="#999" stroke-width="0.7"/>
+                </g>
+                <!-- Brand print -->
+                <text x="180" y="197" font-size="5" fill="rgba(255,255,255,0.06)" font-weight="700" font-family="Inter,sans-serif" letter-spacing="2">YEP 2500</text>
+              </g>
+
+              <!-- ═══ RÅSPONT ═══ -->
+              <g class="vent-layer" data-vent-layer="raspont">
+                <rect x="20" y="203" width="900" height="28" fill="url(#v-rasp)" rx="1"/>
+                <rect x="20" y="203" width="900" height="28" fill="url(#v-grain)"/>
+                <!-- T&G joints -->
+                <line x1="130" y1="203" x2="130" y2="231" stroke="rgba(140,105,55,0.3)" stroke-width="1.5"/>
+                <line x1="131.5" y1="208" x2="131.5" y2="226" stroke="rgba(140,105,55,0.1)" stroke-width="0.5"/>
+                <line x1="260" y1="203" x2="260" y2="231" stroke="rgba(140,105,55,0.3)" stroke-width="1.5"/>
+                <line x1="390" y1="203" x2="390" y2="231" stroke="rgba(140,105,55,0.3)" stroke-width="1.5"/>
+                <line x1="520" y1="203" x2="520" y2="231" stroke="rgba(140,105,55,0.3)" stroke-width="1.5"/>
+                <line x1="650" y1="203" x2="650" y2="231" stroke="rgba(140,105,55,0.3)" stroke-width="1.5"/>
+                <line x1="780" y1="203" x2="780" y2="231" stroke="rgba(140,105,55,0.3)" stroke-width="1.5"/>
+                <!-- Knots -->
+                <ellipse cx="80" cy="216" rx="4" ry="5" fill="none" stroke="rgba(120,80,30,0.1)" stroke-width="0.7"/>
+                <ellipse cx="460" cy="220" rx="3.5" ry="4" fill="none" stroke="rgba(120,80,30,0.08)" stroke-width="0.6"/>
+                <ellipse cx="710" cy="212" rx="3" ry="4" fill="none" stroke="rgba(120,80,30,0.07)" stroke-width="0.5"/>
+              </g>
+
+              <!-- ═══ ATTIC / WARM ZONE ═══ -->
+              <rect x="20" y="231" width="900" height="239" fill="url(#v-warm)"/>
+              <!-- "Varm sida" label -->
+              <text x="460" y="430" text-anchor="middle" font-size="13" fill="rgba(200,120,40,0.2)" font-weight="700" font-family="Inter,sans-serif" letter-spacing="3">VARM SIDA — INNEKLIMAT</text>
+
+              <!-- ═══ MOISTURE PARTICLES RISING ═══ -->
+              <g class="vent-moisture-group">
+                <g class="vent-moisture vm-1">
+                  <path d="M200 400 Q200 392 204 388 Q200 384 200 376" stroke="rgba(255,80,60,0.4)" stroke-width="1.5" fill="none"/>
+                  <circle cx="200" cy="400" r="4" fill="rgba(255,80,60,0.45)"/>
+                  <circle cx="204" cy="394" r="2.5" fill="rgba(255,80,60,0.3)"/>
+                </g>
+                <g class="vent-moisture vm-2">
+                  <path d="M400 390 Q400 382 404 378 Q400 374 400 366" stroke="rgba(255,80,60,0.35)" stroke-width="1.5" fill="none"/>
+                  <circle cx="400" cy="390" r="3.5" fill="rgba(255,80,60,0.4)"/>
+                  <circle cx="404" cy="384" r="2" fill="rgba(255,80,60,0.25)"/>
+                </g>
+                <g class="vent-moisture vm-3">
+                  <path d="M580 405 Q580 397 584 393 Q580 389 580 381" stroke="rgba(255,80,60,0.4)" stroke-width="1.5" fill="none"/>
+                  <circle cx="580" cy="405" r="4" fill="rgba(255,80,60,0.45)"/>
+                  <circle cx="584" cy="399" r="2.5" fill="rgba(255,80,60,0.3)"/>
+                </g>
+                <g class="vent-moisture vm-4">
+                  <path d="M750 395 Q750 387 754 383 Q750 379 750 371" stroke="rgba(255,80,60,0.35)" stroke-width="1.5" fill="none"/>
+                  <circle cx="750" cy="395" r="3.5" fill="rgba(255,80,60,0.38)"/>
+                  <circle cx="754" cy="389" r="2" fill="rgba(255,80,60,0.22)"/>
+                </g>
+              </g>
+
+              <!-- ═══ ENTRY ZONE (takfot — left) ═══ -->
+              <g class="vent-entry-zone">
+                <rect x="20" y="80" width="40" height="104" rx="4" fill="rgba(25,168,255,0.06)" stroke="rgba(25,168,255,0.2)" stroke-width="1.2" stroke-dasharray="4 3"/>
+                <!-- Curved entry arrow -->
+                <path d="M40 175 Q40 150 40 130 Q40 95 50 85" stroke="var(--blue)" stroke-width="2" fill="none" opacity="0.45" marker-end="url(#v-arrow)"/>
+                <text x="40" y="72" text-anchor="middle" fill="var(--blue)" font-size="11" font-weight="700" font-family="Inter,sans-serif" opacity="0.65">IN</text>
+                <text x="40" y="62" text-anchor="middle" fill="var(--blue)" font-size="8" font-weight="500" font-family="Inter,sans-serif" opacity="0.4">Takfot</text>
+              </g>
+
+              <!-- ═══ EXIT ZONE (nock — right) ═══ -->
+              <g class="vent-exit-zone">
+                <rect x="880" y="80" width="40" height="104" rx="4" fill="rgba(46,170,92,0.06)" stroke="rgba(46,170,92,0.2)" stroke-width="1.2" stroke-dasharray="4 3"/>
+                <!-- Curved exit arrow going up -->
+                <path d="M900 170 Q900 145 900 125 Q900 95 910 82" stroke="#2eaa5c" stroke-width="2" fill="none" opacity="0.45" marker-end="url(#v-arrow-out)"/>
+                <text x="900" y="72" text-anchor="middle" fill="#2eaa5c" font-size="11" font-weight="700" font-family="Inter,sans-serif" opacity="0.65">UT</text>
+                <text x="900" y="62" text-anchor="middle" fill="#2eaa5c" font-size="8" font-weight="500" font-family="Inter,sans-serif" opacity="0.4">Nock</text>
+              </g>
+
+              <!-- ═══ LAYER LABELS (right side, stacked) ═══ -->
+              <g class="vent-labels" font-family="Inter,sans-serif">
+                <g class="vent-label vent-label-clickable" data-vent-target="plat">
+                  <rect x="20" y="80" width="900" height="40" fill="transparent" class="vent-hitbox"/>
+                </g>
+                <g class="vent-label vent-label-clickable vent-label-active" data-vent-target="airgap">
+                  <rect x="20" y="121" width="900" height="60" fill="transparent" class="vent-hitbox"/>
+                </g>
+                <g class="vent-label vent-label-clickable" data-vent-target="underlag">
+                  <rect x="20" y="181" width="900" height="22" fill="transparent" class="vent-hitbox"/>
+                </g>
+                <g class="vent-label vent-label-clickable" data-vent-target="raspont">
+                  <rect x="20" y="203" width="900" height="28" fill="transparent" class="vent-hitbox"/>
+                </g>
+              </g>
+
+              <!-- ═══ CONDENSATION illustration on plåt underside ═══ -->
+              <g class="vent-condensation" opacity="0.5">
+                <circle cx="180" cy="119" r="1.8" fill="rgba(100,180,255,0.35)"/>
+                <circle cx="340" cy="118" r="1.3" fill="rgba(100,180,255,0.25)"/>
+                <circle cx="500" cy="119" r="1.6" fill="rgba(100,180,255,0.3)"/>
+                <circle cx="660" cy="118" r="1.2" fill="rgba(100,180,255,0.25)"/>
+                <circle cx="820" cy="119" r="1.5" fill="rgba(100,180,255,0.28)"/>
+              </g>
+
+              <!-- ═══ ANNOTATION: "Kondens stoppas av underlagspappen" ═══ -->
+              <g class="vent-annotation" opacity="0.4">
+                <line x1="500" y1="230" x2="500" y2="260" stroke="rgba(255,80,60,0.5)" stroke-width="0.8" stroke-dasharray="3 2"/>
+                <path d="M490 260 L500 260 L510 260" stroke="rgba(255,80,60,0.4)" stroke-width="0.6"/>
+                <text x="500" y="275" text-anchor="middle" font-size="9" fill="rgba(255,80,60,0.6)" font-weight="500" font-family="Inter,sans-serif">Fukt stoppas här</text>
+              </g>
+
+            </g>
+          </svg>
+
+          <!-- Play / pause control -->
+          <button class="vent-play-btn" aria-label="Pausa animation" title="Pausa / Starta">
+            <svg class="vent-icon-pause" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="6" y1="4" x2="6" y2="20"/><line x1="18" y1="4" x2="18" y2="20"/></svg>
+            <svg class="vent-icon-play" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </button>
+
+          <!-- Legend -->
+          <div class="vent-legend">
+            <div class="vent-legend-item">
+              <span class="vent-legend-dot" style="background:var(--blue)"></span>
+              <span>Frisk luft</span>
+            </div>
+            <div class="vent-legend-item">
+              <span class="vent-legend-dot" style="background:rgba(255,80,60,0.6)"></span>
+              <span>Fukt / kondens</span>
+            </div>
+            <div class="vent-legend-item">
+              <span class="vent-legend-dot" style="background:#2eaa5c"></span>
+              <span>Luft leds ut</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info cards row -->
+        <div class="vent-cards">
+          <div class="vent-card vent-card-active" data-vent-card="airgap">
+            <div class="vent-card-icon">
+              <svg viewBox="0 0 40 40" fill="none">
+                <path d="M5 20 Q12 12 20 20 Q28 28 35 20" stroke="var(--blue)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                <path d="M5 28 Q12 20 20 28 Q28 36 35 28" stroke="var(--blue)" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
+                <circle cx="10" cy="14" r="2" fill="var(--blue)" opacity="0.4"/>
+                <circle cx="30" cy="14" r="2.5" fill="var(--blue)" opacity="0.3"/>
+              </svg>
+            </div>
+            <h3>Luftspalten</h3>
+            <p>Ströläkten skapar en 25–45 mm spalt mellan plåt och underlag. Luft strömmar in vid takfoten, rör sig uppåt och leder bort all fukt som stiger inifrån.</p>
+            <span class="vent-card-tag">Nyckeln till ett långlivat tak</span>
+          </div>
+
+          <div class="vent-card" data-vent-card="moisture">
+            <div class="vent-card-icon">
+              <svg viewBox="0 0 40 40" fill="none">
+                <path d="M20 4 C20 4 8 18 8 26 C8 33 13.4 38 20 38 C26.6 38 32 33 32 26 C32 18 20 4 20 4Z" fill="rgba(255,80,60,0.08)" stroke="rgba(255,80,60,0.5)" stroke-width="2"/>
+                <path d="M16 28 Q18 22 20 28 Q22 34 24 28" stroke="rgba(255,80,60,0.3)" stroke-width="1.5" fill="none"/>
+              </svg>
+            </div>
+            <h3>Fuktvandring</h3>
+            <p>Varm luft inifrån bär fukt uppåt genom taket. Utan ventilation kondenserar den mot kall plåt — med tiden förstörs råspont och läkt.</p>
+            <span class="vent-card-tag">Stoppas av rätt ventilation</span>
+          </div>
+
+          <div class="vent-card" data-vent-card="result">
+            <div class="vent-card-icon">
+              <svg viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="20" r="16" fill="rgba(46,170,92,0.06)" stroke="#2eaa5c" stroke-width="2"/>
+                <path d="M12 20 L18 26 L28 14" stroke="#2eaa5c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Resultat</h3>
+            <p>Fukten förs ut vid nock och gavlar. Taket förblir torrt, friskt och fritt från mögel — precis som det ska vara i 40+ år.</p>
+            <span class="vent-card-tag">Ferotects standard</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         TAKFALL & AVRINNING — Interactive slope + drainage
+         ═══════════════════════════════════════════════════════ -->
+    <section class="slope-section fade-in" id="takfall">
+      <div class="slope-container">
+
+        <!-- Header -->
+        <div class="slope-header">
+          <span class="slope-badge">Takfall & avrinning</span>
+          <h2>Varför taklutnig spelar roll</h2>
+          <p>Rätt lutning gör att vatten rinner av snabbt och minskar risken för läckage, is-dammar och fuktskador. Dra i reglaget och se skillnaden.</p>
+        </div>
+
+        <!-- Interactive visual -->
+        <div class="slope-visual">
+          <svg class="slope-svg" viewBox="0 0 800 420" fill="none" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <linearGradient id="sl-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e8f4fd"/><stop offset="100%" stop-color="#d0ebf8"/></linearGradient>
+              <linearGradient id="sl-plat" x1="0" y1="0" x2="0.05" y2="1"><stop offset="0%" stop-color="#7aaabe"/><stop offset="40%" stop-color="#6898b0"/><stop offset="100%" stop-color="#5486a0"/></linearGradient>
+              <linearGradient id="sl-plat-shine" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.22)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
+              <linearGradient id="sl-wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#eee"/><stop offset="100%" stop-color="#ddd"/></linearGradient>
+              <linearGradient id="sl-drop" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(25,168,255,0.7)"/><stop offset="100%" stop-color="rgba(25,168,255,0.35)"/></linearGradient>
+              <linearGradient id="sl-ground" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c8bfa8"/><stop offset="100%" stop-color="#b0a890"/></linearGradient>
+              <clipPath id="sl-clip"><rect x="0" y="0" width="800" height="420" rx="8"/></clipPath>
+              <filter id="sl-blur"><feGaussianBlur stdDeviation="2"/></filter>
+            </defs>
+
+            <g clip-path="url(#sl-clip)">
+              <!-- Sky -->
+              <rect width="800" height="420" fill="url(#sl-sky)"/>
+
+              <!-- Cloud -->
+              <g class="slope-cloud" opacity="0.2">
+                <ellipse cx="600" cy="50" rx="55" ry="22" fill="#c0d8ea"/>
+                <ellipse cx="635" cy="45" rx="35" ry="18" fill="#c0d8ea"/>
+                <ellipse cx="570" cy="48" rx="30" ry="16" fill="#c0d8ea"/>
+              </g>
+
+              <!-- Ground -->
+              <rect x="0" y="365" width="800" height="55" fill="url(#sl-ground)"/>
+              <line x1="0" y1="365" x2="800" y2="365" stroke="rgba(120,100,60,0.15)" stroke-width="1"/>
+
+              <!-- House body -->
+              <g class="slope-house">
+                <!-- Left wall -->
+                <rect class="slope-wall-left" x="120" y="210" width="12" height="155" fill="url(#sl-wall)" stroke="rgba(0,0,0,0.08)" stroke-width="0.5"/>
+                <!-- Right wall -->
+                <rect class="slope-wall-right" x="668" y="210" width="12" height="155" fill="url(#sl-wall)" stroke="rgba(0,0,0,0.08)" stroke-width="0.5"/>
+                <!-- Interior -->
+                <rect class="slope-interior" x="132" y="210" width="536" height="155" fill="#f7f5f0" stroke="rgba(0,0,0,0.04)" stroke-width="0.5"/>
+                <!-- Window -->
+                <rect x="350" y="260" width="100" height="70" rx="3" fill="rgba(180,220,255,0.3)" stroke="rgba(0,0,0,0.08)" stroke-width="0.8"/>
+                <line x1="400" y1="260" x2="400" y2="330" stroke="rgba(0,0,0,0.06)" stroke-width="0.5"/>
+                <line x1="350" y1="295" x2="450" y2="295" stroke="rgba(0,0,0,0.06)" stroke-width="0.5"/>
+              </g>
+
+              <!-- ═══ ROOF (the rotating part) ═══ -->
+              <g class="slope-roof-group" transform-origin="400 210">
+                <!-- Left slope -->
+                <polygon class="slope-roof-left" points="120,210 400,110 400,210" fill="url(#sl-plat)"/>
+                <polygon class="slope-roof-left" points="120,210 400,110 400,210" fill="url(#sl-plat-shine)"/>
+                <!-- Right slope -->
+                <polygon class="slope-roof-right" points="400,110 680,210 400,210" fill="url(#sl-plat)"/>
+
+                <!-- Corrugation lines — left -->
+                <line class="slope-corr slope-corr-l" x1="180" y1="205" x2="400" y2="120" stroke="rgba(80,130,160,0.2)" stroke-width="0.8"/>
+                <line class="slope-corr slope-corr-l" x1="240" y1="206" x2="400" y2="134" stroke="rgba(80,130,160,0.15)" stroke-width="0.6"/>
+                <line class="slope-corr slope-corr-l" x1="300" y1="208" x2="400" y2="148" stroke="rgba(80,130,160,0.18)" stroke-width="0.7"/>
+                <line class="slope-corr slope-corr-l" x1="340" y1="209" x2="400" y2="162" stroke="rgba(80,130,160,0.13)" stroke-width="0.5"/>
+
+                <!-- Corrugation lines — right -->
+                <line class="slope-corr slope-corr-r" x1="400" y1="120" x2="620" y2="205" stroke="rgba(80,130,160,0.2)" stroke-width="0.8"/>
+                <line class="slope-corr slope-corr-r" x1="400" y1="134" x2="560" y2="206" stroke="rgba(80,130,160,0.15)" stroke-width="0.6"/>
+                <line class="slope-corr slope-corr-r" x1="400" y1="148" x2="500" y2="208" stroke="rgba(80,130,160,0.18)" stroke-width="0.7"/>
+                <line class="slope-corr slope-corr-r" x1="400" y1="162" x2="460" y2="209" stroke="rgba(80,130,160,0.13)" stroke-width="0.5"/>
+
+                <!-- Nock (ridge cap) -->
+                <rect class="slope-nock" x="388" y="106" width="24" height="10" rx="3" fill="#4a7a90" opacity="0.7"/>
+
+                <!-- Screws -->
+                <circle cx="260" cy="196" r="3" fill="rgba(60,100,130,0.45)"/>
+                <circle cx="540" cy="196" r="3" fill="rgba(60,100,130,0.45)"/>
+
+                <!-- Drip edge left -->
+                <line class="slope-drip-l" x1="120" y1="210" x2="120" y2="220" stroke="#3a6880" stroke-width="2.5" stroke-linecap="round"/>
+                <!-- Drip edge right -->
+                <line class="slope-drip-r" x1="680" y1="210" x2="680" y2="220" stroke="#3a6880" stroke-width="2.5" stroke-linecap="round"/>
+              </g>
+
+              <!-- ═══ WATER DROPS (animated) ═══ -->
+              <g class="slope-drops">
+                <!-- Left side drops -->
+                <circle class="slope-drop sd-l1" cx="250" cy="190" r="3.5" fill="url(#sl-drop)"/>
+                <circle class="slope-drop sd-l2" cx="200" cy="195" r="3" fill="url(#sl-drop)"/>
+                <circle class="slope-drop sd-l3" cx="300" cy="185" r="2.8" fill="url(#sl-drop)"/>
+                <circle class="slope-drop sd-l4" cx="160" cy="200" r="3.2" fill="url(#sl-drop)"/>
+                <circle class="slope-drop sd-l5" cx="350" cy="175" r="2.5" fill="url(#sl-drop)"/>
+                <!-- Right side drops -->
+                <circle class="slope-drop sd-r1" cx="550" cy="190" r="3.5" fill="url(#sl-drop)"/>
+                <circle class="slope-drop sd-r2" cx="600" cy="195" r="3" fill="url(#sl-drop)"/>
+                <circle class="slope-drop sd-r3" cx="500" cy="185" r="2.8" fill="url(#sl-drop)"/>
+                <circle class="slope-drop sd-r4" cx="640" cy="200" r="3.2" fill="url(#sl-drop)"/>
+                <circle class="slope-drop sd-r5" cx="450" cy="175" r="2.5" fill="url(#sl-drop)"/>
+              </g>
+
+              <!-- ═══ ANGLE ARC + LABEL ═══ -->
+              <g class="slope-angle-display">
+                <!-- Arc line from horizontal -->
+                <path class="slope-arc" d="M400,210 L440,210" stroke="var(--blue)" stroke-width="1.5" fill="none" opacity="0.5"/>
+                <!-- Angle text -->
+                <text class="slope-angle-text" x="450" y="205" font-size="18" font-weight="700" fill="var(--blue)" font-family="Inter,sans-serif" opacity="0.8">14°</text>
+              </g>
+
+              <!-- Speed indicator -->
+              <g class="slope-speed-display">
+                <rect x="30" y="380" width="140" height="30" rx="15" fill="rgba(255,255,255,0.85)" stroke="var(--border)" stroke-width="1"/>
+                <text class="slope-speed-label" x="100" y="400" text-anchor="middle" font-size="12" fill="var(--text-soft)" font-weight="600" font-family="Inter,sans-serif">Avrinning: Låg</text>
+              </g>
+
+              <!-- Gutter/splash at ground -->
+              <g class="slope-splash" opacity="0.3">
+                <ellipse cx="120" cy="370" rx="20" ry="4" fill="rgba(25,168,255,0.25)"/>
+                <ellipse cx="680" cy="370" rx="20" ry="4" fill="rgba(25,168,255,0.25)"/>
+              </g>
+
+            </g>
+          </svg>
+
+          <!-- Slider control -->
+          <div class="slope-controls">
+            <div class="slope-slider-row">
+              <span class="slope-slider-label">Takvinkel</span>
+              <input type="range" class="slope-slider" min="6" max="45" value="14" step="1"/>
+              <span class="slope-slider-value">14°</span>
+            </div>
+            <div class="slope-presets">
+              <button class="slope-preset" data-angle="6">6° Platt</button>
+              <button class="slope-preset slope-preset-active" data-angle="14">14° Standard</button>
+              <button class="slope-preset" data-angle="22">22° Brant</button>
+              <button class="slope-preset" data-angle="35">35° Mycket brant</button>
+              <button class="slope-preset" data-angle="45">45° Max</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info cards -->
+        <div class="slope-cards">
+          <div class="slope-card" data-slope-range="low">
+            <div class="slope-card-icon">
+              <svg viewBox="0 0 40 40" fill="none">
+                <rect x="4" y="6" width="32" height="28" rx="3" fill="rgba(255,160,60,0.08)" stroke="rgba(255,160,60,0.4)" stroke-width="1.5"/>
+                <path d="M12 22 L20 16 L28 22" stroke="rgba(255,160,60,0.6)" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <line x1="20" y1="28" x2="20" y2="16" stroke="rgba(255,160,60,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Låg lutning (6–14°)</h3>
+            <p>Vatten rinner av långsamt. Kräver noggrant tätskikt — risk för stillastående vatten och isbildning vid takfot.</p>
+            <span class="slope-card-tag slope-tag-warn">Kräver extra tätning</span>
+          </div>
+          <div class="slope-card slope-card-active" data-slope-range="mid">
+            <div class="slope-card-icon">
+              <svg viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="20" r="16" fill="rgba(25,168,255,0.06)" stroke="var(--blue)" stroke-width="1.5"/>
+                <path d="M12 22 L20 13 L28 22" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <path d="M18 30 L20 34 L22 30" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.5"/>
+              </svg>
+            </div>
+            <h3>Optimal lutning (14–22°)</h3>
+            <p>Bäst balans mellan avrinning och vindmotstånd. Korrugerad plåt fungerar utmärkt — standardvalet för de flesta tak i Skåne.</p>
+            <span class="slope-card-tag slope-tag-ok">Rekommenderat</span>
+          </div>
+          <div class="slope-card" data-slope-range="high">
+            <div class="slope-card-icon">
+              <svg viewBox="0 0 40 40" fill="none">
+                <polygon points="20,4 36,34 4,34" fill="rgba(46,170,92,0.06)" stroke="#2eaa5c" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M15 28 L20 10 L25 28" stroke="#2eaa5c" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.4"/>
+              </svg>
+            </div>
+            <h3>Hög lutning (22–45°)</h3>
+            <p>Snabb avrinning — vatten och snö lämnar taket omedelbart. Kräver starkare infästning mot vind men ger utmärkt dränering.</p>
+            <span class="slope-card-tag slope-tag-good">Snabb avrinning</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
 
   </main>
 
