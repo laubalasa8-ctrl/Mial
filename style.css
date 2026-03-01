@@ -17200,10 +17200,7 @@ html { overflow-x: hidden; }
   background-attachment: fixed;
   background-repeat: no-repeat;
   width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: -2rem calc(-50vw + 50%) 0;
   padding: 0 1.5rem;
   height: 100vh;
   display: flex;
@@ -18056,10 +18053,7 @@ html { overflow-x: hidden; }
   background-attachment: fixed;
   background-repeat: no-repeat;
   width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: -2rem calc(-50vw + 50%) 0;
   padding: 0 1.5rem;
   height: 100vh;
   display: flex;
