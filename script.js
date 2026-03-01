@@ -214,180 +214,265 @@ accordionItems.forEach(item => {
 // ===== STEP DETAILS =====
 // Removed - step section is now static without expandable details
 
-// ===== COOKIE CONSENT – PREMIUM =====
+// ===== FEROTECT COOKIE CONSENT =====
 function initCookieBanner() {
-  // Check if consent already stored (within 180 days)
-  const consent = localStorage.getItem('fc_consent');
-  const timestamp = localStorage.getItem('fc_timestamp');
-  const maxAge = 180 * 24 * 60 * 60 * 1000;
-  const now = Date.now();
-  const hasConsent = consent && timestamp && (now - parseInt(timestamp)) < maxAge;
+  // If old cookie banner HTML exists, remove it
+  const oldBanner = document.getElementById('cookie-banner');
+  if (oldBanner) oldBanner.remove();
+  const oldOverlay = document.getElementById('cookie-overlay');
+  if (oldOverlay) oldOverlay.remove();
 
-  // Inject banner HTML into every page
-  const bannerHTML = `
-    <div class="fc-overlay" id="fc-overlay"></div>
-    <div class="fc-banner" id="fc-banner" role="dialog" aria-label="Cookie-inställningar">
-      <div class="fc-card">
-        <div class="fc-body">
-          <div class="fc-header">
-            <div class="fc-logo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
-            </div>
-            <div>
-              <h3 class="fc-title">Cookie-inställningar</h3>
-              <p class="fc-subtitle">Ferotect värnar om din integritet</p>
-            </div>
-          </div>
-          <p class="fc-desc">Vi använder cookies för att förbättra din upplevelse, analysera trafik och visa relevant innehåll. Välj vilka cookies du vill tillåta. <a href="anvandarvillkor.html">Läs mer</a></p>
-          <div class="fc-categories">
-            <div class="fc-cat">
-              <div class="fc-cat-info">
-                <div class="fc-cat-icon fc-icon-necessary">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <div>
-                  <div class="fc-cat-label">Nödvändiga</div>
-                  <div class="fc-cat-detail">Krävs för grundläggande funktionalitet</div>
-                </div>
-              </div>
-              <label class="fc-toggle">
-                <input type="checkbox" checked disabled data-fc="necessary">
-                <span class="fc-toggle-track"></span>
-              </label>
-            </div>
-            <div class="fc-cat">
-              <div class="fc-cat-info">
-                <div class="fc-cat-icon fc-icon-analytics">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
-                </div>
-                <div>
-                  <div class="fc-cat-label">Analys</div>
-                  <div class="fc-cat-detail">Hjälper oss förstå besöksbeteenden</div>
-                </div>
-              </div>
-              <label class="fc-toggle">
-                <input type="checkbox" data-fc="analytics">
-                <span class="fc-toggle-track"></span>
-              </label>
-            </div>
-            <div class="fc-cat">
-              <div class="fc-cat-info">
-                <div class="fc-cat-icon fc-icon-marketing">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
-                </div>
-                <div>
-                  <div class="fc-cat-label">Marknadsföring</div>
-                  <div class="fc-cat-detail">Personaliserat innehåll & annonser</div>
-                </div>
-              </div>
-              <label class="fc-toggle">
-                <input type="checkbox" data-fc="marketing">
-                <span class="fc-toggle-track"></span>
-              </label>
-            </div>
-          </div>
-          <div class="fc-actions">
-            <button class="fc-btn fc-btn-accept" id="fc-accept">Godkänn alla</button>
-            <button class="fc-btn fc-btn-reject" id="fc-reject">Spara val</button>
-          </div>
-        </div>
-        <div class="fc-footer">
-          <a href="anvandarvillkor.html">Användarvillkor & Integritetspolicy</a>
-        </div>
-      </div>
-    </div>
-    <button class="fc-reopen" id="fc-reopen" aria-label="Cookie-inställningar" title="Cookie-inställningar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"/>
-        <circle cx="8" cy="9" r="1.5" fill="currentColor" stroke="none"/>
-        <circle cx="15" cy="7" r="1" fill="currentColor" stroke="none"/>
-        <circle cx="16" cy="13" r="1.5" fill="currentColor" stroke="none"/>
-        <circle cx="10" cy="15" r="1" fill="currentColor" stroke="none"/>
-        <circle cx="13" cy="11" r="0.8" fill="currentColor" stroke="none"/>
-      </svg>
-    </button>
-  `;
-  document.body.insertAdjacentHTML('beforeend', bannerHTML);
+  const STORAGE_KEY = 'fc_consent';
+  const EXPIRY_DAYS = 180;
 
-  const banner = document.getElementById('fc-banner');
-  const overlay = document.getElementById('fc-overlay');
-  const acceptBtn = document.getElementById('fc-accept');
-  const rejectBtn = document.getElementById('fc-reject');
-  const reopenBtn = document.getElementById('fc-reopen');
-
-  // Restore previous choices to toggles
-  if (hasConsent) {
+  function getConsent() {
     try {
-      const prefs = JSON.parse(consent);
-      document.querySelectorAll('[data-fc]').forEach(cb => {
-        const key = cb.getAttribute('data-fc');
-        if (key !== 'necessary' && prefs[key] !== undefined) {
-          cb.checked = prefs[key];
-        }
-      });
-    } catch(e) {}
-    // Show reopen button, hide banner
-    reopenBtn.classList.add('fc-show');
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      const data = JSON.parse(raw);
+      if (Date.now() - data.timestamp > EXPIRY_DAYS * 86400000) {
+        localStorage.removeItem(STORAGE_KEY);
+        return null;
+      }
+      return data;
+    } catch(e) { return null; }
+  }
+
+  function saveConsent(prefs) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      necessary: true,
+      analytics: prefs.analytics || false,
+      marketing: prefs.marketing || false,
+      functional: prefs.functional || false,
+      timestamp: Date.now()
+    }));
+  }
+
+  // Already consented? Just show reopen button
+  if (getConsent()) {
+    injectReopenButton();
     return;
   }
 
+  // Build + inject banner HTML
+  const wrapper = document.createElement('div');
+  wrapper.id = 'fc-cookie-root';
+  wrapper.innerHTML = `
+    <div class="fc-overlay" id="fc-overlay"></div>
+    <div class="fc-banner" id="fc-banner">
+      <div class="fc-banner-inner">
+        <div class="fc-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/>
+            <circle cx="8.5" cy="8.5" r="1"/><circle cx="10.5" cy="15.5" r="1"/><circle cx="15.5" cy="12.5" r="1"/>
+            <circle cx="7" cy="12" r="0.5" fill="currentColor"/><circle cx="12" cy="17" r="0.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="fc-text">
+          <h3>Vi värnar om din integritet</h3>
+          <p>Vi använder cookies för att optimera din upplevelse, analysera trafik och anpassa innehåll. Du väljer själv vilka du vill tillåta. <a href="anvandarvillkor.html">Läs mer</a></p>
+        </div>
+        <div class="fc-actions">
+          <button class="fc-btn fc-btn-accept" id="fc-accept">Godkänn alla</button>
+          <button class="fc-btn fc-btn-settings" id="fc-open-settings">Anpassa</button>
+          <button class="fc-btn fc-btn-reject" id="fc-reject">Avvisa</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="fc-panel" id="fc-panel">
+      <div class="fc-panel-header">
+        <h2>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          Cookie-inställningar
+        </h2>
+        <button class="fc-panel-close" id="fc-panel-close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="fc-panel-body">
+        <p class="fc-panel-intro">Här kan du styra exakt vilka cookies som används. Nödvändiga cookies krävs för att sidan ska fungera och kan inte stängas av.</p>
+
+        <div class="fc-category">
+          <div class="fc-category-top">
+            <div class="fc-category-info">
+              <p class="fc-category-name">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Nödvändiga
+                <span class="fc-badge fc-badge-required">Alltid aktiva</span>
+              </p>
+              <p class="fc-category-desc">Krävs för grundläggande funktionalitet som sidnavigering, formulär och säkerhet. Utan dessa fungerar inte webbplatsen.</p>
+            </div>
+            <label class="fc-toggle">
+              <input type="checkbox" checked disabled data-category="necessary">
+              <span class="fc-toggle-track"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="fc-category">
+          <div class="fc-category-top">
+            <div class="fc-category-info">
+              <p class="fc-category-name">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                Analys &amp; statistik
+              </p>
+              <p class="fc-category-desc">Hjälper oss förstå hur besökare använder sidan så vi kan förbättra upplevelsen. Data är anonymiserad.</p>
+            </div>
+            <label class="fc-toggle">
+              <input type="checkbox" id="fc-toggle-analytics" data-category="analytics">
+              <span class="fc-toggle-track"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="fc-category">
+          <div class="fc-category-top">
+            <div class="fc-category-info">
+              <p class="fc-category-name">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Funktionella
+              </p>
+              <p class="fc-category-desc">Möjliggör förbättrad funktionalitet som livechatt, videoklipp och personliga inställningar.</p>
+            </div>
+            <label class="fc-toggle">
+              <input type="checkbox" id="fc-toggle-functional" data-category="functional">
+              <span class="fc-toggle-track"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="fc-category">
+          <div class="fc-category-top">
+            <div class="fc-category-info">
+              <p class="fc-category-name">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                Marknadsföring
+              </p>
+              <p class="fc-category-desc">Används för att visa relevanta annonser och mäta kampanjresultat. Delas med utvalda annonseringspartners.</p>
+            </div>
+            <label class="fc-toggle">
+              <input type="checkbox" id="fc-toggle-marketing" data-category="marketing">
+              <span class="fc-toggle-track"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="fc-panel-footer">
+        <button class="fc-btn fc-btn-deny-all" id="fc-deny-all">Avvisa alla</button>
+        <button class="fc-btn fc-btn-save" id="fc-save">Spara mina val</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(wrapper);
+
+  // Elements
+  const overlay = document.getElementById('fc-overlay');
+  const banner = document.getElementById('fc-banner');
+  const panel = document.getElementById('fc-panel');
+  const btnAccept = document.getElementById('fc-accept');
+  const btnReject = document.getElementById('fc-reject');
+  const btnSettings = document.getElementById('fc-open-settings');
+  const btnPanelClose = document.getElementById('fc-panel-close');
+  const btnSave = document.getElementById('fc-save');
+  const btnDenyAll = document.getElementById('fc-deny-all');
+
   // Show banner after short delay
   setTimeout(() => {
-    banner.classList.add('fc-show');
-    overlay.classList.add('fc-show');
+    banner.classList.add('fc-visible');
+    overlay.classList.add('fc-visible');
   }, 800);
 
-  function saveAndClose(acceptAll) {
-    const prefs = { necessary: true };
-    if (acceptAll) {
-      prefs.analytics = true;
-      prefs.marketing = true;
-      // Check all toggles visually
-      document.querySelectorAll('[data-fc]').forEach(cb => {
-        if (!cb.disabled) cb.checked = true;
-      });
-    } else {
-      document.querySelectorAll('[data-fc]').forEach(cb => {
-        const key = cb.getAttribute('data-fc');
-        prefs[key] = cb.checked;
-      });
-    }
-
-    localStorage.setItem('fc_consent', JSON.stringify(prefs));
-    localStorage.setItem('fc_timestamp', Date.now().toString());
-
-    // Closing animation
-    banner.classList.add('fc-closing');
-    overlay.classList.remove('fc-show');
-
-    setTimeout(() => {
-      banner.classList.remove('fc-show', 'fc-closing');
-      reopenBtn.classList.add('fc-show');
-    }, 400);
+  function hideBanner() {
+    banner.classList.remove('fc-visible');
+    overlay.classList.remove('fc-visible');
+    panel.classList.remove('fc-visible');
+    setTimeout(() => injectReopenButton(), 600);
   }
 
-  acceptBtn.addEventListener('click', () => saveAndClose(true));
-  rejectBtn.addEventListener('click', () => saveAndClose(false));
+  function openPanel() {
+    panel.classList.add('fc-visible');
+    banner.classList.remove('fc-visible');
+  }
 
-  // Overlay click = save current selection
-  overlay.addEventListener('click', () => saveAndClose(false));
+  function closePanel() {
+    panel.classList.remove('fc-visible');
+    banner.classList.add('fc-visible');
+  }
 
-  // Reopen banner
-  reopenBtn.addEventListener('click', () => {
-    reopenBtn.classList.remove('fc-show');
-    banner.classList.remove('fc-closing');
-    banner.classList.add('fc-show');
-    overlay.classList.add('fc-show');
+  function getToggles() {
+    return {
+      analytics: document.getElementById('fc-toggle-analytics').checked,
+      functional: document.getElementById('fc-toggle-functional').checked,
+      marketing: document.getElementById('fc-toggle-marketing').checked
+    };
+  }
+
+  // Accept all
+  btnAccept.addEventListener('click', () => {
+    saveConsent({ analytics: true, functional: true, marketing: true });
+    hideBanner();
   });
 
-  // Track mouse position for accept button ripple
-  acceptBtn.addEventListener('mousemove', (e) => {
-    const rect = acceptBtn.getBoundingClientRect();
-    acceptBtn.style.setProperty('--x', ((e.clientX - rect.left) / rect.width * 100) + '%');
-    acceptBtn.style.setProperty('--y', ((e.clientY - rect.top) / rect.height * 100) + '%');
+  // Reject
+  btnReject.addEventListener('click', () => {
+    saveConsent({ analytics: false, functional: false, marketing: false });
+    hideBanner();
   });
+
+  // Settings
+  btnSettings.addEventListener('click', openPanel);
+
+  // Panel close
+  btnPanelClose.addEventListener('click', closePanel);
+
+  // Save preferences
+  btnSave.addEventListener('click', () => {
+    saveConsent(getToggles());
+    hideBanner();
+  });
+
+  // Deny all from panel
+  btnDenyAll.addEventListener('click', () => {
+    saveConsent({ analytics: false, functional: false, marketing: false });
+    hideBanner();
+  });
+
+  // Overlay click closes panel back to banner
+  overlay.addEventListener('click', () => {
+    if (panel.classList.contains('fc-visible')) {
+      closePanel();
+    }
+  });
+
+  function injectReopenButton() {
+    if (document.getElementById('fc-reopen')) return;
+    const btn = document.createElement('button');
+    btn.id = 'fc-reopen';
+    btn.className = 'fc-reopen';
+    btn.setAttribute('aria-label', 'Cookie-inställningar');
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><circle cx="8.5" cy="8.5" r="1"/><circle cx="10.5" cy="15.5" r="1"/><circle cx="15.5" cy="12.5" r="1"/></svg>';
+    document.body.appendChild(btn);
+    setTimeout(() => btn.classList.add('fc-visible'), 100);
+    btn.addEventListener('click', () => {
+      btn.classList.remove('fc-visible');
+      setTimeout(() => { btn.remove(); }, 400);
+      // Re-show banner
+      let root = document.getElementById('fc-cookie-root');
+      if (!root) {
+        // Re-init if root was removed
+        localStorage.removeItem(STORAGE_KEY);
+        initCookieBanner();
+        return;
+      }
+      const b = document.getElementById('fc-banner');
+      const o = document.getElementById('fc-overlay');
+      if (b && o) {
+        b.classList.add('fc-visible');
+        o.classList.add('fc-visible');
+      }
+    });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
