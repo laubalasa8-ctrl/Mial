@@ -1547,8 +1547,10 @@ section.stats-section { border-bottom: none; }
 /* Cloud drift */
 @keyframes slope-cloud-drift-1 { 0% { transform: translateX(0); } 100% { transform: translateX(20px); } }
 @keyframes slope-cloud-drift-2 { 0% { transform: translateX(0); } 100% { transform: translateX(-16px); } }
+@keyframes slope-cloud-drift-3 { 0% { transform: translateX(0); } 100% { transform: translateX(12px); } }
 .slope-cloud-1 { animation: slope-cloud-drift-1 14s ease-in-out infinite alternate; }
 .slope-cloud-2 { animation: slope-cloud-drift-2 18s ease-in-out infinite alternate; }
+.slope-cloud-3 { animation: slope-cloud-drift-3 22s ease-in-out infinite alternate; }
 
 /* Rain streaks */
 @keyframes slope-rain-fall {
@@ -1566,6 +1568,8 @@ section.stats-section { border-bottom: none; }
 .sr-6  { animation: slope-rain-fall 2.2s linear infinite 0.2s; }
 .sr-7  { animation: slope-rain-fall 1.6s linear infinite 0.4s; }
 .sr-8  { animation: slope-rain-fall 2.0s linear infinite 0.6s; }
+.sr-9  { animation: slope-rain-fall 1.9s linear infinite 0.35s; }
+.sr-10 { animation: slope-rain-fall 2.1s linear infinite 0.55s; }
 
 /* Water drops */
 .slope-drop { will-change: transform, opacity, cy; }

@@ -1265,7 +1265,7 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 /* ═══════════════════════════════════════════════════════
-   TAKFALL & AVRINNING — Single-slope interactive (v4)
+   TAKFALL & AVRINNING — Dual-slope gable interactive (v5)
    ═══════════════════════════════════════════════════════ */
 (function() {
   var section = document.querySelector('.slope-section');
@@ -1294,29 +1294,53 @@ document.addEventListener('DOMContentLoaded', function() {
   var valRisk = indicatorVals[1];
   var valWind = indicatorVals[2];
 
-  // Pool
-  var pool = section.querySelector('.slope-pool');
+  // Pools
+  var poolL = section.querySelector('.slope-pool-l');
+  var poolR = section.querySelector('.slope-pool-r');
 
-  // Single-slope geometry
-  // Left side is HIGH, right side is LOW (eave)
-  var HIGH_X = 80;   // left edge (high side)
-  var LOW_X = 470;    // right edge (low/eave side)
-  var EAVE_Y = 210;   // wall top / eave baseline
-  var SPAN = LOW_X - HIGH_X; // 390
+  // Dual-slope geometry — ridge at center
+  var RIDGE_X = 280;
+  var LEFT_EAVE_X = 85;
+  var RIGHT_EAVE_X = 475;
+  var EAVE_Y = 220;       // wall-top / eave baseline
+  var HALF_SPAN_L = RIDGE_X - LEFT_EAVE_X;   // 195
+  var HALF_SPAN_R = RIGHT_EAVE_X - RIDGE_X;  // 195
+  var ROOF_THICK = 10;
+
+  // 3D side-wall offsets
+  var SIDE_DX = 30;
+  var SIDE_DY = -10;
 
   // Roof elements
-  var roofMains = section.querySelectorAll('.slope-roof-main');
-  var corrMs = section.querySelectorAll('.slope-corr-m');
-  var fasciaHigh = section.querySelector('.slope-fascia-high');
-  var fasciaLow = section.querySelector('.slope-fascia-low');
-  var chimney = section.querySelector('.slope-chimney');
-  var gutterPath = section.querySelector('.slope-gutter-path');
-  var downpipe = section.querySelector('.slope-downpipe');
+  var roofsL = section.querySelectorAll('.slope-roof-left');
+  var roofsR = section.querySelectorAll('.slope-roof-right');
+  var corrLs = section.querySelectorAll('.slope-corr-l');
+  var corrRs = section.querySelectorAll('.slope-corr-r');
+  var roofSide = section.querySelector('.slope-roof-side');
+  var ridge = section.querySelector('.slope-ridge');
+  var fasciaL = section.querySelector('.slope-fascia-l');
+  var fasciaR = section.querySelector('.slope-fascia-r');
+  var eaveShadowL = section.querySelector('.slope-eave-shadow-l');
+  var eaveShadowR = section.querySelector('.slope-eave-shadow-r');
 
-  // Drops — single direction
-  var drops = section.querySelectorAll('[class*="sd-m"]');
-  var gutterDripR = section.querySelector('.sgd-r');
+  // Gutter elements
+  var gutterL = section.querySelector('.slope-gutter-l');
+  var gutterR = section.querySelector('.slope-gutter-r');
+  var downpipeL = section.querySelector('.slope-downpipe-l');
+  var downpipeR = section.querySelector('.slope-downpipe-r');
+  var elbowL = section.querySelector('.slope-elbow-l');
+  var elbowR = section.querySelector('.slope-elbow-r');
+
+  // Drops — left and right
+  var dropsL = section.querySelectorAll('[class*="sd-l"]');
+  var dropsR = section.querySelectorAll('[class*="sd-r"]');
+
+  // Gutter drips (multiple per side for vivid stream)
+  var gutterDripsL = section.querySelectorAll('[class*="sgd-l"]');
+  var gutterDripsR = section.querySelectorAll('[class*="sgd-r"]');
+  var splashL = section.querySelector('.slope-splash-l');
   var splashR = section.querySelector('.slope-splash-r');
+
   var rainLines = section.querySelectorAll('.slope-rain');
 
   var animFrames = [];
@@ -1358,7 +1382,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if(fillRisk) fillRisk.style.width = ri + '%';
     if(fillWind) fillWind.style.width = wi + '%';
 
-    // Short labels that fit
     var sL = ['Mkt långsam','Långsam','Normal','Snabb','Mkt snabb'];
     var rL = ['Mkt låg','Låg','Medel','Hög','Mkt hög'];
     var wL = ['Minimal','Låg','Medel','Hög','Mkt hög'];
@@ -1372,68 +1395,95 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function updateRoof(angle) {
     var rad = degToRad(angle);
-    var rise = Math.tan(rad) * SPAN;
-    var highY = Math.max(EAVE_Y - rise, 30);
+    var riseL = Math.tan(rad) * HALF_SPAN_L;
+    var riseR = Math.tan(rad) * HALF_SPAN_R;
+    var ridgeY = Math.max(EAVE_Y - riseL, 30);
 
-    // Single-slope roof: 4 corners — high-left top, low-right top (eave), low-right bottom, high-left bottom
-    var pts = HIGH_X+','+highY+' '+LOW_X+','+EAVE_Y+' '+LOW_X+','+(EAVE_Y+10)+' '+HIGH_X+','+(highY+10);
-    roofMains.forEach(function(el){ el.setAttribute('points', pts); });
+    // Left roof plane: eave-left-bottom → eave-left-top → ridge-top → ridge-bottom
+    var ptsL = LEFT_EAVE_X+','+EAVE_Y+' '+LEFT_EAVE_X+','+(EAVE_Y+ROOF_THICK)+' '+RIDGE_X+','+(ridgeY+ROOF_THICK)+' '+RIDGE_X+','+ridgeY;
+    roofsL.forEach(function(el){ el.setAttribute('points', ptsL); });
 
-    // Corrugation lines — run from left to right along the slope
-    var corrOffsets = [0.13, 0.3, 0.5, 0.7, 0.85];
-    corrMs.forEach(function(l, i) {
-      var t = corrOffsets[i] || 0.5;
-      var x1 = HIGH_X + t * SPAN * 0.15;
-      var y1 = highY + t * (EAVE_Y - highY) * 0.15 + 3;
-      var x2 = LOW_X - 2;
+    // Right roof plane: ridge-top → ridge-bottom → eave-right-bottom → eave-right-top
+    var ptsR = RIDGE_X+','+ridgeY+' '+RIDGE_X+','+(ridgeY+ROOF_THICK)+' '+RIGHT_EAVE_X+','+(EAVE_Y+ROOF_THICK)+' '+RIGHT_EAVE_X+','+EAVE_Y;
+    roofsR.forEach(function(el){ el.setAttribute('points', ptsR); });
+
+    // 3D roof side panel (right gable)
+    if(roofSide) {
+      var sp = RIGHT_EAVE_X+','+EAVE_Y+' '+RIGHT_EAVE_X+','+(EAVE_Y+ROOF_THICK)+' '+(RIGHT_EAVE_X+SIDE_DX)+','+(EAVE_Y+SIDE_DY+ROOF_THICK)+' '+(RIGHT_EAVE_X+SIDE_DX)+','+(EAVE_Y+SIDE_DY);
+      roofSide.setAttribute('points', sp);
+    }
+
+    // Ridge cap
+    if(ridge) { ridge.setAttribute('y', ridgeY - 2); }
+
+    // Corrugation lines — LEFT (run from near-ridge toward eave)
+    var corrOffsetsL = [0.2, 0.4, 0.6, 0.8];
+    corrLs.forEach(function(l, i) {
+      var t = corrOffsetsL[i] || 0.5;
+      var x1 = RIDGE_X - t * HALF_SPAN_L * 0.3;
+      var y1 = ridgeY + t * (EAVE_Y - ridgeY) * 0.3 + 3;
+      var x2 = LEFT_EAVE_X + 3;
+      var y2 = EAVE_Y + 3;
+      l.setAttribute('x1', x1); l.setAttribute('y1', y1);
+      l.setAttribute('x2', x2); l.setAttribute('y2', y2);
+    });
+
+    // Corrugation lines — RIGHT
+    var corrOffsetsR = [0.2, 0.4, 0.6, 0.8];
+    corrRs.forEach(function(l, i) {
+      var t = corrOffsetsR[i] || 0.5;
+      var x1 = RIDGE_X + t * HALF_SPAN_R * 0.3;
+      var y1 = ridgeY + t * (EAVE_Y - ridgeY) * 0.3 + 3;
+      var x2 = RIGHT_EAVE_X - 3;
       var y2 = EAVE_Y + 3;
       l.setAttribute('x1', x1); l.setAttribute('y1', y1);
       l.setAttribute('x2', x2); l.setAttribute('y2', y2);
     });
 
     // Fascia boards
-    if(fasciaHigh) { fasciaHigh.setAttribute('y', highY - 3); fasciaHigh.setAttribute('height', 16); }
-    if(fasciaLow) { fasciaLow.setAttribute('y', EAVE_Y - 3); fasciaLow.setAttribute('height', 16); }
+    if(fasciaL) { fasciaL.setAttribute('y', EAVE_Y - 3); fasciaL.setAttribute('height', 14); }
+    if(fasciaR) { fasciaR.setAttribute('y', EAVE_Y - 3); fasciaR.setAttribute('height', 14); }
 
-    // Chimney — sits on the high side of the roof
-    if(chimney) {
-      var chimX = HIGH_X + SPAN * 0.16;
-      var chimBaseY = highY + (EAVE_Y - highY) * 0.16 + 5;
-      var chimTopY = Math.max(chimBaseY - 55, 15);
-      var rects = chimney.querySelectorAll('rect');
-      if(rects[0]){ rects[0].setAttribute('x', chimX); rects[0].setAttribute('y', chimTopY); rects[0].setAttribute('height', chimBaseY - chimTopY); }
-      if(rects[1]){ rects[1].setAttribute('x', chimX-3); rects[1].setAttribute('y', chimTopY-4); }
-      var brickLines = chimney.querySelectorAll('line');
-      brickLines.forEach(function(bl, i) {
-        var by = chimTopY + 15 + i * 15;
-        if(by < chimBaseY - 5) {
-          bl.setAttribute('x1', chimX); bl.setAttribute('x2', chimX + 26);
-          bl.setAttribute('y1', by); bl.setAttribute('y2', by);
-          bl.style.display = '';
-        } else { bl.style.display = 'none'; }
-      });
+    // Eave shadow lines
+    if(eaveShadowL) { eaveShadowL.setAttribute('y1', EAVE_Y + ROOF_THICK); eaveShadowL.setAttribute('y2', EAVE_Y + ROOF_THICK); }
+    if(eaveShadowR) { eaveShadowR.setAttribute('y1', EAVE_Y + ROOF_THICK); eaveShadowR.setAttribute('y2', EAVE_Y + ROOF_THICK); }
+
+    // Gutters — track eave level
+    var gy = EAVE_Y + ROOF_THICK + 1;
+    if(gutterL) {
+      gutterL.setAttribute('d', 'M'+(LEFT_EAVE_X-7)+' '+gy+' Q'+(LEFT_EAVE_X-7)+' '+(gy+9)+' '+(LEFT_EAVE_X-1)+' '+(gy+9)+' L'+(LEFT_EAVE_X+9)+' '+(gy+9)+' Q'+(LEFT_EAVE_X+15)+' '+(gy+9)+' '+(LEFT_EAVE_X+15)+' '+gy);
+    }
+    if(gutterR) {
+      gutterR.setAttribute('d', 'M'+(RIGHT_EAVE_X-15)+' '+gy+' Q'+(RIGHT_EAVE_X-15)+' '+(gy+9)+' '+(RIGHT_EAVE_X-9)+' '+(gy+9)+' L'+(RIGHT_EAVE_X+1)+' '+(gy+9)+' Q'+(RIGHT_EAVE_X+7)+' '+(gy+9)+' '+(RIGHT_EAVE_X+7)+' '+gy);
+    }
+    if(downpipeL) {
+      downpipeL.setAttribute('y', gy + 9);
+      downpipeL.setAttribute('height', Math.max(340 - gy - 9, 50));
+    }
+    if(downpipeR) {
+      downpipeR.setAttribute('y', gy + 9);
+      downpipeR.setAttribute('height', Math.max(340 - gy - 9, 50));
+    }
+    // Elbows
+    if(elbowL) {
+      var elbY = Math.min(gy + 9 + Math.max(340 - gy - 9, 50), 340);
+      elbowL.setAttribute('d', 'M78 '+elbY+' Q78 '+(elbY+10)+' 68 '+(elbY+10)+' L62 '+(elbY+10));
+    }
+    if(elbowR) {
+      var elbYr = Math.min(gy + 9 + Math.max(340 - gy - 9, 50), 340);
+      elbowR.setAttribute('d', 'M482 '+elbYr+' Q482 '+(elbYr+10)+' 490 '+(elbYr+10)+' L496 '+(elbYr+10));
     }
 
-    // Gutter position — tracks the eave (right/low side)
-    if(gutterPath) {
-      var gy = EAVE_Y + 3;
-      gutterPath.setAttribute('d', 'M'+(LOW_X-8)+' '+gy+' Q'+(LOW_X-8)+' '+(gy+10)+' '+(LOW_X-2)+' '+(gy+10)+' L'+(LOW_X+8)+' '+(gy+10)+' Q'+(LOW_X+14)+' '+(gy+10)+' '+(LOW_X+14)+' '+gy);
-    }
-    if(downpipe) {
-      downpipe.setAttribute('y', EAVE_Y + 13);
-      downpipe.setAttribute('height', 340 - EAVE_Y - 13);
-    }
-
-    // Angle arc (at the low/eave end)
+    // Angle arc (at right eave)
     if(arcPath) {
       var arcR = 35;
-      var arcStartX = LOW_X - arcR;
-      arcPath.setAttribute('d', 'M'+arcStartX+','+EAVE_Y+' A'+arcR+','+arcR+' 0 0,0 '+(LOW_X - arcR*Math.cos(rad))+','+(EAVE_Y - arcR*Math.sin(rad)));
+      var arcStartX = RIGHT_EAVE_X - arcR;
+      arcPath.setAttribute('d', 'M'+arcStartX+','+EAVE_Y+' A'+arcR+','+arcR+' 0 0,0 '+(RIGHT_EAVE_X - arcR*Math.cos(rad))+','+(EAVE_Y - arcR*Math.sin(rad)));
     }
     if(angleText) {
       angleText.textContent = angle + '°';
       var lr = degToRad(angle / 2);
-      angleText.setAttribute('x', LOW_X - 50 * Math.cos(lr));
+      angleText.setAttribute('x', RIGHT_EAVE_X - 50 * Math.cos(lr));
       angleText.setAttribute('y', EAVE_Y - 50 * Math.sin(lr) + 4);
     }
 
@@ -1460,31 +1510,43 @@ document.addEventListener('DOMContentLoaded', function() {
     var rainOp = 0.15 + (1 - (angle-6)/39)*0.2;
     rainLines.forEach(function(r){r.style.opacity=rainOp;});
 
-    // Pool on roof surface (at low angles, near eave)
+    // Pool on roof surface (low angles, near eaves)
     var poolOp = angle < 12 ? (12 - angle) / 6 * 0.4 : 0;
-    if(pool) { pool.setAttribute('opacity', poolOp); pool.setAttribute('cy', EAVE_Y + 3); }
+    if(poolL) { poolL.setAttribute('opacity', poolOp); poolL.setAttribute('cy', EAVE_Y + 3); }
+    if(poolR) { poolR.setAttribute('opacity', poolOp); poolR.setAttribute('cy', EAVE_Y + 3); }
 
-    updateDrops(angle, highY);
+    updateDrops(angle, ridgeY);
     updateGutterDrip(angle);
     updateExplanation(angle);
   }
 
-  function updateDrops(angle, highY) {
+  /* ── Roof-surface water drops ── */
+  function updateDrops(angle, ridgeY) {
     animFrames.forEach(function(id){cancelAnimationFrame(id);});
     animFrames = [];
     var speed = 0.6 + (angle-6)/39*4;
-    var dur = 2200/speed;
-    drops.forEach(function(d,i){ animDrop(d, i, drops.length, dur, highY); });
+    var dur = 2000/speed;
+    // Left drops: flow from ridge toward left eave
+    dropsL.forEach(function(d,i){ animDropSide(d, i, dropsL.length, dur, ridgeY, 'left'); });
+    // Right drops: flow from ridge toward right eave
+    dropsR.forEach(function(d,i){ animDropSide(d, i, dropsR.length, dur, ridgeY, 'right'); });
   }
 
-  function animDrop(drop, idx, total, dur, highY) {
-    var delay = idx * (dur * 0.14);
-    var off = 0.05 + idx * (0.85 / total);
-    // Start somewhere along the roof, end at eave (right side)
-    var sx = HIGH_X + off * SPAN * 0.4;
-    var sy = highY + off * (EAVE_Y - highY) * 0.4;
-    var ex = LOW_X + 5;
-    var ey = EAVE_Y + 8;
+  function animDropSide(drop, idx, total, dur, ridgeY, side) {
+    var delay = idx * (dur * 0.18);
+    var off = 0.1 + idx * (0.8 / total);
+    var sx, sy, ex, ey;
+    if(side === 'left') {
+      sx = RIDGE_X - off * HALF_SPAN_L * 0.3;
+      sy = ridgeY + off * (EAVE_Y - ridgeY) * 0.3;
+      ex = LEFT_EAVE_X - 5;
+      ey = EAVE_Y + 10;
+    } else {
+      sx = RIDGE_X + off * HALF_SPAN_R * 0.3;
+      sy = ridgeY + off * (EAVE_Y - ridgeY) * 0.3;
+      ex = RIGHT_EAVE_X + 5;
+      ey = EAVE_Y + 10;
+    }
     var st = null;
     function step(ts) {
       if(!st) st = ts;
@@ -1494,8 +1556,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if(t > 1) { st = ts; t = 0; }
       var cx = sx + (ex - sx) * t;
       var cy = sy + (ey - sy) * t;
-      if(t > 0.9) cy += (t - 0.9) * 80;
-      var op = t < 0.04 ? t/0.04*0.7 : (t > 0.9 ? (1-t)/0.1*0.7 : 0.7);
+      if(t > 0.88) cy += (t - 0.88) * 70;
+      var op = t < 0.05 ? t/0.05*0.85 : (t > 0.88 ? (1-t)/0.12*0.85 : 0.85);
       drop.setAttribute('cx', cx);
       drop.setAttribute('cy', cy);
       drop.setAttribute('opacity', op);
@@ -1504,31 +1566,45 @@ document.addEventListener('DOMContentLoaded', function() {
     animFrames.push(requestAnimationFrame(step));
   }
 
+  /* ── Downpipe drip animation (vivid, multiple drips per pipe) ── */
   function updateGutterDrip(angle) {
     gutterFrames.forEach(function(id){cancelAnimationFrame(id);});
     gutterFrames = [];
     var sp = 0.5 + (angle-6)/39*3;
-    var dd = 1200/sp;
-    if(gutterDripR) animGutterDrip(gutterDripR, splashR, 492, dd, 0);
+    var dd = 1000/sp;
+    // Left pipe drips (staggered)
+    gutterDripsL.forEach(function(drip, i) {
+      animGutterDrip(drip, i === 0 ? splashL : null, 62, dd, i * dd * 0.33);
+    });
+    // Right pipe drips (staggered)
+    gutterDripsR.forEach(function(drip, i) {
+      animGutterDrip(drip, i === 0 ? splashR : null, 496, dd, i * dd * 0.33);
+    });
   }
 
   function animGutterDrip(drip, splash, cx, dur, delay) {
-    var sY = 346, eY = 356, st = null;
+    var sY = 348, eY = 362, st = null;
     function step(ts) {
       if(!st) st = ts;
       var el = ts - st - delay;
       if(el < 0) { drip.setAttribute('opacity','0'); if(splash) splash.setAttribute('opacity','0'); gutterFrames.push(requestAnimationFrame(step)); return; }
-      var t = (el % (dur + 400)) / dur;
+      var t = (el % (dur + 500)) / dur;
       if(t > 1) {
         drip.setAttribute('opacity','0');
-        if(splash) { var p = (t-1)*dur/400; splash.setAttribute('opacity', Math.max(0, 0.4 - p*0.4)); }
+        if(splash) { var p = (t-1)*dur/500; splash.setAttribute('opacity', Math.max(0, 0.5 - p*0.5)); splash.setAttribute('rx', 10 + p*12); }
         gutterFrames.push(requestAnimationFrame(step)); return;
       }
+      // Gravity-accelerated fall
       var cy = sY + (eY - sY) * t * t;
-      var op = t < 0.1 ? t/0.1*0.6 : (t > 0.85 ? (1-t)/0.15*0.6 : 0.6);
-      drip.setAttribute('cx', cx); drip.setAttribute('cy', cy); drip.setAttribute('opacity', op);
-      if(splash && t > 0.85) { splash.setAttribute('opacity', (t-0.85)/0.15*0.4); splash.setAttribute('rx', 8 + (t-0.85)/0.15*10); }
-      else if(splash) { splash.setAttribute('opacity','0'); }
+      var op = t < 0.08 ? t/0.08*0.9 : (t > 0.82 ? (1-t)/0.18*0.9 : 0.9);
+      // Elongation as it falls
+      var ry = 2.5 + t * 2;
+      drip.setAttribute('cx', cx); drip.setAttribute('cy', cy);
+      drip.setAttribute('opacity', op); drip.setAttribute('ry', ry);
+      if(splash && t > 0.82) {
+        splash.setAttribute('opacity', (t-0.82)/0.18*0.5);
+        splash.setAttribute('rx', 10 + (t-0.82)/0.18*14);
+      } else if(splash) { splash.setAttribute('opacity','0'); }
       gutterFrames.push(requestAnimationFrame(step));
     }
     gutterFrames.push(requestAnimationFrame(step));
