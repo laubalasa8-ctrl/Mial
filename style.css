@@ -33,6 +33,7 @@ body.takpannor-page .topbar-contact-item { background: transparent; border: 1px 
 body.fasad-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('fasad1.jpg'); }
 body.platslageri-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat1.jpg'); }
 body.terms-body .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat2.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; }
+body.privacy-body .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat11.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; }
 body.plattaket-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat4.jpg'); background-attachment: fixed; }
 body.plattaket-page header { background-attachment: fixed; }
 body.plattaket-page .hero-plattaket { background-attachment: fixed; }
@@ -523,6 +524,13 @@ body.platslageri-page header {
 }
 body.terms-body header {
   background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+body.privacy-body header {
+  background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat11.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -16978,6 +16986,7 @@ html { overflow-x: hidden; }
   body.platslageri-page header,
   body.plattaket-page header,
   body.terms-body header,
+  body.privacy-body header,
   body:has(.solar-hero) header,
   body:has(.plat-hero) header,
   .papptak-page header,
@@ -16996,7 +17005,8 @@ html { overflow-x: hidden; }
   .hero-bandtackning,
   .hero-takpanneplat,
   .solar-hero,
-  .terms-hero {
+  .terms-hero,
+  .privacy-hero {
     background-attachment: scroll !important;
   }
 
@@ -17023,6 +17033,7 @@ html { overflow-x: hidden; }
   body.platslageri-page .topbar,
   body.plattaket-page .topbar,
   body.terms-body .topbar,
+  body.privacy-body .topbar,
   body:has(.solar-hero) .topbar,
   body:has(.plat-hero) .topbar,
   .papptak-page .topbar,
@@ -18030,6 +18041,292 @@ html { overflow-x: hidden; }
   border-color: rgba(25,168,255,0.3);
   background: rgba(25,168,255,0.04);
   transform: translateY(-2px);
+}
+
+/* ============================================================
+   INTEGRITETSPOLICY PAGE STYLES — PREMIUM
+   ============================================================ */
+
+/* Privacy Hero — seamless with topbar + header using plat11.jpg */
+.privacy-hero {
+  position: relative;
+  background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat11.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0 1.5rem;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.privacy-hero .terms-hero-content {
+  margin-top: -8rem;
+}
+
+/* Privacy-specific highlight card */
+.privacy-highlight-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.privacy-highlight-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 16px;
+  padding: 1.4rem 1.3rem;
+  text-align: center;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.privacy-highlight-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(25,168,255,0.08);
+  border-color: rgba(25,168,255,0.15);
+}
+
+.privacy-highlight-card .phi-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(25,168,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.7rem;
+  color: #19A8FF;
+  transition: all 0.35s ease;
+}
+
+.privacy-highlight-card:hover .phi-icon {
+  background: rgba(25,168,255,0.12);
+  transform: scale(1.08);
+}
+
+.privacy-highlight-card h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.3rem;
+}
+
+.privacy-highlight-card p {
+  font-size: 0.82rem;
+  color: rgba(0,0,0,0.45);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Cookie table */
+.privacy-cookie-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1.5rem 0;
+  font-size: 0.88rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.privacy-cookie-table thead th {
+  background: rgba(25,168,255,0.05);
+  padding: 0.85rem 1rem;
+  text-align: left;
+  font-weight: 700;
+  color: #111;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.privacy-cookie-table tbody td {
+  padding: 0.75rem 1rem;
+  color: rgba(0,0,0,0.55);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.privacy-cookie-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.privacy-cookie-table tbody tr:hover {
+  background: rgba(25,168,255,0.02);
+}
+
+.privacy-cookie-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.privacy-cookie-badge {
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.privacy-cookie-badge-required {
+  background: rgba(34,197,94,0.1);
+  color: #16a34a;
+}
+
+.privacy-cookie-badge-optional {
+  background: rgba(25,168,255,0.1);
+  color: #19A8FF;
+}
+
+/* Your rights accordion */
+.privacy-rights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.privacy-right-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 14px;
+  padding: 1.4rem;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.terms-section-alt .privacy-right-card {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.privacy-right-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(25,168,255,0.07);
+  border-color: rgba(25,168,255,0.12);
+}
+
+.privacy-right-card .pri-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.7rem;
+  transition: all 0.35s ease;
+}
+
+.privacy-right-card:hover .pri-icon {
+  transform: scale(1.06);
+}
+
+.pri-icon-blue { background: rgba(25,168,255,0.08); color: #19A8FF; }
+.pri-icon-green { background: rgba(34,197,94,0.08); color: #16a34a; }
+.pri-icon-purple { background: rgba(168,85,247,0.08); color: #a855f7; }
+.pri-icon-amber { background: rgba(245,158,11,0.08); color: #d97706; }
+
+.privacy-right-card h4 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.35rem;
+}
+
+.privacy-right-card p {
+  font-size: 0.83rem;
+  color: rgba(0,0,0,0.45);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Data flow visual */
+.privacy-data-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(25,168,255,0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(25,168,255,0.08);
+}
+
+.pdf-step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.pdf-step svg { color: #19A8FF; flex-shrink: 0; }
+
+.pdf-arrow {
+  color: rgba(25,168,255,0.3);
+  flex-shrink: 0;
+}
+
+/* ===== PRIVACY RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .privacy-hero {
+    height: 100vh;
+    background-attachment: scroll;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+  }
+  .privacy-hero .terms-hero-content {
+    margin-top: -6rem;
+  }
+  .privacy-highlight-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .privacy-cookie-table {
+    font-size: 0.78rem;
+  }
+  .privacy-cookie-table thead th,
+  .privacy-cookie-table tbody td {
+    padding: 0.6rem 0.7rem;
+  }
+  .privacy-rights-grid {
+    grid-template-columns: 1fr;
+  }
+  .privacy-data-flow {
+    flex-direction: column;
+  }
+  .pdf-arrow { transform: rotate(90deg); }
+}
+
+@media (max-width: 480px) {
+  .privacy-highlight-strip {
+    grid-template-columns: 1fr;
+  }
+  .privacy-hero .terms-hero-content {
+    padding: 80px 1rem 60px;
+  }
 }
 
 /* ===== TERMS RESPONSIVE ===== */
