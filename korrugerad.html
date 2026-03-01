@@ -1121,119 +1121,267 @@
         <div class="slope-header">
           <span class="slope-badge">Takfall & avrinning</span>
           <h2>Varför taklutnig spelar roll</h2>
-          <p>Rätt lutning gör att vatten rinner av snabbt och minskar risken för läckage, is-dammar och fuktskador. Dra i reglaget och se skillnaden.</p>
+          <p>Rätt lutning gör att vatten rinner av snabbt och minskar risken för läckage, is-dammar och fuktskador. Dra i reglaget och se skillnaden i realtid.</p>
         </div>
 
         <!-- Interactive visual -->
         <div class="slope-visual">
-          <svg class="slope-svg" viewBox="0 0 800 420" fill="none" preserveAspectRatio="xMidYMid meet">
+          <svg class="slope-svg" viewBox="0 0 800 500" fill="none" preserveAspectRatio="xMidYMid meet">
             <defs>
-              <linearGradient id="sl-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e8f4fd"/><stop offset="100%" stop-color="#d0ebf8"/></linearGradient>
-              <linearGradient id="sl-plat" x1="0" y1="0" x2="0.05" y2="1"><stop offset="0%" stop-color="#7aaabe"/><stop offset="40%" stop-color="#6898b0"/><stop offset="100%" stop-color="#5486a0"/></linearGradient>
-              <linearGradient id="sl-plat-shine" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.22)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
-              <linearGradient id="sl-wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#eee"/><stop offset="100%" stop-color="#ddd"/></linearGradient>
-              <linearGradient id="sl-drop" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(25,168,255,0.7)"/><stop offset="100%" stop-color="rgba(25,168,255,0.35)"/></linearGradient>
-              <linearGradient id="sl-ground" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c8bfa8"/><stop offset="100%" stop-color="#b0a890"/></linearGradient>
-              <clipPath id="sl-clip"><rect x="0" y="0" width="800" height="420" rx="8"/></clipPath>
-              <filter id="sl-blur"><feGaussianBlur stdDeviation="2"/></filter>
+              <!-- Sky -->
+              <linearGradient id="sl-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#daedf8"/><stop offset="60%" stop-color="#c5e2f4"/><stop offset="100%" stop-color="#b8d9ef"/></linearGradient>
+              <!-- Roof metal -->
+              <linearGradient id="sl-plat-l" x1="0.3" y1="0" x2="0.7" y2="1"><stop offset="0%" stop-color="#7cb0c8"/><stop offset="35%" stop-color="#6a9db8"/><stop offset="100%" stop-color="#5888a4"/></linearGradient>
+              <linearGradient id="sl-plat-r" x1="0.7" y1="0" x2="0.3" y2="1"><stop offset="0%" stop-color="#6a9db8"/><stop offset="40%" stop-color="#5d90aa"/><stop offset="100%" stop-color="#4e7e98"/></linearGradient>
+              <linearGradient id="sl-plat-shine" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.2)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
+              <!-- Ridge cap -->
+              <linearGradient id="sl-nock" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5a94ae"/><stop offset="100%" stop-color="#3d7590"/></linearGradient>
+              <!-- Walls -->
+              <linearGradient id="sl-wall-l" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e0ddd5"/><stop offset="100%" stop-color="#d5d0c8"/></linearGradient>
+              <linearGradient id="sl-wall-r" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#d5d0c8"/><stop offset="100%" stop-color="#cbc5bc"/></linearGradient>
+              <linearGradient id="sl-wall-face" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0ece5"/><stop offset="100%" stop-color="#e5e0d8"/></linearGradient>
+              <!-- Window -->
+              <linearGradient id="sl-window" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c5dff0"/><stop offset="100%" stop-color="#a8cce5"/></linearGradient>
+              <!-- Ground -->
+              <linearGradient id="sl-ground" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8bc34a"/><stop offset="30%" stop-color="#7cb342"/><stop offset="100%" stop-color="#6a9f38"/></linearGradient>
+              <!-- Foundation -->
+              <linearGradient id="sl-foundation" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#a09888"/><stop offset="100%" stop-color="#8a8278"/></linearGradient>
+              <!-- Water drop -->
+              <radialGradient id="sl-drop" cx="0.35" cy="0.3" r="0.7"><stop offset="0%" stop-color="rgba(140,210,255,0.9)"/><stop offset="100%" stop-color="rgba(25,140,220,0.6)"/></radialGradient>
+              <!-- Rain -->
+              <linearGradient id="sl-rain" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(25,168,255,0.0)"/><stop offset="40%" stop-color="rgba(25,168,255,0.35)"/><stop offset="100%" stop-color="rgba(25,168,255,0.15)"/></linearGradient>
+              <!-- Gutter -->
+              <linearGradient id="sl-gutter" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#888"/><stop offset="50%" stop-color="#777"/><stop offset="100%" stop-color="#666"/></linearGradient>
+              <linearGradient id="sl-gutter-hi" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.15)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
+              <!-- Chimney -->
+              <linearGradient id="sl-chimney" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b8a090"/><stop offset="100%" stop-color="#a89080"/></linearGradient>
+              <!-- Splash -->
+              <radialGradient id="sl-splash-g" cx="0.5" cy="0.3" r="0.7"><stop offset="0%" stop-color="rgba(25,168,255,0.35)"/><stop offset="100%" stop-color="rgba(25,168,255,0)"/></radialGradient>
+              <!-- Clip -->
+              <clipPath id="sl-clip"><rect x="0" y="0" width="800" height="500" rx="8"/></clipPath>
+              <!-- Drop shadow -->
+              <filter id="sl-shadow"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="rgba(0,0,0,0.08)"/></filter>
+              <filter id="sl-shadow-sm"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.06)"/></filter>
             </defs>
 
             <g clip-path="url(#sl-clip)">
-              <!-- Sky -->
-              <rect width="800" height="420" fill="url(#sl-sky)"/>
 
-              <!-- Cloud -->
-              <g class="slope-cloud" opacity="0.2">
-                <ellipse cx="600" cy="50" rx="55" ry="22" fill="#c0d8ea"/>
-                <ellipse cx="635" cy="45" rx="35" ry="18" fill="#c0d8ea"/>
-                <ellipse cx="570" cy="48" rx="30" ry="16" fill="#c0d8ea"/>
+              <!-- ── SKY ── -->
+              <rect width="800" height="500" fill="url(#sl-sky)"/>
+
+              <!-- Clouds -->
+              <g class="slope-cloud slope-cloud-1" opacity="0.35">
+                <ellipse cx="150" cy="55" rx="60" ry="22" fill="#d8e8f2"/>
+                <ellipse cx="185" cy="48" rx="40" ry="18" fill="#d8e8f2"/>
+                <ellipse cx="120" cy="50" rx="35" ry="16" fill="#d0e2ee"/>
+              </g>
+              <g class="slope-cloud slope-cloud-2" opacity="0.25">
+                <ellipse cx="580" cy="40" rx="50" ry="18" fill="#d0e2ee"/>
+                <ellipse cx="615" cy="35" rx="32" ry="15" fill="#d0e2ee"/>
+                <ellipse cx="550" cy="38" rx="28" ry="14" fill="#c8daea"/>
+              </g>
+              <g class="slope-cloud slope-cloud-3" opacity="0.18">
+                <ellipse cx="720" cy="65" rx="42" ry="16" fill="#c8daea"/>
+                <ellipse cx="745" cy="60" rx="28" ry="13" fill="#c8daea"/>
               </g>
 
-              <!-- Ground -->
-              <rect x="0" y="365" width="800" height="55" fill="url(#sl-ground)"/>
-              <line x1="0" y1="365" x2="800" y2="365" stroke="rgba(120,100,60,0.15)" stroke-width="1"/>
-
-              <!-- House body -->
-              <g class="slope-house">
-                <!-- Left wall -->
-                <rect class="slope-wall-left" x="120" y="210" width="12" height="155" fill="url(#sl-wall)" stroke="rgba(0,0,0,0.08)" stroke-width="0.5"/>
-                <!-- Right wall -->
-                <rect class="slope-wall-right" x="668" y="210" width="12" height="155" fill="url(#sl-wall)" stroke="rgba(0,0,0,0.08)" stroke-width="0.5"/>
-                <!-- Interior -->
-                <rect class="slope-interior" x="132" y="210" width="536" height="155" fill="#f7f5f0" stroke="rgba(0,0,0,0.04)" stroke-width="0.5"/>
-                <!-- Window -->
-                <rect x="350" y="260" width="100" height="70" rx="3" fill="rgba(180,220,255,0.3)" stroke="rgba(0,0,0,0.08)" stroke-width="0.8"/>
-                <line x1="400" y1="260" x2="400" y2="330" stroke="rgba(0,0,0,0.06)" stroke-width="0.5"/>
-                <line x1="350" y1="295" x2="450" y2="295" stroke="rgba(0,0,0,0.06)" stroke-width="0.5"/>
+              <!-- ── RAIN STREAKS (animated) ── -->
+              <g class="slope-rain-group">
+                <line class="slope-rain sr-1" x1="100" y1="-10" x2="94" y2="50" stroke="url(#sl-rain)" stroke-width="1.2" stroke-linecap="round"/>
+                <line class="slope-rain sr-2" x1="200" y1="-20" x2="194" y2="40" stroke="url(#sl-rain)" stroke-width="1" stroke-linecap="round"/>
+                <line class="slope-rain sr-3" x1="320" y1="-5" x2="314" y2="55" stroke="url(#sl-rain)" stroke-width="1.1" stroke-linecap="round"/>
+                <line class="slope-rain sr-4" x1="440" y1="-15" x2="434" y2="45" stroke="url(#sl-rain)" stroke-width="0.9" stroke-linecap="round"/>
+                <line class="slope-rain sr-5" x1="540" y1="-8" x2="534" y2="52" stroke="url(#sl-rain)" stroke-width="1.2" stroke-linecap="round"/>
+                <line class="slope-rain sr-6" x1="650" y1="-18" x2="644" y2="42" stroke="url(#sl-rain)" stroke-width="1" stroke-linecap="round"/>
+                <line class="slope-rain sr-7" x1="160" y1="-25" x2="154" y2="35" stroke="url(#sl-rain)" stroke-width="0.8" stroke-linecap="round"/>
+                <line class="slope-rain sr-8" x1="380" y1="-12" x2="374" y2="48" stroke="url(#sl-rain)" stroke-width="1" stroke-linecap="round"/>
+                <line class="slope-rain sr-9" x1="490" y1="-22" x2="484" y2="38" stroke="url(#sl-rain)" stroke-width="0.9" stroke-linecap="round"/>
+                <line class="slope-rain sr-10" x1="720" y1="-5" x2="714" y2="55" stroke="url(#sl-rain)" stroke-width="1.1" stroke-linecap="round"/>
+                <line class="slope-rain sr-11" x1="260" y1="-30" x2="254" y2="30" stroke="url(#sl-rain)" stroke-width="0.7" stroke-linecap="round"/>
+                <line class="slope-rain sr-12" x1="600" y1="-10" x2="594" y2="50" stroke="url(#sl-rain)" stroke-width="0.8" stroke-linecap="round"/>
               </g>
 
-              <!-- ═══ ROOF (the rotating part) ═══ -->
-              <g class="slope-roof-group" transform-origin="400 210">
+              <!-- ── GROUND ── -->
+              <rect x="0" y="420" width="800" height="80" fill="url(#sl-ground)"/>
+              <!-- Grass texture -->
+              <g opacity="0.15">
+                <path d="M30 422 Q32 415 34 422" stroke="#4a8030" stroke-width="0.7" fill="none"/>
+                <path d="M80 423 Q82 416 84 423" stroke="#4a8030" stroke-width="0.7" fill="none"/>
+                <path d="M150 421 Q152 414 154 421" stroke="#4a8030" stroke-width="0.7" fill="none"/>
+                <path d="M230 422 Q232 415 234 422" stroke="#4a8030" stroke-width="0.7" fill="none"/>
+                <path d="M560 423 Q562 416 564 423" stroke="#4a8030" stroke-width="0.7" fill="none"/>
+                <path d="M640 421 Q642 414 644 421" stroke="#4a8030" stroke-width="0.7" fill="none"/>
+                <path d="M720 422 Q722 415 724 422" stroke="#4a8030" stroke-width="0.7" fill="none"/>
+                <path d="M770 423 Q772 416 774 423" stroke="#4a8030" stroke-width="0.7" fill="none"/>
+              </g>
+
+              <!-- ── HOUSE ── -->
+              <g class="slope-house" filter="url(#sl-shadow)">
+                <!-- Foundation -->
+                <rect x="128" y="400" width="544" height="22" fill="url(#sl-foundation)" rx="2"/>
+                <rect x="128" y="400" width="544" height="4" fill="rgba(255,255,255,0.08)" rx="1"/>
+
+                <!-- Wall face -->
+                <rect class="slope-wall-face" x="132" y="260" width="536" height="140" fill="url(#sl-wall-face)"/>
+                <!-- Wall left edge -->
+                <rect class="slope-wall-left" x="120" y="260" width="14" height="140" fill="url(#sl-wall-l)"/>
+                <!-- Wall right edge -->
+                <rect class="slope-wall-right" x="666" y="260" width="14" height="140" fill="url(#sl-wall-r)"/>
+
+                <!-- Brick / siding lines -->
+                <g opacity="0.04">
+                  <line x1="132" y1="290" x2="668" y2="290" stroke="#000" stroke-width="0.5"/>
+                  <line x1="132" y1="320" x2="668" y2="320" stroke="#000" stroke-width="0.5"/>
+                  <line x1="132" y1="350" x2="668" y2="350" stroke="#000" stroke-width="0.5"/>
+                  <line x1="132" y1="380" x2="668" y2="380" stroke="#000" stroke-width="0.5"/>
+                </g>
+
+                <!-- Door -->
+                <rect x="220" y="310" width="55" height="90" rx="3" fill="#8b7560" stroke="rgba(0,0,0,0.08)" stroke-width="0.6"/>
+                <rect x="223" y="313" width="49" height="40" rx="2" fill="rgba(255,255,255,0.06)"/>
+                <rect x="223" y="356" width="49" height="40" rx="2" fill="rgba(255,255,255,0.04)"/>
+                <circle cx="267" cy="355" r="2.5" fill="rgba(200,180,140,0.7)"/>
+
+                <!-- Window 1 -->
+                <rect x="340" y="295" width="80" height="65" rx="3" fill="url(#sl-window)" stroke="rgba(0,0,0,0.08)" stroke-width="0.8"/>
+                <line x1="380" y1="295" x2="380" y2="360" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
+                <line x1="340" y1="327" x2="420" y2="327" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
+                <!-- Window frame -->
+                <rect x="340" y="295" width="80" height="65" rx="3" fill="none" stroke="#c5beb0" stroke-width="2"/>
+                <!-- Window sill -->
+                <rect x="336" y="358" width="88" height="5" rx="1.5" fill="#c5beb0"/>
+                <!-- Reflection -->
+                <path d="M345 300 L355 300 L345 320 Z" fill="rgba(255,255,255,0.1)"/>
+
+                <!-- Window 2 -->
+                <rect x="480" y="295" width="80" height="65" rx="3" fill="url(#sl-window)" stroke="rgba(0,0,0,0.08)" stroke-width="0.8"/>
+                <line x1="520" y1="295" x2="520" y2="360" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
+                <line x1="480" y1="327" x2="560" y2="327" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
+                <rect x="480" y="295" width="80" height="65" rx="3" fill="none" stroke="#c5beb0" stroke-width="2"/>
+                <rect x="476" y="358" width="88" height="5" rx="1.5" fill="#c5beb0"/>
+                <path d="M485 300 L495 300 L485 320 Z" fill="rgba(255,255,255,0.1)"/>
+              </g>
+
+              <!-- ═══ ROOF (dynamic) ═══ -->
+              <g class="slope-roof-group" filter="url(#sl-shadow-sm)">
+                <!-- Overhang shadow -->
+                <polygon class="slope-overhang-shadow" points="105,260 400,135 695,260" fill="rgba(0,0,0,0.04)"/>
+
                 <!-- Left slope -->
-                <polygon class="slope-roof-left" points="120,210 400,110 400,210" fill="url(#sl-plat)"/>
-                <polygon class="slope-roof-left" points="120,210 400,110 400,210" fill="url(#sl-plat-shine)"/>
-                <!-- Right slope -->
-                <polygon class="slope-roof-right" points="400,110 680,210 400,210" fill="url(#sl-plat)"/>
+                <polygon class="slope-roof-left" points="105,260 400,135 400,260" fill="url(#sl-plat-l)"/>
+                <polygon class="slope-roof-left-shine" points="105,260 400,135 400,260" fill="url(#sl-plat-shine)"/>
+                <!-- Right slope (slightly darker for depth) -->
+                <polygon class="slope-roof-right" points="400,135 695,260 400,260" fill="url(#sl-plat-r)"/>
 
-                <!-- Corrugation lines — left -->
-                <line class="slope-corr slope-corr-l" x1="180" y1="205" x2="400" y2="120" stroke="rgba(80,130,160,0.2)" stroke-width="0.8"/>
-                <line class="slope-corr slope-corr-l" x1="240" y1="206" x2="400" y2="134" stroke="rgba(80,130,160,0.15)" stroke-width="0.6"/>
-                <line class="slope-corr slope-corr-l" x1="300" y1="208" x2="400" y2="148" stroke="rgba(80,130,160,0.18)" stroke-width="0.7"/>
-                <line class="slope-corr slope-corr-l" x1="340" y1="209" x2="400" y2="162" stroke="rgba(80,130,160,0.13)" stroke-width="0.5"/>
+                <!-- Corrugation profiles — left -->
+                <line class="slope-corr slope-corr-l" x1="160" y1="256" x2="395" y2="145" stroke="rgba(80,130,160,0.18)" stroke-width="0.8"/>
+                <line class="slope-corr slope-corr-l" x1="210" y1="254" x2="395" y2="158" stroke="rgba(80,130,160,0.14)" stroke-width="0.7"/>
+                <line class="slope-corr slope-corr-l" x1="260" y1="252" x2="395" y2="172" stroke="rgba(80,130,160,0.16)" stroke-width="0.7"/>
+                <line class="slope-corr slope-corr-l" x1="310" y1="250" x2="395" y2="186" stroke="rgba(80,130,160,0.12)" stroke-width="0.6"/>
+                <line class="slope-corr slope-corr-l" x1="345" y1="248" x2="395" y2="198" stroke="rgba(80,130,160,0.1)" stroke-width="0.5"/>
 
-                <!-- Corrugation lines — right -->
-                <line class="slope-corr slope-corr-r" x1="400" y1="120" x2="620" y2="205" stroke="rgba(80,130,160,0.2)" stroke-width="0.8"/>
-                <line class="slope-corr slope-corr-r" x1="400" y1="134" x2="560" y2="206" stroke="rgba(80,130,160,0.15)" stroke-width="0.6"/>
-                <line class="slope-corr slope-corr-r" x1="400" y1="148" x2="500" y2="208" stroke="rgba(80,130,160,0.18)" stroke-width="0.7"/>
-                <line class="slope-corr slope-corr-r" x1="400" y1="162" x2="460" y2="209" stroke="rgba(80,130,160,0.13)" stroke-width="0.5"/>
-
-                <!-- Nock (ridge cap) -->
-                <rect class="slope-nock" x="388" y="106" width="24" height="10" rx="3" fill="#4a7a90" opacity="0.7"/>
+                <!-- Corrugation profiles — right -->
+                <line class="slope-corr slope-corr-r" x1="405" y1="145" x2="640" y2="256" stroke="rgba(60,110,140,0.16)" stroke-width="0.8"/>
+                <line class="slope-corr slope-corr-r" x1="405" y1="158" x2="590" y2="254" stroke="rgba(60,110,140,0.12)" stroke-width="0.7"/>
+                <line class="slope-corr slope-corr-r" x1="405" y1="172" x2="540" y2="252" stroke="rgba(60,110,140,0.14)" stroke-width="0.7"/>
+                <line class="slope-corr slope-corr-r" x1="405" y1="186" x2="490" y2="250" stroke="rgba(60,110,140,0.1)" stroke-width="0.6"/>
+                <line class="slope-corr slope-corr-r" x1="405" y1="198" x2="455" y2="248" stroke="rgba(60,110,140,0.08)" stroke-width="0.5"/>
 
                 <!-- Screws -->
-                <circle cx="260" cy="196" r="3" fill="rgba(60,100,130,0.45)"/>
-                <circle cx="540" cy="196" r="3" fill="rgba(60,100,130,0.45)"/>
+                <circle class="slope-screw slope-screw-l" cx="250" cy="246" r="3" fill="rgba(60,100,130,0.4)"/>
+                <circle class="slope-screw slope-screw-l" cx="250" cy="246" r="4.5" fill="none" stroke="rgba(60,100,130,0.12)" stroke-width="0.5"/>
+                <circle class="slope-screw slope-screw-r" cx="550" cy="246" r="3" fill="rgba(50,90,120,0.35)"/>
+                <circle class="slope-screw slope-screw-r" cx="550" cy="246" r="4.5" fill="none" stroke="rgba(50,90,120,0.1)" stroke-width="0.5"/>
 
-                <!-- Drip edge left -->
-                <line class="slope-drip-l" x1="120" y1="210" x2="120" y2="220" stroke="#3a6880" stroke-width="2.5" stroke-linecap="round"/>
-                <!-- Drip edge right -->
-                <line class="slope-drip-r" x1="680" y1="210" x2="680" y2="220" stroke="#3a6880" stroke-width="2.5" stroke-linecap="round"/>
+                <!-- Ridge cap (nock) -->
+                <rect class="slope-nock" x="385" y="130" width="30" height="12" rx="4" fill="url(#sl-nock)"/>
+                <rect class="slope-nock-hi" x="385" y="130" width="30" height="4" rx="3" fill="rgba(255,255,255,0.12)"/>
+
+                <!-- Chimney -->
+                <g class="slope-chimney">
+                  <rect x="510" y="120" width="30" height="60" fill="url(#sl-chimney)" rx="2"/>
+                  <rect x="507" y="116" width="36" height="8" rx="2" fill="#a08878"/>
+                  <rect x="507" y="116" width="36" height="3" rx="1.5" fill="rgba(255,255,255,0.06)"/>
+                  <!-- Brick lines -->
+                  <line x1="510" y1="135" x2="540" y2="135" stroke="rgba(0,0,0,0.04)" stroke-width="0.5"/>
+                  <line x1="510" y1="150" x2="540" y2="150" stroke="rgba(0,0,0,0.04)" stroke-width="0.5"/>
+                  <line x1="510" y1="165" x2="540" y2="165" stroke="rgba(0,0,0,0.04)" stroke-width="0.5"/>
+                  <line x1="525" y1="120" x2="525" y2="135" stroke="rgba(0,0,0,0.03)" stroke-width="0.5"/>
+                  <line x1="520" y1="135" x2="520" y2="150" stroke="rgba(0,0,0,0.03)" stroke-width="0.5"/>
+                  <line x1="530" y1="150" x2="530" y2="165" stroke="rgba(0,0,0,0.03)" stroke-width="0.5"/>
+                </g>
+
+                <!-- Eave overhang left -->
+                <line class="slope-drip-l" x1="105" y1="260" x2="105" y2="268" stroke="#4e7e98" stroke-width="2.5" stroke-linecap="round"/>
+                <!-- Eave overhang right -->
+                <line class="slope-drip-r" x1="695" y1="260" x2="695" y2="268" stroke="#4e7e98" stroke-width="2.5" stroke-linecap="round"/>
               </g>
 
-              <!-- ═══ WATER DROPS (animated) ═══ -->
+              <!-- ── GUTTERS ── -->
+              <g class="slope-gutters">
+                <!-- Left gutter -->
+                <path d="M95 264 Q95 272 103 272 L113 272 Q120 272 120 264" fill="url(#sl-gutter)" stroke="rgba(0,0,0,0.1)" stroke-width="0.5"/>
+                <path d="M95 264 Q95 268 103 268 L113 268 Q120 268 120 264" fill="url(#sl-gutter-hi)"/>
+                <!-- Downpipe left -->
+                <rect x="94" y="272" width="8" height="128" rx="3" fill="url(#sl-gutter)"/>
+                <rect x="94" y="272" width="3" height="128" rx="1.5" fill="url(#sl-gutter-hi)"/>
+                <!-- Right gutter -->
+                <path d="M680 264 Q680 272 688 272 L698 272 Q705 272 705 264" fill="url(#sl-gutter)" stroke="rgba(0,0,0,0.1)" stroke-width="0.5"/>
+                <path d="M680 264 Q680 268 688 268 L698 268 Q705 268 705 264" fill="url(#sl-gutter-hi)"/>
+                <!-- Downpipe right -->
+                <rect x="698" y="272" width="8" height="128" rx="3" fill="url(#sl-gutter)"/>
+                <rect x="698" y="272" width="3" height="128" rx="1.5" fill="url(#sl-gutter-hi)"/>
+              </g>
+
+              <!-- ═══ WATER DROPS (animated via JS) ═══ -->
               <g class="slope-drops">
-                <!-- Left side drops -->
-                <circle class="slope-drop sd-l1" cx="250" cy="190" r="3.5" fill="url(#sl-drop)"/>
-                <circle class="slope-drop sd-l2" cx="200" cy="195" r="3" fill="url(#sl-drop)"/>
-                <circle class="slope-drop sd-l3" cx="300" cy="185" r="2.8" fill="url(#sl-drop)"/>
-                <circle class="slope-drop sd-l4" cx="160" cy="200" r="3.2" fill="url(#sl-drop)"/>
-                <circle class="slope-drop sd-l5" cx="350" cy="175" r="2.5" fill="url(#sl-drop)"/>
-                <!-- Right side drops -->
-                <circle class="slope-drop sd-r1" cx="550" cy="190" r="3.5" fill="url(#sl-drop)"/>
-                <circle class="slope-drop sd-r2" cx="600" cy="195" r="3" fill="url(#sl-drop)"/>
-                <circle class="slope-drop sd-r3" cx="500" cy="185" r="2.8" fill="url(#sl-drop)"/>
-                <circle class="slope-drop sd-r4" cx="640" cy="200" r="3.2" fill="url(#sl-drop)"/>
-                <circle class="slope-drop sd-r5" cx="450" cy="175" r="2.5" fill="url(#sl-drop)"/>
+                <!-- Left side -->
+                <ellipse class="slope-drop sd-l1" cx="250" cy="240" rx="3.5" ry="4.5" fill="url(#sl-drop)"/>
+                <ellipse class="slope-drop sd-l2" cx="200" cy="248" rx="3" ry="3.8" fill="url(#sl-drop)"/>
+                <ellipse class="slope-drop sd-l3" cx="300" cy="232" rx="2.8" ry="3.6" fill="url(#sl-drop)"/>
+                <ellipse class="slope-drop sd-l4" cx="160" cy="252" rx="3.2" ry="4" fill="url(#sl-drop)"/>
+                <ellipse class="slope-drop sd-l5" cx="350" cy="224" rx="2.5" ry="3.2" fill="url(#sl-drop)"/>
+                <ellipse class="slope-drop sd-l6" cx="280" cy="236" rx="2.8" ry="3.6" fill="url(#sl-drop)"/>
+                <ellipse class="slope-drop sd-l7" cx="180" cy="250" rx="2.2" ry="2.8" fill="url(#sl-drop)"/>
+                <!-- Right side -->
+                <ellipse class="slope-drop sd-r1" cx="550" cy="240" rx="3.5" ry="4.5" fill="url(#sl-drop)"/>
+                <ellipse class="slope-drop sd-r2" cx="600" cy="248" rx="3" ry="3.8" fill="url(#sl-drop)"/>
+                <ellipse class="slope-drop sd-r3" cx="500" cy="232" rx="2.8" ry="3.6" fill="url(#sl-drop)"/>
+                <ellipse class="slope-drop sd-r4" cx="640" cy="252" rx="3.2" ry="4" fill="url(#sl-drop)"/>
+                <ellipse class="slope-drop sd-r5" cx="450" cy="224" rx="2.5" ry="3.2" fill="url(#sl-drop)"/>
+                <ellipse class="slope-drop sd-r6" cx="520" cy="236" rx="2.8" ry="3.6" fill="url(#sl-drop)"/>
+                <ellipse class="slope-drop sd-r7" cx="620" cy="250" rx="2.2" ry="2.8" fill="url(#sl-drop)"/>
+              </g>
+
+              <!-- ═══ GUTTER DRIPS (animated) ═══ -->
+              <g class="slope-gutter-drips">
+                <ellipse class="slope-gutter-drip sgd-l" cx="98" cy="400" rx="2.5" ry="3.2" fill="url(#sl-drop)" opacity="0"/>
+                <ellipse class="slope-gutter-drip sgd-r" cx="702" cy="400" rx="2.5" ry="3.2" fill="url(#sl-drop)" opacity="0"/>
+              </g>
+
+              <!-- ═══ SPLASH at ground ═══ -->
+              <g class="slope-splash-group">
+                <ellipse class="slope-splash slope-splash-l" cx="98" cy="420" rx="14" ry="3" fill="url(#sl-splash-g)" opacity="0"/>
+                <ellipse class="slope-splash slope-splash-r" cx="702" cy="420" rx="14" ry="3" fill="url(#sl-splash-g)" opacity="0"/>
               </g>
 
               <!-- ═══ ANGLE ARC + LABEL ═══ -->
               <g class="slope-angle-display">
-                <!-- Arc line from horizontal -->
-                <path class="slope-arc" d="M400,210 L440,210" stroke="var(--blue)" stroke-width="1.5" fill="none" opacity="0.5"/>
-                <!-- Angle text -->
-                <text class="slope-angle-text" x="450" y="205" font-size="18" font-weight="700" fill="var(--blue)" font-family="Inter,sans-serif" opacity="0.8">14°</text>
+                <path class="slope-arc" d="" stroke="var(--blue)" stroke-width="1.8" fill="none" opacity="0.5"/>
+                <text class="slope-angle-text" x="450" y="255" font-size="20" font-weight="800" fill="var(--blue)" font-family="Inter,sans-serif" opacity="0.85">14°</text>
               </g>
 
-              <!-- Speed indicator -->
+              <!-- ═══ SPEED BADGE ═══ -->
               <g class="slope-speed-display">
-                <rect x="30" y="380" width="140" height="30" rx="15" fill="rgba(255,255,255,0.85)" stroke="var(--border)" stroke-width="1"/>
-                <text class="slope-speed-label" x="100" y="400" text-anchor="middle" font-size="12" fill="var(--text-soft)" font-weight="600" font-family="Inter,sans-serif">Avrinning: Låg</text>
+                <rect class="slope-speed-bg" x="25" y="450" width="155" height="34" rx="17" fill="rgba(255,255,255,0.9)" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
+                <circle class="slope-speed-dot" cx="46" cy="467" r="5" fill="var(--blue)" opacity="0.6"/>
+                <text class="slope-speed-label" x="108" y="472" text-anchor="middle" font-size="12.5" fill="var(--text)" font-weight="700" font-family="Inter,sans-serif">Avrinning: Låg</text>
               </g>
 
-              <!-- Gutter/splash at ground -->
-              <g class="slope-splash" opacity="0.3">
-                <ellipse cx="120" cy="370" rx="20" ry="4" fill="rgba(25,168,255,0.25)"/>
-                <ellipse cx="680" cy="370" rx="20" ry="4" fill="rgba(25,168,255,0.25)"/>
+              <!-- ═══ RISK / OK indicator badge ═══ -->
+              <g class="slope-risk-display">
+                <rect class="slope-risk-bg" x="620" y="450" width="155" height="34" rx="17" fill="rgba(255,255,255,0.9)" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
+                <text class="slope-risk-label" x="697" y="472" text-anchor="middle" font-size="12.5" font-weight="700" font-family="Inter,sans-serif" fill="rgba(200,120,20,0.85)">⚠ Kräver tätning</text>
               </g>
 
             </g>
@@ -1293,6 +1441,233 @@
             <p>Snabb avrinning — vatten och snö lämnar taket omedelbart. Kräver starkare infästning mot vind men ger utmärkt dränering.</p>
             <span class="slope-card-tag slope-tag-good">Snabb avrinning</span>
           </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         VARFÖR VÄLJA KORRUGERAD PLÅT — Interactive facts
+         ═══════════════════════════════════════════════════════ -->
+    <section class="corrfacts-section fade-in" id="varfor-korrugerad">
+      <div class="corrfacts-container">
+
+        <!-- Header -->
+        <div class="corrfacts-header">
+          <span class="corrfacts-badge">Visste du?</span>
+          <h2>Varför välja korrugerad plåt</h2>
+          <p>Korrugerad plåt är ett av de mest beprövade takmaterialen i världen — och det finns goda anledningar till det. Utforska fakta som gör valet enklare.</p>
+        </div>
+
+        <!-- Stats counter row -->
+        <div class="corrfacts-stats">
+          <div class="corrfacts-stat fade-in">
+            <span class="corrfacts-stat-number" data-target="40">0</span>
+            <span class="corrfacts-stat-suffix">+ år</span>
+            <span class="corrfacts-stat-label">Förväntad livslängd</span>
+          </div>
+          <div class="corrfacts-stat fade-in">
+            <span class="corrfacts-stat-number" data-target="100">0</span>
+            <span class="corrfacts-stat-suffix">%</span>
+            <span class="corrfacts-stat-label">Återvinningsbart</span>
+          </div>
+          <div class="corrfacts-stat fade-in">
+            <span class="corrfacts-stat-number" data-target="3">0</span>
+            <span class="corrfacts-stat-suffix">–5 kg/m²</span>
+            <span class="corrfacts-stat-label">Extremt lättviktigt</span>
+          </div>
+          <div class="corrfacts-stat fade-in">
+            <span class="corrfacts-stat-number" data-target="6">0</span>
+            <span class="corrfacts-stat-suffix">°</span>
+            <span class="corrfacts-stat-label">Min. takvinkel</span>
+          </div>
+        </div>
+
+        <!-- Fact cards — interactive flip -->
+        <div class="corrfacts-grid">
+
+          <div class="corrfacts-card fade-in" data-fact="history">
+            <div class="corrfacts-card-inner">
+              <div class="corrfacts-card-front">
+                <div class="corrfacts-card-icon">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="20" fill="rgba(25,168,255,0.06)" stroke="var(--blue)" stroke-width="1.5"/>
+                    <path d="M16 32 V20 L24 14 L32 20 V32 Z" stroke="var(--blue)" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
+                    <rect x="21" y="25" width="6" height="7" rx="0.5" stroke="var(--blue)" stroke-width="1.2" fill="none"/>
+                  </svg>
+                </div>
+                <h3>Över 200 år av historia</h3>
+                <p>Korrugerad plåt uppfanns 1829 i England och har sedan dess blivit världens mest använda takmaterial.</p>
+                <span class="corrfacts-flip-hint">Klicka för mer →</span>
+              </div>
+              <div class="corrfacts-card-back">
+                <h4>En tidslinje</h4>
+                <ul>
+                  <li><strong>1829</strong> — Uppfinns av Henry Palmer i London</li>
+                  <li><strong>1840-tal</strong> — Exporteras till Australien och Afrika</li>
+                  <li><strong>1900-tal</strong> — Förzinkning (galvanisering) blir standard</li>
+                  <li><strong>1960-tal</strong> — Plastbeläggning ger färgval och UV-skydd</li>
+                  <li><strong>Idag</strong> — High-tech beläggningar med 40+ års garanti</li>
+                </ul>
+                <span class="corrfacts-flip-hint">← Tillbaka</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="corrfacts-card fade-in" data-fact="strength">
+            <div class="corrfacts-card-inner">
+              <div class="corrfacts-card-front">
+                <div class="corrfacts-card-icon">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="20" fill="rgba(46,170,92,0.06)" stroke="#2eaa5c" stroke-width="1.5"/>
+                    <path d="M24 12 L24 36" stroke="#2eaa5c" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M17 19 L24 12 L31 19" stroke="#2eaa5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <path d="M17 29 L24 36 L31 29" stroke="#2eaa5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  </svg>
+                </div>
+                <h3>Vågformen = styrka</h3>
+                <p>Den korrugerade formen gör att plåten tål extrema belastningar trots sin tunna profil — samma princip som i flygplan.</p>
+                <span class="corrfacts-flip-hint">Klicka för mer →</span>
+              </div>
+              <div class="corrfacts-card-back">
+                <h4>Så fungerar det</h4>
+                <p>En platt metallplåt böjs lätt. Men ge den en vågform och den blir dramatiskt starkare. Korrugering ökar tröghetsmoment 20–30x jämfört med en plan plåt av samma tjocklek.</p>
+                <p>Det innebär att <strong>0.5 mm korrugerad plåt</strong> klarar snölaster, vindtryck och stegar — med en bråkdel av vikten jämfört med betongpannor.</p>
+                <span class="corrfacts-flip-hint">← Tillbaka</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="corrfacts-card fade-in" data-fact="eco">
+            <div class="corrfacts-card-inner">
+              <div class="corrfacts-card-front">
+                <div class="corrfacts-card-icon">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="20" fill="rgba(25,168,255,0.06)" stroke="var(--blue)" stroke-width="1.5"/>
+                    <path d="M24 36 C24 36 14 28 14 20 C14 14 19 10 24 14 C29 10 34 14 34 20 C34 28 24 36 24 36Z" stroke="var(--blue)" stroke-width="1.8" fill="none"/>
+                    <path d="M24 18 L24 30 M20 24 L28 24" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                  </svg>
+                </div>
+                <h3>100% återvinningsbart</h3>
+                <p>Stål är världens mest återvunna material. Korrugerad plåt kan återanvändas utan kvalitetsförlust — ett cirkulärt val.</p>
+                <span class="corrfacts-flip-hint">Klicka för mer →</span>
+              </div>
+              <div class="corrfacts-card-back">
+                <h4>Hållbarhet i siffror</h4>
+                <ul>
+                  <li><strong>90%</strong> av allt stål återvinns globalt</li>
+                  <li><strong>75%</strong> lägre CO₂ vid återvinning vs nytillverkning</li>
+                  <li><strong>0</strong> deponiavfall — allt material kan återanvändas</li>
+                  <li><strong>3–5 kg/m²</strong> jämfört med betongpannor (40–50 kg/m²)</li>
+                </ul>
+                <p style="margin-top:0.5rem;font-size:0.82rem;opacity:0.7">Lättare tak = mindre material i takstolar = lägre totalt CO₂-avtryck.</p>
+                <span class="corrfacts-flip-hint">← Tillbaka</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="corrfacts-card fade-in" data-fact="weather">
+            <div class="corrfacts-card-inner">
+              <div class="corrfacts-card-front">
+                <div class="corrfacts-card-icon">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="20" fill="rgba(255,160,60,0.06)" stroke="rgba(200,120,20,0.5)" stroke-width="1.5"/>
+                    <circle cx="24" cy="20" r="6" stroke="rgba(200,120,20,0.6)" stroke-width="1.5" fill="none"/>
+                    <path d="M24 28 L24 34 M18 15 L14 11 M30 15 L34 11 M24 10 L24 6 M36 20 L40 20 M8 20 L12 20" stroke="rgba(200,120,20,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <h3>Klarar Skånes väder</h3>
+                <p>Korrugerad plåt står emot allt — blåst, regn, snö, salt och UV-strålning. Perfekt för det skånska kustnära klimatet.</p>
+                <span class="corrfacts-flip-hint">Klicka för mer →</span>
+              </div>
+              <div class="corrfacts-card-back">
+                <h4>Testat för extremt</h4>
+                <p>Modern korrugerad plåt med polyester- eller PVDF-beläggning motstår:</p>
+                <ul>
+                  <li><strong>Vindlaster</strong> upp till 45 m/s (orkan klass 2)</li>
+                  <li><strong>Saltluft</strong> — C3/C4-klassade beläggningar</li>
+                  <li><strong>Temperaturer</strong> från -40°C till +80°C</li>
+                  <li><strong>UV-strålning</strong> utan färgförändring i 25+ år</li>
+                </ul>
+                <span class="corrfacts-flip-hint">← Tillbaka</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="corrfacts-card fade-in" data-fact="cost">
+            <div class="corrfacts-card-inner">
+              <div class="corrfacts-card-front">
+                <div class="corrfacts-card-icon">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="20" fill="rgba(25,168,255,0.06)" stroke="var(--blue)" stroke-width="1.5"/>
+                    <text x="24" y="30" text-anchor="middle" font-size="18" font-weight="700" fill="var(--blue)" font-family="Inter,sans-serif">kr</text>
+                  </svg>
+                </div>
+                <h3>Bäst pris per m²</h3>
+                <p>Korrugerad plåt ger lägsta totalkostnaden per m² när du räknar in livslängd, underhåll och montering.</p>
+                <span class="corrfacts-flip-hint">Klicka för mer →</span>
+              </div>
+              <div class="corrfacts-card-back">
+                <h4>Kostnadsjämförelse</h4>
+                <div class="corrfacts-compare">
+                  <div class="corrfacts-bar-row">
+                    <span>Korrugerad plåt</span>
+                    <div class="corrfacts-bar"><div class="corrfacts-bar-fill corrfacts-bar-blue" style="width:35%"></div></div>
+                  </div>
+                  <div class="corrfacts-bar-row">
+                    <span>Betongpannor</span>
+                    <div class="corrfacts-bar"><div class="corrfacts-bar-fill corrfacts-bar-gray" style="width:55%"></div></div>
+                  </div>
+                  <div class="corrfacts-bar-row">
+                    <span>Tegelpannor</span>
+                    <div class="corrfacts-bar"><div class="corrfacts-bar-fill corrfacts-bar-gray" style="width:75%"></div></div>
+                  </div>
+                  <div class="corrfacts-bar-row">
+                    <span>Skiffer</span>
+                    <div class="corrfacts-bar"><div class="corrfacts-bar-fill corrfacts-bar-gray" style="width:95%"></div></div>
+                  </div>
+                </div>
+                <p style="font-size:0.75rem;opacity:0.6;margin-top:0.6rem">*Uppskattat totalkostnad inkl. underhåll under 40 år</p>
+                <span class="corrfacts-flip-hint">← Tillbaka</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="corrfacts-card fade-in" data-fact="install">
+            <div class="corrfacts-card-inner">
+              <div class="corrfacts-card-front">
+                <div class="corrfacts-card-icon">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="20" fill="rgba(46,170,92,0.06)" stroke="#2eaa5c" stroke-width="1.5"/>
+                    <path d="M14 34 L24 14 L34 34" stroke="#2eaa5c" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
+                    <line x1="18" y1="28" x2="30" y2="28" stroke="#2eaa5c" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="24" cy="22" r="2" fill="#2eaa5c" opacity="0.3"/>
+                  </svg>
+                </div>
+                <h3>Snabb montering</h3>
+                <p>Stora plåtar täcker mer yta per ark — färre skarvar, snabbare montering och lägre arbetskostnad jämfört med pannor.</p>
+                <span class="corrfacts-flip-hint">Klicka för mer →</span>
+              </div>
+              <div class="corrfacts-card-back">
+                <h4>Montering i siffror</h4>
+                <ul>
+                  <li><strong>1 plåt</strong> täcker ~1.1 m² (vs en pannor 0.03 m²)</li>
+                  <li><strong>70%</strong> snabbare att lägga än betongpannor</li>
+                  <li><strong>Färre skarvar</strong> = färre potentiella läckagepunkter</li>
+                  <li><strong>Lättare</strong> = enklare hantering, färre lyft</li>
+                </ul>
+                <p style="margin-top:0.5rem;font-size:0.82rem;opacity:0.7">Ferotect monterar ett typiskt korrugerat tak på 2–4 arbetsdagar.</p>
+                <span class="corrfacts-flip-hint">← Tillbaka</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="corrfacts-cta fade-in">
+          <p>Redo att uppgradera ditt tak med korrugerad plåt?</p>
+          <a href="#footer" class="corrfacts-cta-btn">Kontakta Ferotect</a>
         </div>
 
       </div>

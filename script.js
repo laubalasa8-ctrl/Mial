@@ -1265,7 +1265,7 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 /* ═══════════════════════════════════════════════════════
-   TAKFALL & AVRINNING — Slope + drainage interactive
+   TAKFALL & AVRINNING — Slope + drainage interactive (v2)
    ═══════════════════════════════════════════════════════ */
 (function() {
   var section = document.querySelector('.slope-section');
@@ -1277,28 +1277,47 @@ document.addEventListener('DOMContentLoaded', function() {
   var angleText = section.querySelector('.slope-angle-text');
   var arcPath = section.querySelector('.slope-arc');
   var speedLabel = section.querySelector('.slope-speed-label');
+  var speedDot = section.querySelector('.slope-speed-dot');
+  var riskLabel = section.querySelector('.slope-risk-label');
   var cards = section.querySelectorAll('.slope-card');
 
-  // Roof geometry
+  // New geometry — wider house, eave at 260
   var RIDGE_X = 400;
-  var EAVE_Y = 210;
-  var BASE_LEFT_X = 120;
-  var BASE_RIGHT_X = 680;
-  var HALF_SPAN = RIDGE_X - BASE_LEFT_X; // 280
+  var EAVE_Y = 260;
+  var BASE_LEFT_X = 105;
+  var BASE_RIGHT_X = 695;
+  var HALF_SPAN = RIDGE_X - BASE_LEFT_X; // 295
 
-  // Drop elements
-  var leftDrops = section.querySelectorAll('.sd-l1, .sd-l2, .sd-l3, .sd-l4, .sd-l5');
-  var rightDrops = section.querySelectorAll('.sd-r1, .sd-r2, .sd-r3, .sd-r4, .sd-r5');
-
-  var roofLeft = section.querySelector('.slope-roof-left') ? section.querySelectorAll('.slope-roof-left') : [];
-  var roofRight = section.querySelector('.slope-roof-right') ? section.querySelectorAll('.slope-roof-right') : [];
+  // Roof elements
+  var roofLeftEls = section.querySelectorAll('.slope-roof-left');
+  var roofLeftShine = section.querySelector('.slope-roof-left-shine');
+  var roofRightEls = section.querySelectorAll('.slope-roof-right');
+  var overhangShadow = section.querySelector('.slope-overhang-shadow');
   var nock = section.querySelector('.slope-nock');
+  var nockHi = section.querySelector('.slope-nock-hi');
   var dripL = section.querySelector('.slope-drip-l');
   var dripR = section.querySelector('.slope-drip-r');
   var corrLs = section.querySelectorAll('.slope-corr-l');
   var corrRs = section.querySelectorAll('.slope-corr-r');
+  var screwsL = section.querySelectorAll('.slope-screw-l');
+  var screwsR = section.querySelectorAll('.slope-screw-r');
+  var chimney = section.querySelector('.slope-chimney');
+
+  // Drop elements — 7 per side now
+  var leftDrops = section.querySelectorAll('[class*="sd-l"]');
+  var rightDrops = section.querySelectorAll('[class*="sd-r"]');
+
+  // Gutter drips & splash
+  var gutterDripL = section.querySelector('.sgd-l');
+  var gutterDripR = section.querySelector('.sgd-r');
+  var splashL = section.querySelector('.slope-splash-l');
+  var splashR = section.querySelector('.slope-splash-r');
+
+  // Rain
+  var rainLines = section.querySelectorAll('.slope-rain');
 
   var animFrames = [];
+  var gutterFrames = [];
 
   function degToRad(d) { return d * Math.PI / 180; }
 
@@ -1306,138 +1325,188 @@ document.addEventListener('DOMContentLoaded', function() {
     var rad = degToRad(angle);
     var rise = Math.tan(rad) * HALF_SPAN;
     var ridgeY = EAVE_Y - rise;
+    if (ridgeY < 40) ridgeY = 40;
 
-    // Clamp ridge
-    if (ridgeY < 30) ridgeY = 30;
+    // Roof polygons
+    var leftPts = BASE_LEFT_X+','+EAVE_Y+' '+RIDGE_X+','+ridgeY+' '+RIDGE_X+','+EAVE_Y;
+    var rightPts = RIDGE_X+','+ridgeY+' '+BASE_RIGHT_X+','+EAVE_Y+' '+RIDGE_X+','+EAVE_Y;
+    roofLeftEls.forEach(function(el){ el.setAttribute('points', leftPts); });
+    if(roofLeftShine) roofLeftShine.setAttribute('points', leftPts);
+    roofRightEls.forEach(function(el){ el.setAttribute('points', rightPts); });
 
-    // Update roof polygons
-    var leftPts = BASE_LEFT_X + ',' + EAVE_Y + ' ' + RIDGE_X + ',' + ridgeY + ' ' + RIDGE_X + ',' + EAVE_Y;
-    var rightPts = RIDGE_X + ',' + ridgeY + ' ' + BASE_RIGHT_X + ',' + EAVE_Y + ' ' + RIDGE_X + ',' + EAVE_Y;
-
-    roofLeft.forEach(function(el) { el.setAttribute('points', leftPts); });
-    roofRight.forEach(function(el) { el.setAttribute('points', rightPts); });
+    // Overhang shadow
+    if(overhangShadow) overhangShadow.setAttribute('points', BASE_LEFT_X+','+EAVE_Y+' '+RIDGE_X+','+ridgeY+' '+BASE_RIGHT_X+','+EAVE_Y);
 
     // Nock
-    if (nock) {
-      nock.setAttribute('x', RIDGE_X - 12);
-      nock.setAttribute('y', ridgeY - 5);
+    if(nock) { nock.setAttribute('x', RIDGE_X-15); nock.setAttribute('y', ridgeY-6); }
+    if(nockHi) { nockHi.setAttribute('x', RIDGE_X-15); nockHi.setAttribute('y', ridgeY-6); }
+
+    // Chimney — position on right slope, ~30% from ridge
+    if(chimney) {
+      var chimX = RIDGE_X + HALF_SPAN * 0.37;
+      var chimBaseY = ridgeY + (EAVE_Y - ridgeY) * 0.37;
+      var chimH = 55;
+      var chimTopY = chimBaseY - chimH;
+      if(chimTopY < 20) chimTopY = 20;
+      chimney.querySelector('rect:first-child').setAttribute('x', chimX-15);
+      chimney.querySelector('rect:first-child').setAttribute('y', chimTopY);
+      chimney.querySelector('rect:first-child').setAttribute('height', chimBaseY - chimTopY);
+      chimney.querySelector('rect:nth-child(2)').setAttribute('x', chimX-18);
+      chimney.querySelector('rect:nth-child(2)').setAttribute('y', chimTopY-4);
+      // Brick lines
+      var bricks = chimney.querySelectorAll('line');
+      for(var b=0; b<bricks.length; b++){
+        var brick = bricks[b];
+        var bx1 = parseFloat(brick.getAttribute('x1'));
+        var bx2 = parseFloat(brick.getAttribute('x2'));
+        // Horizontal bricks
+        if(Math.abs(bx2 - bx1) > 10) {
+          brick.setAttribute('x1', chimX-15);
+          brick.setAttribute('x2', chimX+15);
+          brick.setAttribute('y1', chimTopY + 15 + b*15);
+          brick.setAttribute('y2', chimTopY + 15 + b*15);
+        }
+      }
     }
 
-    // Corrugation lines — left side (parametric lines from eave to ridge)
-    var corrOffsetsL = [0.2, 0.35, 0.5, 0.65];
+    // Corrugation lines — parametric
+    var corrOffsetsL = [0.15, 0.28, 0.42, 0.56, 0.7];
     corrLs.forEach(function(line, i) {
       var t = corrOffsetsL[i] || 0.3;
       var x1 = BASE_LEFT_X + t * HALF_SPAN;
-      var y1 = EAVE_Y - t * (EAVE_Y - ridgeY) * 0.3;
+      var y1 = EAVE_Y - (EAVE_Y - ridgeY) * t;
       line.setAttribute('x1', x1);
-      line.setAttribute('y1', EAVE_Y - (EAVE_Y - ridgeY) * t * 0.4);
-      line.setAttribute('x2', RIDGE_X);
-      line.setAttribute('y2', ridgeY + (EAVE_Y - ridgeY) * (1 - t) * 0.15);
+      line.setAttribute('y1', y1);
+      line.setAttribute('x2', RIDGE_X - 5);
+      line.setAttribute('y2', ridgeY + (EAVE_Y - ridgeY) * 0.02);
     });
-
-    // Corrugation lines — right side
-    var corrOffsetsR = [0.2, 0.35, 0.5, 0.65];
+    var corrOffsetsR = [0.15, 0.28, 0.42, 0.56, 0.7];
     corrRs.forEach(function(line, i) {
       var t = corrOffsetsR[i] || 0.3;
-      line.setAttribute('x1', RIDGE_X);
-      line.setAttribute('y1', ridgeY + (EAVE_Y - ridgeY) * (1 - t) * 0.15);
-      line.setAttribute('x2', BASE_RIGHT_X - t * HALF_SPAN);
-      line.setAttribute('y2', EAVE_Y - (EAVE_Y - ridgeY) * t * 0.4);
+      line.setAttribute('x1', RIDGE_X + 5);
+      line.setAttribute('y1', ridgeY + (EAVE_Y - ridgeY) * 0.02);
+      line.setAttribute('x2', RIDGE_X + t * HALF_SPAN);
+      line.setAttribute('y2', EAVE_Y - (EAVE_Y - ridgeY) * t);
     });
 
+    // Screws at ~70% down roof slope
+    screwsL.forEach(function(s){
+      var t = 0.7;
+      s.setAttribute('cx', BASE_LEFT_X + t * HALF_SPAN);
+      s.setAttribute('cy', EAVE_Y - (EAVE_Y - ridgeY) * (1 - t));
+    });
+    screwsR.forEach(function(s){
+      var t = 0.7;
+      s.setAttribute('cx', RIDGE_X + t * HALF_SPAN);
+      s.setAttribute('cy', EAVE_Y - (EAVE_Y - ridgeY) * (1 - t));
+    });
+
+    // Drip edges
+    if(dripL){ dripL.setAttribute('y1', EAVE_Y); dripL.setAttribute('y2', EAVE_Y+8); }
+    if(dripR){ dripR.setAttribute('y1', EAVE_Y); dripR.setAttribute('y2', EAVE_Y+8); }
+
     // Arc
-    if (arcPath) {
-      var arcR = 40;
-      var endX = RIDGE_X + arcR * Math.cos(-rad);
-      var endY = EAVE_Y + arcR * Math.sin(-rad);
-      // Draw small arc from horizontal
-      arcPath.setAttribute('d', 'M' + (RIDGE_X + arcR) + ',' + EAVE_Y + ' A' + arcR + ',' + arcR + ' 0 0,0 ' + endX + ',' + endY);
+    if(arcPath) {
+      var arcR = 45;
+      var endX = RIDGE_X + arcR * Math.cos(rad);
+      var endY = EAVE_Y - arcR * Math.sin(rad);
+      arcPath.setAttribute('d', 'M'+(RIDGE_X+arcR)+','+EAVE_Y+' A'+arcR+','+arcR+' 0 0,0 '+endX+','+endY);
     }
-    if (angleText) {
+    if(angleText) {
       angleText.textContent = angle + '°';
       var labelRad = degToRad(angle / 2);
-      angleText.setAttribute('x', RIDGE_X + 52 * Math.cos(-labelRad));
-      angleText.setAttribute('y', EAVE_Y - 52 * Math.sin(labelRad) + 6);
+      var lx = RIDGE_X + 58 * Math.cos(labelRad);
+      var ly = EAVE_Y - 58 * Math.sin(labelRad) + 6;
+      angleText.setAttribute('x', lx);
+      angleText.setAttribute('y', ly);
     }
 
-    // Speed label
+    // Speed label + dot color
     var speedText = 'Avrinning: ';
-    if (angle < 10) speedText += 'Mycket låg';
-    else if (angle < 15) speedText += 'Låg';
-    else if (angle < 23) speedText += 'Normal';
-    else if (angle < 35) speedText += 'Snabb';
-    else speedText += 'Mycket snabb';
-    if (speedLabel) speedLabel.textContent = speedText;
+    var dotColor = 'var(--blue)';
+    if(angle < 10) { speedText += 'Mycket låg'; dotColor = 'rgba(200,120,20,0.7)'; }
+    else if(angle < 15) { speedText += 'Låg'; dotColor = 'rgba(200,150,40,0.7)'; }
+    else if(angle < 23) { speedText += 'Normal'; dotColor = 'var(--blue)'; }
+    else if(angle < 35) { speedText += 'Snabb'; dotColor = '#2eaa5c'; }
+    else { speedText += 'Mycket snabb'; dotColor = '#1a8a4a'; }
+    if(speedLabel) speedLabel.textContent = speedText;
+    if(speedDot) speedDot.setAttribute('fill', dotColor);
+
+    // Risk badge
+    if(riskLabel) {
+      if(angle < 10) { riskLabel.textContent = '⚠ Hög risk för läckage'; riskLabel.setAttribute('fill','rgba(200,60,30,0.85)'); }
+      else if(angle < 15) { riskLabel.textContent = '⚠ Kräver tätning'; riskLabel.setAttribute('fill','rgba(200,120,20,0.85)'); }
+      else if(angle < 23) { riskLabel.textContent = '✓ Optimal lutning'; riskLabel.setAttribute('fill','var(--blue)'); }
+      else if(angle < 35) { riskLabel.textContent = '✓ Utmärkt avrinning'; riskLabel.setAttribute('fill','#2eaa5c'); }
+      else { riskLabel.textContent = '✓✓ Maximal dränering'; riskLabel.setAttribute('fill','#1a8a4a'); }
+    }
+
+    // Rain intensity — more rain when flat angle (water sits)
+    var rainOpacity = 0.15 + (1 - (angle - 6) / 39) * 0.25;
+    rainLines.forEach(function(r){ r.style.opacity = rainOpacity; });
 
     // Highlight card
     var range = angle < 15 ? 'low' : (angle < 23 ? 'mid' : 'high');
-    cards.forEach(function(c) {
+    cards.forEach(function(c){
       c.classList.toggle('slope-card-active', c.dataset.slopeRange === range);
     });
 
-    // Update drop animations
+    // Update drops
     updateDrops(angle, ridgeY);
+    updateGutterDrips(angle);
   }
 
   function updateDrops(angle, ridgeY) {
-    // Cancel previous animations
-    animFrames.forEach(function(id) { cancelAnimationFrame(id); });
+    animFrames.forEach(function(id){ cancelAnimationFrame(id); });
     animFrames = [];
 
-    var speed = 1 + (angle - 6) / 39 * 3; // 1x to 4x
-    var duration = 2500 / speed;
+    var speed = 0.6 + (angle - 6) / 39 * 4;
+    var duration = 2200 / speed;
 
-    // Animate left drops
-    leftDrops.forEach(function(drop, i) {
-      animateDrop(drop, 'left', i, duration, ridgeY);
-    });
-    // Animate right drops
-    rightDrops.forEach(function(drop, i) {
-      animateDrop(drop, 'right', i, duration, ridgeY);
-    });
+    leftDrops.forEach(function(drop, i){ animateDrop(drop, 'left', i, leftDrops.length, duration, ridgeY); });
+    rightDrops.forEach(function(drop, i){ animateDrop(drop, 'right', i, rightDrops.length, duration, ridgeY); });
   }
 
-  function animateDrop(drop, side, index, duration, ridgeY) {
-    var delay = index * (duration * 0.2);
-    var startOffset = 0.1 + index * 0.18;
-    if (startOffset > 0.85) startOffset = 0.85;
+  function animateDrop(drop, side, index, total, duration, ridgeY) {
+    var delay = index * (duration * 0.14);
+    var startOffset = 0.08 + index * (0.82 / total);
 
     var startX, startY, endX, endY;
-    if (side === 'left') {
+    if(side === 'left') {
       startX = RIDGE_X - startOffset * HALF_SPAN;
       startY = ridgeY + startOffset * (EAVE_Y - ridgeY);
       endX = BASE_LEFT_X;
-      endY = EAVE_Y + 10;
+      endY = EAVE_Y + 6;
     } else {
       startX = RIDGE_X + startOffset * HALF_SPAN;
       startY = ridgeY + startOffset * (EAVE_Y - ridgeY);
       endX = BASE_RIGHT_X;
-      endY = EAVE_Y + 10;
+      endY = EAVE_Y + 6;
     }
 
     var startTime = null;
     function step(ts) {
-      if (!startTime) startTime = ts;
+      if(!startTime) startTime = ts;
       var elapsed = ts - startTime - delay;
-      if (elapsed < 0) {
+      if(elapsed < 0) {
         drop.setAttribute('opacity', '0');
         animFrames.push(requestAnimationFrame(step));
         return;
       }
       var t = elapsed / duration;
-      if (t > 1) {
-        startTime = ts;
-        t = 0;
-      }
+      if(t > 1) { startTime = ts; t = 0; }
       var cx = startX + (endX - startX) * t;
       var cy = startY + (endY - startY) * t;
 
-      // Add slight drip at the end
-      if (t > 0.9) {
-        cy += (t - 0.9) * 80; // accelerate down at eave
-      }
+      // Gravity acceleration at eave
+      if(t > 0.88) { cy += (t - 0.88) * 120; }
 
-      var opacity = t < 0.05 ? t / 0.05 * 0.7 : (t > 0.92 ? (1 - t) / 0.08 * 0.7 : 0.7);
+      // Stretch drop vertically when fast
+      var ry = parseFloat(drop.getAttribute('ry')) || 3.5;
+      var stretch = 1 + t * 0.4;
+      drop.setAttribute('ry', (ry * stretch).toFixed(1));
+
+      var opacity = t < 0.04 ? t / 0.04 * 0.75 : (t > 0.9 ? (1 - t) / 0.1 * 0.75 : 0.75);
       drop.setAttribute('cx', cx);
       drop.setAttribute('cy', cy);
       drop.setAttribute('opacity', opacity);
@@ -1446,25 +1515,75 @@ document.addEventListener('DOMContentLoaded', function() {
     animFrames.push(requestAnimationFrame(step));
   }
 
-  // Slider event
+  // Gutter drips — water dripping out of gutter downpipe into ground splash
+  function updateGutterDrips(angle) {
+    gutterFrames.forEach(function(id){ cancelAnimationFrame(id); });
+    gutterFrames = [];
+
+    var speed = 0.5 + (angle - 6) / 39 * 3;
+    var dripDuration = 1200 / speed;
+
+    if(gutterDripL) animateGutterDrip(gutterDripL, splashL, 98, dripDuration, 0);
+    if(gutterDripR) animateGutterDrip(gutterDripR, splashR, 702, dripDuration, dripDuration * 0.4);
+  }
+
+  function animateGutterDrip(drip, splash, cx, duration, delay) {
+    var startY = 398;
+    var endY = 420;
+    var startTime = null;
+    function step(ts) {
+      if(!startTime) startTime = ts;
+      var elapsed = ts - startTime - delay;
+      if(elapsed < 0) {
+        drip.setAttribute('opacity', '0');
+        if(splash) splash.setAttribute('opacity', '0');
+        gutterFrames.push(requestAnimationFrame(step));
+        return;
+      }
+      var t = (elapsed % (duration + 400)) / duration;
+      if(t > 1) {
+        // Pause phase
+        drip.setAttribute('opacity', '0');
+        if(splash) {
+          var pauseT = (t - 1) * duration / 400;
+          splash.setAttribute('opacity', Math.max(0, 0.5 - pauseT * 0.5));
+        }
+        gutterFrames.push(requestAnimationFrame(step));
+        return;
+      }
+      var cy = startY + (endY - startY) * t * t; // gravity
+      var opacity = t < 0.1 ? t / 0.1 * 0.65 : (t > 0.85 ? (1-t)/0.15 * 0.65 : 0.65);
+      drip.setAttribute('cx', cx);
+      drip.setAttribute('cy', cy);
+      drip.setAttribute('opacity', opacity);
+
+      // Splash on impact
+      if(splash && t > 0.85) {
+        splash.setAttribute('opacity', (t - 0.85) / 0.15 * 0.5);
+        splash.setAttribute('rx', 10 + (t - 0.85) / 0.15 * 12);
+      } else if(splash) {
+        splash.setAttribute('opacity', '0');
+      }
+      gutterFrames.push(requestAnimationFrame(step));
+    }
+    gutterFrames.push(requestAnimationFrame(step));
+  }
+
+  // Slider
   slider.addEventListener('input', function() {
     var v = parseInt(this.value, 10);
     valueDisplay.textContent = v + '°';
-    presets.forEach(function(p) {
-      p.classList.toggle('slope-preset-active', parseInt(p.dataset.angle, 10) === v);
-    });
+    presets.forEach(function(p){ p.classList.toggle('slope-preset-active', parseInt(p.dataset.angle,10) === v); });
     updateRoof(v);
   });
 
-  // Preset buttons
+  // Presets
   presets.forEach(function(btn) {
     btn.addEventListener('click', function() {
       var v = parseInt(this.dataset.angle, 10);
       slider.value = v;
       valueDisplay.textContent = v + '°';
-      presets.forEach(function(p) {
-        p.classList.toggle('slope-preset-active', parseInt(p.dataset.angle, 10) === v);
-      });
+      presets.forEach(function(p){ p.classList.toggle('slope-preset-active', parseInt(p.dataset.angle,10) === v); });
       updateRoof(v);
     });
   });
@@ -1475,10 +1594,82 @@ document.addEventListener('DOMContentLoaded', function() {
   // Entrance observer
   var slopeObs = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        section.classList.add('visible');
-      }
+      if(entry.isIntersecting) section.classList.add('visible');
     });
   }, { threshold: 0.15 });
   slopeObs.observe(section);
+})();
+
+
+/* =====================================================
+   CORRFACTS — "Varför välja korrugerad plåt" section
+   ===================================================== */
+(function() {
+  var section = document.querySelector('.corrfacts-section');
+  if (!section) return;
+
+  /* ── Animated stat counters ── */
+  var statNumbers = section.querySelectorAll('.corrfacts-stat-number');
+  var countersAnimated = false;
+
+  function animateCounters() {
+    if (countersAnimated) return;
+    countersAnimated = true;
+    statNumbers.forEach(function(el) {
+      var target = parseInt(el.getAttribute('data-target'), 10);
+      var duration = 1800;
+      var start = null;
+      function step(ts) {
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        // ease-out cubic
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = Math.round(eased * target);
+        el.textContent = current;
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        }
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+  /* ── Card flip logic ── */
+  var cards = section.querySelectorAll('.corrfacts-card');
+  cards.forEach(function(card) {
+    card.addEventListener('click', function() {
+      card.classList.toggle('flipped');
+    });
+  });
+
+  /* ── Cost comparison bar animation ── */
+  var barsAnimated = false;
+  function animateBars() {
+    if (barsAnimated) return;
+    barsAnimated = true;
+    var fills = section.querySelectorAll('.corrfacts-bar-fill');
+    fills.forEach(function(fill) {
+      var targetWidth = fill.style.width;
+      fill.style.width = '0%';
+      // Stagger slightly
+      setTimeout(function() {
+        fill.style.width = targetWidth;
+      }, 400);
+    });
+  }
+
+  /* ── Main entrance observer ── */
+  var corrObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        section.classList.add('visible');
+        // Fire counters slightly after entrance animation begins
+        setTimeout(animateCounters, 500);
+        // Fire bar animations after cards have entered
+        setTimeout(animateBars, 1200);
+        corrObs.disconnect();
+      }
+    });
+  }, { threshold: 0.12 });
+  corrObs.observe(section);
 })();
