@@ -1300,49 +1300,85 @@
     /* init progress */
     document.getElementById('quizProgressBar').style.width = (100 / totalQs) + '%';
 
-    /* ===== Skåne Map: Tooltips & Counter ===== */
-    (() => {
-      const pins = document.querySelectorAll('.skane-pin');
-      const tooltip = document.querySelector('.skane-tooltip');
-      if (!tooltip) return;
-      const bg = tooltip.querySelector('.skane-tooltip-bg');
-      const city = tooltip.querySelector('.skane-tooltip-city');
-      const type = tooltip.querySelector('.skane-tooltip-type');
+    /* ===== Skåne Map: Tooltips, Animations & Counter ===== */
+    (function() {
+      var pins = document.querySelectorAll('.skane-pin');
+      var tooltip = document.querySelector('.skane-tooltip');
+      if (!pins.length || !tooltip) return;
+      var tooltipCity = tooltip.querySelector('.skane-tooltip-city');
+      var tooltipType = tooltip.querySelector('.skane-tooltip-type');
 
-      pins.forEach(pin => {
-        pin.addEventListener('mouseenter', function(e) {
-          const c = this.dataset.city;
-          const t = this.dataset.type;
-          city.textContent = c;
-          type.textContent = t;
-          const dot = this.querySelector('.skane-pin-dot');
-          const cx = parseFloat(dot.getAttribute('cx'));
-          const cy = parseFloat(dot.getAttribute('cy'));
-          tooltip.setAttribute('transform', 'translate(' + (cx - 90) + ',' + (cy - 68) + ')');
-          tooltip.style.display = 'block';
+      pins.forEach(function(pin) {
+        pin.addEventListener('mouseenter', function() {
+          var city = pin.getAttribute('data-city');
+          var type = pin.getAttribute('data-type');
+          tooltipCity.textContent = city;
+          tooltipType.textContent = type;
+          var dot = pin.querySelector('.skane-pin-dot');
+          var cx = parseFloat(dot.getAttribute('cx'));
+          var cy = parseFloat(dot.getAttribute('cy'));
+          var tx = cx - 90;
+          var ty = cy - 70;
+          if (tx < -5) tx = cx + 20;
+          if (tx + 180 > 555) tx = cx - 190;
+          if (ty < -5) ty = cy + 20;
+          tooltip.setAttribute('transform', 'translate(' + tx + ',' + ty + ')');
+          tooltip.style.display = '';
+          pin.classList.add('active');
         });
-        pin.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+        pin.addEventListener('mouseleave', function() {
+          tooltip.style.display = 'none';
+          pin.classList.remove('active');
+        });
+        pin.addEventListener('touchstart', function(e) {
+          e.preventDefault();
+          pins.forEach(function(p) { p.classList.remove('active'); });
+          pin.dispatchEvent(new Event('mouseenter'));
+        });
       });
 
-      /* Animated counter */
-      const counters = document.querySelectorAll('.skane-map-info-number');
-      const cio = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            const el = e.target;
-            const target = parseInt(el.dataset.target);
-            let current = 0;
-            const step = Math.ceil(target / 30);
-            const timer = setInterval(() => {
-              current += step;
-              if (current >= target) { current = target; clearInterval(timer); }
-              el.textContent = current;
-            }, 40);
-            cio.unobserve(el);
+      document.querySelector('.skane-svg').addEventListener('touchstart', function(e) {
+        if (!e.target.closest('.skane-pin')) {
+          tooltip.style.display = 'none';
+          pins.forEach(function(p) { p.classList.remove('active'); });
+        }
+      });
+
+      // Animate outlines + pins + labels on scroll
+      var mapObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            // Trigger outline draw
+            document.querySelectorAll('.skane-outline').forEach(function(path) {
+              path.classList.add('drawn');
+            });
+            // Fade in labels
+            var labels = document.querySelector('.skane-city-labels');
+            if (labels) setTimeout(function() { labels.classList.add('visible'); }, 800);
+            // Stagger pin entrance
+            pins.forEach(function(pin, i) {
+              setTimeout(function() { pin.classList.add('visible'); }, 900 + i * 120);
+            });
+            // Animate info number counter
+            var numEl = document.querySelector('.skane-map-info-number');
+            if (numEl) {
+              var target = parseInt(numEl.getAttribute('data-target'));
+              var start = performance.now();
+              function step(now) {
+                var progress = Math.min((now - start) / 1200, 1);
+                var eased = 1 - Math.pow(1 - progress, 3);
+                numEl.textContent = Math.floor(eased * target);
+                if (progress < 1) requestAnimationFrame(step);
+                else numEl.textContent = target;
+              }
+              setTimeout(function() { requestAnimationFrame(step); }, 600);
+            }
+            mapObs.disconnect();
           }
         });
-      }, { threshold: 0.5 });
-      counters.forEach(c => cio.observe(c));
+      }, { threshold: 0.15 });
+      var mapEl = document.querySelector('.skane-svg');
+      if (mapEl) mapObs.observe(mapEl);
     })();
   </script>
 </body>
