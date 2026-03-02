@@ -279,10 +279,8 @@
                 </pattern>
                 <!-- Hotspot ripple animation -->
                 <style>
-                  @keyframes spotRipple { 0% { r: 16; opacity: 0.25; } 100% { r: 28; opacity: 0; } }
-                  @keyframes spotPulse { 0%,100% { r: 9; } 50% { r: 11; } }
-                  .skor-ripple { animation: spotRipple 2s ease-out infinite; }
-                  .skor-dot { animation: spotPulse 2s ease-in-out infinite; }
+                  @keyframes spotRipple { 0% { opacity: 0.3; } 50% { opacity: 0.15; } 100% { opacity: 0.3; } }
+                  .skor-ripple { animation: spotRipple 2.5s ease-in-out infinite; }
                 </style>
               </defs>
 
@@ -372,42 +370,68 @@
               <line x1="209" y1="240" x2="195" y2="270" stroke="#7a8fa0" stroke-width="0.5" opacity="0.4"/>
               <line x1="341" y1="240" x2="355" y2="270" stroke="#7a8fa0" stroke-width="0.5" opacity="0.4"/>
 
-              <!-- ===== HOTSPOT BUTTONS (enhanced) ===== -->
+              <!-- ===== DIMENSION ANNOTATION ===== -->
+              <!-- Width bracket -->
+              <line x1="215" y1="296" x2="335" y2="296" stroke="#7a8fa0" stroke-width="0.6" stroke-dasharray="3,2" opacity="0.4"/>
+              <line x1="215" y1="292" x2="215" y2="300" stroke="#7a8fa0" stroke-width="0.6" opacity="0.4"/>
+              <line x1="335" y1="292" x2="335" y2="300" stroke="#7a8fa0" stroke-width="0.6" opacity="0.4"/>
+              <text x="275" y="306" text-anchor="middle" fill="#7a8fa0" font-size="7.5" font-family="Inter,sans-serif" opacity="0.5" pointer-events="none">Anpassat efter din skorsten</text>
+
+              <!-- ===== MATERIAL BADGE ===== -->
+              <rect x="420" y="380" width="145" height="50" rx="10" fill="#f0f5fa" stroke="rgba(25,168,255,0.15)" stroke-width="1" opacity="0.9"/>
+              <text x="492" y="400" text-anchor="middle" fill="#19A8FF" font-size="8" font-weight="700" font-family="Inter,sans-serif" pointer-events="none">0.6 mm STÅL</text>
+              <text x="492" y="418" text-anchor="middle" fill="#7a8fa0" font-size="7" font-weight="500" font-family="Inter,sans-serif" pointer-events="none">Polyesterbeläggning</text>
+
+              <!-- ===== HOTSPOT BUTTONS (stable, no CSS transform) ===== -->
               <!-- 1: Skorstenshuv (hood) -->
               <g class="skor-hotspot" data-spot="0" style="cursor:pointer">
-                <circle cx="275" cy="42" r="16" fill="rgba(25,168,255,0.12)" class="skor-ripple"/>
-                <circle cx="275" cy="42" r="22" fill="none" stroke="rgba(25,168,255,0.15)" stroke-width="1.5" class="skor-ripple" style="animation-delay:0.5s"/>
-                <circle cx="275" cy="42" r="9" fill="#19A8FF" stroke="#fff" stroke-width="2.5" class="skor-dot"/>
-                <text x="275" y="46" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="Inter,sans-serif" pointer-events="none">1</text>
+                <circle cx="275" cy="42" r="18" fill="rgba(25,168,255,0.1)" class="skor-ripple"/>
+                <circle cx="275" cy="42" r="11" fill="#19A8FF" stroke="#fff" stroke-width="2.5"/>
+                <text x="275" y="46" text-anchor="middle" fill="#fff" font-size="10" font-weight="700" font-family="Inter,sans-serif" pointer-events="none">1</text>
               </g>
+              <!-- Label line for 1 -->
+              <line x1="286" y1="35" x2="330" y2="18" stroke="#19A8FF" stroke-width="0.8" opacity="0.5" pointer-events="none"/>
+              <text x="334" y="22" fill="#19A8FF" font-size="8.5" font-weight="600" font-family="Inter,sans-serif" opacity="0.7" pointer-events="none">Skorstenshuv</text>
+
               <!-- 2: Öppningsmekanism -->
               <g class="skor-hotspot" data-spot="1" style="cursor:pointer">
-                <circle cx="210" cy="49" r="16" fill="rgba(25,168,255,0.12)" class="skor-ripple" style="animation-delay:0.3s"/>
-                <circle cx="210" cy="49" r="22" fill="none" stroke="rgba(25,168,255,0.15)" stroke-width="1.5" class="skor-ripple" style="animation-delay:0.8s"/>
-                <circle cx="210" cy="49" r="9" fill="#19A8FF" stroke="#fff" stroke-width="2.5" class="skor-dot" style="animation-delay:0.3s"/>
-                <text x="210" y="53" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="Inter,sans-serif" pointer-events="none">2</text>
+                <circle cx="210" cy="49" r="18" fill="rgba(25,168,255,0.1)" class="skor-ripple" style="animation-delay:0.5s"/>
+                <circle cx="210" cy="49" r="11" fill="#19A8FF" stroke="#fff" stroke-width="2.5"/>
+                <text x="210" y="53" text-anchor="middle" fill="#fff" font-size="10" font-weight="700" font-family="Inter,sans-serif" pointer-events="none">2</text>
               </g>
+              <!-- Label line for 2 -->
+              <line x1="199" y1="44" x2="155" y2="28" stroke="#19A8FF" stroke-width="0.8" opacity="0.5" pointer-events="none"/>
+              <text x="88" y="32" fill="#19A8FF" font-size="8.5" font-weight="600" font-family="Inter,sans-serif" opacity="0.7" pointer-events="none">Öppningsmekanism</text>
+
               <!-- 3: Plåtbeklädnad (full cladding) -->
               <g class="skor-hotspot" data-spot="2" style="cursor:pointer">
-                <circle cx="355" cy="175" r="16" fill="rgba(25,168,255,0.12)" class="skor-ripple" style="animation-delay:0.6s"/>
-                <circle cx="355" cy="175" r="22" fill="none" stroke="rgba(25,168,255,0.15)" stroke-width="1.5" class="skor-ripple" style="animation-delay:1.1s"/>
-                <circle cx="355" cy="175" r="9" fill="#19A8FF" stroke="#fff" stroke-width="2.5" class="skor-dot" style="animation-delay:0.6s"/>
-                <text x="355" y="179" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="Inter,sans-serif" pointer-events="none">3</text>
+                <circle cx="355" cy="175" r="18" fill="rgba(25,168,255,0.1)" class="skor-ripple" style="animation-delay:1s"/>
+                <circle cx="355" cy="175" r="11" fill="#19A8FF" stroke="#fff" stroke-width="2.5"/>
+                <text x="355" y="179" text-anchor="middle" fill="#fff" font-size="10" font-weight="700" font-family="Inter,sans-serif" pointer-events="none">3</text>
               </g>
+              <!-- Label line for 3 -->
+              <line x1="366" y1="172" x2="420" y2="155" stroke="#19A8FF" stroke-width="0.8" opacity="0.5" pointer-events="none"/>
+              <text x="424" y="152" fill="#19A8FF" font-size="8.5" font-weight="600" font-family="Inter,sans-serif" opacity="0.7" pointer-events="none">Plåtbeklädnad</text>
+
               <!-- 4: Plåtkrage (flashing collar) -->
               <g class="skor-hotspot" data-spot="3" style="cursor:pointer">
-                <circle cx="375" cy="273" r="16" fill="rgba(25,168,255,0.12)" class="skor-ripple" style="animation-delay:0.9s"/>
-                <circle cx="375" cy="273" r="22" fill="none" stroke="rgba(25,168,255,0.15)" stroke-width="1.5" class="skor-ripple" style="animation-delay:1.4s"/>
-                <circle cx="375" cy="273" r="9" fill="#19A8FF" stroke="#fff" stroke-width="2.5" class="skor-dot" style="animation-delay:0.9s"/>
-                <text x="375" y="277" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="Inter,sans-serif" pointer-events="none">4</text>
+                <circle cx="375" cy="273" r="18" fill="rgba(25,168,255,0.1)" class="skor-ripple" style="animation-delay:1.5s"/>
+                <circle cx="375" cy="273" r="11" fill="#19A8FF" stroke="#fff" stroke-width="2.5"/>
+                <text x="375" y="277" text-anchor="middle" fill="#fff" font-size="10" font-weight="700" font-family="Inter,sans-serif" pointer-events="none">4</text>
               </g>
+              <!-- Label line for 4 -->
+              <line x1="386" y1="268" x2="440" y2="248" stroke="#19A8FF" stroke-width="0.8" opacity="0.5" pointer-events="none"/>
+              <text x="444" y="245" fill="#19A8FF" font-size="8.5" font-weight="600" font-family="Inter,sans-serif" opacity="0.7" pointer-events="none">Plåtkrage</text>
+
               <!-- 5: Falsade fogar (seams) -->
               <g class="skor-hotspot" data-spot="4" style="cursor:pointer">
-                <circle cx="180" cy="235" r="16" fill="rgba(25,168,255,0.12)" class="skor-ripple" style="animation-delay:1.2s"/>
-                <circle cx="180" cy="235" r="22" fill="none" stroke="rgba(25,168,255,0.15)" stroke-width="1.5" class="skor-ripple" style="animation-delay:1.7s"/>
-                <circle cx="180" cy="235" r="9" fill="#19A8FF" stroke="#fff" stroke-width="2.5" class="skor-dot" style="animation-delay:1.2s"/>
-                <text x="180" y="239" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="Inter,sans-serif" pointer-events="none">5</text>
+                <circle cx="180" cy="235" r="18" fill="rgba(25,168,255,0.1)" class="skor-ripple" style="animation-delay:2s"/>
+                <circle cx="180" cy="235" r="11" fill="#19A8FF" stroke="#fff" stroke-width="2.5"/>
+                <text x="180" y="239" text-anchor="middle" fill="#fff" font-size="10" font-weight="700" font-family="Inter,sans-serif" pointer-events="none">5</text>
               </g>
+              <!-- Label line for 5 -->
+              <line x1="169" y1="230" x2="110" y2="210" stroke="#19A8FF" stroke-width="0.8" opacity="0.5" pointer-events="none"/>
+              <text x="46" y="207" fill="#19A8FF" font-size="8.5" font-weight="600" font-family="Inter,sans-serif" opacity="0.7" pointer-events="none">Falsade fogar</text>
             </svg>
           </div>
 
@@ -456,6 +480,192 @@
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- SECTION 4: SKORSTENSKOLLEN — Interactive chimney health check -->
+    <section class="skor-check" id="skorstenskollen">
+      <div class="skor-check-inner">
+        <div class="skor-check-header">
+          <div class="skor-why-kicker">Interaktivt verktyg</div>
+          <h2 class="skor-why-title">Hur mår din <span>skorsten</span>?</h2>
+          <p class="skor-why-lead">Svara på 5 snabba frågor — så får du en bedömning av din skorstens skick och vad du bör göra härnäst. Tar under en minut.</p>
+        </div>
+
+        <!-- Quiz container -->
+        <div class="skor-quiz-wrap">
+          <!-- Progress bar -->
+          <div class="skor-quiz-progress">
+            <div class="skor-quiz-progress-bar" id="quizProgressBar"></div>
+          </div>
+          <div class="skor-quiz-step-label" id="quizStepLabel">Fråga 1 av 5</div>
+
+          <!-- Question slides -->
+          <div class="skor-quiz-slides" id="quizSlides">
+            <!-- Q1 -->
+            <div class="skor-quiz-slide skor-quiz-active" data-q="0">
+              <div class="skor-quiz-question">
+                <div class="skor-quiz-q-icon">
+                  <svg viewBox="0 0 40 40" fill="none" stroke="#19A8FF" stroke-width="1.8"><rect x="8" y="6" width="24" height="28" rx="3"/><line x1="8" y1="16" x2="32" y2="16" opacity="0.4"/><line x1="20" y1="6" x2="20" y2="16" opacity="0.4"/></svg>
+                </div>
+                <h3>Hur gammal är din skorstens plåtbeklädnad?</h3>
+              </div>
+              <div class="skor-quiz-options">
+                <button class="skor-quiz-opt" data-score="0" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">✨</span>
+                  <span class="skor-opt-text"><strong>Under 10 år</strong><br>Relativt ny</span>
+                </button>
+                <button class="skor-quiz-opt" data-score="1" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">👍</span>
+                  <span class="skor-opt-text"><strong>10–20 år</strong><br>Börjar bli äldre</span>
+                </button>
+                <button class="skor-quiz-opt" data-score="2" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">⚠️</span>
+                  <span class="skor-opt-text"><strong>20–30 år</strong><br>Bör kontrolleras</span>
+                </button>
+                <button class="skor-quiz-opt" data-score="3" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">🔴</span>
+                  <span class="skor-opt-text"><strong>30+ år / vet ej</strong><br>Hög risk</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="skor-quiz-slide" data-q="1">
+              <div class="skor-quiz-question">
+                <div class="skor-quiz-q-icon">
+                  <svg viewBox="0 0 40 40" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M20 4 L20 18"/><path d="M12 12 L20 18 L28 12"/><circle cx="20" cy="30" r="6" opacity="0.4"/><path d="M20 24 L20 36" opacity="0.4"/></svg>
+                </div>
+                <h3>Ser du rost, sprickor eller lossnade plåtbitar?</h3>
+              </div>
+              <div class="skor-quiz-options">
+                <button class="skor-quiz-opt" data-score="0" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">✅</span>
+                  <span class="skor-opt-text"><strong>Nej, ser bra ut</strong><br>Inga synliga skador</span>
+                </button>
+                <button class="skor-quiz-opt" data-score="1" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">🤔</span>
+                  <span class="skor-opt-text"><strong>Lite rost/missfärgning</strong><br>Ytliga tecken</span>
+                </button>
+                <button class="skor-quiz-opt" data-score="2" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">😟</span>
+                  <span class="skor-opt-text"><strong>Tydliga sprickor/rost</strong><br>Behöver åtgärd</span>
+                </button>
+                <button class="skor-quiz-opt" data-score="3" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">🚨</span>
+                  <span class="skor-opt-text"><strong>Plåtbitar saknas/lösa</strong><br>Akut skick</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="skor-quiz-slide" data-q="2">
+              <div class="skor-quiz-question">
+                <div class="skor-quiz-q-icon">
+                  <svg viewBox="0 0 40 40" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M10 34 L10 14 L20 6 L30 14 L30 34"/><path d="M10 34 L30 34"/><path d="M20 20 L20 28" opacity="0.5"/><circle cx="20" cy="18" r="2" opacity="0.5"/></svg>
+                </div>
+                <h3>Har du skorstenshuv (hatt) på toppen?</h3>
+              </div>
+              <div class="skor-quiz-options">
+                <button class="skor-quiz-opt" data-score="0" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">🏠</span>
+                  <span class="skor-opt-text"><strong>Ja, i bra skick</strong><br>Skyddar ordentligt</span>
+                </button>
+                <button class="skor-quiz-opt" data-score="1" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">🔧</span>
+                  <span class="skor-opt-text"><strong>Ja, men sliten</strong><br>Kan behöva bytas</span>
+                </button>
+                <button class="skor-quiz-opt" data-score="3" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">❌</span>
+                  <span class="skor-opt-text"><strong>Nej, ingen huv</strong><br>Öppen skorsten</span>
+                </button>
+                <button class="skor-quiz-opt" data-score="2" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">🤷</span>
+                  <span class="skor-opt-text"><strong>Vet inte</strong><br>Har inte kollat</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="skor-quiz-slide" data-q="3">
+              <div class="skor-quiz-question">
+                <div class="skor-quiz-q-icon">
+                  <svg viewBox="0 0 40 40" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M8 30 Q20 10 32 30"/><path d="M14 30 Q20 18 26 30" opacity="0.4"/><line x1="20" y1="32" x2="20" y2="36" stroke-width="2"/></svg>
+                </div>
+                <h3>Har du sett fuktfläckar på vinden eller runt skorstenen inne?</h3>
+              </div>
+              <div class="skor-quiz-options">
+                <button class="skor-quiz-opt" data-score="0" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">🌟</span>
+                  <span class="skor-opt-text"><strong>Nej, helt torrt</strong><br>Inga tecken alls</span>
+                </button>
+                <button class="skor-quiz-opt" data-score="1" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">💧</span>
+                  <span class="skor-opt-text"><strong>Lite fukt ibland</strong><br>Vid kraftigt regn</span>
+                </button>
+                <button class="skor-quiz-opt" data-score="3" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">🌊</span>
+                  <span class="skor-opt-text"><strong>Ja, tydlig fukt/mögel</strong><br>Återkommande problem</span>
+                </button>
+                <button class="skor-quiz-opt" data-score="2" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">🏚️</span>
+                  <span class="skor-opt-text"><strong>Har inte kollat vinden</strong><br>Osäker</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="skor-quiz-slide" data-q="4">
+              <div class="skor-quiz-question">
+                <div class="skor-quiz-q-icon">
+                  <svg viewBox="0 0 40 40" fill="none" stroke="#19A8FF" stroke-width="1.8"><circle cx="20" cy="20" r="14"/><path d="M20 12 L20 20 L26 24"/></svg>
+                </div>
+                <h3>När fick skorstenen senast en professionell kontroll?</h3>
+              </div>
+              <div class="skor-quiz-options">
+                <button class="skor-quiz-opt" data-score="0" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">📋</span>
+                  <span class="skor-opt-text"><strong>Senaste året</strong><br>Nyligen inspekterad</span>
+                </button>
+                <button class="skor-quiz-opt" data-score="1" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">📅</span>
+                  <span class="skor-opt-text"><strong>1–3 år sedan</strong><br>Inte så länge sedan</span>
+                </button>
+                <button class="skor-quiz-opt" data-score="2" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">🕰️</span>
+                  <span class="skor-opt-text"><strong>3–5 år sedan</strong><br>Dags att kolla igen</span>
+                </button>
+                <button class="skor-quiz-opt" data-score="3" onclick="quizAnswer(this)">
+                  <span class="skor-opt-emoji">❓</span>
+                  <span class="skor-opt-text"><strong>Aldrig / vet ej</strong><br>Ingen kontroll</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Result panel (hidden until done) -->
+          <div class="skor-quiz-result" id="quizResult" style="display:none">
+            <div class="skor-result-gauge" id="resultGauge">
+              <svg viewBox="0 0 200 120" class="skor-gauge-svg">
+                <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#e8ecf0" stroke-width="14" stroke-linecap="round"/>
+                <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="url(#gaugeGrad)" stroke-width="14" stroke-linecap="round" id="gaugeArc" stroke-dasharray="0 251"/>
+                <defs><linearGradient id="gaugeGrad"><stop offset="0%" stop-color="#22c55e"/><stop offset="50%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#ef4444"/></linearGradient></defs>
+              </svg>
+              <div class="skor-gauge-label" id="gaugeLabel">—</div>
+              <div class="skor-gauge-score" id="gaugeScore"></div>
+            </div>
+            <h3 id="resultTitle"></h3>
+            <p id="resultText"></p>
+            <div class="skor-result-tips" id="resultTips"></div>
+            <div class="skor-result-actions">
+              <a href="index.html#contact" class="skor-result-cta">
+                Boka kostnadsfri inspektion
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              </a>
+              <button class="skor-result-restart" onclick="restartQuiz()">Gör om testet</button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -575,7 +785,7 @@
       animateBars(document.querySelector('.skor-acc-active'));
     })();
 
-    /* ===== Chimney anatomy hotspots (with click animation) ===== */
+    /* ===== Chimney anatomy hotspots ===== */
     (() => {
       const spots = document.querySelectorAll('.skor-hotspot');
       const panels = document.querySelectorAll('.skor-anatomy-panel');
@@ -585,14 +795,6 @@
         panels.forEach(p => p.classList.remove('skor-panel-active'));
         spots[i]?.classList.add('skor-spot-active');
         panels[i]?.classList.add('skor-panel-active');
-        /* click burst animation */
-        const spot = spots[i];
-        if (spot) {
-          spot.classList.remove('skor-spot-clicked');
-          void spot.offsetWidth; /* trigger reflow */
-          spot.classList.add('skor-spot-clicked');
-          spot.addEventListener('animationend', () => spot.classList.remove('skor-spot-clicked'), { once: true });
-        }
         active = i;
       }
       activate(0);
@@ -601,12 +803,114 @@
 
     /* ===== Scroll reveal for both sections ===== */
     (() => {
-      const els = document.querySelectorAll('.skor-why, .skor-anatomy, .skor-why-bottom');
+      const els = document.querySelectorAll('.skor-why, .skor-anatomy, .skor-check');
       const io = new IntersectionObserver(entries => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('skor-visible'); io.unobserve(e.target); } });
       }, { threshold: 0.1 });
       els.forEach(e => io.observe(e));
     })();
+
+    /* ===== Skorstenskollen Quiz ===== */
+    let quizScores = [];
+    const totalQs = 5;
+
+    function quizAnswer(btn) {
+      const score = parseInt(btn.dataset.score);
+      const slide = btn.closest('.skor-quiz-slide');
+      const qIdx = parseInt(slide.dataset.q);
+
+      /* highlight chosen */
+      slide.querySelectorAll('.skor-quiz-opt').forEach(o => o.classList.remove('skor-opt-chosen'));
+      btn.classList.add('skor-opt-chosen');
+
+      quizScores[qIdx] = score;
+
+      /* advance after short delay */
+      setTimeout(() => {
+        slide.classList.remove('skor-quiz-active');
+        const next = slide.nextElementSibling;
+        if (next && next.classList.contains('skor-quiz-slide')) {
+          next.classList.add('skor-quiz-active');
+          const nextIdx = parseInt(next.dataset.q);
+          document.getElementById('quizStepLabel').textContent = 'Fråga ' + (nextIdx + 1) + ' av ' + totalQs;
+          document.getElementById('quizProgressBar').style.width = ((nextIdx + 1) / totalQs * 100) + '%';
+        } else {
+          showQuizResult();
+        }
+      }, 350);
+    }
+
+    function showQuizResult() {
+      document.getElementById('quizSlides').style.display = 'none';
+      document.getElementById('quizStepLabel').style.display = 'none';
+      document.getElementById('quizProgressBar').parentElement.style.display = 'none';
+      const result = document.getElementById('quizResult');
+      result.style.display = 'block';
+
+      const total = quizScores.reduce((a, b) => a + b, 0);
+      const maxScore = totalQs * 3;
+      const pct = total / maxScore;
+
+      /* Animate gauge */
+      const arc = document.getElementById('gaugeArc');
+      const fullLen = 251;
+      setTimeout(() => { arc.style.transition = 'stroke-dasharray 1.2s ease-out'; arc.setAttribute('stroke-dasharray', (pct * fullLen) + ' ' + fullLen); }, 100);
+
+      const gaugeLabel = document.getElementById('gaugeLabel');
+      const gaugeScore = document.getElementById('gaugeScore');
+      const title = document.getElementById('resultTitle');
+      const text = document.getElementById('resultText');
+      const tips = document.getElementById('resultTips');
+
+      if (pct <= 0.25) {
+        gaugeLabel.textContent = 'Bra skick';
+        gaugeLabel.style.color = '#22c55e';
+        gaugeScore.textContent = Math.round((1 - pct) * 100) + ' / 100';
+        title.textContent = '🌟 Din skorsten verkar vara i gott skick!';
+        text.textContent = 'Baserat på dina svar ser det ut som att din skorsten inte har akuta problem. Men regelbunden kontroll förlänger livslängden avsevärt.';
+        tips.innerHTML = '<div class="skor-tip"><strong>Tips:</strong> Låt en fackman titta vart 3–5 år för att fånga småfel tidigt.</div>';
+      } else if (pct <= 0.5) {
+        gaugeLabel.textContent = 'Okej';
+        gaugeLabel.style.color = '#f59e0b';
+        gaugeScore.textContent = Math.round((1 - pct) * 100) + ' / 100';
+        title.textContent = '👀 Några saker bör ses över';
+        text.textContent = 'Din skorsten har inga kritiska problem, men det finns saker som bör åtgärdas för att undvika dyrare reparationer längre fram.';
+        tips.innerHTML = '<div class="skor-tip"><strong>Rekommendation:</strong> Boka en inspektion inom de närmaste månaderna. Mindre åtgärder nu sparar stora kostnader sedan.</div>';
+      } else if (pct <= 0.75) {
+        gaugeLabel.textContent = 'Bör åtgärdas';
+        gaugeLabel.style.color = '#f97316';
+        gaugeScore.textContent = Math.round((1 - pct) * 100) + ' / 100';
+        title.textContent = '⚠️ Din skorsten behöver uppmärksamhet';
+        text.textContent = 'Dina svar tyder på att din skorsten har flera riskfaktorer. Det är hög tid för en professionell bedömning innan skadorna förvärras.';
+        tips.innerHTML = '<div class="skor-tip skor-tip-warn"><strong>Åtgärd:</strong> Boka inspektion snarast. Fuktskador och bristande tätning kan orsaka mögel och kostsamma skador på vindsbjälklaget.</div>';
+      } else {
+        gaugeLabel.textContent = 'Akut';
+        gaugeLabel.style.color = '#ef4444';
+        gaugeScore.textContent = Math.round((1 - pct) * 100) + ' / 100';
+        title.textContent = '🚨 Din skorsten behöver akut åtgärd';
+        text.textContent = 'Baserat på dina svar finns det flera allvarliga varningssignaler. Fuktinträngning, saknade delar eller åldrade material kan skada hela takkonstruktionen.';
+        tips.innerHTML = '<div class="skor-tip skor-tip-urgent"><strong>Brådskande:</strong> Kontakta oss omgående för en kostnadsfri inspektion. Varje säsong utan åtgärd ökar risken för allvarliga skador.</div>';
+      }
+    }
+
+    function restartQuiz() {
+      quizScores = [];
+      document.getElementById('quizResult').style.display = 'none';
+      document.getElementById('quizSlides').style.display = 'block';
+      document.getElementById('quizStepLabel').style.display = 'block';
+      document.getElementById('quizProgressBar').parentElement.style.display = 'block';
+      document.getElementById('quizStepLabel').textContent = 'Fråga 1 av ' + totalQs;
+      document.getElementById('quizProgressBar').style.width = (100 / totalQs) + '%';
+      const gaugeArc = document.getElementById('gaugeArc');
+      gaugeArc.style.transition = 'none';
+      gaugeArc.setAttribute('stroke-dasharray', '0 251');
+      document.querySelectorAll('.skor-quiz-slide').forEach((s, i) => {
+        s.classList.toggle('skor-quiz-active', i === 0);
+        s.querySelectorAll('.skor-quiz-opt').forEach(o => o.classList.remove('skor-opt-chosen'));
+      });
+    }
+    /* init progress */
+    document.getElementById('quizProgressBar').style.width = (100 / totalQs) + '%';
   </script>
 </body>
 </html>

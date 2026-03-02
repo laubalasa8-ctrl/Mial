@@ -886,21 +886,10 @@ section.stats-section { border-bottom: none; }
 }
 .skor-anatomy-svg { display: block; width: 100%; height: auto; }
 
-/* hotspot glow */
-.skor-hotspot { cursor: pointer; transition: transform 0.3s cubic-bezier(.25,.8,.25,1); }
-.skor-hotspot:hover { transform: scale(1.2); }
-.skor-spot-active { transform: scale(1.15); }
-.skor-spot-active circle:nth-child(3) { fill: #fff; stroke: var(--blue); stroke-width: 3; }
+/* hotspot glow — no CSS transform on SVG <g> to avoid jitter */
+.skor-hotspot { cursor: pointer; }
+.skor-spot-active circle:nth-child(3) { fill: #fff !important; stroke: var(--blue) !important; stroke-width: 3; }
 .skor-spot-active text { fill: var(--blue) !important; }
-
-/* Click burst animation */
-@keyframes spotBurst {
-  0% { transform: scale(1); }
-  30% { transform: scale(1.4); }
-  60% { transform: scale(0.95); }
-  100% { transform: scale(1.15); }
-}
-.skor-spot-clicked { animation: spotBurst 0.45s cubic-bezier(.25,.8,.25,1); }
 
 /* info panels */
 .skor-anatomy-info { position: relative; min-height: 280px; }
@@ -950,6 +939,255 @@ section.stats-section { border-bottom: none; }
   .skor-anatomy-panel h3 { font-size: 1.1rem; }
   .skor-anatomy-panel p { font-size: 0.9rem; }
   .skor-why-cta { width: 100%; justify-content: center; }
+}
+
+/* ============================================================
+   SKORSTENSKOLLEN – Interactive Chimney Health Quiz
+   ============================================================ */
+.skor-check {
+  padding: 7rem 1.5rem 6rem;
+  background: #f8fafb;
+  opacity: 0; transform: translateY(40px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.skor-check.skor-visible { opacity: 1; transform: none; }
+.skor-check-inner { max-width: 720px; margin: 0 auto; }
+.skor-check-header { text-align: center; margin-bottom: 2.5rem; }
+
+/* Quiz wrap */
+.skor-quiz-wrap {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 24px rgba(0,0,0,.06), 0 0 0 1px rgba(0,0,0,.04);
+  padding: 2.5rem 2.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Progress bar */
+.skor-quiz-progress {
+  height: 5px;
+  background: #e8ecf0;
+  border-radius: 100px;
+  margin-bottom: 0.6rem;
+  overflow: hidden;
+}
+.skor-quiz-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #19A8FF, #0088cc);
+  border-radius: 100px;
+  transition: width .4s ease;
+}
+
+/* Step label */
+.skor-quiz-step-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  letter-spacing: 0.03em;
+  margin-bottom: 2rem;
+}
+
+/* Slides */
+.skor-quiz-slides { position: relative; }
+.skor-quiz-slide {
+  display: none;
+  animation: quizSlideIn .35s ease;
+}
+.skor-quiz-slide.skor-quiz-active { display: block; }
+
+@keyframes quizSlideIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Question */
+.skor-quiz-question {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.skor-quiz-q-icon {
+  width: 46px; height: 46px; flex-shrink: 0;
+  background: rgba(25,168,255,.08);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+}
+.skor-quiz-q-icon svg { width: 26px; height: 26px; }
+.skor-quiz-question h3 {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+  margin: 0;
+}
+
+/* Options grid */
+.skor-quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+.skor-quiz-opt {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.1rem;
+  border: 1.5px solid #e2e6ea;
+  border-radius: 12px;
+  background: #fafbfc;
+  cursor: pointer;
+  transition: all .2s ease;
+  text-align: left;
+  font-family: inherit;
+}
+.skor-quiz-opt:hover {
+  border-color: #19A8FF;
+  background: rgba(25,168,255,.04);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(25,168,255,.1);
+}
+.skor-quiz-opt.skor-opt-chosen {
+  border-color: #19A8FF;
+  background: rgba(25,168,255,.08);
+  box-shadow: 0 0 0 3px rgba(25,168,255,.12);
+}
+.skor-opt-emoji {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  width: 36px;
+  text-align: center;
+  line-height: 1;
+}
+.skor-opt-text {
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.4;
+}
+.skor-opt-text strong {
+  display: block;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 0.1rem;
+}
+.skor-opt-text br + * { color: var(--text-soft); }
+
+/* Result panel */
+.skor-quiz-result {
+  text-align: center;
+  animation: quizSlideIn .5s ease;
+}
+.skor-result-gauge {
+  position: relative;
+  width: 200px;
+  margin: 0 auto 1rem;
+}
+.skor-gauge-svg { display: block; width: 100%; height: auto; }
+.skor-gauge-label {
+  position: absolute;
+  bottom: 16px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.skor-gauge-score {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  margin-top: -0.3rem;
+  margin-bottom: 1.2rem;
+}
+
+.skor-quiz-result h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.3px;
+}
+.skor-quiz-result p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-soft);
+  max-width: 520px;
+  margin: 0 auto 1.2rem;
+}
+
+/* Tips */
+.skor-result-tips { margin-bottom: 1.5rem; }
+.skor-tip {
+  background: #f0f9ff;
+  border-left: 3px solid #19A8FF;
+  padding: 0.9rem 1.1rem;
+  border-radius: 0 10px 10px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text);
+  text-align: left;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.skor-tip-warn {
+  background: #fffbeb;
+  border-left-color: #f59e0b;
+}
+.skor-tip-urgent {
+  background: #fef2f2;
+  border-left-color: #ef4444;
+}
+
+/* Actions */
+.skor-result-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+.skor-result-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background .2s ease, transform .2s ease;
+}
+.skor-result-cta:hover { background: var(--blue-dark); transform: translateY(-1px); }
+.skor-result-restart {
+  background: none;
+  border: none;
+  color: var(--text-soft);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  transition: color .2s;
+}
+.skor-result-restart:hover { color: var(--text); }
+
+/* Quiz responsive */
+@media (max-width: 600px) {
+  .skor-check { padding: 4rem 1rem 3.5rem; }
+  .skor-quiz-wrap { padding: 1.5rem 1.2rem 1.3rem; border-radius: 14px; }
+  .skor-quiz-options { grid-template-columns: 1fr; gap: 0.55rem; }
+  .skor-quiz-opt { padding: 0.85rem 1rem; }
+  .skor-quiz-question { gap: 0.7rem; }
+  .skor-quiz-question h3 { font-size: 1rem; }
+  .skor-quiz-q-icon { width: 40px; height: 40px; }
+  .skor-quiz-q-icon svg { width: 22px; height: 22px; }
+  .skor-quiz-result h3 { font-size: 1.15rem; }
+  .skor-result-gauge { width: 160px; }
+  .skor-gauge-label { font-size: 1.1rem; }
+  .skor-result-cta { width: 100%; justify-content: center; }
 }
 
 /* ============================================================
@@ -3823,7 +4061,30 @@ section.stats-section { border-bottom: none; }
 }
 
 /* ===== TABLET & RESPONSIVE ===== */
-
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .service-card {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    border-radius: 14px;
+  }
+  .service-image {
+    height: 100%;
+    min-height: 120px;
+    border-radius: 14px 0 0 14px;
+  }
+  .service-content {
+    padding: 1.2rem 1.4rem;
+    gap: 0.4rem;
+  }
+  .service-content h3 { font-size: 1.05rem; }
+  .service-content p { font-size: 0.85rem; line-height: 1.5; }
+  .service-card:hover { transform: none; }
+  .service-card::before { display: none; }
+}
 
 /* ===== FORMS ===== */
 form { display: grid; gap: 0.8rem; }
@@ -13381,6 +13642,22 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
   transform: translateY(-1px);
 }
 
+/* ---- PILLARS RESPONSIVE ---- */
+@media (max-width: 900px) {
+  .plat-pillars-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+  .plat-pillars-section { padding: 5rem 1.5rem; margin-top: 4rem; }
+  .plat-pillars-header { margin-bottom: 3rem; }
+  .plat-pillar { padding: 1.8rem 1.5rem; }
+  .plat-pillar-number { font-size: 2rem; margin-bottom: 0.5rem; }
+  .plat-pillar-icon { width: 56px; height: 56px; margin: 1rem auto 1.2rem; }
+  .plat-pillar-title { font-size: 1.25rem; }
+  .plat-pillar-description { font-size: 0.9rem; margin-bottom: 1rem; }
+  .plat-pillar-details { padding: 1.2rem; }
+  .plat-pillar-details li { font-size: 0.85rem; padding: 0.4rem 0; }
+  .plat-pillar:hover { transform: none; }
+  .plat-pillars-cta { margin-top: 3rem; padding: 2rem 1.5rem; }
+}
+
 /* OLD UNUSED STYLES */
 .plat-importance-section {
   font-size: 0.95rem;
@@ -15193,6 +15470,24 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
   font-size: 0.95rem;
   color: #5a5a5a;
   line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .showcase-card {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+  .showcase-content {
+    padding: 1.8rem 1.5rem;
+    order: 0;
+  }
+  .showcase-image-container {
+    height: 240px;
+    order: -1;
+  }
+  .showcase-card h3 { font-size: 1.2rem; }
+  .showcase-card p { font-size: 0.9rem; }
+  .takpannor-showcase { margin-top: 2.5rem; }
 }
 
 .pannmodeller-cta {
@@ -20240,6 +20535,7 @@ html { overflow-x: hidden; }
   .terms-hero,
   .privacy-hero,
   .hero-korrugerad,
+  .hero-takpannor,
   .hero-takkupor,
   .hero-skorsten {
     background-attachment: scroll !important;
@@ -20292,6 +20588,7 @@ html { overflow-x: hidden; }
   .hero-bandtackning,
   .hero-takpanneplat,
   .hero-plattaket,
+  .hero-takpannor,
   .hero-takkupor,
   .hero-skorsten {
     height: auto;
@@ -20306,6 +20603,7 @@ html { overflow-x: hidden; }
   .takpanneplat-page .topbar,
   .korrugerad-page .topbar,
   .plattaket-page .topbar,
+  .takpannor-page .topbar,
   .takkupor-page .topbar,
   .skorsten-page .topbar {
     background-image: none !important;
@@ -20316,6 +20614,7 @@ html { overflow-x: hidden; }
   .takpanneplat-page header,
   .korrugerad-page header,
   .plattaket-page header,
+  .takpannor-page header,
   .takkupor-page header,
   .skorsten-page header {
     background-image: none !important;
@@ -20328,6 +20627,7 @@ html { overflow-x: hidden; }
   .takpanneplat-page header .nav,
   .korrugerad-page header .nav,
   .plattaket-page header .nav,
+  .takpannor-page header .nav,
   .takkupor-page header .nav,
   .skorsten-page header .nav {
     padding: 1.1rem 1.5rem;
@@ -20339,6 +20639,7 @@ html { overflow-x: hidden; }
   .hero-takpanneplat,
   .hero-korrugerad,
   .hero-plattaket,
+  .hero-takpannor,
   .hero-takkupor,
   .hero-skorsten {
     height: 100svh;
@@ -20357,6 +20658,7 @@ html { overflow-x: hidden; }
   .hero-takpanneplat > div,
   .hero-korrugerad > div,
   .hero-plattaket > div,
+  .hero-takpannor > div,
   .hero-takkupor > div,
   .hero-skorsten > div {
     min-height: auto;
