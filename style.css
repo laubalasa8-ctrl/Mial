@@ -713,6 +713,7 @@ section.stats-section { border-bottom: none; }
 .hero-bandtackning { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('joy1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .hero-takpanneplat { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('takpanneplat3.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .hero-korrugerad { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('kr1.png'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.hero-takkupor { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('takkupa.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .hero-takbyte > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
 .hero-fasad > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
 .hero-platslageri > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
@@ -720,6 +721,7 @@ section.stats-section { border-bottom: none; }
 .hero-bandtackning > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
 .hero-takpanneplat > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
 .hero-korrugerad > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
+.hero-takkupor > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
 .frosted-box { background: rgba(255,255,255,0.12); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); border-radius: 28px; padding: 4rem 3.5rem; width: 100%; max-width: 680px; animation: fadeInUp 0.8s ease 0.2s forwards; opacity: 0; box-shadow: 0 30px 80px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1); margin-top: -12rem; }
 .frosted-box .hero-kicker { margin-bottom: 1rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.25em; color: rgba(255,255,255,0.95); font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
 .frosted-box h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.2; margin-bottom: 1.5rem; color: #FFF; text-shadow: 0 4px 12px rgba(0,0,0,0.5); font-weight: 800; letter-spacing: -0.8px; }
@@ -9238,6 +9240,202 @@ body:has(.solar-hero) header { background: transparent; }
 
   .plat-service-btn i {
     font-size: 1rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   PLAT SHOWCASE CARDS — Premium service card redesign
+   ═══════════════════════════════════════════════════════ */
+.plat-showcase-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.plat-showcase-card {
+  position: relative;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.06);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.plat-showcase-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(25,168,255,0.12), 0 4px 20px rgba(0,0,0,0.06);
+  border-color: rgba(25,168,255,0.15);
+}
+
+.plat-showcase-media {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+}
+
+.plat-showcase-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.plat-showcase-card:hover .plat-showcase-media img {
+  transform: scale(1.06);
+}
+
+.plat-showcase-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.05) 100%);
+  pointer-events: none;
+}
+
+.plat-showcase-badge {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  padding: 0.35rem 1rem;
+  background: rgba(255,255,255,0.95);
+  color: var(--blue);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  z-index: 2;
+}
+
+.plat-showcase-body {
+  padding: 2rem 2.2rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.plat-showcase-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(25,168,255,0.06);
+  border-radius: 12px;
+  margin-bottom: 1.2rem;
+  flex-shrink: 0;
+}
+
+.plat-showcase-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--blue);
+}
+
+.plat-showcase-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.3px;
+  line-height: 1.3;
+  margin-bottom: 0.8rem;
+}
+
+.plat-showcase-desc {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text-soft);
+  margin-bottom: 1.4rem;
+}
+
+.plat-showcase-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.plat-showcase-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.plat-showcase-list li svg {
+  flex-shrink: 0;
+  color: var(--blue);
+}
+
+.plat-showcase-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.6rem;
+  background: var(--blue);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 12px;
+  text-decoration: none;
+  width: fit-content;
+  margin-top: auto;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(25,168,255,0.2);
+}
+
+.plat-showcase-btn:hover {
+  background: var(--blue-dark);
+  transform: translateX(4px);
+  box-shadow: 0 8px 28px rgba(25,168,255,0.3);
+}
+
+.plat-showcase-btn svg {
+  transition: transform 0.35s ease;
+}
+
+.plat-showcase-btn:hover svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 900px) {
+  .plat-showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 540px;
+  }
+  .plat-showcase-media {
+    height: 220px;
+  }
+}
+
+@media (max-width: 600px) {
+  .plat-showcase-body {
+    padding: 1.5rem 1.4rem 1.6rem;
+  }
+  .plat-showcase-title {
+    font-size: 1.2rem;
+  }
+  .plat-showcase-desc {
+    font-size: 0.86rem;
+  }
+  .plat-showcase-media {
+    height: 190px;
   }
 }
 
@@ -18491,7 +18689,8 @@ html { overflow-x: hidden; }
   .solar-hero,
   .terms-hero,
   .privacy-hero,
-  .hero-korrugerad {
+  .hero-korrugerad,
+  .hero-takkupor {
     background-attachment: scroll !important;
   }
 
@@ -18524,7 +18723,8 @@ html { overflow-x: hidden; }
   .papptak-page .topbar,
   .bandtackning-page .topbar,
   .takpanneplat-page .topbar,
-  .korrugerad-page .topbar {
+  .korrugerad-page .topbar,
+  .takkupor-page .topbar {
     background-attachment: scroll !important;
   }
 
@@ -18538,7 +18738,8 @@ html { overflow-x: hidden; }
   /* Hero heights: allow content overflow */
   .hero-papptak,
   .hero-bandtackning,
-  .hero-takpanneplat {
+  .hero-takpanneplat,
+  .hero-takkupor {
     height: auto;
     min-height: 100vh;
   }
