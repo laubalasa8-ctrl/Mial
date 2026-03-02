@@ -10324,40 +10324,39 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
   flex-shrink: 0;
 }
 
-/* ---- Mobile Info Overlay (within SVG container) ---- */
-.kupa-info-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: 20px 20px 24px 24px;
+/* ---- Info Panel BELOW SVG (splitscreen / mobile) ---- */
+.kupa-info-below {
+  position: relative;
+  background: #fff;
+  border-radius: 20px;
   padding: 0;
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 -8px 40px rgba(0,0,0,0.08);
-  z-index: 10;
-  pointer-events: none;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.4s ease,
+              padding 0.4s ease,
+              margin 0.4s ease;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  border: 1px solid rgba(25,168,255,0.08);
   display: none;
+  margin-top: 0;
 }
 
-.kupa-info-overlay.kupa-overlay-visible {
-  max-height: 400px;
+.kupa-info-below.kupa-overlay-visible {
+  max-height: 600px;
   opacity: 1;
-  padding: 1.5rem 1.5rem 1.2rem;
-  pointer-events: auto;
+  padding: 1.5rem 1.5rem 1.3rem;
+  margin-top: 1rem;
+  overflow-y: auto;
 }
 
-.kupa-info-overlay-close {
+.kupa-info-below-close {
   position: absolute;
   top: 0.8rem;
   right: 0.8rem;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: none;
   background: rgba(0,0,0,0.04);
@@ -10370,33 +10369,58 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
   z-index: 2;
 }
 
-.kupa-info-overlay-close:hover {
-  background: rgba(0,0,0,0.08);
-  color: var(--text);
+.kupa-info-below-close:hover {
+  background: rgba(25,168,255,0.08);
+  color: var(--blue);
 }
 
-.kupa-info-overlay .kupa-info-title {
+.kupa-info-below .kupa-info-title {
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
 
-.kupa-info-overlay .kupa-info-desc {
-  font-size: 0.82rem;
+.kupa-info-below .kupa-info-desc {
+  font-size: 0.84rem;
   margin-bottom: 1rem;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
-.kupa-info-overlay .kupa-info-badge {
+.kupa-info-below .kupa-info-badge {
   margin-bottom: 0.7rem;
   font-size: 0.62rem;
 }
 
-.kupa-info-overlay .kupa-info-list {
+.kupa-info-below .kupa-info-list {
   gap: 0.45rem;
 }
 
-.kupa-info-overlay .kupa-info-list li {
-  font-size: 0.78rem;
+.kupa-info-below .kupa-info-list li {
+  font-size: 0.8rem;
+}
+
+/* ---- "Varför det behövs" box ---- */
+.kupa-info-why {
+  background: rgba(25,168,255,0.04);
+  border-left: 3px solid var(--blue);
+  border-radius: 0 12px 12px 0;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 1.1rem;
+}
+
+.kupa-info-why-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--blue);
+  margin-bottom: 0.35rem;
+}
+
+.kupa-info-why p {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--text-soft);
+  margin: 0;
 }
 
 /* ---- Mobile Hotspot Navigation Bar ---- */
@@ -10705,7 +10729,7 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
   .kupa-anatomy-info-desktop {
     display: none;
   }
-  .kupa-info-overlay {
+  .kupa-info-below {
     display: block;
   }
   .kupa-hotspot-nav {
@@ -10739,9 +10763,9 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
   .kupa-info-title {
     font-size: 1.15rem;
   }
-  .kupa-info-overlay.kupa-overlay-visible {
+  .kupa-info-below.kupa-overlay-visible {
     padding: 1.2rem 1.2rem 1rem;
-    max-height: 55%;
+    max-height: 500px;
     overflow-y: auto;
   }
   .kupa-hotspot-nav-btn {
