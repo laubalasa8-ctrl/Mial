@@ -10022,7 +10022,7 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
 }
 
 /* ============================================================
-   KUPA TJÄNST — Interactive Dormer Services Section
+   KUPA TJÄNST — Interactive Dormer Services Section (v2)
    ============================================================ */
 .kupa-tjanst {
   padding: 7rem 2rem 6rem;
@@ -10092,7 +10092,7 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
   margin: 0 auto;
 }
 
-/* ---- Interactive Anatomy Section ---- */
+/* ---- Interactive Anatomy Section (v2) ---- */
 .kupa-anatomy {
   margin-bottom: 5rem;
   opacity: 0;
@@ -10105,9 +10105,10 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
   transform: translateY(0);
 }
 
-.kupa-anatomy-grid {
+/* Desktop: SVG left, info right */
+.kupa-anatomy-container {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.15fr 0.85fr;
   gap: 2.5rem;
   align-items: start;
 }
@@ -10121,13 +10122,14 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
   background: linear-gradient(145deg, #f5f8fb 0%, #edf2f7 100%);
   border-radius: 24px;
   border: 1px solid rgba(0,0,0,0.04);
-  padding: 2rem 1.5rem 1rem;
+  padding: 1.5rem 1rem 0.8rem;
   box-shadow: 0 4px 24px rgba(0,0,0,0.03);
 }
 
 .kupa-anatomy-svg {
   width: 100%;
   height: auto;
+  display: block;
 }
 
 .kupa-svg-label {
@@ -10153,20 +10155,20 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
 }
 
 @keyframes kupaPulse {
-  0% { r: 10; opacity: 0.8; }
-  70% { r: 22; opacity: 0; }
-  100% { r: 22; opacity: 0; }
+  0% { r: 11; opacity: 0.8; }
+  70% { r: 24; opacity: 0; }
+  100% { r: 24; opacity: 0; }
 }
 
 .kupa-hotspot:hover .kupa-hotspot-dot,
 .kupa-hotspot:focus .kupa-hotspot-dot {
-  r: 13;
+  r: 14;
   fill: #0088cc;
 }
 
 .kupa-hotspot:hover .kupa-hotspot-glow,
 .kupa-hotspot:focus .kupa-hotspot-glow {
-  r: 26;
+  r: 28;
   fill: rgba(25,168,255,0.15);
 }
 
@@ -10180,7 +10182,7 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
 }
 
 .kupa-hotspot-active .kupa-hotspot-glow {
-  r: 28;
+  r: 30;
   fill: rgba(25,168,255,0.2);
 }
 
@@ -10192,24 +10194,27 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
 .kupa-plat-zone.kupa-zone-active {
   opacity: 1 !important;
   stroke: #0088cc;
-  stroke-width: 2.5;
-  fill: rgba(25,168,255,0.2);
+  stroke-width: 3;
+  fill: rgba(25,168,255,0.25);
   filter: url(#glow-soft);
-}
-
-.kupa-takfonster-rect {
-  transition: all 0.5s ease;
 }
 
 .kupa-takfonster-rect.kupa-zone-active {
   stroke: #0088cc;
   stroke-width: 2;
-  fill: rgba(25,168,255,0.25);
+  fill: rgba(25,168,255,0.3);
   filter: url(#glow-soft);
 }
 
-/* Info Panel */
-.kupa-anatomy-info {
+.kupa-takfonster-plat.kupa-zone-active {
+  stroke: #0088cc;
+  stroke-width: 2;
+  opacity: 1;
+  filter: url(#glow-soft);
+}
+
+/* ---- Desktop Info Panel (side panel) ---- */
+.kupa-anatomy-info-desktop {
   position: sticky;
   top: 8rem;
 }
@@ -10244,7 +10249,7 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
   letter-spacing: 0.1em;
   background: rgba(25,168,255,0.08);
   color: var(--blue);
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .kupa-info-icon {
@@ -10317,6 +10322,141 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
   height: 18px;
   min-width: 18px;
   flex-shrink: 0;
+}
+
+/* ---- Mobile Info Overlay (within SVG container) ---- */
+.kupa-info-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px 20px 24px 24px;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 -8px 40px rgba(0,0,0,0.08);
+  z-index: 10;
+  pointer-events: none;
+  display: none;
+}
+
+.kupa-info-overlay.kupa-overlay-visible {
+  max-height: 400px;
+  opacity: 1;
+  padding: 1.5rem 1.5rem 1.2rem;
+  pointer-events: auto;
+}
+
+.kupa-info-overlay-close {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.04);
+  color: var(--text-soft);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.kupa-info-overlay-close:hover {
+  background: rgba(0,0,0,0.08);
+  color: var(--text);
+}
+
+.kupa-info-overlay .kupa-info-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.kupa-info-overlay .kupa-info-desc {
+  font-size: 0.82rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.kupa-info-overlay .kupa-info-badge {
+  margin-bottom: 0.7rem;
+  font-size: 0.62rem;
+}
+
+.kupa-info-overlay .kupa-info-list {
+  gap: 0.45rem;
+}
+
+.kupa-info-overlay .kupa-info-list li {
+  font-size: 0.78rem;
+}
+
+/* ---- Mobile Hotspot Navigation Bar ---- */
+.kupa-hotspot-nav {
+  display: none;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 0.2rem 0;
+}
+
+.kupa-hotspot-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.kupa-hotspot-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 100px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  flex-shrink: 0;
+}
+
+.kupa-hotspot-nav-btn span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(25,168,255,0.08);
+  color: var(--blue);
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+
+.kupa-hotspot-nav-btn:hover,
+.kupa-hotspot-nav-btn.active {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+  box-shadow: 0 4px 16px rgba(25,168,255,0.2);
+}
+
+.kupa-hotspot-nav-btn:hover span,
+.kupa-hotspot-nav-btn.active span {
+  background: rgba(255,255,255,0.2);
+  color: #fff;
 }
 
 /* ---- Service Cards ---- */
@@ -10558,12 +10698,18 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
   .kupa-tjanst {
     padding: 5rem 1.5rem 4rem;
   }
-  .kupa-anatomy-grid {
+  .kupa-anatomy-container {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 0;
   }
-  .kupa-anatomy-info {
-    position: static;
+  .kupa-anatomy-info-desktop {
+    display: none;
+  }
+  .kupa-info-overlay {
+    display: block;
+  }
+  .kupa-hotspot-nav {
+    display: flex;
   }
   .kupa-services-grid {
     grid-template-columns: 1fr;
@@ -10583,7 +10729,7 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
     font-size: 1.6rem;
   }
   .kupa-anatomy-svg-wrap {
-    padding: 1.2rem 0.8rem 0.5rem;
+    padding: 1rem 0.5rem 0.5rem;
     border-radius: 16px;
   }
   .kupa-info-card {
@@ -10592,6 +10738,15 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
   }
   .kupa-info-title {
     font-size: 1.15rem;
+  }
+  .kupa-info-overlay.kupa-overlay-visible {
+    padding: 1.2rem 1.2rem 1rem;
+    max-height: 55%;
+    overflow-y: auto;
+  }
+  .kupa-hotspot-nav-btn {
+    padding: 0.45rem 0.7rem;
+    font-size: 0.68rem;
   }
   .kupa-service-card {
     padding: 1.5rem 1.3rem;
