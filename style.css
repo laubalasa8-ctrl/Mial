@@ -1054,12 +1054,17 @@ section.stats-section { border-bottom: none; }
   background: rgba(25,168,255,.08);
   box-shadow: 0 0 0 3px rgba(25,168,255,.12);
 }
-.skor-opt-emoji {
-  font-size: 1.5rem;
+.skor-opt-icon {
+  width: 36px; height: 36px;
   flex-shrink: 0;
-  width: 36px;
-  text-align: center;
-  line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,.03);
+  border-radius: 10px;
+  transition: background .2s ease;
+}
+.skor-opt-icon svg { width: 20px; height: 20px; }
+.skor-quiz-opt.skor-opt-chosen .skor-opt-icon {
+  background: rgba(25,168,255,.1);
 }
 .skor-opt-text {
   font-size: 0.88rem;
@@ -1188,6 +1193,135 @@ section.stats-section { border-bottom: none; }
   .skor-result-gauge { width: 160px; }
   .skor-gauge-label { font-size: 1.1rem; }
   .skor-result-cta { width: 100%; justify-content: center; }
+}
+
+/* ============================================================
+   SKORSTENSINFO – Informative Knowledge Section
+   ============================================================ */
+.skor-info {
+  padding: 7rem 1.5rem 6rem;
+  background: #fff;
+  opacity: 0; transform: translateY(40px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.skor-info.skor-visible { opacity: 1; transform: none; }
+.skor-info-inner { max-width: var(--max-width); margin: 0 auto; }
+.skor-info-header { text-align: center; margin-bottom: 3rem; }
+
+.skor-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.skor-info-card {
+  background: #f8fafb;
+  border: 1px solid #e8ecf0;
+  border-radius: 16px;
+  padding: 2rem 1.8rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .5s ease, transform .5s ease, box-shadow .3s ease;
+}
+.skor-info-card.skor-info-card-visible {
+  opacity: 1;
+  transform: none;
+}
+.skor-info-card:hover {
+  box-shadow: 0 8px 30px rgba(0,0,0,.06);
+}
+.skor-info-card-icon {
+  width: 44px; height: 44px;
+  background: rgba(25,168,255,.08);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.2rem;
+  color: var(--blue);
+}
+.skor-info-card-icon svg { width: 24px; height: 24px; }
+.skor-info-card h3 {
+  font-size: 1.05rem;
+  font-weight: 750;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.2px;
+}
+.skor-info-card p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-soft);
+}
+.skor-info-stat {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e8ecf0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.skor-info-stat-num {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--blue);
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+}
+.skor-info-stat-label {
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  line-height: 1.4;
+}
+.skor-info-warnings {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+}
+.skor-info-warnings li {
+  font-size: 0.88rem;
+  color: var(--text-soft);
+  line-height: 1.6;
+  padding: 0.3rem 0 0.3rem 1.4rem;
+  position: relative;
+}
+.skor-info-warnings li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.65rem;
+  width: 6px; height: 6px;
+  background: #f59e0b;
+  border-radius: 50%;
+}
+.skor-info-card-cta {
+  background: linear-gradient(135deg, rgba(25,168,255,.06), rgba(25,168,255,.02));
+  border-color: rgba(25,168,255,.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.skor-info-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.2rem;
+  padding: 0.7rem 1.5rem;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background .2s, transform .2s;
+  align-self: flex-start;
+}
+.skor-info-cta-btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
+
+@media (max-width: 850px) {
+  .skor-info-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .skor-info { padding: 4rem 1rem 3.5rem; }
+  .skor-info-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .skor-info-card { padding: 1.5rem 1.3rem; }
+  .skor-info-stat-num { font-size: 1.3rem; }
 }
 
 /* ============================================================
@@ -5908,7 +6042,7 @@ header.scrolled .hamburger span { background: #111; box-shadow: 0 1px 4px rgba(0
   .hero-cta-row { gap: 0.8rem; }
   .hero-takbyte { padding: 1.5rem 1.5rem 3rem; min-height: auto; background-position: top center; background-attachment: scroll; }
   .hero-takbyte > div { min-height: auto; padding: 2rem 0; }
-  .hero-fasad { padding: 2rem 1.5rem; min-height: 70vh; }
+  .hero-fasad { padding: 2rem 1.5rem; min-height: 70vh; background-attachment: scroll; }
   .hero-fasad > div { min-height: auto; padding: 3rem 0; justify-content: flex-start; align-items: center; }
   .frosted-box { padding: 1.5rem 1.2rem; margin-top: 0; max-width: 100%; border-radius: 20px; }
   .frosted-box h1 { font-size: clamp(1.6rem, 4.5vw, 2rem); margin-bottom: 0.8rem; }
@@ -20590,7 +20724,8 @@ html { overflow-x: hidden; }
   .hero-plattaket,
   .hero-takpannor,
   .hero-takkupor,
-  .hero-skorsten {
+  .hero-skorsten,
+  .hero-fasad {
     height: auto;
     min-height: 100svh;
     max-height: 100svh;
@@ -20605,7 +20740,8 @@ html { overflow-x: hidden; }
   .plattaket-page .topbar,
   .takpannor-page .topbar,
   .takkupor-page .topbar,
-  .skorsten-page .topbar {
+  .skorsten-page .topbar,
+  .fasad-page .topbar {
     background-image: none !important;
     background: transparent !important;
   }
@@ -20616,7 +20752,8 @@ html { overflow-x: hidden; }
   .plattaket-page header,
   .takpannor-page header,
   .takkupor-page header,
-  .skorsten-page header {
+  .skorsten-page header,
+  .fasad-page header {
     background-image: none !important;
     background: transparent !important;
   }
@@ -20629,7 +20766,8 @@ html { overflow-x: hidden; }
   .plattaket-page header .nav,
   .takpannor-page header .nav,
   .takkupor-page header .nav,
-  .skorsten-page header .nav {
+  .skorsten-page header .nav,
+  .fasad-page header .nav {
     padding: 1.1rem 1.5rem;
   }
 
@@ -20641,7 +20779,8 @@ html { overflow-x: hidden; }
   .hero-plattaket,
   .hero-takpannor,
   .hero-takkupor,
-  .hero-skorsten {
+  .hero-skorsten,
+  .hero-fasad {
     height: 100svh;
     min-height: 100svh;
     max-height: 100svh;
@@ -20660,7 +20799,8 @@ html { overflow-x: hidden; }
   .hero-plattaket > div,
   .hero-takpannor > div,
   .hero-takkupor > div,
-  .hero-skorsten > div {
+  .hero-skorsten > div,
+  .hero-fasad > div {
     min-height: auto;
     padding-top: 0;
     padding-bottom: 2rem;
@@ -20760,7 +20900,7 @@ html { overflow-x: hidden; }
     padding-bottom: 0.5rem;
   }
   .pannmodell-btn { flex-shrink: 0; }
-  .pannmodeller-preview { height: 280px; }
+  .pannmodeller-preview { height: auto; overflow: visible; }
   .premium-cards-grid { grid-template-columns: 1fr !important; }
   .takpannor-key-questions { grid-template-columns: 1fr !important; }
 
