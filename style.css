@@ -1196,132 +1196,259 @@ section.stats-section { border-bottom: none; }
 }
 
 /* ============================================================
-   SKORSTENSINFO – Informative Knowledge Section
+   SKORSTENSINFO – Bento Knowledge Grid
    ============================================================ */
-.skor-info {
+.skor-kb {
   padding: 7rem 1.5rem 6rem;
   background: #fff;
   opacity: 0; transform: translateY(40px);
   transition: opacity .7s ease, transform .7s ease;
 }
-.skor-info.skor-visible { opacity: 1; transform: none; }
-.skor-info-inner { max-width: var(--max-width); margin: 0 auto; }
-.skor-info-header { text-align: center; margin-bottom: 3rem; }
+.skor-kb.skor-visible { opacity: 1; transform: none; }
+.skor-kb-inner { max-width: var(--max-width); margin: 0 auto; }
+.skor-kb-header { text-align: center; margin-bottom: 3.5rem; }
 
-.skor-info-grid {
+/* --- Bento Grid --- */
+.skor-kb-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: auto;
+  gap: 1.25rem;
 }
-.skor-info-card {
+
+/* --- Base Card --- */
+.skor-kb-card {
   background: #f8fafb;
   border: 1px solid #e8ecf0;
-  border-radius: 16px;
-  padding: 2rem 1.8rem;
+  border-radius: 20px;
+  padding: 0;
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity .5s ease, transform .5s ease, box-shadow .3s ease;
+  transform: translateY(24px);
+  transition: opacity .55s ease, transform .55s ease, box-shadow .35s ease;
+  overflow: hidden;
 }
-.skor-info-card.skor-info-card-visible {
+.skor-kb-card.skor-kb-card-visible {
   opacity: 1;
   transform: none;
 }
-.skor-info-card:hover {
-  box-shadow: 0 8px 30px rgba(0,0,0,.06);
+.skor-kb-card:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,.06);
 }
-.skor-info-card-icon {
-  width: 44px; height: 44px;
-  background: rgba(25,168,255,.08);
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 1.2rem;
-  color: var(--blue);
+.skor-kb-card-inner {
+  padding: 2rem 1.8rem;
 }
-.skor-info-card-icon svg { width: 24px; height: 24px; }
-.skor-info-card h3 {
+.skor-kb-card h3 {
   font-size: 1.05rem;
   font-weight: 750;
   color: var(--text);
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.55rem;
   letter-spacing: -0.2px;
 }
-.skor-info-card p {
-  font-size: 0.9rem;
-  line-height: 1.7;
+.skor-kb-card p {
+  font-size: 0.88rem;
+  line-height: 1.72;
   color: var(--text-soft);
+  margin: 0;
 }
-.skor-info-stat {
-  margin-top: 1.2rem;
-  padding-top: 1rem;
-  border-top: 1px solid #e8ecf0;
+
+/* --- Featured Card (2 col, left blue accent) --- */
+.skor-kb-card-featured {
+  grid-column: span 2;
+  border-left: 4px solid var(--blue);
+  background: linear-gradient(135deg, rgba(25,168,255,.03) 0%, #f8fafb 60%);
+}
+.skor-kb-badge {
+  display: inline-block;
+  padding: 0.25rem 0.8rem;
+  background: rgba(25,168,255,.1);
+  color: var(--blue);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+/* --- Meter (progress bar) --- */
+.skor-kb-meter { margin-top: 1.2rem; }
+.skor-kb-meter-header {
   display: flex;
-  align-items: baseline;
-  gap: 0.6rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
 }
-.skor-info-stat-num {
-  font-size: 1.6rem;
+.skor-kb-meter-label {
+  font-size: 0.78rem;
+  color: var(--text-soft);
+  font-weight: 500;
+}
+.skor-kb-meter-value {
+  font-size: 1.35rem;
   font-weight: 800;
   color: var(--blue);
   letter-spacing: -0.5px;
-  flex-shrink: 0;
 }
-.skor-info-stat-label {
-  font-size: 0.8rem;
+.skor-kb-meter-track {
+  height: 10px;
+  background: rgba(25,168,255,.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.skor-kb-meter-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--blue), #5dc8ff);
+  border-radius: 10px;
+  transition: width 1.4s cubic-bezier(.4,0,.2,1);
+}
+
+/* --- Stat Card (ring chart) --- */
+.skor-kb-card-stat {
+  text-align: center;
+}
+.skor-kb-card-stat .skor-kb-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.skor-kb-stat-ring {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 1rem;
+}
+.skor-kb-stat-ring svg {
+  width: 100%;
+  height: 100%;
+}
+.skor-kb-ring-fill {
+  transition: stroke-dasharray 0s;
+}
+.skor-kb-stat-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.skor-kb-stat-num {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--blue);
+  letter-spacing: -1px;
+  line-height: 1;
+}
+.skor-kb-stat-unit {
+  font-size: 0.7rem;
+  font-weight: 600;
   color: var(--text-soft);
-  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
 }
-.skor-info-warnings {
+
+/* --- Wide Card (2 col) --- */
+.skor-kb-card-wide {
+  grid-column: span 2;
+}
+.skor-kb-icon-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.skor-kb-icon-circle {
+  width: 48px; height: 48px;
+  background: rgba(25,168,255,.08);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  color: var(--blue);
+}
+.skor-kb-icon-circle svg { width: 24px; height: 24px; }
+.skor-kb-icon-text {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--text-soft);
+}
+.skor-kb-zero {
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: var(--blue);
+  line-height: 1;
+  letter-spacing: -3px;
+  opacity: 0;
+}
+.skor-kb-zero-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-top: 0.3rem;
+}
+
+/* --- Warnings Card --- */
+.skor-kb-card-warnings .skor-kb-card-inner {
+  display: flex;
+  flex-direction: column;
+}
+.skor-kb-warn-icon {
+  width: 40px; height: 40px;
+  background: rgba(245,158,11,.08);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1rem;
+  color: #f59e0b;
+}
+.skor-kb-warn-icon svg { width: 22px; height: 22px; }
+.skor-kb-warn-list {
   list-style: none;
   padding: 0;
-  margin: 0.5rem 0 0;
+  margin: 0.4rem 0 0;
 }
-.skor-info-warnings li {
-  font-size: 0.88rem;
+.skor-kb-warn-list li {
+  font-size: 0.86rem;
   color: var(--text-soft);
-  line-height: 1.6;
-  padding: 0.3rem 0 0.3rem 1.4rem;
+  line-height: 1.55;
+  padding: 0.35rem 0 0.35rem 1.3rem;
   position: relative;
 }
-.skor-info-warnings li::before {
-  content: '';
+.skor-kb-warn-list li .skor-kb-warn-dot {
   position: absolute;
-  left: 0; top: 0.65rem;
+  left: 0; top: 0.7rem;
   width: 6px; height: 6px;
   background: #f59e0b;
   border-radius: 50%;
+  display: inline-block;
 }
-.skor-info-card-cta {
-  background: linear-gradient(135deg, rgba(25,168,255,.06), rgba(25,168,255,.02));
-  border-color: rgba(25,168,255,.2);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.skor-info-cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-top: 1.2rem;
-  padding: 0.7rem 1.5rem;
-  background: var(--blue);
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.9rem;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: background .2s, transform .2s;
-  align-self: flex-start;
-}
-.skor-info-cta-btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
 
-@media (max-width: 850px) {
-  .skor-info-grid { grid-template-columns: repeat(2, 1fr); }
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .skor-kb-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .skor-kb-card-featured,
+  .skor-kb-card-wide {
+    grid-column: span 2;
+  }
 }
 @media (max-width: 600px) {
-  .skor-info { padding: 4rem 1rem 3.5rem; }
-  .skor-info-grid { grid-template-columns: 1fr; gap: 1rem; }
-  .skor-info-card { padding: 1.5rem 1.3rem; }
-  .skor-info-stat-num { font-size: 1.3rem; }
+  .skor-kb { padding: 4rem 1rem 3.5rem; }
+  .skor-kb-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .skor-kb-card-featured,
+  .skor-kb-card-wide {
+    grid-column: span 1;
+  }
+  .skor-kb-card-inner { padding: 1.5rem 1.3rem; }
+  .skor-kb-stat-ring { width: 100px; height: 100px; }
+  .skor-kb-stat-num { font-size: 1.4rem; }
+  .skor-kb-zero { font-size: 3.5rem; }
 }
 
 /* ============================================================
