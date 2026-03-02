@@ -9628,8 +9628,25 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
   }
   .why-ferotect-pillars {
     grid-template-columns: 1fr;
-    max-width: 480px;
-    margin: 0 auto;
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+    scrollbar-width: none;
+    margin: 0 -1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .why-ferotect-pillars::-webkit-scrollbar {
+    display: none;
+  }
+  .why-ferotect-pillar {
+    min-width: 280px;
+    max-width: 300px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
   }
 }
 
@@ -9648,8 +9665,319 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
   }
   .why-ferotect-pillar {
     padding: 1.6rem 1.4rem 1.4rem;
+    min-width: 260px;
+  }
+  .why-ferotect-pillars {
+    margin: 0 -1.2rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
   }
   .why-ferotect-title {
+    font-size: 1.6rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   SKÅNE MAP — Vi finns nära dig
+   ═══════════════════════════════════════════════════════ */
+.skane-map-section {
+  padding: 7rem 2rem 6rem;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.skane-map-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* --- Header --- */
+.skane-map-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.skane-map-kicker {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--blue);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.skane-map-title {
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.18;
+  letter-spacing: -0.5px;
+  margin-bottom: 1rem;
+}
+
+.skane-map-title span {
+  color: var(--blue);
+}
+
+.skane-map-lead {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--text-soft);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* --- Grid layout --- */
+.skane-map-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* --- SVG Map container --- */
+.skane-map-container {
+  position: relative;
+  background: linear-gradient(135deg, #f6f9fc 0%, #eef3f8 100%);
+  border-radius: 24px;
+  padding: 2rem;
+  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.04);
+}
+
+.skane-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Outline */
+.skane-outline {
+  fill: rgba(25,168,255,0.04);
+  stroke: var(--blue);
+  stroke-width: 1.5;
+  stroke-opacity: 0.2;
+  stroke-linejoin: round;
+  transition: all 0.6s ease;
+}
+
+.skane-map-container:hover .skane-outline {
+  fill: rgba(25,168,255,0.06);
+  stroke-opacity: 0.35;
+}
+
+/* --- Pin styles --- */
+.skane-pin {
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.skane-pin.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.skane-pin-glow {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.skane-pin:hover .skane-pin-glow,
+.skane-pin.active .skane-pin-glow {
+  opacity: 1;
+}
+
+.skane-pin-dot {
+  fill: var(--blue);
+  stroke: #fff;
+  stroke-width: 3;
+  transition: all 0.3s ease;
+  filter: url(#shadow-pin);
+}
+
+.skane-pin:hover .skane-pin-dot,
+.skane-pin.active .skane-pin-dot {
+  fill: #0088cc;
+  r: 9;
+}
+
+.skane-pin-pulse {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 2;
+  opacity: 0;
+  animation: skane-pulse 2.5s ease-out infinite;
+}
+
+.skane-pin.visible .skane-pin-pulse {
+  opacity: 1;
+}
+
+@keyframes skane-pulse {
+  0% {
+    r: 7;
+    opacity: 0.6;
+    stroke-width: 2;
+  }
+  100% {
+    r: 24;
+    opacity: 0;
+    stroke-width: 0.5;
+  }
+}
+
+/* Home pin special */
+.skane-pin-home .skane-pin-dot {
+  fill: #0066aa;
+  r: 9;
+  stroke-width: 3.5;
+}
+
+.skane-pin-home .skane-pin-pulse {
+  animation-duration: 2s;
+}
+
+.skane-pin-home-icon {
+  font-size: 11px;
+  fill: #fff;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+/* --- Tooltip --- */
+.skane-tooltip {
+  pointer-events: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.skane-tooltip-bg {
+  fill: rgba(17,17,17,0.92);
+  rx: 10;
+}
+
+.skane-tooltip-city {
+  font-size: 13px;
+  font-weight: 700;
+  fill: #fff;
+  font-family: 'Inter', sans-serif;
+}
+
+.skane-tooltip-type {
+  font-size: 10.5px;
+  fill: rgba(255,255,255,0.65);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+/* --- Info / Legend sidebar --- */
+.skane-map-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.skane-map-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.3rem 1.5rem;
+  background: #f8fafb;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.04);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skane-map-info-item:hover {
+  transform: translateX(6px);
+  box-shadow: 0 8px 28px rgba(25,168,255,0.06);
+  border-color: rgba(25,168,255,0.1);
+}
+
+.skane-map-info-dot {
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+  border-radius: 50%;
+  background: var(--blue);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px rgba(25,168,255,0.2);
+  margin-top: 3px;
+}
+
+.skane-map-info-dot-home {
+  background: #0066aa;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  box-shadow: 0 0 0 3px rgba(0,102,170,0.2);
+}
+
+.skane-map-info-icon {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  stroke: var(--blue);
+  margin-top: 2px;
+}
+
+.skane-map-info-item strong {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.skane-map-info-item p {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--text-soft);
+  margin: 0;
+}
+
+.skane-map-info-item a {
+  color: var(--blue);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skane-map-info-item a:hover {
+  text-decoration: underline;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .skane-map-section {
+    padding: 5rem 1.5rem 4rem;
+  }
+  .skane-map-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .skane-map-container {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .skane-map-info {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .skane-map-section {
+    padding: 4rem 1.2rem 3rem;
+  }
+  .skane-map-container {
+    padding: 1.2rem;
+  }
+  .skane-map-info-item {
+    padding: 1rem 1.1rem;
+  }
+  .skane-map-title {
     font-size: 1.6rem;
   }
 }

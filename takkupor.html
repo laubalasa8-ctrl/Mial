@@ -163,9 +163,9 @@
         <!-- Interactive stat counters -->
         <div class="why-ferotect-stats fade-in">
           <div class="why-ferotect-stat">
-            <div class="why-ferotect-stat-number" data-target="500">0</div>
+            <div class="why-ferotect-stat-number" data-target="15">0</div>
             <div class="why-ferotect-stat-suffix">+</div>
-            <p class="why-ferotect-stat-label">Slutförda projekt</p>
+            <p class="why-ferotect-stat-label">Års erfarenhet</p>
           </div>
           <div class="why-ferotect-stat-divider"></div>
           <div class="why-ferotect-stat">
@@ -175,9 +175,9 @@
           </div>
           <div class="why-ferotect-stat-divider"></div>
           <div class="why-ferotect-stat">
-            <div class="why-ferotect-stat-number" data-target="48">0</div>
+            <div class="why-ferotect-stat-number" data-target="24">0</div>
             <div class="why-ferotect-stat-suffix">h</div>
-            <p class="why-ferotect-stat-label">Till hembesök</p>
+            <p class="why-ferotect-stat-label">Svarstid på offert</p>
           </div>
           <div class="why-ferotect-stat-divider"></div>
           <div class="why-ferotect-stat">
@@ -220,6 +220,151 @@
       </div>
     </section>
 
+    <!-- SECTION: SKÅNE MAP — Vi finns nära dig -->
+    <section class="skane-map-section" id="omrade">
+      <div class="skane-map-inner">
+
+        <div class="skane-map-header fade-in">
+          <div class="skane-map-kicker">Lokalt i hela Skåne</div>
+          <h2 class="skane-map-title">Vi finns <span>nära dig</span></h2>
+          <p class="skane-map-lead">Vi utför takkupor, takfönster och plåtarbeten i hela Skåne. Här är några av de områden vi regelbundet arbetar i.</p>
+        </div>
+
+        <div class="skane-map-grid">
+
+          <!-- SVG MAP -->
+          <div class="skane-map-visual fade-in">
+            <div class="skane-map-container">
+              <svg viewBox="0 0 500 520" class="skane-svg" xmlns="http://www.w3.org/2000/svg">
+                <!-- Skåne outline (simplified) -->
+                <path class="skane-outline" d="
+                  M185,20 L220,15 L260,10 L300,8 L340,12 L375,22 L405,40
+                  L430,65 L448,95 L458,130 L462,170 L460,210 L452,250
+                  L438,285 L418,315 L395,340 L365,360 L340,380 L315,400
+                  L285,415 L260,430 L240,445 L225,460 L210,470 L195,475
+                  L175,478 L155,472 L135,460 L115,442 L100,420 L85,395
+                  L72,365 L62,330 L55,295 L50,260 L48,225 L50,190
+                  L55,155 L65,120 L80,90 L100,65 L125,42 L155,28 Z
+                " />
+
+                <!-- Glow effect for hovered areas -->
+                <defs>
+                  <radialGradient id="pin-glow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="rgba(25,168,255,0.3)" />
+                    <stop offset="100%" stop-color="rgba(25,168,255,0)" />
+                  </radialGradient>
+                  <filter id="shadow-pin">
+                    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(25,168,255,0.3)" />
+                  </filter>
+                </defs>
+
+                <!-- Project markers -->
+                <g class="skane-markers">
+                  <!-- Malmö -->
+                  <g class="skane-pin" data-city="Malmö" data-type="Takkupor & plåtarbete">
+                    <circle class="skane-pin-glow" cx="195" cy="420" r="20" fill="url(#pin-glow)" />
+                    <circle class="skane-pin-dot" cx="195" cy="420" r="7" />
+                    <circle class="skane-pin-pulse" cx="195" cy="420" r="7" />
+                  </g>
+
+                  <!-- Lund -->
+                  <g class="skane-pin" data-city="Lund" data-type="Takfönster & takkupor">
+                    <circle class="skane-pin-glow" cx="210" cy="380" r="20" fill="url(#pin-glow)" />
+                    <circle class="skane-pin-dot" cx="210" cy="380" r="7" />
+                    <circle class="skane-pin-pulse" cx="210" cy="380" r="7" />
+                  </g>
+
+                  <!-- Helsingborg -->
+                  <g class="skane-pin" data-city="Helsingborg" data-type="Takkupor & fasadplåt">
+                    <circle class="skane-pin-glow" cx="140" cy="185" r="20" fill="url(#pin-glow)" />
+                    <circle class="skane-pin-dot" cx="140" cy="185" r="7" />
+                    <circle class="skane-pin-pulse" cx="140" cy="185" r="7" />
+                  </g>
+
+                  <!-- Kristianstad -->
+                  <g class="skane-pin" data-city="Kristianstad" data-type="Plåtslageri & takfönster">
+                    <circle class="skane-pin-glow" cx="380" cy="195" r="20" fill="url(#pin-glow)" />
+                    <circle class="skane-pin-dot" cx="380" cy="195" r="7" />
+                    <circle class="skane-pin-pulse" cx="380" cy="195" r="7" />
+                  </g>
+
+                  <!-- Ystad -->
+                  <g class="skane-pin" data-city="Ystad" data-type="Takkupor & skorstensplåt">
+                    <circle class="skane-pin-glow" cx="305" cy="445" r="20" fill="url(#pin-glow)" />
+                    <circle class="skane-pin-dot" cx="305" cy="445" r="7" />
+                    <circle class="skane-pin-pulse" cx="305" cy="445" r="7" />
+                  </g>
+
+                  <!-- Landskrona -->
+                  <g class="skane-pin" data-city="Landskrona" data-type="Takkupor & bandtäckning">
+                    <circle class="skane-pin-glow" cx="155" cy="255" r="20" fill="url(#pin-glow)" />
+                    <circle class="skane-pin-dot" cx="155" cy="255" r="7" />
+                    <circle class="skane-pin-pulse" cx="155" cy="255" r="7" />
+                  </g>
+
+                  <!-- Hässleholm -->
+                  <g class="skane-pin" data-city="Hässleholm" data-type="Takfönster & plåtarbete">
+                    <circle class="skane-pin-glow" cx="320" cy="140" r="20" fill="url(#pin-glow)" />
+                    <circle class="skane-pin-dot" cx="320" cy="140" r="7" />
+                    <circle class="skane-pin-pulse" cx="320" cy="140" r="7" />
+                  </g>
+
+                  <!-- Önnestad (hemmaplan) -->
+                  <g class="skane-pin skane-pin-home" data-city="Önnestad" data-type="Vårt huvudkontor">
+                    <circle class="skane-pin-glow" cx="345" cy="175" r="24" fill="url(#pin-glow)" />
+                    <circle class="skane-pin-dot" cx="345" cy="175" r="9" />
+                    <circle class="skane-pin-pulse" cx="345" cy="175" r="9" />
+                    <text x="345" y="179" text-anchor="middle" class="skane-pin-home-icon">⌂</text>
+                  </g>
+
+                  <!-- Eslöv -->
+                  <g class="skane-pin" data-city="Eslöv" data-type="Takkupor & takbyte">
+                    <circle class="skane-pin-glow" cx="230" cy="310" r="20" fill="url(#pin-glow)" />
+                    <circle class="skane-pin-dot" cx="230" cy="310" r="7" />
+                    <circle class="skane-pin-pulse" cx="230" cy="310" r="7" />
+                  </g>
+                </g>
+
+                <!-- Tooltip (positioned via JS) -->
+                <g class="skane-tooltip" style="display:none;">
+                  <rect class="skane-tooltip-bg" x="0" y="0" width="180" height="56" rx="10" />
+                  <text class="skane-tooltip-city" x="14" y="22"></text>
+                  <text class="skane-tooltip-type" x="14" y="42"></text>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Legend / Info -->
+          <div class="skane-map-info fade-in">
+            <div class="skane-map-info-item">
+              <div class="skane-map-info-dot skane-map-info-dot-home"></div>
+              <div>
+                <strong>Önnestad — Huvudkontor</strong>
+                <p>Baserade i Önnestad, centralt i Skåne. Vi når hela regionen snabbt och smidigt.</p>
+              </div>
+            </div>
+            <div class="skane-map-info-item">
+              <div class="skane-map-info-dot"></div>
+              <div>
+                <strong>Aktiva projektområden</strong>
+                <p>Vi utför regelbundet arbeten i markerade orter. Hovra på kartan för att se tjänstetyp.</p>
+              </div>
+            </div>
+            <div class="skane-map-info-item">
+              <svg class="skane-map-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <div>
+                <strong>Bor du i Skåne?</strong>
+                <p>Oavsett ort — ring oss på <a href="tel:0733451263">073-345 1263</a> för en kostnadsfri bedömning.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
     <script>
     // Animated counter for why-ferotect stats
     (function() {
@@ -248,6 +393,67 @@
       }, { threshold: 0.3 });
       const statsEl = document.querySelector('.why-ferotect-stats');
       if (statsEl) obs.observe(statsEl);
+    })();
+
+    // Skåne map interactive tooltips
+    (function() {
+      var pins = document.querySelectorAll('.skane-pin');
+      var tooltip = document.querySelector('.skane-tooltip');
+      if (!pins.length || !tooltip) return;
+      var tooltipBg = tooltip.querySelector('.skane-tooltip-bg');
+      var tooltipCity = tooltip.querySelector('.skane-tooltip-city');
+      var tooltipType = tooltip.querySelector('.skane-tooltip-type');
+
+      pins.forEach(function(pin) {
+        pin.addEventListener('mouseenter', function() {
+          var city = pin.getAttribute('data-city');
+          var type = pin.getAttribute('data-type');
+          tooltipCity.textContent = city;
+          tooltipType.textContent = type;
+          var dot = pin.querySelector('.skane-pin-dot');
+          var cx = parseFloat(dot.getAttribute('cx'));
+          var cy = parseFloat(dot.getAttribute('cy'));
+          var tx = cx - 90;
+          var ty = cy - 70;
+          if (tx < 10) tx = cx + 20;
+          if (tx + 180 > 490) tx = cx - 190;
+          if (ty < 10) ty = cy + 20;
+          tooltip.setAttribute('transform', 'translate(' + tx + ',' + ty + ')');
+          tooltip.style.display = '';
+          pin.classList.add('active');
+        });
+        pin.addEventListener('mouseleave', function() {
+          tooltip.style.display = 'none';
+          pin.classList.remove('active');
+        });
+        // Touch support
+        pin.addEventListener('touchstart', function(e) {
+          e.preventDefault();
+          pins.forEach(function(p) { p.classList.remove('active'); });
+          pin.dispatchEvent(new Event('mouseenter'));
+        });
+      });
+
+      document.querySelector('.skane-svg').addEventListener('touchstart', function(e) {
+        if (!e.target.closest('.skane-pin')) {
+          tooltip.style.display = 'none';
+          pins.forEach(function(p) { p.classList.remove('active'); });
+        }
+      });
+
+      // Animate pins on scroll
+      var mapObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            pins.forEach(function(pin, i) {
+              setTimeout(function() { pin.classList.add('visible'); }, i * 120);
+            });
+            mapObs.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      var mapEl = document.querySelector('.skane-svg');
+      if (mapEl) mapObs.observe(mapEl);
     })();
     </script>
 
