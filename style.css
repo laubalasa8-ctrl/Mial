@@ -725,11 +725,28 @@ section.stats-section { border-bottom: none; }
   background-repeat: no-repeat;
 }
 
+.skorsten-page .topbar {
+  background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat8.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.skorsten-page header {
+  background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat8.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
 .hero-papptak { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('papp1.png'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .hero-bandtackning { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('joy1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .hero-takpanneplat { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('takpanneplat3.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .hero-korrugerad { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('kr1.png'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .hero-takkupor { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('takkupa.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.hero-skorsten { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat8.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .hero-takbyte > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
 .hero-fasad > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
 .hero-platslageri > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
@@ -738,6 +755,7 @@ section.stats-section { border-bottom: none; }
 .hero-takpanneplat > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
 .hero-korrugerad > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
 .hero-takkupor > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
+.hero-skorsten > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
 .frosted-box { background: rgba(255,255,255,0.12); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); border-radius: 28px; padding: 4rem 3.5rem; width: 100%; max-width: 680px; animation: fadeInUp 0.8s ease 0.2s forwards; opacity: 0; box-shadow: 0 30px 80px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1); margin-top: -12rem; }
 .frosted-box .hero-kicker { margin-bottom: 1rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.25em; color: rgba(255,255,255,0.95); font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
 .frosted-box h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.2; margin-bottom: 1.5rem; color: #FFF; text-shadow: 0 4px 12px rgba(0,0,0,0.5); font-weight: 800; letter-spacing: -0.8px; }
@@ -12277,7 +12295,7 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
 .process-closing {
   text-align: center;
   padding: 8rem 2rem;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 88, 204, 0.2)), url('../plat7.jpg') center/cover no-repeat;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 88, 204, 0.2));
   border-radius: 16px;
   animation: fadeInUp 0.8s ease-out 0.5s backwards;
   position: relative;
@@ -20019,7 +20037,8 @@ html { overflow-x: hidden; }
   .papptak-page header,
   .bandtackning-page header,
   .takpanneplat-page header,
-  .korrugerad-page header {
+  .korrugerad-page header,
+  .skorsten-page header {
     background-attachment: scroll !important;
   }
 
@@ -20036,7 +20055,8 @@ html { overflow-x: hidden; }
   .terms-hero,
   .privacy-hero,
   .hero-korrugerad,
-  .hero-takkupor {
+  .hero-takkupor,
+  .hero-skorsten {
     background-attachment: scroll !important;
   }
 
@@ -20070,7 +20090,8 @@ html { overflow-x: hidden; }
   .bandtackning-page .topbar,
   .takpanneplat-page .topbar,
   .korrugerad-page .topbar,
-  .takkupor-page .topbar {
+  .takkupor-page .topbar,
+  .skorsten-page .topbar {
     background-attachment: scroll !important;
   }
 
