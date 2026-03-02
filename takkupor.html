@@ -231,324 +231,469 @@
       </div>
     </section>
 
-    <!-- SECTION: INTERACTIVE DORMER EXPLORER -->
-    <section class="dormer-explorer" id="utforska">
-      <div class="dormer-explorer-inner">
+    <!-- SECTION: INTERACTIVE DORMER SERVICES — Plåtarbete & Takfönster -->
+    <section class="kupa-tjanst" id="utforska">
+      <div class="kupa-tjanst-inner">
 
-        <div class="dormer-explorer-header fade-in">
-          <div class="dormer-explorer-kicker">Utforska våra lösningar</div>
-          <h2 class="dormer-explorer-title">Vilken takkupa passar <span>ditt hem?</span></h2>
-          <p class="dormer-explorer-lead">Varje tak är unikt. Klicka dig genom våra vanligaste takkupetyper och takfönster för att hitta rätt lösning — med specifikationer, fördelar och vad som ingår.</p>
+        <div class="kupa-tjanst-header fade-in">
+          <div class="kupa-tjanst-kicker">Våra tjänster</div>
+          <h2 class="kupa-tjanst-title">Så skyddar vi <span>din kupa</span></h2>
+          <p class="kupa-tjanst-lead">Vi bygger inte nya takkupor — vi skyddar och förlänger livslängden på din befintliga kupa med professionellt plåtarbete, och installerar takfönster som släpper in ljuset.</p>
         </div>
 
-        <!-- Tab navigation -->
-        <div class="dormer-tabs fade-in" role="tablist">
-          <button class="dormer-tab active" role="tab" aria-selected="true" data-tab="sadelkupa">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V9l9-7 9 7v12"/><path d="M9 21V12h6v9"/></svg>
-            <span>Sadelkupa</span>
-          </button>
-          <button class="dormer-tab" role="tab" aria-selected="false" data-tab="flatkupa">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 8h18"/></svg>
-            <span>Flatkupa</span>
-          </button>
-          <button class="dormer-tab" role="tab" aria-selected="false" data-tab="rundkupa">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V12a9 9 0 0 1 18 0v9"/><path d="M9 21V15h6v6"/></svg>
-            <span>Rundkupa</span>
-          </button>
-          <button class="dormer-tab" role="tab" aria-selected="false" data-tab="velux">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
-            <span>VELUX takfönster</span>
-          </button>
-        </div>
+        <!-- Interactive Dormer Cross-Section -->
+        <div class="kupa-anatomy fade-in">
+          <div class="kupa-anatomy-grid">
 
-        <!-- Progress bar -->
-        <div class="dormer-progress fade-in">
-          <div class="dormer-progress-bar">
-            <div class="dormer-progress-fill" style="width: 25%"></div>
-          </div>
-          <span class="dormer-progress-text">1 / 4</span>
-        </div>
+            <!-- SVG ILLUSTRATION — Cross-section of dormer with hotspots -->
+            <div class="kupa-anatomy-visual">
+              <div class="kupa-anatomy-svg-wrap">
+                <svg viewBox="0 0 520 420" class="kupa-anatomy-svg" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="roof-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="rgba(25,168,255,0.08)"/>
+                      <stop offset="100%" stop-color="rgba(25,168,255,0.02)"/>
+                    </linearGradient>
+                    <linearGradient id="plat-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#19A8FF" stop-opacity="0.15"/>
+                      <stop offset="100%" stop-color="#0088cc" stop-opacity="0.08"/>
+                    </linearGradient>
+                    <filter id="glow-soft">
+                      <feGaussianBlur stdDeviation="3" result="blur"/>
+                      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.098 0 0 0 0 0.659 0 0 0 0 1 0 0 0 0.3 0"/>
+                    </filter>
+                  </defs>
 
-        <!-- Content panels -->
-        <div class="dormer-panels">
+                  <!-- Main roof slope -->
+                  <path d="M20 350 L260 100 L500 350" fill="url(#roof-grad)" stroke="#c8d6e5" stroke-width="1.5" class="kupa-roof-main"/>
+                  <path d="M20 350 L260 100 L500 350" fill="none" stroke="rgba(25,168,255,0.15)" stroke-width="0.5" stroke-dasharray="6 4"/>
 
-          <!-- PANEL: Sadelkupa -->
-          <div class="dormer-panel active" data-panel="sadelkupa">
-            <div class="dormer-panel-grid">
-              <div class="dormer-panel-visual">
-                <div class="dormer-panel-card">
-                  <div class="dormer-panel-card-inner">
-                    <div class="dormer-panel-icon-large">
-                      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="8" y="35" width="64" height="40" rx="3" fill="rgba(25,168,255,0.06)" stroke="#19A8FF" stroke-width="1.5"/>
-                        <path d="M8 35L40 10L72 35" fill="rgba(25,168,255,0.03)" stroke="#19A8FF" stroke-width="1.5" stroke-linejoin="round"/>
-                        <rect x="28" y="45" width="24" height="30" rx="2" fill="rgba(25,168,255,0.1)" stroke="#19A8FF" stroke-width="1"/>
-                        <line x1="40" y1="45" x2="40" y2="75" stroke="#19A8FF" stroke-width="0.5" opacity="0.4"/>
-                        <line x1="28" y1="60" x2="52" y2="60" stroke="#19A8FF" stroke-width="0.5" opacity="0.4"/>
-                      </svg>
-                    </div>
-                    <div class="dormer-panel-badge">Mest populär</div>
-                  </div>
+                  <!-- Dormer structure -->
+                  <rect x="155" y="160" width="210" height="150" rx="3" fill="#f4f7fa" stroke="#dde4ec" stroke-width="1.2" class="kupa-dormer-body"/>
+
+                  <!-- Dormer roof (sadeltakskupa) -->
+                  <path d="M140 165 L260 85 L380 165" fill="url(#roof-grad)" stroke="#bcc8d8" stroke-width="1.2" class="kupa-dormer-roof"/>
+
+                  <!-- Sheet metal cladding — sides (HIGHLIGHT AREA) -->
+                  <rect x="150" y="160" width="12" height="150" rx="1" fill="url(#plat-grad)" stroke="#19A8FF" stroke-width="1" class="kupa-plat-side kupa-plat-zone" data-zone="sidor" opacity="0.7"/>
+                  <rect x="358" y="160" width="12" height="150" rx="1" fill="url(#plat-grad)" stroke="#19A8FF" stroke-width="1" class="kupa-plat-side kupa-plat-zone" data-zone="sidor" opacity="0.7"/>
+
+                  <!-- Sheet metal — roof ridge (nockplåt) -->
+                  <path d="M245 88 L260 78 L275 88" fill="url(#plat-grad)" stroke="#19A8FF" stroke-width="1.2" class="kupa-plat-zone" data-zone="nock"/>
+
+                  <!-- Sheet metal — drip edge (droppbleck) along dormer bottom -->
+                  <rect x="148" y="305" width="224" height="8" rx="2" fill="url(#plat-grad)" stroke="#19A8FF" stroke-width="0.8" class="kupa-plat-zone" data-zone="droppbleck"/>
+
+                  <!-- Sheet metal — flashing where dormer meets main roof -->
+                  <path d="M140 165 L155 310 L148 315" fill="none" stroke="#19A8FF" stroke-width="2" stroke-dasharray="4 3" class="kupa-plat-zone" data-zone="fotplat" opacity="0.8"/>
+                  <path d="M380 165 L365 310 L372 315" fill="none" stroke="#19A8FF" stroke-width="2" stroke-dasharray="4 3" class="kupa-plat-zone" data-zone="fotplat" opacity="0.8"/>
+
+                  <!-- Dormer window -->
+                  <rect x="195" y="185" width="130" height="110" rx="4" fill="rgba(135,206,250,0.15)" stroke="#a8c4d8" stroke-width="1.2" class="kupa-window"/>
+                  <line x1="260" y1="185" x2="260" y2="295" stroke="#a8c4d8" stroke-width="0.8"/>
+                  <line x1="195" y1="240" x2="325" y2="240" stroke="#a8c4d8" stroke-width="0.8"/>
+
+                  <!-- Window sill (fönsterbleck) -->
+                  <rect x="190" y="293" width="140" height="6" rx="1.5" fill="url(#plat-grad)" stroke="#19A8FF" stroke-width="0.8" class="kupa-plat-zone" data-zone="fonsterbleck"/>
+
+                  <!-- Hotspot pulsing markers -->
+                  <g class="kupa-hotspot" data-target="platkl" tabindex="0" role="button" aria-label="Plåtinklädnad">
+                    <circle cx="145" cy="240" r="18" fill="rgba(25,168,255,0.08)" class="kupa-hotspot-glow"/>
+                    <circle cx="145" cy="240" r="10" fill="#19A8FF" class="kupa-hotspot-dot"/>
+                    <circle cx="145" cy="240" r="10" fill="none" stroke="#19A8FF" stroke-width="2" class="kupa-hotspot-pulse"/>
+                    <text x="145" y="244" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">1</text>
+                  </g>
+
+                  <g class="kupa-hotspot" data-target="nockplat" tabindex="0" role="button" aria-label="Nockplåt">
+                    <circle cx="260" cy="74" r="18" fill="rgba(25,168,255,0.08)" class="kupa-hotspot-glow"/>
+                    <circle cx="260" cy="74" r="10" fill="#19A8FF" class="kupa-hotspot-dot"/>
+                    <circle cx="260" cy="74" r="10" fill="none" stroke="#19A8FF" stroke-width="2" class="kupa-hotspot-pulse"/>
+                    <text x="260" y="78" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">2</text>
+                  </g>
+
+                  <g class="kupa-hotspot" data-target="fotplat" tabindex="0" role="button" aria-label="Fotplåt & anslutning">
+                    <circle cx="148" cy="318" r="18" fill="rgba(25,168,255,0.08)" class="kupa-hotspot-glow"/>
+                    <circle cx="148" cy="318" r="10" fill="#19A8FF" class="kupa-hotspot-dot"/>
+                    <circle cx="148" cy="318" r="10" fill="none" stroke="#19A8FF" stroke-width="2" class="kupa-hotspot-pulse"/>
+                    <text x="148" y="322" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">3</text>
+                  </g>
+
+                  <g class="kupa-hotspot" data-target="fonsterbleck" tabindex="0" role="button" aria-label="Fönsterbleck">
+                    <circle cx="330" cy="296" r="18" fill="rgba(25,168,255,0.08)" class="kupa-hotspot-glow"/>
+                    <circle cx="330" cy="296" r="10" fill="#19A8FF" class="kupa-hotspot-dot"/>
+                    <circle cx="330" cy="296" r="10" fill="none" stroke="#19A8FF" stroke-width="2" class="kupa-hotspot-pulse"/>
+                    <text x="330" y="300" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">4</text>
+                  </g>
+
+                  <g class="kupa-hotspot" data-target="takfonster" tabindex="0" role="button" aria-label="Takfönster">
+                    <circle cx="430" cy="252" r="18" fill="rgba(25,168,255,0.08)" class="kupa-hotspot-glow"/>
+                    <circle cx="430" cy="252" r="10" fill="#19A8FF" class="kupa-hotspot-dot"/>
+                    <circle cx="430" cy="252" r="10" fill="none" stroke="#19A8FF" stroke-width="2" class="kupa-hotspot-pulse"/>
+                    <text x="430" y="256" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">5</text>
+                  </g>
+
+                  <!-- Roof window on main slope (beside dormer) -->
+                  <rect x="400" y="225" width="60" height="50" rx="3" fill="rgba(135,206,250,0.2)" stroke="#19A8FF" stroke-width="1" transform="rotate(-24 430 250)" class="kupa-takfonster-rect"/>
+                  <line x1="430" y1="222" x2="430" y2="278" stroke="#19A8FF" stroke-width="0.5" opacity="0.4" transform="rotate(-24 430 250)"/>
+
+                  <!-- Dimension labels -->
+                  <text x="260" y="405" text-anchor="middle" class="kupa-svg-label" fill="#8899aa" font-size="10.5" font-weight="500">Klicka på en punkt för att lära dig mer</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Info Panel — dynamically updated via JS -->
+            <div class="kupa-anatomy-info">
+              <div class="kupa-info-card" id="kupaInfoDefault">
+                <div class="kupa-info-icon">
+                  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="24" cy="24" r="22" fill="rgba(25,168,255,0.06)" stroke="#19A8FF" stroke-width="1.5"/>
+                    <path d="M18 20L24 14L30 20" stroke="#19A8FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M24 14V34" stroke="#19A8FF" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M14 28L24 38L34 28" stroke="#19A8FF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+                  </svg>
+                </div>
+                <h3 class="kupa-info-title">Utforska kupans anatomi</h3>
+                <p class="kupa-info-desc">Klicka på de numrerade punkterna i illustrationen för att se exakt vad vi gör vid varje del av din takkupa. Varje plåtdetalj har en kritisk funktion.</p>
+                <div class="kupa-info-hint">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M10 7v3M10 13h.01"/></svg>
+                  <span>5 interaktiva punkter att utforska</span>
                 </div>
               </div>
-              <div class="dormer-panel-content">
-                <div class="dormer-panel-tag">Klassisk design</div>
-                <h3 class="dormer-panel-title">Sadelkupa</h3>
-                <p class="dormer-panel-desc">Den vanligaste och mest tidlösa takkupan. Sadelkupan har ett klassiskt sadeltak som smälter in på de flesta hustyper — från 1900-talsvilla till modern arkitektur.</p>
 
-                <div class="dormer-panel-specs">
-                  <div class="dormer-spec">
-                    <div class="dormer-spec-icon">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-                    </div>
-                    <div>
-                      <strong>+40% dagsljus</strong>
-                      <p>Märkbar skillnad i rummet</p>
-                    </div>
-                  </div>
-                  <div class="dormer-spec">
-                    <div class="dormer-spec-icon">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-                    </div>
-                    <div>
-                      <strong>Ökar boytan</strong>
-                      <p>Stående takhöjd i vindsrummet</p>
-                    </div>
-                  </div>
-                  <div class="dormer-spec">
-                    <div class="dormer-spec-icon">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
-                    </div>
-                    <div>
-                      <strong>Passar alla hustyper</strong>
-                      <p>Tidlös, klassisk karaktär</p>
-                    </div>
-                  </div>
+              <!-- Hidden detail panels -->
+              <div class="kupa-info-card kupa-info-detail" id="kupaInfo-platkl" style="display:none">
+                <div class="kupa-info-badge">1 — Plåtinklädnad</div>
+                <div class="kupa-info-icon">
+                  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="6" y="8" width="8" height="32" rx="2" fill="rgba(25,168,255,0.1)" stroke="#19A8FF" stroke-width="1.5"/>
+                    <rect x="34" y="8" width="8" height="32" rx="2" fill="rgba(25,168,255,0.1)" stroke="#19A8FF" stroke-width="1.5"/>
+                    <path d="M14 16H34" stroke="#19A8FF" stroke-width="1" stroke-dasharray="3 2"/>
+                    <path d="M14 24H34" stroke="#19A8FF" stroke-width="1" stroke-dasharray="3 2"/>
+                    <path d="M14 32H34" stroke="#19A8FF" stroke-width="1" stroke-dasharray="3 2"/>
+                    <circle cx="24" cy="24" r="6" fill="rgba(25,168,255,0.08)" stroke="#19A8FF" stroke-width="1"/>
+                    <path d="M22 24L23.5 25.5L26 23" stroke="#19A8FF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </div>
+                <h3 class="kupa-info-title">Plåtinklädnad av sidoväggar</h3>
+                <p class="kupa-info-desc">Kupans sidoväggar (kinder) utsätts för väder och vind. Vi kläder in dem med falsad plåt som skyddar konstruktionen mot fukt, vind och UV-strålning. Plåten anpassas exakt efter kupans form.</p>
+                <ul class="kupa-info-list">
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>Falsad eller ståndfalsad plåt</span>
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>Ventilerat mellanrum mot stomme</span>
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>Skyddar mot fuktinträngning</span>
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>Livslängd: 40–60 år med rätt material</span>
+                  </li>
+                </ul>
+              </div>
 
-                <div class="dormer-panel-includes">
-                  <h4>Vad ingår i installationen?</h4>
-                  <ul>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Konstruktion & stomme i trä</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Isolering (U-värde 0.13)</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Plåtbeklädnad utvändigt</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Fönster med 3-glas</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>10 års garanti</li>
-                  </ul>
+              <div class="kupa-info-card kupa-info-detail" id="kupaInfo-nockplat" style="display:none">
+                <div class="kupa-info-badge">2 — Nockplåt</div>
+                <div class="kupa-info-icon">
+                  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 32L24 12L40 32" fill="rgba(25,168,255,0.06)" stroke="#19A8FF" stroke-width="1.5" stroke-linejoin="round"/>
+                    <path d="M20 14L24 8L28 14" fill="rgba(25,168,255,0.15)" stroke="#19A8FF" stroke-width="1.5" stroke-linejoin="round"/>
+                    <path d="M12 28H36" stroke="#19A8FF" stroke-width="0.8" stroke-dasharray="4 2"/>
+                    <circle cx="24" cy="11" r="3" fill="#19A8FF" opacity="0.2"/>
+                  </svg>
+                </div>
+                <h3 class="kupa-info-title">Nockplåt — takets högsta punkt</h3>
+                <p class="kupa-info-desc">Nocken är där kupans två takhalvor möts. Utan korrekt nockplåt kan vatten tränga in och orsaka röta. Vi monterar specialformad nockplåt med ventilationsöppning för att säkerställa både täthet och luftcirkulation.</p>
+                <ul class="kupa-info-list">
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>Specialformad efter kupans vinkel</span>
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>Ventilerad konstruktion</span>
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>Förhindrar kondens & mögel</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="kupa-info-card kupa-info-detail" id="kupaInfo-fotplat" style="display:none">
+                <div class="kupa-info-badge">3 — Fotplåt & anslutning</div>
+                <div class="kupa-info-icon">
+                  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 38L42 38" stroke="#bcc8d8" stroke-width="1.5"/>
+                    <path d="M6 20L24 6L42 20" stroke="#bcc8d8" stroke-width="1.5" fill="none"/>
+                    <path d="M12 35L12 22" stroke="#19A8FF" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M12 35L18 38" stroke="#19A8FF" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M36 35L36 22" stroke="#19A8FF" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M36 35L30 38" stroke="#19A8FF" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M18 38L30 38" stroke="#19A8FF" stroke-width="1" stroke-dasharray="3 2"/>
+                    <circle cx="12" cy="28" r="2" fill="#19A8FF" opacity="0.3"/>
+                    <circle cx="36" cy="28" r="2" fill="#19A8FF" opacity="0.3"/>
+                  </svg>
+                </div>
+                <h3 class="kupa-info-title">Fotplåt & taklivs-anslutning</h3>
+                <p class="kupa-info-desc">Den mest kritiska punkten: där kupan ansluter till huvudtaket. Här samlas vatten och utan perfekt plåtarbete uppstår läckage. Vi använder stegplåt, inklädnad och falsade fogar för vattentätt resultat.</p>
+                <ul class="kupa-info-list">
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>Stegplåt längs kupans sida</span>
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>Dubbelfalsade fogar vid anslutning</span>
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>Tätning med EPDM-gummi</span>
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>Kontrolleras med vattentest</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="kupa-info-card kupa-info-detail" id="kupaInfo-fonsterbleck" style="display:none">
+                <div class="kupa-info-badge">4 — Fönsterbleck</div>
+                <div class="kupa-info-icon">
+                  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="10" width="28" height="22" rx="2" fill="rgba(135,206,250,0.15)" stroke="#a8c4d8" stroke-width="1.2"/>
+                    <line x1="24" y1="10" x2="24" y2="32" stroke="#a8c4d8" stroke-width="0.8"/>
+                    <line x1="10" y1="21" x2="38" y2="21" stroke="#a8c4d8" stroke-width="0.8"/>
+                    <rect x="8" y="31" width="32" height="5" rx="1.5" fill="rgba(25,168,255,0.15)" stroke="#19A8FF" stroke-width="1.2"/>
+                    <path d="M8 36L6 40" stroke="#19A8FF" stroke-width="1" stroke-linecap="round"/>
+                    <path d="M40 36L42 40" stroke="#19A8FF" stroke-width="1" stroke-linecap="round"/>
+                    <circle cx="14" cy="38" r="1.5" fill="#19A8FF" opacity="0.3"/>
+                    <circle cx="24" cy="38" r="1.5" fill="#19A8FF" opacity="0.3"/>
+                    <circle cx="34" cy="38" r="1.5" fill="#19A8FF" opacity="0.3"/>
+                  </svg>
+                </div>
+                <h3 class="kupa-info-title">Fönsterbleck — vattenavrinning</h3>
+                <p class="kupa-info-desc">Fönsterblecket leder bort regnvatten från fönstrets underkant och skyddar fasaden. Vi tillverkar blecket i rätt vinkel med droppnäsa — ett litet men avgörande plåtarbete.</p>
+                <ul class="kupa-info-list">
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>Individuellt uppmätt & bockat</span>
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>Droppnäsa för kontrollerad avrinning</span>
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>Förhindrar fasadskador</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="kupa-info-card kupa-info-detail" id="kupaInfo-takfonster" style="display:none">
+                <div class="kupa-info-badge">5 — Takfönster</div>
+                <div class="kupa-info-icon">
+                  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 40L42 8" stroke="#dde4ec" stroke-width="1"/>
+                    <rect x="14" y="14" width="22" height="22" rx="3" fill="rgba(135,206,250,0.2)" stroke="#19A8FF" stroke-width="1.5" transform="rotate(-12 25 25)"/>
+                    <line x1="25" y1="12" x2="25" y2="38" stroke="#19A8FF" stroke-width="0.6" opacity="0.4" transform="rotate(-12 25 25)"/>
+                    <circle cx="25" cy="25" r="5" fill="rgba(25,168,255,0.1)" stroke="#19A8FF" stroke-width="1"/>
+                    <path d="M23 25L25 20" stroke="#19A8FF" stroke-width="1" stroke-linecap="round"/>
+                    <circle cx="31" cy="15" r="4" fill="rgba(255,220,50,0.3)" stroke="#f0c040" stroke-width="0.8"/>
+                    <path d="M31 11V9M35 15H37M31 19V21M27 15H25M34 12L35.5 10.5M34 18L35.5 19.5M28 18L26.5 19.5M28 12L26.5 10.5" stroke="#f0c040" stroke-width="0.6" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <h3 class="kupa-info-title">Takfönster-installation</h3>
+                <p class="kupa-info-desc">Vi installerar takfönster (VELUX m.fl.) direkt i takytan bredvid eller istället för en takkupa. Arbetet inkluderar öppning i taket, insticksplåt, tätning och invändig finish — allt på samma dag.</p>
+                <ul class="kupa-info-list">
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>Öppning, plåtning & tätning</span>
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>VELUX originalinsticksplåt</span>
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>+70% mer dagsljus i rummet</span>
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M5 10l3 3 7-7"/></svg>
+                    <span>Installation klar på 1 arbetsdag</span>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Service Cards — 3 key services -->
+        <div class="kupa-services fade-in">
+          <div class="kupa-services-grid">
+
+            <div class="kupa-service-card" data-service="1">
+              <div class="kupa-service-number">01</div>
+              <div class="kupa-service-icon">
+                <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Sheet metal layers -->
+                  <rect x="8" y="14" width="40" height="6" rx="2" fill="rgba(25,168,255,0.1)" stroke="#19A8FF" stroke-width="1.2"/>
+                  <rect x="8" y="24" width="40" height="6" rx="2" fill="rgba(25,168,255,0.08)" stroke="#19A8FF" stroke-width="1"/>
+                  <rect x="8" y="34" width="40" height="6" rx="2" fill="rgba(25,168,255,0.06)" stroke="#19A8FF" stroke-width="0.8"/>
+                  <!-- Fold indicator -->
+                  <path d="M4 17L8 14M4 17L8 20" stroke="#19A8FF" stroke-width="1.2" stroke-linecap="round"/>
+                  <path d="M4 27L8 24M4 27L8 30" stroke="#19A8FF" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+                  <!-- Shield accent -->
+                  <path d="M40 44L44 42L48 44L48 48L44 51L40 48Z" fill="rgba(25,168,255,0.12)" stroke="#19A8FF" stroke-width="0.8"/>
+                  <path d="M43 45L44.5 46.5L47 44" stroke="#19A8FF" stroke-width="0.8" stroke-linecap="round" fill="none"/>
+                </svg>
+              </div>
+              <h3 class="kupa-service-title">Plåtinklädnad av kupor</h3>
+              <p class="kupa-service-desc">Vi kläder in hela takkupan — sidor, nock och anslutningar — med falsad plåt för maximalt väder&shy;skydd. Alla fogar är hand&shy;falsade för lång livslängd.</p>
+              <div class="kupa-service-details">
+                <div class="kupa-service-detail-item">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 2"/></svg>
+                  <span>2–4 arbetsdagar</span>
+                </div>
+                <div class="kupa-service-detail-item">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.5"><path d="M3 13h14M5 9h10M7 5h6"/></svg>
+                  <span>Koppar, zink eller stål</span>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- PANEL: Flatkupa -->
-          <div class="dormer-panel" data-panel="flatkupa">
-            <div class="dormer-panel-grid">
-              <div class="dormer-panel-visual">
-                <div class="dormer-panel-card">
-                  <div class="dormer-panel-card-inner">
-                    <div class="dormer-panel-icon-large">
-                      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="8" y="30" width="64" height="45" rx="3" fill="rgba(25,168,255,0.06)" stroke="#19A8FF" stroke-width="1.5"/>
-                        <path d="M8 30H72" stroke="#19A8FF" stroke-width="2"/>
-                        <rect x="20" y="38" width="40" height="28" rx="2" fill="rgba(25,168,255,0.1)" stroke="#19A8FF" stroke-width="1"/>
-                        <line x1="40" y1="38" x2="40" y2="66" stroke="#19A8FF" stroke-width="0.5" opacity="0.4"/>
-                        <line x1="20" y1="52" x2="60" y2="52" stroke="#19A8FF" stroke-width="0.5" opacity="0.4"/>
-                      </svg>
-                    </div>
-                    <div class="dormer-panel-badge dormer-badge-modern">Modern stil</div>
-                  </div>
-                </div>
+            <div class="kupa-service-card kupa-service-featured" data-service="2">
+              <div class="kupa-service-number">02</div>
+              <div class="kupa-service-icon">
+                <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Roof slope with window -->
+                  <path d="M4 44L28 8L52 44" fill="rgba(25,168,255,0.04)" stroke="#bcc8d8" stroke-width="1"/>
+                  <rect x="18" y="22" width="20" height="16" rx="2" fill="rgba(135,206,250,0.2)" stroke="#19A8FF" stroke-width="1.5" transform="rotate(-12 28 30)"/>
+                  <line x1="28" y1="20" x2="28" y2="40" stroke="#19A8FF" stroke-width="0.6" opacity="0.5" transform="rotate(-12 28 30)"/>
+                  <!-- Sunlight rays -->
+                  <circle cx="44" cy="10" r="5" fill="rgba(255,220,50,0.25)" stroke="#f0c040" stroke-width="0.8"/>
+                  <path d="M44 3V1M50 10H52M44 17V19M38 10H36M49 5L50.5 3.5M49 15L50.5 16.5M39 15L37.5 16.5M39 5L37.5 3.5" stroke="#f0c040" stroke-width="0.7" stroke-linecap="round"/>
+                  <!-- Arrow into window -->
+                  <path d="M38 16L26 26" stroke="#f0c040" stroke-width="1" stroke-dasharray="3 2"/>
+                </svg>
               </div>
-              <div class="dormer-panel-content">
-                <div class="dormer-panel-tag">Stram & modern</div>
-                <h3 class="dormer-panel-title">Flatkupa</h3>
-                <p class="dormer-panel-desc">En flatkupa har ett plant eller svagt lutat tak. Den ger en ren, modern look och maximerar glasytan — perfekt för samtida arkitektur och funkishus.</p>
-
-                <div class="dormer-panel-specs">
-                  <div class="dormer-spec">
-                    <div class="dormer-spec-icon">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
-                    </div>
-                    <div>
-                      <strong>Maximal glasyta</strong>
-                      <p>Panoramakänsla med brett fönster</p>
-                    </div>
-                  </div>
-                  <div class="dormer-spec">
-                    <div class="dormer-spec-icon">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                    </div>
-                    <div>
-                      <strong>Låg profil</strong>
-                      <p>Diskret, smälter in med taket</p>
-                    </div>
-                  </div>
-                  <div class="dormer-spec">
-                    <div class="dormer-spec-icon">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    </div>
-                    <div>
-                      <strong>Modern arkitektur</strong>
-                      <p>Perfekt för funkis & nyproduktion</p>
-                    </div>
-                  </div>
+              <h3 class="kupa-service-title">Takfönster-installation</h3>
+              <p class="kupa-service-desc">Vi installerar takfönster från VELUX och andra tillverkare direkt i takytan. Öppning, insticksplåt, tätning och invändig smyg — klart på en dag.</p>
+              <div class="kupa-service-details">
+                <div class="kupa-service-detail-item">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 2"/></svg>
+                  <span>1 arbetsdag</span>
                 </div>
-
-                <div class="dormer-panel-includes">
-                  <h4>Vad ingår i installationen?</h4>
-                  <ul>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Stålförstärkt konstruktion</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Tätskikt med EPDM-membran</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Plåtdetaljer & avrinning</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Energiglas med lågt U-värde</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>10 års garanti</li>
-                  </ul>
+                <div class="kupa-service-detail-item">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.5"><circle cx="10" cy="10" r="3"/><path d="M10 1v2M10 17v2M1 10h2M17 10h2"/></svg>
+                  <span>+70% mer dagsljus</span>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- PANEL: Rundkupa -->
-          <div class="dormer-panel" data-panel="rundkupa">
-            <div class="dormer-panel-grid">
-              <div class="dormer-panel-visual">
-                <div class="dormer-panel-card">
-                  <div class="dormer-panel-card-inner">
-                    <div class="dormer-panel-icon-large">
-                      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="8" y="40" width="64" height="35" rx="3" fill="rgba(25,168,255,0.06)" stroke="#19A8FF" stroke-width="1.5"/>
-                        <path d="M8 40Q40 5 72 40" fill="rgba(25,168,255,0.03)" stroke="#19A8FF" stroke-width="1.5"/>
-                        <rect x="26" y="44" width="28" height="26" rx="14" fill="rgba(25,168,255,0.1)" stroke="#19A8FF" stroke-width="1"/>
-                      </svg>
-                    </div>
-                    <div class="dormer-panel-badge dormer-badge-charm">Karaktär</div>
-                  </div>
-                </div>
+            <div class="kupa-service-card" data-service="3">
+              <div class="kupa-service-number">03</div>
+              <div class="kupa-service-icon">
+                <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Water drops flowing -->
+                  <path d="M28 6C28 6 20 18 20 24C20 28.418 23.582 32 28 32C32.418 32 36 28.418 36 24C36 18 28 6 28 6Z" fill="rgba(25,168,255,0.1)" stroke="#19A8FF" stroke-width="1.2"/>
+                  <path d="M28 14L28 22" stroke="#19A8FF" stroke-width="0.8" stroke-dasharray="2 2"/>
+                  <!-- Drainage arrow -->
+                  <path d="M22 36L16 46" stroke="#19A8FF" stroke-width="1.2" stroke-linecap="round"/>
+                  <path d="M28 36L28 48" stroke="#19A8FF" stroke-width="1.2" stroke-linecap="round"/>
+                  <path d="M34 36L40 46" stroke="#19A8FF" stroke-width="1.2" stroke-linecap="round"/>
+                  <!-- Arrow tips -->
+                  <path d="M14 44L16 46L18 44" stroke="#19A8FF" stroke-width="1" stroke-linecap="round" fill="none"/>
+                  <path d="M26 46L28 48L30 46" stroke="#19A8FF" stroke-width="1" stroke-linecap="round" fill="none"/>
+                  <path d="M38 44L40 46L42 44" stroke="#19A8FF" stroke-width="1" stroke-linecap="round" fill="none"/>
+                  <!-- Seal indicator -->
+                  <circle cx="44" cy="12" r="6" fill="rgba(16,185,129,0.1)" stroke="#10b981" stroke-width="0.8"/>
+                  <path d="M42 12L43.5 13.5L46 11" stroke="#10b981" stroke-width="1" stroke-linecap="round" fill="none"/>
+                </svg>
               </div>
-              <div class="dormer-panel-content">
-                <div class="dormer-panel-tag">Elegant & tidlös</div>
-                <h3 class="dormer-panel-title">Rundkupa</h3>
-                <p class="dormer-panel-desc">Rundkupan — även kallad "volangkupa" — ger en mjuk och elegant siluett. Särskilt populär på äldre hus, sekelskiftesvillor och byggnader med karaktär.</p>
-
-                <div class="dormer-panel-specs">
-                  <div class="dormer-spec">
-                    <div class="dormer-spec-icon">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
-                    </div>
-                    <div>
-                      <strong>Unik siluett</strong>
-                      <p>Sticker ut med mjuka linjer</p>
-                    </div>
-                  </div>
-                  <div class="dormer-spec">
-                    <div class="dormer-spec-icon">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
-                    </div>
-                    <div>
-                      <strong>Kulturhus & villor</strong>
-                      <p>Bevarar husets arkitektoniska stil</p>
-                    </div>
-                  </div>
-                  <div class="dormer-spec">
-                    <div class="dormer-spec-icon">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-                    </div>
-                    <div>
-                      <strong>Hantverkskvalitet</strong>
-                      <p>Kräver falsat plåtarbete</p>
-                    </div>
-                  </div>
+              <h3 class="kupa-service-title">Beslag & vattenavrinning</h3>
+              <p class="kupa-service-desc">Fönsterbleck, droppbleck, fotrännor och beslag — varje detalj säkerställer att vatten leds bort korrekt och inte skadar kupans konstruktion.</p>
+              <div class="kupa-service-details">
+                <div class="kupa-service-detail-item">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 12l10 5 10-5"/></svg>
+                  <span>Handbockat & skräddarsytt</span>
                 </div>
-
-                <div class="dormer-panel-includes">
-                  <h4>Vad ingår i installationen?</h4>
-                  <ul>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Handfalsat plåttak (rundformat)</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Specialtillverkad stomme</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Rundbågefönster eller standard</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Full isolering & ångspärr</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>10 års garanti</li>
-                  </ul>
+                <div class="kupa-service-detail-item">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="#19A8FF" stroke-width="1.5"><path d="M10 18s-7-3.5-7-9.2A6.2 6.2 0 0110 3a6.2 6.2 0 017 5.8c0 5.7-7 9.2-7 9.2z"/></svg>
+                  <span>Skyddar mot fukt & röta</span>
                 </div>
               </div>
             </div>
+
           </div>
-
-          <!-- PANEL: VELUX Takfönster -->
-          <div class="dormer-panel" data-panel="velux">
-            <div class="dormer-panel-grid">
-              <div class="dormer-panel-visual">
-                <div class="dormer-panel-card">
-                  <div class="dormer-panel-card-inner">
-                    <div class="dormer-panel-icon-large">
-                      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10 70L70 10" stroke="#19A8FF" stroke-width="1" opacity="0.15"/>
-                        <rect x="18" y="18" width="44" height="44" rx="4" fill="rgba(25,168,255,0.06)" stroke="#19A8FF" stroke-width="1.5" transform="rotate(-15 40 40)"/>
-                        <rect x="24" y="24" width="32" height="32" rx="2" fill="rgba(25,168,255,0.1)" stroke="#19A8FF" stroke-width="1" transform="rotate(-15 40 40)"/>
-                        <line x1="40" y1="20" x2="40" y2="60" stroke="#19A8FF" stroke-width="0.5" opacity="0.4" transform="rotate(-15 40 40)"/>
-                        <line x1="20" y1="40" x2="60" y2="40" stroke="#19A8FF" stroke-width="0.5" opacity="0.4" transform="rotate(-15 40 40)"/>
-                        <circle cx="40" cy="40" r="4" fill="rgba(25,168,255,0.2)" stroke="#19A8FF" stroke-width="1"/>
-                      </svg>
-                    </div>
-                    <div class="dormer-panel-badge dormer-badge-velux">VELUX Partner</div>
-                  </div>
-                </div>
-              </div>
-              <div class="dormer-panel-content">
-                <div class="dormer-panel-tag">Enklast & snabbast</div>
-                <h3 class="dormer-panel-title">VELUX Takfönster</h3>
-                <p class="dormer-panel-desc">Takfönster monteras direkt i takytan — inget behov av en kupkonstruktion. VELUX är marknadsledande och vi är certifierade partners. Snabb installation, kraftfullt resultat.</p>
-
-                <div class="dormer-panel-specs">
-                  <div class="dormer-spec">
-                    <div class="dormer-spec-icon">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2"/></svg>
-                    </div>
-                    <div>
-                      <strong>+70% mer ljus</strong>
-                      <p>Direkt himmelsljus uppifrån</p>
-                    </div>
-                  </div>
-                  <div class="dormer-spec">
-                    <div class="dormer-spec-icon">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                    </div>
-                    <div>
-                      <strong>Installation på 1 dag</strong>
-                      <p>Minimalt ingrepp i taket</p>
-                    </div>
-                  </div>
-                  <div class="dormer-spec">
-                    <div class="dormer-spec-icon">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 0 1 0 20 10 10 0 0 1 0-20z"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg>
-                    </div>
-                    <div>
-                      <strong>Smart styrning</strong>
-                      <p>App-styrda modeller med sensorer</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="dormer-panel-includes">
-                  <h4>Vad ingår i installationen?</h4>
-                  <ul>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>VELUX-certifierad montering</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Originalinsticksplåt & tätning</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Invändig smyg & listtäckning</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>3-glas energiglas (U=1.0)</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="#19A8FF" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>10 års produkt- & arbetsgaranti</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
 
-        <!-- CTA -->
-        <div class="dormer-explorer-cta fade-in">
-          <p>Osäker på vilken typ som passar? Vi hjälper dig — helt kostnadsfritt.</p>
-          <a href="index.html#contact" class="btn-primary">Boka ett gratis hembesök</a>
+        <!-- Material Comparison — interactive toggle -->
+        <div class="kupa-material fade-in">
+          <div class="kupa-material-header">
+            <h3 class="kupa-material-title">Välj rätt <span>plåtmaterial</span></h3>
+            <p class="kupa-material-lead">Materialet avgör utseende, livslängd och underhållsbehov. Här jämför vi de tre vanligaste alternativen.</p>
+          </div>
+          <div class="kupa-material-cards">
+
+            <div class="kupa-mat-card" data-material="stal">
+              <div class="kupa-mat-swatch" style="background: linear-gradient(135deg, #6b7b8d, #8a9bae)"></div>
+              <h4 class="kupa-mat-name">Förlackerad stålplåt</h4>
+              <div class="kupa-mat-meta">
+                <div class="kupa-mat-stat">
+                  <span class="kupa-mat-stat-value">25–40</span>
+                  <span class="kupa-mat-stat-label">år livslängd</span>
+                </div>
+                <div class="kupa-mat-stat">
+                  <span class="kupa-mat-stat-value">●●○</span>
+                  <span class="kupa-mat-stat-label">prisklass</span>
+                </div>
+              </div>
+              <p class="kupa-mat-desc">Det vanligaste valet. Finns i många kulörer, prisvärt och lätt att arbeta med. Kräver ommålning efter 15–20 år.</p>
+              <div class="kupa-mat-tag">Populärast</div>
+            </div>
+
+            <div class="kupa-mat-card" data-material="zink">
+              <div class="kupa-mat-swatch" style="background: linear-gradient(135deg, #a8b5c2, #c4cfd8)"></div>
+              <h4 class="kupa-mat-name">Titanzink</h4>
+              <div class="kupa-mat-meta">
+                <div class="kupa-mat-stat">
+                  <span class="kupa-mat-stat-value">60–80</span>
+                  <span class="kupa-mat-stat-label">år livslängd</span>
+                </div>
+                <div class="kupa-mat-stat">
+                  <span class="kupa-mat-stat-value">●●●</span>
+                  <span class="kupa-mat-stat-label">prisklass</span>
+                </div>
+              </div>
+              <p class="kupa-mat-desc">Premium-material som utvecklar en naturlig patina. Helt underhållsfritt — åldras vackert och klarar även kustklimat.</p>
+              <div class="kupa-mat-tag">Premium</div>
+            </div>
+
+            <div class="kupa-mat-card" data-material="koppar">
+              <div class="kupa-mat-swatch" style="background: linear-gradient(135deg, #b87333, #d4956a)"></div>
+              <h4 class="kupa-mat-name">Koppar</h4>
+              <div class="kupa-mat-meta">
+                <div class="kupa-mat-stat">
+                  <span class="kupa-mat-stat-value">100+</span>
+                  <span class="kupa-mat-stat-label">år livslängd</span>
+                </div>
+                <div class="kupa-mat-stat">
+                  <span class="kupa-mat-stat-value">●●●</span>
+                  <span class="kupa-mat-stat-label">prisklass</span>
+                </div>
+              </div>
+              <p class="kupa-mat-desc">Det mest exklusiva valet. Från blank koppar till grön patina över tid — tidlöst vackert och extremt hållbart.</p>
+              <div class="kupa-mat-tag">Exklusivt</div>
+            </div>
+
+          </div>
         </div>
 
       </div>
@@ -801,100 +946,122 @@
     </section>
 
     <script>
-    // Dormer Explorer — Interactive tabs
+    // Kupa Tjänst — Interactive anatomy hotspots
     (function() {
-      var tabs = document.querySelectorAll('.dormer-tab');
-      var panels = document.querySelectorAll('.dormer-panel');
-      var progressFill = document.querySelector('.dormer-progress-fill');
-      var progressText = document.querySelector('.dormer-progress-text');
-      var total = tabs.length;
-      if (!tabs.length) return;
+      var hotspots = document.querySelectorAll('.kupa-hotspot');
+      var defaultInfo = document.getElementById('kupaInfoDefault');
+      var detailPanels = document.querySelectorAll('.kupa-info-detail');
+      var platZones = document.querySelectorAll('.kupa-plat-zone');
+      var activeHotspot = null;
 
-      tabs.forEach(function(tab, idx) {
-        tab.addEventListener('click', function() {
-          var target = tab.getAttribute('data-tab');
+      if (!hotspots.length) return;
 
-          // Update tabs
-          tabs.forEach(function(t) { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-          tab.classList.add('active');
-          tab.setAttribute('aria-selected', 'true');
-
-          // Animate panel transition
-          panels.forEach(function(p) {
-            if (p.classList.contains('active')) {
-              p.classList.add('exiting');
-              p.classList.remove('active');
-              setTimeout(function() { p.classList.remove('exiting'); }, 500);
-            }
-          });
-
-          var targetPanel = document.querySelector('.dormer-panel[data-panel="' + target + '"]');
-          setTimeout(function() {
-            targetPanel.classList.add('entering');
-            targetPanel.classList.add('active');
-            setTimeout(function() { targetPanel.classList.remove('entering'); }, 500);
-          }, 200);
-
-          // Update progress
-          if (progressFill) progressFill.style.width = ((idx + 1) / total * 100) + '%';
-          if (progressText) progressText.textContent = (idx + 1) + ' / ' + total;
+      function showPanel(targetId) {
+        // Fade out current
+        if (defaultInfo) defaultInfo.style.display = 'none';
+        detailPanels.forEach(function(p) {
+          p.style.display = 'none';
+          p.classList.remove('kupa-info-active');
         });
-      });
 
-      // Keyboard navigation
-      document.querySelector('.dormer-tabs').addEventListener('keydown', function(e) {
-        var currentIdx = Array.from(tabs).findIndex(function(t) { return t.classList.contains('active'); });
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-          e.preventDefault();
-          var next = (currentIdx + 1) % total;
-          tabs[next].click();
-          tabs[next].focus();
-        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-          e.preventDefault();
-          var prev = (currentIdx - 1 + total) % total;
-          tabs[prev].click();
-          tabs[prev].focus();
+        // Fade in target
+        var panel = document.getElementById('kupaInfo-' + targetId);
+        if (panel) {
+          panel.style.display = '';
+          // Trigger reflow for animation
+          panel.offsetHeight;
+          panel.classList.add('kupa-info-active');
         }
-      });
 
-      // Tilt effect on visual card
-      document.querySelectorAll('.dormer-panel-card').forEach(function(card) {
-        card.addEventListener('mousemove', function(e) {
-          var rect = card.getBoundingClientRect();
-          var x = (e.clientX - rect.left) / rect.width;
-          var y = (e.clientY - rect.top) / rect.height;
-          var rotateY = (x - 0.5) * 20;
-          var rotateX = (0.5 - y) * 20;
-          card.style.transform = 'perspective(600px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) scale(1.02)';
+        // Highlight corresponding plat zones
+        platZones.forEach(function(z) {
+          z.classList.remove('kupa-zone-active');
         });
-        card.addEventListener('mouseleave', function() {
-          card.style.transform = 'perspective(600px) rotateX(0) rotateY(0) scale(1)';
+        document.querySelectorAll('.kupa-plat-zone[data-zone]').forEach(function(z) {
+          // Map hotspot targets to zone data attributes
+          var zoneMap = {
+            'platkl': 'sidor',
+            'nockplat': 'nock',
+            'fotplat': 'fotplat',
+            'fonsterbleck': 'fonsterbleck',
+            'takfonster': null
+          };
+          var expectedZone = zoneMap[targetId];
+          if (expectedZone && z.getAttribute('data-zone') === expectedZone) {
+            z.classList.add('kupa-zone-active');
+          }
         });
-      });
-
-      // Swipe support for mobile
-      var panelsContainer = document.querySelector('.dormer-panels');
-      var touchStartX = 0;
-      panelsContainer.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-      panelsContainer.addEventListener('touchend', function(e) {
-        var diff = touchStartX - e.changedTouches[0].clientX;
-        var currentIdx = Array.from(tabs).findIndex(function(t) { return t.classList.contains('active'); });
-        if (Math.abs(diff) > 50) {
-          if (diff > 0 && currentIdx < total - 1) { tabs[currentIdx + 1].click(); }
-          else if (diff < 0 && currentIdx > 0) { tabs[currentIdx - 1].click(); }
+        if (targetId === 'takfonster') {
+          var tfRect = document.querySelector('.kupa-takfonster-rect');
+          if (tfRect) tfRect.classList.add('kupa-zone-active');
         }
-      }, { passive: true });
+      }
 
-      // Scroll reveal
-      var explorerObs = new IntersectionObserver(function(entries) {
+      function resetToDefault() {
+        detailPanels.forEach(function(p) {
+          p.style.display = 'none';
+          p.classList.remove('kupa-info-active');
+        });
+        if (defaultInfo) defaultInfo.style.display = '';
+        hotspots.forEach(function(h) { h.classList.remove('kupa-hotspot-active'); });
+        platZones.forEach(function(z) { z.classList.remove('kupa-zone-active'); });
+        var tfRect = document.querySelector('.kupa-takfonster-rect');
+        if (tfRect) tfRect.classList.remove('kupa-zone-active');
+        activeHotspot = null;
+      }
+
+      hotspots.forEach(function(hotspot) {
+        function activate() {
+          var target = hotspot.getAttribute('data-target');
+          if (activeHotspot === target) {
+            resetToDefault();
+            return;
+          }
+          hotspots.forEach(function(h) { h.classList.remove('kupa-hotspot-active'); });
+          hotspot.classList.add('kupa-hotspot-active');
+          activeHotspot = target;
+          showPanel(target);
+        }
+
+        hotspot.addEventListener('click', activate);
+        hotspot.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            activate();
+          }
+        });
+      });
+
+      // Scroll reveal for the section
+      var kupaObs = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add('revealed');
-            explorerObs.unobserve(entry.target);
+            kupaObs.unobserve(entry.target);
           }
         });
       }, { threshold: 0.15 });
-      document.querySelectorAll('.dormer-explorer .fade-in').forEach(function(el) { explorerObs.observe(el); });
+      document.querySelectorAll('.kupa-tjanst .fade-in').forEach(function(el) { kupaObs.observe(el); });
+
+      // Animate service cards on hover — subtle lift
+      document.querySelectorAll('.kupa-service-card').forEach(function(card) {
+        card.addEventListener('mouseenter', function() {
+          card.style.transform = 'translateY(-8px)';
+        });
+        card.addEventListener('mouseleave', function() {
+          card.style.transform = '';
+        });
+      });
+
+      // Material cards hover
+      document.querySelectorAll('.kupa-mat-card').forEach(function(card) {
+        card.addEventListener('mouseenter', function() {
+          card.style.transform = 'translateY(-6px) scale(1.02)';
+        });
+        card.addEventListener('mouseleave', function() {
+          card.style.transform = '';
+        });
+      });
     })();
 
     // Animated counter for why-ferotect stats
