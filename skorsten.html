@@ -244,12 +244,6 @@
           </div>
         </div>
 
-        <div class="skor-why-bottom">
-          <a href="index.html#contact" class="skor-why-cta">
-            Boka en kostnadsfri inspektion
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
       </div>
     </section>
 
@@ -258,155 +252,210 @@
       <div class="skor-anatomy-inner">
         <div class="skor-anatomy-header">
           <div class="skor-why-kicker">Interaktiv guide</div>
-          <h2 class="skor-why-title">Så skyddar vi din <span>skorsten</span></h2>
-          <p class="skor-why-lead">Klicka på de blå punkterna i bilden för att se exakt vad vi gör — och varför varje detalj spelar roll för ditt taks livslängd.</p>
+          <h2 class="skor-why-title">Så klär vi in din <span>skorsten</span></h2>
+          <p class="skor-why-lead">Klicka på de numrerade punkterna för att se varje del vi bygger — och varför det skyddar ditt hus.</p>
         </div>
 
         <div class="skor-anatomy-stage">
-          <!-- SVG chimney illustration -->
+          <!-- SVG: Metal-clad chimney with hood -->
           <div class="skor-anatomy-svg-wrap">
             <svg class="skor-anatomy-svg" viewBox="0 0 600 520" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Sky gradient -->
               <defs>
                 <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#dbeafe"/><stop offset="100%" stop-color="#f0f9ff"/></linearGradient>
                 <linearGradient id="roofGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6b7280"/><stop offset="100%" stop-color="#4b5563"/></linearGradient>
-                <linearGradient id="brickGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#dc8a5a"/><stop offset="100%" stop-color="#c47040"/></linearGradient>
+                <linearGradient id="metalBody" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#8fa4b8"/><stop offset="20%" stop-color="#c8d6e0"/><stop offset="45%" stop-color="#e0e9f0"/><stop offset="65%" stop-color="#c8d6e0"/><stop offset="100%" stop-color="#8fa4b8"/></linearGradient>
+                <linearGradient id="metalSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7a8fa0"/><stop offset="50%" stop-color="#a4b8c8"/><stop offset="100%" stop-color="#7a8fa0"/></linearGradient>
+                <linearGradient id="hoodGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d0dce6"/><stop offset="100%" stop-color="#9bb0c0"/></linearGradient>
+                <linearGradient id="hoodTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e8eff4"/><stop offset="100%" stop-color="#b0c4d4"/></linearGradient>
                 <linearGradient id="flashGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#94a3b8"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient>
+                <linearGradient id="seamGlow" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.4)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
                 <filter id="shadow"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.12"/></filter>
+                <filter id="softGlow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                <!-- Tile pattern for roof -->
+                <pattern id="tilePattern" x="0" y="0" width="40" height="24" patternUnits="userSpaceOnUse" patternTransform="skewX(-15)">
+                  <rect width="40" height="24" fill="none"/>
+                  <path d="M0 22 Q10 18 20 22 Q30 26 40 22" stroke="#5a6370" stroke-width="0.7" fill="none" opacity="0.5"/>
+                  <path d="M-20 10 Q-10 6 0 10 Q10 14 20 10 Q30 6 40 10 Q50 14 60 10" stroke="#5a6370" stroke-width="0.7" fill="none" opacity="0.35"/>
+                </pattern>
+                <!-- Hotspot ripple animation -->
+                <style>
+                  @keyframes spotRipple { 0% { r: 16; opacity: 0.25; } 100% { r: 28; opacity: 0; } }
+                  @keyframes spotPulse { 0%,100% { r: 9; } 50% { r: 11; } }
+                  .skor-ripple { animation: spotRipple 2s ease-out infinite; }
+                  .skor-dot { animation: spotPulse 2s ease-in-out infinite; }
+                </style>
               </defs>
+
               <!-- Background -->
               <rect width="600" height="520" fill="url(#sky)" rx="20"/>
-              <!-- Roof surface -->
-              <path d="M0 340 L300 200 L600 340 L600 520 L0 520 Z" fill="url(#roofGrad)" opacity="0.9"/>
-              <!-- Roof tile lines -->
-              <g stroke="#5a6370" stroke-width="0.8" opacity="0.3">
-                <line x1="50" y1="345" x2="300" y2="222"/><line x1="100" y1="362" x2="300" y2="233"/>
-                <line x1="0" y1="380" x2="300" y2="245"/><line x1="0" y1="420" x2="300" y2="260"/>
-                <line x1="300" y1="222" x2="550" y2="345"/><line x1="300" y1="233" x2="500" y2="362"/>
-                <line x1="300" y1="245" x2="600" y2="380"/><line x1="300" y1="260" x2="600" y2="420"/>
-              </g>
-              <!-- Chimney body (brick) -->
-              <rect x="215" y="80" width="120" height="200" rx="3" fill="url(#brickGrad)" filter="url(#shadow)"/>
-              <!-- Brick pattern -->
-              <g stroke="#b85c3a" stroke-width="0.6" opacity="0.4">
-                <line x1="215" y1="105" x2="335" y2="105"/><line x1="215" y1="130" x2="335" y2="130"/>
-                <line x1="215" y1="155" x2="335" y2="155"/><line x1="215" y1="180" x2="335" y2="180"/>
-                <line x1="215" y1="205" x2="335" y2="205"/><line x1="215" y1="230" x2="335" y2="230"/>
-                <line x1="215" y1="255" x2="335" y2="255"/>
-                <line x1="275" y1="80" x2="275" y2="105"/><line x1="245" y1="105" x2="245" y2="130"/>
-                <line x1="305" y1="105" x2="305" y2="130"/><line x1="275" y1="130" x2="275" y2="155"/>
-                <line x1="245" y1="155" x2="245" y2="180"/><line x1="305" y1="155" x2="305" y2="180"/>
-                <line x1="275" y1="180" x2="275" y2="205"/><line x1="245" y1="205" x2="245" y2="230"/>
-                <line x1="305" y1="205" x2="305" y2="230"/><line x1="275" y1="230" x2="275" y2="255"/>
-              </g>
-              <!-- Chimney cap (top flashing) -->
-              <rect x="205" y="70" width="140" height="14" rx="2" fill="#94a3b8"/>
-              <rect x="200" y="64" width="150" height="10" rx="3" fill="#cbd5e1" stroke="#a0aec0" stroke-width="1"/>
-              <!-- Flashing collar around base -->
-              <path d="M200 270 L210 260 L340 260 L350 270 L360 280 L190 280 Z" fill="url(#flashGrad)" stroke="#a0aec0" stroke-width="1"/>
-              <!-- Step flashing left side -->
-              <g fill="#b0bec5" stroke="#90a4ae" stroke-width="0.8">
-                <polygon points="215,260 215,230 205,240 190,280"/>
-                <polygon points="215,230 215,200 200,215 205,240"/>
-              </g>
-              <!-- Step flashing right side -->
-              <g fill="#b0bec5" stroke="#90a4ae" stroke-width="0.8">
-                <polygon points="335,260 335,230 345,240 360,280"/>
-                <polygon points="335,230 335,200 350,215 345,240"/>
-              </g>
-              <!-- Rain cap / regnskydd -->
-              <rect x="230" y="54" width="90" height="6" rx="2" fill="#78909c"/>
-              <rect x="225" y="48" width="100" height="8" rx="3" fill="#90a4ae"/>
-              <!-- Ventilation opening -->
-              <rect x="255" y="100" width="40" height="25" rx="2" fill="#1a1a1a" opacity="0.6"/>
-              <rect x="257" y="102" width="36" height="21" rx="1" fill="#2d3748"/>
-              <!-- Grid bars -->
-              <line x1="265" y1="102" x2="265" y2="123" stroke="#555" stroke-width="1.5"/>
-              <line x1="275" y1="102" x2="275" y2="123" stroke="#555" stroke-width="1.5"/>
-              <line x1="285" y1="102" x2="285" y2="123" stroke="#555" stroke-width="1.5"/>
+              <!-- Subtle clouds -->
+              <ellipse cx="100" cy="70" rx="70" ry="20" fill="#fff" opacity="0.4"/>
+              <ellipse cx="480" cy="50" rx="55" ry="15" fill="#fff" opacity="0.3"/>
 
-              <!-- HOTSPOT CIRCLES (pulsing) -->
-              <!-- 1: Cap / Regnskydd -->
+              <!-- Roof surface with tile pattern -->
+              <path d="M0 340 L300 200 L600 340 L600 520 L0 520 Z" fill="url(#roofGrad)" opacity="0.92"/>
+              <path d="M0 340 L300 200 L600 340 L600 520 L0 520 Z" fill="url(#tilePattern)" opacity="0.6"/>
+              <!-- Roof ridge highlight -->
+              <line x1="140" y1="312" x2="300" y2="200" stroke="#8a939e" stroke-width="2" opacity="0.3"/>
+              <line x1="300" y1="200" x2="460" y2="312" stroke="#8a939e" stroke-width="2" opacity="0.3"/>
+
+              <!-- ===== METAL-CLAD CHIMNEY ===== -->
+              <!-- Chimney base body — fully clad in sheet metal -->
+              <rect x="215" y="85" width="120" height="195" rx="2" fill="url(#metalBody)" filter="url(#shadow)"/>
+              <!-- Side shadow panels for 3D depth -->
+              <rect x="215" y="85" width="18" height="195" fill="url(#metalSide)" opacity="0.5" rx="1"/>
+              <rect x="317" y="85" width="18" height="195" fill="url(#metalSide)" opacity="0.3" rx="1"/>
+              <!-- Horizontal seam lines (falsade fogar) -->
+              <g stroke="#7a8fa0" stroke-width="0.8" opacity="0.6">
+                <line x1="215" y1="130" x2="335" y2="130"/>
+                <line x1="215" y1="175" x2="335" y2="175"/>
+                <line x1="215" y1="220" x2="335" y2="220"/>
+              </g>
+              <!-- Seam highlight (light reflection on falsar) -->
+              <g stroke="rgba(255,255,255,0.35)" stroke-width="0.5">
+                <line x1="215" y1="131" x2="335" y2="131"/>
+                <line x1="215" y1="176" x2="335" y2="176"/>
+                <line x1="215" y1="221" x2="335" y2="221"/>
+              </g>
+              <!-- Vertical center seam -->
+              <line x1="275" y1="85" x2="275" y2="280" stroke="#7a8fa0" stroke-width="0.6" opacity="0.4"/>
+              <!-- Subtle metal texture lines -->
+              <g stroke="#a4b8c8" stroke-width="0.3" opacity="0.2">
+                <line x1="240" y1="85" x2="240" y2="280"/>
+                <line x1="310" y1="85" x2="310" y2="280"/>
+              </g>
+
+              <!-- ===== CHIMNEY HOOD (Skorstenshuv) ===== -->
+              <!-- Hood support legs -->
+              <rect x="228" y="50" width="5" height="35" fill="#8fa4b8" rx="1"/>
+              <rect x="317" y="50" width="5" height="35" fill="#8fa4b8" rx="1"/>
+              <rect x="260" y="50" width="4" height="35" fill="#8fa4b8" rx="1" opacity="0.6"/>
+              <rect x="286" y="50" width="4" height="35" fill="#8fa4b8" rx="1" opacity="0.6"/>
+              <!-- Opening between chimney top and hood (ventilation gap) -->
+              <rect x="215" y="78" width="120" height="9" fill="#2d3748" opacity="0.5" rx="1"/>
+              <!-- Hood canopy — angled top plate -->
+              <path d="M200 50 L275 30 L350 50 Z" fill="url(#hoodTop)" stroke="#9bb0c0" stroke-width="1"/>
+              <!-- Hood front face -->
+              <rect x="203" y="48" width="144" height="5" rx="1.5" fill="url(#hoodGrad)" stroke="#8fa4b8" stroke-width="0.5"/>
+              <!-- Hood top ridge -->
+              <line x1="275" y1="30" x2="275" y2="30" stroke="#b0c4d4" stroke-width="3" stroke-linecap="round"/>
+              <!-- Drip edge -->
+              <path d="M200 53 L203 55 L347 55 L350 53" stroke="#8fa4b8" stroke-width="0.8" fill="none"/>
+
+              <!-- ===== OPENING MECHANISM (hinge detail) ===== -->
+              <!-- Hinge on left side of hood -->
+              <circle cx="210" cy="49" r="3" fill="#6b7f8f" stroke="#5a6e7e" stroke-width="0.8"/>
+              <line x1="210" y1="46" x2="210" y2="52" stroke="#5a6e7e" stroke-width="0.8"/>
+              <!-- Hinge on right side -->
+              <circle cx="340" cy="49" r="3" fill="#6b7f8f" stroke="#5a6e7e" stroke-width="0.8"/>
+              <line x1="340" y1="46" x2="340" y2="52" stroke="#5a6e7e" stroke-width="0.8"/>
+              <!-- Open arrow indicator on hood -->
+              <path d="M275 36 L270 42 L280 42 Z" fill="#6b7f8f" opacity="0.5"/>
+
+              <!-- ===== FLASHING COLLAR (Plåtkrage) ===== -->
+              <path d="M200 272 L210 262 L340 262 L350 272 L365 284 L185 284 Z" fill="url(#flashGrad)" stroke="#90a4ae" stroke-width="1"/>
+              <!-- Collar seam detail -->
+              <line x1="275" y1="262" x2="275" y2="284" stroke="#7a8fa0" stroke-width="0.6" opacity="0.4"/>
+              <!-- Drip edge on collar -->
+              <path d="M185 284 L187 288 L363 288 L365 284" stroke="#90a4ae" stroke-width="0.6" fill="none" opacity="0.5"/>
+
+              <!-- ===== STEP FLASHING (Stegbeslag) ===== -->
+              <g fill="#b0bec5" stroke="#90a4ae" stroke-width="0.8">
+                <polygon points="215,262 215,228 203,240 185,284"/>
+                <polygon points="215,228 215,195 198,212 203,240"/>
+              </g>
+              <g fill="#b0bec5" stroke="#90a4ae" stroke-width="0.8">
+                <polygon points="335,262 335,228 347,240 365,284"/>
+                <polygon points="335,228 335,195 352,212 347,240"/>
+              </g>
+              <!-- Step flashing seam lines -->
+              <line x1="209" y1="240" x2="195" y2="270" stroke="#7a8fa0" stroke-width="0.5" opacity="0.4"/>
+              <line x1="341" y1="240" x2="355" y2="270" stroke="#7a8fa0" stroke-width="0.5" opacity="0.4"/>
+
+              <!-- ===== HOTSPOT BUTTONS (enhanced) ===== -->
+              <!-- 1: Skorstenshuv (hood) -->
               <g class="skor-hotspot" data-spot="0" style="cursor:pointer">
-                <circle cx="275" cy="52" r="14" fill="rgba(25,168,255,0.15)"><animate attributeName="r" values="14;18;14" dur="2s" repeatCount="indefinite"/></circle>
-                <circle cx="275" cy="52" r="7" fill="#19A8FF" stroke="#fff" stroke-width="2"/>
+                <circle cx="275" cy="42" r="16" fill="rgba(25,168,255,0.12)" class="skor-ripple"/>
+                <circle cx="275" cy="42" r="22" fill="none" stroke="rgba(25,168,255,0.15)" stroke-width="1.5" class="skor-ripple" style="animation-delay:0.5s"/>
+                <circle cx="275" cy="42" r="9" fill="#19A8FF" stroke="#fff" stroke-width="2.5" class="skor-dot"/>
+                <text x="275" y="46" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="Inter,sans-serif" pointer-events="none">1</text>
               </g>
-              <!-- 2: Ventilation -->
+              <!-- 2: Öppningsmekanism -->
               <g class="skor-hotspot" data-spot="1" style="cursor:pointer">
-                <circle cx="275" cy="113" r="14" fill="rgba(25,168,255,0.15)"><animate attributeName="r" values="14;18;14" dur="2s" begin="0.4s" repeatCount="indefinite"/></circle>
-                <circle cx="275" cy="113" r="7" fill="#19A8FF" stroke="#fff" stroke-width="2"/>
+                <circle cx="210" cy="49" r="16" fill="rgba(25,168,255,0.12)" class="skor-ripple" style="animation-delay:0.3s"/>
+                <circle cx="210" cy="49" r="22" fill="none" stroke="rgba(25,168,255,0.15)" stroke-width="1.5" class="skor-ripple" style="animation-delay:0.8s"/>
+                <circle cx="210" cy="49" r="9" fill="#19A8FF" stroke="#fff" stroke-width="2.5" class="skor-dot" style="animation-delay:0.3s"/>
+                <text x="210" y="53" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="Inter,sans-serif" pointer-events="none">2</text>
               </g>
-              <!-- 3: Brick body -->
+              <!-- 3: Plåtbeklädnad (full cladding) -->
               <g class="skor-hotspot" data-spot="2" style="cursor:pointer">
-                <circle cx="350" cy="180" r="14" fill="rgba(25,168,255,0.15)"><animate attributeName="r" values="14;18;14" dur="2s" begin="0.8s" repeatCount="indefinite"/></circle>
-                <circle cx="350" cy="180" r="7" fill="#19A8FF" stroke="#fff" stroke-width="2"/>
+                <circle cx="355" cy="175" r="16" fill="rgba(25,168,255,0.12)" class="skor-ripple" style="animation-delay:0.6s"/>
+                <circle cx="355" cy="175" r="22" fill="none" stroke="rgba(25,168,255,0.15)" stroke-width="1.5" class="skor-ripple" style="animation-delay:1.1s"/>
+                <circle cx="355" cy="175" r="9" fill="#19A8FF" stroke="#fff" stroke-width="2.5" class="skor-dot" style="animation-delay:0.6s"/>
+                <text x="355" y="179" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="Inter,sans-serif" pointer-events="none">3</text>
               </g>
-              <!-- 4: Flashing collar -->
+              <!-- 4: Plåtkrage (flashing collar) -->
               <g class="skor-hotspot" data-spot="3" style="cursor:pointer">
-                <circle cx="370" cy="270" r="14" fill="rgba(25,168,255,0.15)"><animate attributeName="r" values="14;18;14" dur="2s" begin="1.2s" repeatCount="indefinite"/></circle>
-                <circle cx="370" cy="270" r="7" fill="#19A8FF" stroke="#fff" stroke-width="2"/>
+                <circle cx="375" cy="273" r="16" fill="rgba(25,168,255,0.12)" class="skor-ripple" style="animation-delay:0.9s"/>
+                <circle cx="375" cy="273" r="22" fill="none" stroke="rgba(25,168,255,0.15)" stroke-width="1.5" class="skor-ripple" style="animation-delay:1.4s"/>
+                <circle cx="375" cy="273" r="9" fill="#19A8FF" stroke="#fff" stroke-width="2.5" class="skor-dot" style="animation-delay:0.9s"/>
+                <text x="375" y="277" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="Inter,sans-serif" pointer-events="none">4</text>
               </g>
-              <!-- 5: Step flashing -->
+              <!-- 5: Falsade fogar (seams) -->
               <g class="skor-hotspot" data-spot="4" style="cursor:pointer">
-                <circle cx="185" cy="240" r="14" fill="rgba(25,168,255,0.15)"><animate attributeName="r" values="14;18;14" dur="2s" begin="1.6s" repeatCount="indefinite"/></circle>
-                <circle cx="185" cy="240" r="7" fill="#19A8FF" stroke="#fff" stroke-width="2"/>
+                <circle cx="180" cy="235" r="16" fill="rgba(25,168,255,0.12)" class="skor-ripple" style="animation-delay:1.2s"/>
+                <circle cx="180" cy="235" r="22" fill="none" stroke="rgba(25,168,255,0.15)" stroke-width="1.5" class="skor-ripple" style="animation-delay:1.7s"/>
+                <circle cx="180" cy="235" r="9" fill="#19A8FF" stroke="#fff" stroke-width="2.5" class="skor-dot" style="animation-delay:1.2s"/>
+                <text x="180" y="239" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="Inter,sans-serif" pointer-events="none">5</text>
               </g>
             </svg>
           </div>
 
-          <!-- Info panel -->
+          <!-- Info panels — new content about metal cladding -->
           <div class="skor-anatomy-info">
             <div class="skor-anatomy-panel" data-panel="0">
               <div class="skor-panel-icon">
-                <svg viewBox="0 0 40 40" fill="none" stroke="#19A8FF" stroke-width="1.8"><rect x="6" y="20" width="28" height="6" rx="2"/><rect x="10" y="14" width="20" height="8" rx="2" opacity="0.4"/></svg>
+                <svg viewBox="0 0 40 40" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M8 24 L20 14 L32 24 Z"/><rect x="11" y="22" width="4" height="8" rx="1"/><rect x="25" y="22" width="4" height="8" rx="1"/><line x1="11" y1="30" x2="29" y2="30" stroke-width="1.5"/></svg>
               </div>
-              <h3>Regnskydd / regnkappa</h3>
-              <p>Monteras ovanpå skorstenen för att leda bort regnvatten från murverket. Utan skydd tränger vatten ner i tegelfogar, fryser och spricker — kostsamma skador som är lätta att förebygga.</p>
-              <div class="skor-panel-fact"><strong>Livslängd:</strong> 40+ år med rätt plåt</div>
+              <h3>Skorstenshuv — skyddar uppifrån</h3>
+              <p>Huven hindrar regn, snö och fågelbon från att ta sig in i skorstenen. Den sitter på ben ovanför skorstenstoppen så att rök och luft fortfarande kan passera fritt. Utan huv rinner vatten rakt ner och skadar murverket inifrån.</p>
+              <div class="skor-panel-fact"><strong>Resultat:</strong> Torr skorsten, inga fågelbon, fri ventilation</div>
             </div>
             <div class="skor-anatomy-panel" data-panel="1">
               <div class="skor-panel-icon">
-                <svg viewBox="0 0 40 40" fill="none" stroke="#19A8FF" stroke-width="1.8"><rect x="10" y="8" width="20" height="14" rx="2"/><line x1="15" y1="8" x2="15" y2="22"/><line x1="20" y1="8" x2="20" y2="22"/><line x1="25" y1="8" x2="25" y2="22"/><path d="M14 26l6 6 6-6" opacity="0.5"/></svg>
+                <svg viewBox="0 0 40 40" fill="none" stroke="#19A8FF" stroke-width="1.8"><circle cx="20" cy="18" r="5"/><path d="M15 18 L8 28"/><path d="M25 18 L32 28"/><line x1="18" y1="13" x2="18" y2="8" opacity="0.5"/><line x1="22" y1="13" x2="22" y2="8" opacity="0.5"/></svg>
               </div>
-              <h3>Ventilationsöppning</h3>
-              <p>Säkerställer luftflöde i skorstenen och förhindrar fukt- och mögelansamling. Vi kontrollerar att gallret är intakt och att öppningen inte är blockerad av skräp eller fågelbon.</p>
-              <div class="skor-panel-fact"><strong>Vanligaste felet:</strong> Igensatt av fågelbon</div>
+              <h3>Öppningsmekanism — enkel skötsel</h3>
+              <p>Huven har gångjärn på sidorna så att den enkelt kan lyftas för sotning och inspektion. Du slipper montera ner hela huven varje gång — sotaren öppnar, sotar och stänger på några minuter. Det sparar tid och pengar.</p>
+              <div class="skor-panel-fact"><strong>Fördel:</strong> Snabb sotning utan demontering</div>
             </div>
             <div class="skor-anatomy-panel" data-panel="2">
               <div class="skor-panel-icon">
-                <svg viewBox="0 0 40 40" fill="none" stroke="#19A8FF" stroke-width="1.8"><rect x="10" y="6" width="20" height="28" rx="2"/><line x1="10" y1="14" x2="30" y2="14" opacity="0.4"/><line x1="10" y1="22" x2="30" y2="22" opacity="0.4"/><line x1="20" y1="6" x2="20" y2="14" opacity="0.4"/><line x1="20" y1="22" x2="20" y2="34" opacity="0.4"/></svg>
+                <svg viewBox="0 0 40 40" fill="none" stroke="#19A8FF" stroke-width="1.8"><rect x="8" y="4" width="24" height="32" rx="2"/><line x1="8" y1="14" x2="32" y2="14" opacity="0.4"/><line x1="8" y1="24" x2="32" y2="24" opacity="0.4"/><line x1="20" y1="4" x2="20" y2="36" opacity="0.3"/></svg>
               </div>
-              <h3>Murverket (tegelskorsten)</h3>
-              <p>Äldre skorstenar sätter sig, fogar vittrar och tegel spricker. Vi bedömer skorstenens skick innan plåtning och rekommenderar murlagning om det behövs — annars plåtar vi runt ett redan skadat underlag.</p>
-              <div class="skor-panel-fact"><strong>Kontrollpunkt:</strong> Fogar, sprickor, lutning</div>
+              <h3>Helplåtad beklädnad — hela skorstenen</h3>
+              <p>Vi klär in hela skorstenen med plåt — inte bara toppen. Det skyddar murverket från regn, frost och saltluft på alla sidor. Plåten bockas exakt efter skorstenens mått och sätts med falsade fogar som håller i decennier utan underhåll.</p>
+              <div class="skor-panel-fact"><strong>Material:</strong> 0.6 mm stål med polyesterbeläggning</div>
             </div>
             <div class="skor-anatomy-panel" data-panel="3">
               <div class="skor-panel-icon">
                 <svg viewBox="0 0 40 40" fill="none" stroke="#19A8FF" stroke-width="1.8"><path d="M4 28 L10 22 L30 22 L36 28 L40 32 L0 32 Z"/><line x1="0" y1="32" x2="40" y2="32" stroke-width="2"/></svg>
               </div>
-              <h3>Foten — plåtkrage</h3>
-              <p>Plåtkragen leder vatten bort från skorstenens bas ut på takytan. Vi falsade fogar ger en mekaniskt tät skarv som inte kräver silikon. Det är den viktigaste detaljen för att undvika läckage.</p>
-              <div class="skor-panel-fact"><strong>Metod:</strong> Dubbelfalsad, ej silikon</div>
+              <h3>Plåtkrage — tätt mot takytan</h3>
+              <p>Plåtkragen sitter runt skorstenens fot och leder vatten ut på taket istället för under det. Vi använder dubbelfalsade fogar — en mekanisk koppling som inte behöver silikon och som tål rörelser i taket utan att spricka.</p>
+              <div class="skor-panel-fact"><strong>Metod:</strong> Dubbelfalsad, inte silikonbaserad</div>
             </div>
             <div class="skor-anatomy-panel" data-panel="4">
               <div class="skor-panel-icon">
-                <svg viewBox="0 0 40 40" fill="none" stroke="#19A8FF" stroke-width="1.8"><polygon points="8,34 8,14 2,22"/><polygon points="8,14 8,6 0,16" opacity="0.5"/><line x1="0" y1="34" x2="40" y2="34" stroke-width="1" opacity="0.3"/></svg>
+                <svg viewBox="0 0 40 40" fill="none" stroke="#19A8FF" stroke-width="1.8"><line x1="8" y1="8" x2="8" y2="34" stroke-width="2"/><line x1="6" y1="14" x2="16" y2="14" stroke-width="1.5"/><line x1="6" y1="22" x2="16" y2="22" stroke-width="1.5"/><line x1="6" y1="30" x2="16" y2="30" stroke-width="1.5"/><path d="M16 14 L32 20" opacity="0.5"/><path d="M16 22 L32 28" opacity="0.5"/></svg>
               </div>
-              <h3>Stegbeslag (step flashing)</h3>
-              <p>Stegbeslagen sitter i trappsteg längs skorstens sidor och överlappas med takplåten. Det är en kritisk zon — dåligt monterade stegbeslag är den absolut vanligaste orsaken till skorstensläckage.</p>
-              <div class="skor-panel-fact"><strong>Risk utan:</strong> #1 orsak till skorstensläckage</div>
+              <h3>Falsade fogar — hållbara utan lim</h3>
+              <p>Varje plåtskarv vi gör är falsad — plåtbitarna griper tag i varandra mekaniskt. Det ger en helt tät fog som varken torkar, spricker eller lossnar med åren. Silikon håller i 3–5 år. En falsad fog håller i 40+.</p>
+              <div class="skor-panel-fact"><strong>Jämför:</strong> Silikon 3–5 år vs. falsad fog 40+ år</div>
             </div>
           </div>
         </div>
 
-        <!-- CTA -->
-        <div class="skor-anatomy-cta">
-          <p>Osäker på din skorstens skick? Vi gör en kostnadsfri inspektion och visar exakt vad som behövs.</p>
-          <a href="index.html#contact" class="skor-why-cta">
-            Boka inspektion
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
       </div>
     </section>
 
@@ -526,7 +575,7 @@
       animateBars(document.querySelector('.skor-acc-active'));
     })();
 
-    /* ===== Chimney anatomy hotspots ===== */
+    /* ===== Chimney anatomy hotspots (with click animation) ===== */
     (() => {
       const spots = document.querySelectorAll('.skor-hotspot');
       const panels = document.querySelectorAll('.skor-anatomy-panel');
@@ -536,15 +585,18 @@
         panels.forEach(p => p.classList.remove('skor-panel-active'));
         spots[i]?.classList.add('skor-spot-active');
         panels[i]?.classList.add('skor-panel-active');
+        /* click burst animation */
+        const spot = spots[i];
+        if (spot) {
+          spot.classList.remove('skor-spot-clicked');
+          void spot.offsetWidth; /* trigger reflow */
+          spot.classList.add('skor-spot-clicked');
+          spot.addEventListener('animationend', () => spot.classList.remove('skor-spot-clicked'), { once: true });
+        }
         active = i;
       }
       activate(0);
       spots.forEach((s, i) => s.addEventListener('click', () => activate(i)));
-      /* auto-rotate */
-      let timer = setInterval(() => activate((active + 1) % panels.length), 5000);
-      const stage = document.querySelector('.skor-anatomy-stage');
-      stage?.addEventListener('mouseenter', () => clearInterval(timer));
-      stage?.addEventListener('mouseleave', () => { timer = setInterval(() => activate((active + 1) % panels.length), 5000); });
     })();
 
     /* ===== Scroll reveal for both sections ===== */
