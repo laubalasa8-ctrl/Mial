@@ -22577,24 +22577,18 @@ body.allblack-page header {
   background-repeat: no-repeat;
 }
 
-/* --- Hero (bandtackning frosted-box pattern) --- */
+/* --- Hero (plattaket pattern — same fixed bg, no viewport escape) --- */
 .allblack-hero {
   background-image: linear-gradient(135deg, rgba(5,5,12,0.72), rgba(5,5,12,0.5)), url('solceller1.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-  margin-top: 0;
-  margin-bottom: 0;
-  padding: 0 1.5rem;
-  height: 100vh;
+  padding: 0 1.5rem 5rem;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 .allblack-hero > div {
   width: 100%;
@@ -22604,9 +22598,6 @@ body.allblack-page header {
   min-height: 100vh;
   max-width: var(--max-width);
   margin: 0 auto;
-}
-.allblack-hero .frosted-box {
-  margin-top: 0;
 }
 .allblack-hero .frosted-box h1 span {
   background: linear-gradient(135deg, #19A8FF 0%, #00D9FF 50%, #19A8FF 100%);
@@ -22620,27 +22611,21 @@ body.allblack-page header {
 /* --- Responsive: 1024px --- */
 @media (max-width: 1024px) {
   .allblack-hero {
-    height: 100vh;
-    padding: 0 1.2rem;
-  }
-  .allblack-hero .frosted-box {
-    margin-top: 0;
+    padding: 0 1.2rem 4rem;
   }
 }
 
 /* --- Responsive: 768px --- */
 @media (max-width: 768px) {
   .allblack-hero {
-    height: 100svh;
+    min-height: 100svh;
     background-attachment: scroll !important;
     margin-top: -120px;
     padding-top: 0;
+    padding-bottom: 3rem;
   }
   .allblack-hero > div {
     min-height: 100svh;
-  }
-  .allblack-hero .frosted-box {
-    margin-top: 0;
   }
 }
 
@@ -22648,11 +22633,7 @@ body.allblack-page header {
 @media (max-width: 600px) {
   .allblack-hero {
     margin-top: -120px !important;
-    padding: 0 1rem;
-  }
-  .allblack-hero .frosted-box {
-    margin-top: 0;
-    padding: 1.6rem 1.2rem;
+    padding: 0 1rem 2rem;
   }
 }
 
@@ -23088,8 +23069,9 @@ body.allblack-page header {
 }
 .panel-img {
   position: absolute;
-  max-width: 90%;
-  height: 80%;
+  inset: 32px;
+  width: calc(100% - 64px);
+  height: calc(100% - 64px);
   object-fit: contain;
   opacity: 0;
   transform: scale(0.88) translateY(12px);
@@ -23119,14 +23101,14 @@ body.allblack-page header {
     min-height: 260px;
     padding: 24px;
   }
-  .panel-img { height: 75%; }
+  .panel-img { inset: 24px; width: calc(100% - 48px); height: calc(100% - 48px); }
   .panel-compare-tabs { max-width: 100%; }
   .panel-tab { font-size: 0.82rem; }
 }
 @media (max-width: 480px) {
   .panel-compare { padding: 50px 16px 60px; }
   .panel-image-wrap { min-height: 200px; }
-  .panel-img { height: 70%; }
+  .panel-img { inset: 16px; width: calc(100% - 32px); height: calc(100% - 32px); }
   .panel-detail-name { font-size: 1.6rem; }
 }
 
