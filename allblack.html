@@ -152,22 +152,15 @@
   <main id="top">
     <!-- HERO SECTION -->
     <section class="allblack-hero">
-      <div class="allblack-hero-content">
-        <h1 class="allblack-hero-title">
-          Helsvart elegans.<br>
-          <span class="allblack-gradient">Maximal kraft.</span>
-        </h1>
-        <p class="allblack-hero-lead">
-          All Black-paneler som smälter in med ditt tak – osynlig teknik, synliga besparingar. Installerade av takproffs som vet vad som håller.
-        </p>
-        <div class="allblack-hero-ctas">
-          <a href="index.html#contact" class="btn-hero-primary">
-            <span>Kontakta oss</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-          <a href="#invisible-power" class="btn-hero-secondary">Läs mer</a>
+      <div>
+        <div class="frosted-box">
+          <div class="hero-kicker">Helsvarta solpaneler</div>
+          <h1>All Black-paneler.<br><span>Osynlig teknik, synliga besparingar.</span></h1>
+          <p class="hero-lead">Solpaneler som smälter in med ditt tak — installerade av takproffs som vet vad som håller. Ingen kompromiss med design eller effekt.</p>
+          <div class="hero-cta-row">
+            <a href="index.html#contact" class="btn-primary">Kontakta oss</a>
+            <a href="#invisible-power" class="btn-ghost">Utforska →</a>
+          </div>
         </div>
       </div>
     </section>
@@ -185,9 +178,14 @@
           <div class="ip-pillar" data-ip-pillar>
             <div class="ip-pillar-icon-wrap" data-ip-interactive>
               <svg class="ip-icon-svg" viewBox="0 0 80 80" fill="none">
-                <circle class="ip-icon-ring" cx="40" cy="40" r="36" stroke="#19A8FF" stroke-width="1.5" stroke-dasharray="226" stroke-dashoffset="226"/>
-                <circle class="ip-icon-dot" cx="40" cy="40" r="4" fill="#19A8FF" opacity="0"/>
-                <path class="ip-icon-path" d="M28 40l8 8 16-18" stroke="#19A8FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="50" stroke-dashoffset="50"/>
+                <defs><linearGradient id="ipG1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#19A8FF"/><stop offset="100%" stop-color="#00D9FF"/></linearGradient></defs>
+                <circle class="ip-icon-ring" cx="40" cy="40" r="36" stroke="url(#ipG1)" stroke-width="1.5" stroke-dasharray="226" stroke-dashoffset="226"/>
+                <circle class="ip-icon-ring2" cx="40" cy="40" r="20" stroke="#19A8FF" stroke-width="1" opacity="0.35" stroke-dasharray="126" stroke-dashoffset="126"/>
+                <line class="ip-icon-line" x1="40" y1="16" x2="40" y2="28" stroke="url(#ipG1)" stroke-width="2" stroke-linecap="round" stroke-dasharray="12" stroke-dashoffset="12"/>
+                <line class="ip-icon-line" x1="40" y1="52" x2="40" y2="64" stroke="url(#ipG1)" stroke-width="2" stroke-linecap="round" stroke-dasharray="12" stroke-dashoffset="12"/>
+                <line class="ip-icon-line" x1="16" y1="40" x2="28" y2="40" stroke="url(#ipG1)" stroke-width="2" stroke-linecap="round" stroke-dasharray="12" stroke-dashoffset="12"/>
+                <line class="ip-icon-line" x1="52" y1="40" x2="64" y2="40" stroke="url(#ipG1)" stroke-width="2" stroke-linecap="round" stroke-dasharray="12" stroke-dashoffset="12"/>
+                <circle class="ip-icon-dot" cx="40" cy="40" r="5" fill="url(#ipG1)" opacity="0"/>
               </svg>
             </div>
             <h3 class="ip-pillar-title">Osynlig precision</h3>
@@ -206,10 +204,11 @@
           <div class="ip-pillar" data-ip-pillar>
             <div class="ip-pillar-icon-wrap" data-ip-interactive>
               <svg class="ip-icon-svg" viewBox="0 0 80 80" fill="none">
-                <circle class="ip-icon-ring" cx="40" cy="40" r="36" stroke="#19A8FF" stroke-width="1.5" stroke-dasharray="226" stroke-dashoffset="226"/>
-                <circle class="ip-icon-dot" cx="40" cy="40" r="4" fill="#19A8FF" opacity="0"/>
-                <rect class="ip-icon-path" x="24" y="28" width="32" height="24" rx="3" stroke="#19A8FF" stroke-width="2.5" stroke-dasharray="112" stroke-dashoffset="112" fill="none"/>
-                <path class="ip-icon-bolt" d="M38 32l-4 8h6l-4 8" stroke="#19A8FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="30" stroke-dashoffset="30"/>
+                <defs><linearGradient id="ipG2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#19A8FF"/><stop offset="100%" stop-color="#00D9FF"/></linearGradient></defs>
+                <circle class="ip-icon-ring" cx="40" cy="40" r="36" stroke="url(#ipG2)" stroke-width="1.5" stroke-dasharray="226" stroke-dashoffset="226"/>
+                <path class="ip-icon-path" d="M40 14L22 26v16c0 12 7.6 22.6 18 26 10.4-3.4 18-14 18-26V26L40 14z" stroke="url(#ipG2)" stroke-width="2" stroke-linejoin="round" stroke-dasharray="150" stroke-dashoffset="150"/>
+                <path class="ip-icon-bolt" d="M43 28l-6 12h6l-6 12" stroke="#00D9FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="42" stroke-dashoffset="42"/>
+                <circle class="ip-icon-dot" cx="40" cy="40" r="5" fill="url(#ipG2)" opacity="0"/>
               </svg>
             </div>
             <h3 class="ip-pillar-title">Tyst styrka</h3>
@@ -228,10 +227,12 @@
           <div class="ip-pillar" data-ip-pillar>
             <div class="ip-pillar-icon-wrap" data-ip-interactive>
               <svg class="ip-icon-svg" viewBox="0 0 80 80" fill="none">
-                <circle class="ip-icon-ring" cx="40" cy="40" r="36" stroke="#19A8FF" stroke-width="1.5" stroke-dasharray="226" stroke-dashoffset="226"/>
-                <circle class="ip-icon-dot" cx="40" cy="40" r="4" fill="#19A8FF" opacity="0"/>
-                <path class="ip-icon-path" d="M40 20L22 32v20h36V32L40 20z" stroke="#19A8FF" stroke-width="2.5" stroke-linejoin="round" stroke-dasharray="100" stroke-dashoffset="100" fill="none"/>
-                <path class="ip-icon-bolt" d="M34 52V40h12v12" stroke="#19A8FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="36" stroke-dashoffset="36"/>
+                <defs><linearGradient id="ipG3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#19A8FF"/><stop offset="100%" stop-color="#00D9FF"/></linearGradient></defs>
+                <circle class="ip-icon-ring" cx="40" cy="40" r="36" stroke="url(#ipG3)" stroke-width="1.5" stroke-dasharray="226" stroke-dashoffset="226"/>
+                <path class="ip-icon-path" d="M40 16L18 34v24h44V34L40 16z" stroke="url(#ipG3)" stroke-width="2" stroke-linejoin="round" stroke-dasharray="140" stroke-dashoffset="140"/>
+                <rect class="ip-icon-bolt" x="33" y="42" width="14" height="16" rx="2" stroke="#19A8FF" stroke-width="1.5" stroke-dasharray="60" stroke-dashoffset="60" fill="none"/>
+                <path class="ip-icon-bolt" d="M50 20c6 3 8 10 5 16-4 0-10-4-12-10" stroke="#00D9FF" stroke-width="2" stroke-linecap="round" stroke-dasharray="40" stroke-dashoffset="40" fill="none"/>
+                <circle class="ip-icon-dot" cx="40" cy="40" r="5" fill="url(#ipG3)" opacity="0"/>
               </svg>
             </div>
             <h3 class="ip-pillar-title">Livsstil, inte teknik</h3>
@@ -302,7 +303,6 @@
                   <span class="spec-value">1722 × 1134 mm</span>
                 </li>
               </ul>
-              <a href="index.html#contact" class="panel-cta">Begär offert för Bas →</a>
             </div>
 
             <!-- Medium -->
@@ -340,7 +340,6 @@
                   <span class="spec-value">1762 × 1134 mm</span>
                 </li>
               </ul>
-              <a href="index.html#contact" class="panel-cta">Begär offert för Medium →</a>
             </div>
 
             <!-- Premium -->
@@ -378,14 +377,116 @@
                   <span class="spec-value">1879 × 1134 mm</span>
                 </li>
               </ul>
-              <a href="index.html#contact" class="panel-cta">Begär offert för Premium →</a>
             </div>
           </div>
 
           <div class="panel-image-wrap">
             <img src="solceller2.png" alt="Longi 435W All Black panel" class="panel-img panel-img-active" data-panel-img="bas">
             <img src="solceller3.png" alt="Longi 475W All Black panel" class="panel-img" data-panel-img="medium">
-            <img src="solceller4.jpg" alt="Longi 510W All Black panel" class="panel-img" data-panel-img="premium">
+            <img src="Solceller4.png" alt="Longi 510W All Black panel" class="panel-img" data-panel-img="premium">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRÅN SOL TILL BESPARING — INFORMATIV SEKTION -->
+    <section id="solar-journey" class="solar-journey">
+      <div class="sj-inner">
+        <div class="sj-header" data-sj-reveal>
+          <span class="ip-badge sj-badge">Så fungerar det</span>
+          <h2 class="sj-title">Från sol till besparing</h2>
+          <p class="sj-sub">Fyra steg som förvandlar solljus till pengar på ditt konto.</p>
+        </div>
+
+        <div class="sj-steps">
+          <div class="sj-step" data-sj-step>
+            <div class="sj-step-icon-wrap">
+              <svg class="sj-icon" viewBox="0 0 64 64" fill="none">
+                <circle class="sj-icon-main" cx="32" cy="32" r="12" stroke="#19A8FF" stroke-width="2" stroke-dasharray="75" stroke-dashoffset="75"/>
+                <line class="sj-icon-ray" x1="32" y1="4" x2="32" y2="14" stroke="#00D9FF" stroke-width="2" stroke-linecap="round" stroke-dasharray="10" stroke-dashoffset="10"/>
+                <line class="sj-icon-ray" x1="32" y1="50" x2="32" y2="60" stroke="#00D9FF" stroke-width="2" stroke-linecap="round" stroke-dasharray="10" stroke-dashoffset="10"/>
+                <line class="sj-icon-ray" x1="4" y1="32" x2="14" y2="32" stroke="#00D9FF" stroke-width="2" stroke-linecap="round" stroke-dasharray="10" stroke-dashoffset="10"/>
+                <line class="sj-icon-ray" x1="50" y1="32" x2="60" y2="32" stroke="#00D9FF" stroke-width="2" stroke-linecap="round" stroke-dasharray="10" stroke-dashoffset="10"/>
+                <line class="sj-icon-ray" x1="12" y1="12" x2="19" y2="19" stroke="#00D9FF" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="10" stroke-dashoffset="10"/>
+                <line class="sj-icon-ray" x1="45" y1="45" x2="52" y2="52" stroke="#00D9FF" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="10" stroke-dashoffset="10"/>
+                <line class="sj-icon-ray" x1="52" y1="12" x2="45" y2="19" stroke="#00D9FF" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="10" stroke-dashoffset="10"/>
+                <line class="sj-icon-ray" x1="19" y1="45" x2="12" y2="52" stroke="#00D9FF" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="10" stroke-dashoffset="10"/>
+              </svg>
+            </div>
+            <div class="sj-step-num">01</div>
+            <h3 class="sj-step-title">Solljuset</h3>
+            <p class="sj-step-text">Solen strålar ned på dina All Black-paneler. Även på molniga dagar fångar de energi.</p>
+          </div>
+
+          <div class="sj-connector" data-sj-connector><svg viewBox="0 0 60 4"><line x1="0" y1="2" x2="60" y2="2" stroke="rgba(25,168,255,0.3)" stroke-width="2" stroke-dasharray="60" stroke-dashoffset="60" stroke-linecap="round"/></svg></div>
+
+          <div class="sj-step" data-sj-step>
+            <div class="sj-step-icon-wrap">
+              <svg class="sj-icon" viewBox="0 0 64 64" fill="none">
+                <rect class="sj-icon-main" x="10" y="14" width="44" height="28" rx="3" stroke="#19A8FF" stroke-width="2" stroke-dasharray="144" stroke-dashoffset="144"/>
+                <line class="sj-icon-ray" x1="10" y1="23" x2="54" y2="23" stroke="#19A8FF" stroke-width="1" opacity="0.4" stroke-dasharray="44" stroke-dashoffset="44"/>
+                <line class="sj-icon-ray" x1="10" y1="33" x2="54" y2="33" stroke="#19A8FF" stroke-width="1" opacity="0.4" stroke-dasharray="44" stroke-dashoffset="44"/>
+                <line class="sj-icon-ray" x1="28" y1="14" x2="28" y2="42" stroke="#19A8FF" stroke-width="1" opacity="0.4" stroke-dasharray="28" stroke-dashoffset="28"/>
+                <line class="sj-icon-ray" x1="42" y1="14" x2="42" y2="42" stroke="#19A8FF" stroke-width="1" opacity="0.4" stroke-dasharray="28" stroke-dashoffset="28"/>
+                <path class="sj-icon-ray" d="M32 46v12M28 54l4 4 4-4" stroke="#00D9FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="20" stroke-dashoffset="20"/>
+              </svg>
+            </div>
+            <div class="sj-step-num">02</div>
+            <h3 class="sj-step-title">Omvandlingen</h3>
+            <p class="sj-step-text">Solcellerna konverterar ljusenergi till likström som sedan omvandlas till växelström av din inverter.</p>
+          </div>
+
+          <div class="sj-connector" data-sj-connector><svg viewBox="0 0 60 4"><line x1="0" y1="2" x2="60" y2="2" stroke="rgba(25,168,255,0.3)" stroke-width="2" stroke-dasharray="60" stroke-dashoffset="60" stroke-linecap="round"/></svg></div>
+
+          <div class="sj-step" data-sj-step>
+            <div class="sj-step-icon-wrap">
+              <svg class="sj-icon" viewBox="0 0 64 64" fill="none">
+                <rect class="sj-icon-main" x="6" y="18" width="22" height="28" rx="3" stroke="#19A8FF" stroke-width="2" stroke-dasharray="100" stroke-dashoffset="100"/>
+                <rect class="sj-icon-main" x="36" y="18" width="22" height="28" rx="3" stroke="#19A8FF" stroke-width="2" stroke-dasharray="100" stroke-dashoffset="100"/>
+                <path class="sj-icon-ray" d="M28 32h8" stroke="#00D9FF" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8" stroke-dashoffset="8"/>
+                <path class="sj-icon-ray" d="M12 26h10M12 34h10" stroke="#19A8FF" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="20" stroke-dashoffset="20"/>
+                <path class="sj-icon-ray" d="M42 26h10M42 34h10" stroke="#19A8FF" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="20" stroke-dashoffset="20"/>
+                <circle class="sj-icon-dot" cx="32" cy="32" r="3" fill="#00D9FF" opacity="0"/>
+              </svg>
+            </div>
+            <div class="sj-step-num">03</div>
+            <h3 class="sj-step-title">Smart styrning</h3>
+            <p class="sj-step-text">Överskottsenergi säljs tillbaka till elnätet. Du tjänar pengar även när du inte är hemma.</p>
+          </div>
+
+          <div class="sj-connector" data-sj-connector><svg viewBox="0 0 60 4"><line x1="0" y1="2" x2="60" y2="2" stroke="rgba(25,168,255,0.3)" stroke-width="2" stroke-dasharray="60" stroke-dashoffset="60" stroke-linecap="round"/></svg></div>
+
+          <div class="sj-step" data-sj-step>
+            <div class="sj-step-icon-wrap">
+              <svg class="sj-icon" viewBox="0 0 64 64" fill="none">
+                <rect class="sj-icon-main" x="8" y="8" width="48" height="40" rx="4" stroke="#19A8FF" stroke-width="2" stroke-dasharray="176" stroke-dashoffset="176"/>
+                <polyline class="sj-icon-ray" points="16,38 26,30 36,34 48,18" stroke="#00D9FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="50" stroke-dashoffset="50"/>
+                <circle class="sj-icon-dot" cx="48" cy="18" r="3" fill="#00D9FF" opacity="0"/>
+                <path class="sj-icon-ray" d="M16 54h32" stroke="#19A8FF" stroke-width="1.5" stroke-linecap="round" opacity="0.3" stroke-dasharray="32" stroke-dashoffset="32"/>
+              </svg>
+            </div>
+            <div class="sj-step-num">04</div>
+            <h3 class="sj-step-title">Din besparing</h3>
+            <p class="sj-step-text">Lägre elräkning varje månad. De flesta kunder ser avkastning på sin investering inom 7–10 år.</p>
+          </div>
+        </div>
+
+        <div class="sj-stats" data-sj-reveal>
+          <div class="sj-stat">
+            <div class="sj-stat-number"><span class="sj-count" data-count="25">0</span><span class="sj-suffix">+ år</span></div>
+            <span class="sj-stat-label">Garanti</span>
+          </div>
+          <div class="sj-stat">
+            <div class="sj-stat-number"><span class="sj-count" data-count="70">0</span><span class="sj-suffix">%</span></div>
+            <span class="sj-stat-label">Lägre elräkning</span>
+          </div>
+          <div class="sj-stat">
+            <div class="sj-stat-number"><span class="sj-count" data-count="100">0</span><span class="sj-suffix">%</span></div>
+            <span class="sj-stat-label">CO₂-fri energi</span>
+          </div>
+          <div class="sj-stat">
+            <div class="sj-stat-number"><span class="sj-count" data-count="8">0</span><span class="sj-suffix"> år</span></div>
+            <span class="sj-stat-label">Genomsnittlig ROI</span>
           </div>
         </div>
       </div>

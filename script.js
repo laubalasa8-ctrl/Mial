@@ -1719,7 +1719,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var ipSection = document.querySelector('.ip-section');
   if (!ipSection) return;
 
-  // --- Reveal header + pillar stagger via IntersectionObserver ---
+  // --- Reveal header via IntersectionObserver ---
   var reveals = ipSection.querySelectorAll('[data-ip-reveal]');
   if (reveals.length) {
     var revealObs = new IntersectionObserver(function(entries) {
@@ -1733,6 +1733,7 @@ document.addEventListener('DOMContentLoaded', function() {
     reveals.forEach(function(el) { revealObs.observe(el); });
   }
 
+  // --- Pillar stagger reveal ---
   var pillars = ipSection.querySelectorAll('[data-ip-pillar]');
   if (pillars.length) {
     var pillarObs = new IntersectionObserver(function(entries) {
@@ -1740,7 +1741,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (entry.isIntersecting) {
           var all = ipSection.querySelectorAll('[data-ip-pillar]');
           all.forEach(function(p, i) {
-            setTimeout(function() { p.classList.add('ip-pillar-visible'); }, i * 200);
+            setTimeout(function() { p.classList.add('ip-pillar-visible'); }, i * 220);
           });
           pillarObs.unobserve(entry.target);
         }
@@ -1755,10 +1756,9 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.addEventListener('click', function() {
       var content = btn.parentElement.querySelector('.ip-expand-content');
       var isOpen = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
       btn.textContent = '';
-      var label = document.createTextNode(isOpen ? 'Läs mer' : 'Stäng');
-      btn.appendChild(label);
+      btn.appendChild(document.createTextNode(isOpen ? 'Läs mer' : 'Stäng'));
       var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svg.setAttribute('width', '16');
       svg.setAttribute('height', '16');
@@ -1770,17 +1770,13 @@ document.addEventListener('DOMContentLoaded', function() {
       path.setAttribute('d', 'M6 9l6 6 6-6');
       svg.appendChild(path);
       btn.appendChild(svg);
-      if (isOpen) {
-        content.classList.remove('ip-expanded');
-      } else {
-        content.classList.add('ip-expanded');
-      }
+      content.classList.toggle('ip-expanded', !isOpen);
     });
   });
 })();
 
 /* ============================================================
-   PANEL COMPARISON — Tab switching
+   PANEL COMPARISON — Tab switching with animation
    ============================================================ */
 (function() {
   var section = document.querySelector('.panel-compare');
@@ -1807,17 +1803,86 @@ document.addEventListener('DOMContentLoaded', function() {
   tabs.forEach(function(tab) {
     tab.addEventListener('click', function() {
       var key = tab.getAttribute('data-panel');
-      // Update tabs
       tabs.forEach(function(t) { t.classList.remove('panel-tab-active'); });
       tab.classList.add('panel-tab-active');
-      // Update details
       details.forEach(function(d) { d.classList.remove('panel-detail-active'); });
       var activeDetail = section.querySelector('[data-panel-detail="' + key + '"]');
       if (activeDetail) activeDetail.classList.add('panel-detail-active');
-      // Update images
       imgs.forEach(function(img) { img.classList.remove('panel-img-active'); });
       var activeImg = section.querySelector('[data-panel-img="' + key + '"]');
       if (activeImg) activeImg.classList.add('panel-img-active');
     });
   });
+})();
+
+/* ============================================================
+   SOLAR JOURNEY — Step stagger reveal, connector draw, count-up
+   ============================================================ */
+(function() {
+  var section = document.querySelector('.solar-journey');
+  if (!section) return;
+
+  // --- Header + stats reveal ---
+  var reveals = section.querySelectorAll('[data-sj-reveal]');
+  if (reveals.length) {
+    var revObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('sj-visible');
+          // If it's the stats row, trigger count-up
+          if (entry.target.classList.contains('sj-stats')) {
+            triggerCountUp(entry.target);
+          }
+          revObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    reveals.forEach(function(el) { revObs.observe(el); });
+  }
+
+  // --- Steps stagger ---
+  var steps = section.querySelectorAll('[data-sj-step]');
+  var connectors = section.querySelectorAll('[data-sj-connector]');
+  if (steps.length) {
+    var stepObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var allSteps = section.querySelectorAll('[data-sj-step]');
+          var allConns = section.querySelectorAll('[data-sj-connector]');
+          var delay = 0;
+          allSteps.forEach(function(s, i) {
+            setTimeout(function() { s.classList.add('sj-step-visible'); }, delay);
+            delay += 300;
+            if (allConns[i]) {
+              (function(conn, d) {
+                setTimeout(function() { conn.classList.add('sj-conn-visible'); }, d);
+              })(allConns[i], delay);
+              delay += 200;
+            }
+          });
+          stepObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    stepObs.observe(steps[0]);
+  }
+
+  // --- Count-up animation ---
+  function triggerCountUp(container) {
+    var counters = container.querySelectorAll('.sj-count');
+    counters.forEach(function(el) {
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      var duration = 1800;
+      var start = 0;
+      var startTime = null;
+      function animate(ts) {
+        if (!startTime) startTime = ts;
+        var progress = Math.min((ts - startTime) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target);
+        if (progress < 1) requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+    });
+  }
 })();
