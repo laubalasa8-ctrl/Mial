@@ -22561,19 +22561,20 @@ html { overflow-x: hidden; }
    ALL BLACK PANELER PAGE STYLES
    ============================================================ */
 
-/* --- Topbar & Header transparent — hero carries full bg --- */
+/* --- Topbar & Header seamless background (bandtackning pattern) --- */
 body.allblack-page .topbar {
-  background: transparent !important;
-  background-image: none !important;
+  background-image: linear-gradient(135deg, rgba(5,5,12,0.72), rgba(5,5,12,0.5)), url('solceller1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 body.allblack-page header {
-  background: transparent !important;
-  background-image: none !important;
-}
-body.allblack-page header.scrolled {
-  background: rgba(5,5,12,0.95) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-image: linear-gradient(135deg, rgba(5,5,12,0.72), rgba(5,5,12,0.5)), url('solceller1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 /* --- Hero (bandtackning frosted-box pattern) --- */
@@ -22586,7 +22587,7 @@ body.allblack-page header.scrolled {
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
-  margin-top: -140px;
+  margin-top: 0;
   margin-bottom: 0;
   padding: 0 1.5rem;
   height: 100vh;
@@ -23087,8 +23088,8 @@ body.allblack-page header.scrolled {
 }
 .panel-img {
   position: absolute;
-  width: 85%;
-  height: 85%;
+  max-width: 90%;
+  height: 80%;
   object-fit: contain;
   opacity: 0;
   transform: scale(0.88) translateY(12px);
@@ -23118,14 +23119,14 @@ body.allblack-page header.scrolled {
     min-height: 260px;
     padding: 24px;
   }
-  .panel-img { width: 85%; height: 80%; }
+  .panel-img { height: 75%; }
   .panel-compare-tabs { max-width: 100%; }
   .panel-tab { font-size: 0.82rem; }
 }
 @media (max-width: 480px) {
   .panel-compare { padding: 50px 16px 60px; }
   .panel-image-wrap { min-height: 200px; }
-  .panel-img { width: 85%; height: 80%; }
+  .panel-img { height: 70%; }
   .panel-detail-name { font-size: 1.6rem; }
 }
 
