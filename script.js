@@ -1713,78 +1713,111 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 /* ============================================================
-   INVISIBLE POWER — Scroll Animations & Parallax
+   FILOSOFI — Interactive SVG Animations & Panel Comparison
    ============================================================ */
 (function() {
   var ipSection = document.querySelector('.ip-section');
   if (!ipSection) return;
 
-  // --- Parallax on mouse move ---
-  var deep = ipSection.querySelector('.ip-layer-deep');
-  var mid  = ipSection.querySelector('.ip-layer-mid');
-
-  ipSection.addEventListener('mousemove', function(e) {
-    var rect = ipSection.getBoundingClientRect();
-    var x = (e.clientX - rect.left) / rect.width - 0.5;
-    var y = (e.clientY - rect.top) / rect.height - 0.5;
-    if (deep) deep.style.transform = 'translate(' + (x * -20) + 'px, ' + (y * -20) + 'px)';
-    if (mid)  mid.style.transform  = 'translate(' + (x * -10) + 'px, ' + (y * -10) + 'px)';
-  });
-
-  // --- Word-by-word reveal on scroll ---
-  var words = ipSection.querySelectorAll('[data-ip-word]');
-  if (words.length) {
-    var wordObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          var parent = entry.target.closest('.ip-manifesto');
-          if (parent) {
-            var allWords = parent.querySelectorAll('[data-ip-word]');
-            allWords.forEach(function(w, i) {
-              setTimeout(function() {
-                w.classList.add('ip-word-visible');
-              }, i * 180);
-            });
-          }
-          wordObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    wordObserver.observe(words[0]);
-  }
-
-  // --- Pillar stagger reveal ---
-  var pillars = ipSection.querySelectorAll('[data-ip-pillar]');
-  if (pillars.length) {
-    var pillarObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          var allPillars = ipSection.querySelectorAll('[data-ip-pillar]');
-          allPillars.forEach(function(p, i) {
-            setTimeout(function() {
-              p.classList.add('ip-pillar-visible');
-            }, i * 200);
-          });
-          pillarObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    pillarObserver.observe(pillars[0]);
-  }
-
-  // --- Quote block reveal ---
-  var quoteBlocks = ipSection.querySelectorAll('[data-ip-reveal]');
-  if (quoteBlocks.length) {
-    var revealObserver = new IntersectionObserver(function(entries) {
+  // --- Reveal header + pillar stagger via IntersectionObserver ---
+  var reveals = ipSection.querySelectorAll('[data-ip-reveal]');
+  if (reveals.length) {
+    var revealObs = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('ip-reveal-visible');
-          revealObserver.unobserve(entry.target);
+          revealObs.unobserve(entry.target);
         }
       });
     }, { threshold: 0.2 });
-    quoteBlocks.forEach(function(el) {
-      revealObserver.observe(el);
-    });
+    reveals.forEach(function(el) { revealObs.observe(el); });
   }
+
+  var pillars = ipSection.querySelectorAll('[data-ip-pillar]');
+  if (pillars.length) {
+    var pillarObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var all = ipSection.querySelectorAll('[data-ip-pillar]');
+          all.forEach(function(p, i) {
+            setTimeout(function() { p.classList.add('ip-pillar-visible'); }, i * 200);
+          });
+          pillarObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    pillarObs.observe(pillars[0]);
+  }
+
+  // --- Expand/collapse buttons ---
+  var expandBtns = ipSection.querySelectorAll('.ip-expand-btn');
+  expandBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var content = btn.parentElement.querySelector('.ip-expand-content');
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !isOpen);
+      btn.textContent = '';
+      var label = document.createTextNode(isOpen ? 'Läs mer' : 'Stäng');
+      btn.appendChild(label);
+      var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('width', '16');
+      svg.setAttribute('height', '16');
+      svg.setAttribute('viewBox', '0 0 24 24');
+      svg.setAttribute('fill', 'none');
+      svg.setAttribute('stroke', 'currentColor');
+      svg.setAttribute('stroke-width', '2');
+      var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', 'M6 9l6 6 6-6');
+      svg.appendChild(path);
+      btn.appendChild(svg);
+      if (isOpen) {
+        content.classList.remove('ip-expanded');
+      } else {
+        content.classList.add('ip-expanded');
+      }
+    });
+  });
+})();
+
+/* ============================================================
+   PANEL COMPARISON — Tab switching
+   ============================================================ */
+(function() {
+  var section = document.querySelector('.panel-compare');
+  if (!section) return;
+
+  // Reveal header
+  var header = section.querySelector('[data-ip-reveal]');
+  if (header) {
+    var hObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('ip-reveal-visible');
+          hObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    hObs.observe(header);
+  }
+
+  var tabs = section.querySelectorAll('.panel-tab');
+  var details = section.querySelectorAll('[data-panel-detail]');
+  var imgs = section.querySelectorAll('[data-panel-img]');
+
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var key = tab.getAttribute('data-panel');
+      // Update tabs
+      tabs.forEach(function(t) { t.classList.remove('panel-tab-active'); });
+      tab.classList.add('panel-tab-active');
+      // Update details
+      details.forEach(function(d) { d.classList.remove('panel-detail-active'); });
+      var activeDetail = section.querySelector('[data-panel-detail="' + key + '"]');
+      if (activeDetail) activeDetail.classList.add('panel-detail-active');
+      // Update images
+      imgs.forEach(function(img) { img.classList.remove('panel-img-active'); });
+      var activeImg = section.querySelector('[data-panel-img="' + key + '"]');
+      if (activeImg) activeImg.classList.add('panel-img-active');
+    });
+  });
 })();
