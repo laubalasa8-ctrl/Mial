@@ -22715,3 +22715,377 @@ body.allblack-page header {
     font-size: clamp(1.3rem, 4.5vw, 1.8rem) !important;
   }
 }
+
+/* ============================================================
+   INVISIBLE POWER — ESTETIK-MANIFESTO SEKTION
+   ============================================================ */
+
+.ip-section {
+  position: relative;
+  overflow: hidden;
+  padding: 120px 40px 140px;
+  background: #050510;
+  color: #fff;
+  z-index: 1;
+}
+
+/* --- Parallax background layers --- */
+.ip-parallax-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ip-parallax-layer {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+.ip-layer-deep {
+  background: radial-gradient(ellipse 80% 60% at 30% 40%, rgba(25,168,255,0.06) 0%, transparent 70%),
+              radial-gradient(ellipse 60% 40% at 70% 65%, rgba(0,217,255,0.04) 0%, transparent 70%);
+}
+
+.ip-layer-mid {
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(25,168,255,0.03) 0%, transparent 60%);
+}
+
+.ip-layer-front {
+  background: 
+    linear-gradient(180deg, rgba(5,5,16,1) 0%, transparent 15%),
+    linear-gradient(0deg, rgba(5,5,16,1) 0%, transparent 15%);
+}
+
+/* --- Floating particles --- */
+.ip-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ip-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(25,168,255,0.4);
+  border-radius: 50%;
+  animation: ipFloat 12s ease-in-out infinite;
+}
+
+.ip-particle:nth-child(1) { left: 8%; top: 20%; animation-delay: 0s; animation-duration: 14s; }
+.ip-particle:nth-child(2) { left: 22%; top: 60%; animation-delay: -2s; animation-duration: 11s; width: 2px; height: 2px; }
+.ip-particle:nth-child(3) { left: 45%; top: 15%; animation-delay: -4s; animation-duration: 16s; }
+.ip-particle:nth-child(4) { left: 65%; top: 70%; animation-delay: -6s; animation-duration: 13s; width: 4px; height: 4px; background: rgba(0,217,255,0.3); }
+.ip-particle:nth-child(5) { left: 80%; top: 30%; animation-delay: -1s; animation-duration: 15s; width: 2px; height: 2px; }
+.ip-particle:nth-child(6) { left: 35%; top: 80%; animation-delay: -8s; animation-duration: 12s; }
+.ip-particle:nth-child(7) { left: 90%; top: 55%; animation-delay: -3s; animation-duration: 17s; width: 2px; height: 2px; background: rgba(0,217,255,0.25); }
+.ip-particle:nth-child(8) { left: 55%; top: 40%; animation-delay: -5s; animation-duration: 10s; }
+
+@keyframes ipFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  25% { transform: translate(15px, -25px) scale(1.3); opacity: 0.8; }
+  50% { transform: translate(-10px, -50px) scale(0.8); opacity: 0.3; }
+  75% { transform: translate(20px, -20px) scale(1.1); opacity: 0.7; }
+}
+
+/* --- Content wrapper --- */
+.ip-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* --- Manifesto headline --- */
+.ip-manifesto {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.ip-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.ip-eyebrow-line {
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(25,168,255,0.5), transparent);
+}
+
+.ip-eyebrow-text {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: rgba(25,168,255,0.7);
+}
+
+.ip-headline {
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 0.3em;
+}
+
+.ip-word {
+  display: inline-block;
+  color: rgba(255,255,255,0.95);
+  opacity: 0;
+  transform: translateY(40px) rotateX(15deg);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ip-word.ip-word-visible {
+  opacity: 1;
+  transform: translateY(0) rotateX(0);
+}
+
+.ip-word-accent {
+  background: linear-gradient(135deg, #19A8FF 0%, #00D9FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- Pillars --- */
+.ip-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 100px;
+}
+
+.ip-pillar {
+  position: relative;
+  padding: 48px 32px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(25,168,255,0.08);
+  border-radius: 20px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.4s ease,
+              background 0.4s ease,
+              box-shadow 0.4s ease;
+  cursor: default;
+}
+
+.ip-pillar.ip-pillar-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ip-pillar:hover {
+  background: rgba(25,168,255,0.04);
+  border-color: rgba(25,168,255,0.25);
+  box-shadow: 0 0 60px rgba(25,168,255,0.08), inset 0 0 30px rgba(25,168,255,0.02);
+}
+
+.ip-pillar::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #19A8FF, transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease, width 0.4s ease;
+}
+
+.ip-pillar:hover::before {
+  opacity: 1;
+  width: 120px;
+}
+
+.ip-pillar-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 24px;
+  color: #19A8FF;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ip-pillar:hover .ip-pillar-icon {
+  transform: scale(1.1) translateY(-4px);
+}
+
+.ip-pillar-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ip-pillar-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: #fff;
+  letter-spacing: -0.3px;
+}
+
+.ip-pillar-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.55);
+  margin: 0;
+  font-weight: 400;
+}
+
+/* --- Quote block --- */
+.ip-quote-block {
+  position: relative;
+  text-align: center;
+  padding: 60px 40px;
+  background: rgba(255,255,255,0.015);
+  border: 1px solid rgba(25,168,255,0.1);
+  border-radius: 24px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.ip-quote-block.ip-reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ip-quote-glow {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 200px;
+  background: radial-gradient(ellipse, rgba(25,168,255,0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ip-quote {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+}
+
+.ip-quote-mark {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 0.8;
+  background: linear-gradient(135deg, #19A8FF, #00D9FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  flex-shrink: 0;
+}
+
+.ip-quote p {
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 8px 0 0;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: -0.5px;
+}
+
+.ip-quote-author {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.ip-author-line {
+  width: 30px;
+  height: 1px;
+  background: rgba(25,168,255,0.4);
+}
+
+/* === RESPONSIVE === */
+
+@media (max-width: 1024px) {
+  .ip-section {
+    padding: 100px 32px 120px;
+  }
+  .ip-pillars {
+    gap: 28px;
+  }
+  .ip-pillar {
+    padding: 36px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ip-section {
+    padding: 80px 20px 100px;
+  }
+  .ip-headline {
+    font-size: clamp(2rem, 8vw, 3rem);
+    letter-spacing: -1px;
+  }
+  .ip-manifesto {
+    margin-bottom: 64px;
+  }
+  .ip-pillars {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 64px;
+  }
+  .ip-pillar {
+    padding: 32px 24px;
+  }
+  .ip-quote-block {
+    padding: 40px 24px;
+  }
+  .ip-quote p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ip-section {
+    padding: 60px 16px 80px;
+  }
+  .ip-headline {
+    font-size: clamp(1.8rem, 9vw, 2.5rem);
+    gap: 0 0.2em;
+  }
+  .ip-pillar-icon {
+    width: 44px;
+    height: 44px;
+  }
+  .ip-quote-mark {
+    font-size: 3rem;
+  }
+}

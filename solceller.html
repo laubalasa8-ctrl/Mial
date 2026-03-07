@@ -100,10 +100,21 @@
           <li><a href="korrugerad.html" class="mobile-menu-link">Korrugerad plåt</a></li>
         </ul>
       </li>
-      <li><a href="solceller.html" class="mobile-menu-link">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        Solceller
-      </a></li>
+      <li class="mobile-menu-item-dropdown">
+        <button class="mobile-menu-toggle" aria-expanded="false">
+          <span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            Solceller
+          </span>
+          <svg class="mobile-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+        <ul class="mobile-submenu">
+          <li><a href="solceller.html" class="mobile-menu-link">Solceller</a></li>
+          <li><a href="allblack.html" class="mobile-menu-link">All Black Paneler</a></li>
+        </ul>
+      </li>
       <li><a href="fasad.html" class="mobile-menu-link">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
         Fasad
@@ -141,7 +152,6 @@
     <!-- HERO SECTION - THE WOW -->
     <section class="solar-hero">
       <div class="solar-hero-content">
-        <div class="solar-hero-tag">Solceller från takproffs</div>
         <h1 class="solar-hero-title">
           Solen skiner.<br>
           <span class="hero-gradient">Räkningarna krymper.</span>
@@ -249,7 +259,7 @@
 
       <div class="solar-products-grid">
         <!-- Card 1 - All-Black Paneler -->
-        <div class="solar-product-card">
+        <a href="allblack.html" class="solar-product-card" style="text-decoration:none;color:inherit;">
           <img src="money5.jpg" alt="All-Black Premium Solpaneler" class="solar-card-image" loading="lazy">
           <div class="solar-card-overlay"></div>
           <div class="solar-card-content">
@@ -260,7 +270,7 @@
             <p>Eleganta paneler som smälter in med taket. Diskret design, maximal effekt.</p>
             <div class="solar-card-cta">Se paketet →</div>
           </div>
-        </div>
+        </a>
 
         <!-- Card 2 - Batterilagring -->
         <div class="solar-product-card">

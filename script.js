@@ -1711,3 +1711,80 @@ document.addEventListener('DOMContentLoaded', function() {
   }, { threshold: 0.12 });
   corrObs.observe(section);
 })();
+
+/* ============================================================
+   INVISIBLE POWER — Scroll Animations & Parallax
+   ============================================================ */
+(function() {
+  var ipSection = document.querySelector('.ip-section');
+  if (!ipSection) return;
+
+  // --- Parallax on mouse move ---
+  var deep = ipSection.querySelector('.ip-layer-deep');
+  var mid  = ipSection.querySelector('.ip-layer-mid');
+
+  ipSection.addEventListener('mousemove', function(e) {
+    var rect = ipSection.getBoundingClientRect();
+    var x = (e.clientX - rect.left) / rect.width - 0.5;
+    var y = (e.clientY - rect.top) / rect.height - 0.5;
+    if (deep) deep.style.transform = 'translate(' + (x * -20) + 'px, ' + (y * -20) + 'px)';
+    if (mid)  mid.style.transform  = 'translate(' + (x * -10) + 'px, ' + (y * -10) + 'px)';
+  });
+
+  // --- Word-by-word reveal on scroll ---
+  var words = ipSection.querySelectorAll('[data-ip-word]');
+  if (words.length) {
+    var wordObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var parent = entry.target.closest('.ip-manifesto');
+          if (parent) {
+            var allWords = parent.querySelectorAll('[data-ip-word]');
+            allWords.forEach(function(w, i) {
+              setTimeout(function() {
+                w.classList.add('ip-word-visible');
+              }, i * 180);
+            });
+          }
+          wordObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    wordObserver.observe(words[0]);
+  }
+
+  // --- Pillar stagger reveal ---
+  var pillars = ipSection.querySelectorAll('[data-ip-pillar]');
+  if (pillars.length) {
+    var pillarObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var allPillars = ipSection.querySelectorAll('[data-ip-pillar]');
+          allPillars.forEach(function(p, i) {
+            setTimeout(function() {
+              p.classList.add('ip-pillar-visible');
+            }, i * 200);
+          });
+          pillarObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    pillarObserver.observe(pillars[0]);
+  }
+
+  // --- Quote block reveal ---
+  var quoteBlocks = ipSection.querySelectorAll('[data-ip-reveal]');
+  if (quoteBlocks.length) {
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('ip-reveal-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    quoteBlocks.forEach(function(el) {
+      revealObserver.observe(el);
+    });
+  }
+})();
