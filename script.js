@@ -1886,3 +1886,86 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 })();
+
+/* ============================================================
+   BATTERILAGRING — Varför-sektion animations & interaktivitet
+   ============================================================ */
+(function() {
+  // Header reveal
+  var battHeader = document.querySelector('[data-batt-reveal]');
+  if (battHeader) {
+    var headerObs = new IntersectionObserver(function(entries, obs) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('batt-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    headerObs.observe(battHeader);
+  }
+
+  // Card staggered reveal
+  var battCards = document.querySelectorAll('[data-batt-card]');
+  if (battCards.length > 0) {
+    var cardObs = new IntersectionObserver(function(entries, obs) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var cards = document.querySelectorAll('[data-batt-card]');
+          cards.forEach(function(card, i) {
+            setTimeout(function() {
+              card.classList.add('batt-card-visible');
+            }, i * 120);
+          });
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.15 });
+    cardObs.observe(battCards[0]);
+  }
+
+  // Expand/collapse buttons
+  document.querySelectorAll('.batt-expand-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var content = this.nextElementSibling;
+      var isExpanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', String(!isExpanded));
+      content.classList.toggle('batt-expanded');
+    });
+  });
+
+  // ── Dag-till-Natt Toggle ──
+  var flowToggle = document.getElementById('flowToggle');
+  var flowScene = document.getElementById('flowScene');
+  if (flowToggle && flowScene) {
+    flowToggle.addEventListener('click', function() {
+      var isNight = flowScene.getAttribute('data-mode') === 'night';
+      var newMode = isNight ? 'day' : 'night';
+      flowScene.setAttribute('data-mode', newMode);
+      flowToggle.setAttribute('data-mode', newMode);
+
+      // Swap active label
+      flowToggle.querySelector('.batt-toggle-day').classList.toggle('active', newMode === 'day');
+      flowToggle.querySelector('.batt-toggle-night').classList.toggle('active', newMode === 'night');
+
+      // Update flow labels text
+      document.querySelectorAll('.batt-flow-label [data-day]').forEach(function(el) {
+        el.textContent = el.getAttribute('data-' + newMode);
+      });
+    });
+  }
+
+  // ── Flow + Compare section scroll reveals ──
+  var flowReveals = document.querySelectorAll('[data-flow-reveal]');
+  if (flowReveals.length) {
+    var flowObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('batt-visible');
+          flowObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    flowReveals.forEach(function(el) { flowObs.observe(el); });
+  }
+})();
