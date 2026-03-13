@@ -757,6 +757,22 @@ section.stats-section { border-bottom: none; }
   background-repeat: no-repeat;
 }
 
+.fasad-panel-page .topbar {
+  background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('fas1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.fasad-panel-page header {
+  background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('fas1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
 .hero-papptak { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('papp1.png'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .hero-bandtackning { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('joy1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .hero-takpanneplat { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('takpanneplat3.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
@@ -764,6 +780,7 @@ section.stats-section { border-bottom: none; }
 .hero-takkupor { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('takkupa.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .hero-skorsten { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat8.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .hero-batterilagring { background-image: linear-gradient(135deg, rgba(10,30,46,0.7), rgba(10,30,46,0.5)), url('batteri1.png'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.hero-fasad-panel { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('fas1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: 0; margin-bottom: 0; padding: 0 1.5rem; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .hero-takbyte > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
 .hero-fasad > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
 .hero-platslageri > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
@@ -774,6 +791,88 @@ section.stats-section { border-bottom: none; }
 .hero-takkupor > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
 .hero-skorsten > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
 .hero-batterilagring > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
+.hero-fasad-panel > div { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; max-width: var(--max-width); margin: 0 auto; }
+
+/* ===== FASADRENOVERING PANEL — Varför välja oss ===== */
+.fp-why { background: #fff; padding: 6rem 1.5rem; }
+.fp-why-inner { max-width: 1100px; margin: 0 auto; }
+.fp-why-header { text-align: center; margin-bottom: 3.5rem; }
+.fp-badge {
+  display: inline-block; font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: #2a3648; background: rgba(42,54,72,0.07);
+  padding: 0.35rem 1rem; border-radius: 100px; margin-bottom: 1rem;
+}
+.fp-why-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #1a1a2e; line-height: 1.2; margin-bottom: 0.75rem; }
+.fp-accent { color: #2a3648; position: relative; }
+.fp-accent::after { content: ''; position: absolute; left: 0; bottom: -2px; width: 100%; height: 3px; background: linear-gradient(90deg, #2a3648, #4a6a8a); border-radius: 2px; }
+.fp-why-sub { font-size: 1.05rem; color: #5a5a6a; max-width: 560px; margin: 0 auto; line-height: 1.65; }
+
+.fp-why-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+
+/* Card container — perspective for 3D flip */
+.fp-why-card {
+  position: relative; height: 280px; perspective: 800px; cursor: pointer;
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fp-why-card.fp-card-visible { opacity: 1; transform: translateY(0); }
+
+.fp-why-card-front, .fp-why-card-back {
+  position: absolute; inset: 0; border-radius: 16px; padding: 2rem 1.5rem;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex; flex-direction: column;
+}
+
+.fp-why-card-front {
+  background: #fafafa; border: 1px solid rgba(42,54,72,0.08);
+  align-items: flex-start; justify-content: space-between;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+}
+.fp-why-card-front:hover { box-shadow: 0 8px 32px rgba(42,54,72,0.1); }
+.fp-why-card-back {
+  background: #2a3648; color: #fff;
+  align-items: center; justify-content: center; text-align: center;
+  transform: rotateY(180deg);
+  box-shadow: 0 8px 32px rgba(42,54,72,0.2);
+}
+.fp-why-card-back p { font-size: 0.95rem; line-height: 1.7; }
+.fp-why-card-back strong { color: #d0dce8; }
+
+.fp-why-card.fp-flipped .fp-why-card-front { transform: rotateY(-180deg); }
+.fp-why-card.fp-flipped .fp-why-card-back { transform: rotateY(0deg); }
+
+.fp-card-number {
+  font-size: 2.8rem; font-weight: 800; color: rgba(42,54,72,0.06);
+  line-height: 1; letter-spacing: -0.04em;
+}
+.fp-card-icon { color: #2a3648; margin-bottom: 0.25rem; }
+.fp-card-icon svg { width: 36px; height: 36px; }
+.fp-card-title { font-size: 1.1rem; font-weight: 600; color: #1a1a2e; }
+.fp-card-hint { font-size: 0.78rem; color: #8a8a9a; margin-top: auto; }
+
+/* Reveal animation */
+[data-fp-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+[data-fp-reveal].fp-visible { opacity: 1; transform: translateY(0); }
+
+.fp-why-cta { text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(42,54,72,0.08); }
+.fp-why-cta-text { font-size: 1.1rem; color: #5a5a6a; margin-bottom: 1.25rem; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .fp-why-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+  .fp-why-card { height: 250px; }
+  .fp-why { padding: 4rem 1.2rem; }
+}
+@media (max-width: 520px) {
+  .fp-why-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .fp-why-card { height: 230px; }
+  .fp-card-number { font-size: 2.2rem; }
+}
+
 .hero-batterilagring .frosted-box h1 span {
   background: linear-gradient(135deg, #00D9FF 0%, #19A8FF 50%, #00D9FF 100%);
   background-size: 200% 200%;
@@ -20848,7 +20947,10 @@ html { overflow-x: hidden; }
   .bandtackning-page header,
   .takpanneplat-page header,
   .korrugerad-page header,
-  .skorsten-page header {
+  .skorsten-page header,
+  .allblack-page header,
+  .batterilagring-page header,
+  .fasad-panel-page header {
     background-attachment: scroll !important;
   }
 
@@ -20867,7 +20969,10 @@ html { overflow-x: hidden; }
   .hero-korrugerad,
   .hero-takpannor,
   .hero-takkupor,
-  .hero-skorsten {
+  .hero-skorsten,
+  .allblack-hero,
+  .hero-batterilagring,
+  .hero-fasad-panel {
     background-attachment: scroll !important;
   }
 
@@ -20902,7 +21007,10 @@ html { overflow-x: hidden; }
   .takpanneplat-page .topbar,
   .korrugerad-page .topbar,
   .takkupor-page .topbar,
-  .skorsten-page .topbar {
+  .skorsten-page .topbar,
+  .allblack-page .topbar,
+  .batterilagring-page .topbar,
+  .fasad-panel-page .topbar {
     background-attachment: scroll !important;
   }
 
@@ -20921,7 +21029,10 @@ html { overflow-x: hidden; }
   .hero-takpannor,
   .hero-takkupor,
   .hero-skorsten,
-  .hero-fasad {
+  .hero-fasad,
+  .allblack-hero,
+  .hero-batterilagring,
+  .hero-fasad-panel {
     height: auto;
     min-height: 100svh;
     max-height: 100svh;
@@ -20938,7 +21049,9 @@ html { overflow-x: hidden; }
   .takkupor-page .topbar,
   .skorsten-page .topbar,
   .fasad-page .topbar,
-  .allblack-page .topbar {
+  .allblack-page .topbar,
+  .batterilagring-page .topbar,
+  .fasad-panel-page .topbar {
     background-image: none !important;
     background: transparent !important;
   }
@@ -20951,7 +21064,9 @@ html { overflow-x: hidden; }
   .takkupor-page header,
   .skorsten-page header,
   .fasad-page header,
-  .allblack-page header {
+  .allblack-page header,
+  .batterilagring-page header,
+  .fasad-panel-page header {
     background-image: none !important;
     background: transparent !important;
   }
@@ -20966,7 +21081,9 @@ html { overflow-x: hidden; }
   .takkupor-page header .nav,
   .skorsten-page header .nav,
   .fasad-page header .nav,
-  .allblack-page header .nav {
+  .allblack-page header .nav,
+  .batterilagring-page header .nav,
+  .fasad-panel-page header .nav {
     padding: 1.1rem 1.5rem;
   }
 
@@ -20979,7 +21096,10 @@ html { overflow-x: hidden; }
   .hero-takpannor,
   .hero-takkupor,
   .hero-skorsten,
-  .hero-fasad {
+  .hero-fasad,
+  .allblack-hero,
+  .hero-batterilagring,
+  .hero-fasad-panel {
     height: 100svh;
     min-height: 100svh;
     max-height: 100svh;
@@ -20999,7 +21119,10 @@ html { overflow-x: hidden; }
   .hero-takpannor > div,
   .hero-takkupor > div,
   .hero-skorsten > div,
-  .hero-fasad > div {
+  .hero-fasad > div,
+  .allblack-hero > div,
+  .hero-batterilagring > div,
+  .hero-fasad-panel > div {
     min-height: auto;
     padding-top: 0;
     padding-bottom: 2rem;
@@ -22469,7 +22592,8 @@ html { overflow-x: hidden; }
   .hero-takpanneplat,
   .hero-korrugerad,
   .hero-takkupor,
-  .hero-skorsten {
+  .hero-skorsten,
+  .hero-fasad-panel {
     min-height: 100svh;
     height: 100svh;
     max-height: 100svh;
@@ -22487,7 +22611,8 @@ html { overflow-x: hidden; }
   .hero-takpanneplat > div,
   .hero-korrugerad > div,
   .hero-takkupor > div,
-  .hero-skorsten > div {
+  .hero-skorsten > div,
+  .hero-fasad-panel > div {
     min-height: auto;
   }
 
@@ -22632,7 +22757,7 @@ body.allblack-page header {
   margin: 0 auto;
 }
 .allblack-hero .frosted-box {
-  margin-top: -24rem;
+  margin-top: 0;
 }
 .allblack-hero .frosted-box h1 span {
   background: linear-gradient(135deg, #19A8FF 0%, #00D9FF 50%, #19A8FF 100%);
@@ -22649,33 +22774,17 @@ body.allblack-page header {
     height: 100vh;
     padding: 0 1.2rem;
   }
-  .allblack-hero .frosted-box {
-    margin-top: -1rem;
-  }
 }
 
 /* --- Responsive: 768px --- */
 @media (max-width: 768px) {
-  .allblack-hero {
-    height: 100svh;
-    background-attachment: scroll !important;
-    margin-top: -120px;
-    padding-top: 0;
-  }
-  .allblack-hero > div {
-    min-height: 100svh;
-  }
   .allblack-hero .frosted-box {
-    margin-top: 1rem;
+    margin-top: 0;
   }
 }
 
 /* --- Responsive: 600px --- */
 @media (max-width: 600px) {
-  .allblack-hero {
-    margin-top: -120px !important;
-    padding: 0 1rem;
-  }
   .allblack-hero .frosted-box {
     margin-top: 0;
     padding: 1.6rem 1.2rem;
@@ -24064,6 +24173,54 @@ body.allblack-page header {
   .batt-flow-toggle-label { padding: 6px 14px; font-size: 0.82rem; }
   .batt-flow-info-card { padding: 18px; }
   .batt-celestial { width: 65px; height: 65px; }
+}
+
+/* ───── Kunskapsbank (replaces energiflöde) ───── */
+.batt-knowledge {
+  position: relative; width: 100vw; margin-left: calc(-50vw + 50%);
+  background: #fff; padding: 5rem 2rem;
+}
+.batt-knowledge-inner { max-width: 780px; margin: 0 auto; }
+.batt-knowledge-header { text-align: center; margin-bottom: 3rem; }
+.batt-knowledge-title { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; color: #0a1e2e; margin-bottom: 0.6rem; }
+.batt-knowledge-sub { font-size: 1rem; color: #6a6a7a; max-width: 500px; margin: 0 auto; }
+.batt-knowledge-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.batt-knowledge-item {
+  border: 1px solid rgba(25,168,255,0.1); border-radius: 14px;
+  background: #fafbfc; overflow: hidden;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.batt-knowledge-item[open] {
+  border-color: rgba(25,168,255,0.25);
+  box-shadow: 0 4px 20px rgba(25,168,255,0.08);
+}
+.batt-knowledge-q {
+  display: flex; align-items: center; gap: 0.85rem;
+  padding: 1.2rem 1.5rem; cursor: pointer; list-style: none;
+  font-weight: 600; font-size: 1rem; color: #1a1a2e;
+}
+.batt-knowledge-q::-webkit-details-marker { display: none; }
+.batt-knowledge-q::marker { content: ''; }
+.batt-knowledge-icon { flex-shrink: 0; color: #19A8FF; }
+.batt-knowledge-q > span { flex: 1; }
+.batt-knowledge-chevron {
+  flex-shrink: 0; transition: transform 0.3s ease; color: #8a8a9a;
+}
+.batt-knowledge-item[open] .batt-knowledge-chevron { transform: rotate(180deg); }
+
+.batt-knowledge-a {
+  padding: 0 1.5rem 1.3rem 4.4rem;
+  font-size: 0.92rem; line-height: 1.7; color: #4a4a5a;
+}
+.batt-knowledge-a strong { color: #19A8FF; font-weight: 600; }
+.batt-knowledge-cta { text-align: center; margin-top: 2.5rem; }
+.batt-knowledge-cta p { font-size: 1rem; color: #6a6a7a; margin-bottom: 1rem; }
+
+@media (max-width: 600px) {
+  .batt-knowledge { padding: 3.5rem 1.2rem; }
+  .batt-knowledge-q { padding: 1rem 1.1rem; font-size: 0.92rem; gap: 0.65rem; }
+  .batt-knowledge-a { padding: 0 1.1rem 1rem 3.2rem; font-size: 0.88rem; }
 }
 
 /* ───── Teknikjämförelse ───── */

@@ -117,10 +117,21 @@
           <li><a href="batterilagring.html" class="mobile-menu-link">Batterilagring</a></li>
         </ul>
       </li>
-      <li><a href="fasad.html" class="mobile-menu-link">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-        Fasad
-      </a></li>
+      <li class="mobile-menu-item-dropdown">
+        <button class="mobile-menu-toggle" aria-expanded="false">
+          <span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            Fasad
+          </span>
+          <svg class="mobile-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+        <ul class="mobile-submenu">
+          <li><a href="fasad.html" class="mobile-menu-link">Fasad</a></li>
+          <li><a href="fasadrenovering-panel.html" class="mobile-menu-link">Fasadrenovering panel</a></li>
+        </ul>
+      </li>
       <li class="mobile-menu-item-dropdown">
         <button class="mobile-menu-toggle" aria-expanded="false">
           <span>
@@ -239,7 +250,7 @@
           <div class="services-header-content">
             <span class="services-eyebrow">VÅRA TJÄNSTER</span>
             <h2 class="section-title services-title">Fasader som <span class="highlight">tål tiden</span></h2>
-            <p class="section-sub services-sub">Panel eller puts – det spelar ingen roll. Vi vet vad vi gör. Vi gör det rätt. Och vi är här långt efter vi är klara.</p>
+            <p class="section-sub services-sub">Vi vet vad vi gör. Vi gör det rätt. Och vi är här långt efter vi är klara.</p>
           </div>
         </div>
         
@@ -255,22 +266,7 @@
                 <p class="service-intro">Vi renoverar och upprustrar panelfasader med högsta precision. Från rengöring och borttagning av skador till ny målning eller byte av panel – vi gör jobbet rätt.</p>
               </div>
               <div class="service-divider"></div>
-              <a href="index.html#contact" class="btn-service btn-service-primary">Boka hembesök</a>
-            </div>
-          </div>
-
-          <div class="service-card">
-            <div class="service-image">
-              <img src="fasad7.jpg" alt="Fasadrenovering puts - före och efter">
-              <div class="service-label">Puts</div>
-            </div>
-            <div class="service-content">
-              <div class="service-header-content">
-                <h3>Fasadrenovering puts</h3>
-                <p class="service-intro">Putsfasader kräver expertis och skicklighet. Vi spolar, reparerar sprickor, forsar och målar – allt för att ge din fasad ett nytt liv med långsiktigt skydd.</p>
-              </div>
-              <div class="service-divider"></div>
-              <a href="index.html#contact" class="btn-service btn-service-secondary">Boka hembesök</a>
+              <a href="fasadrenovering-panel.html" class="btn-service btn-service-primary">Läs mer om panelfasader →</a>
             </div>
           </div>
         </div>
@@ -290,8 +286,8 @@
         <div class="warning-signs-grid">
           <div class="warning-sign-card">
             <div class="warning-number">1</div>
-            <h3>Sprickor i putsen eller träet</h3>
-            <p>En spricka kan verka obetydlig, men den utgör en direkt inkörsport för fukt. När vatten tränger in i konstruktionen, fryser och expanderar, accelererar skadeförloppet snabbt. Vi rekommenderar därför regelbundna inspektioner för att identifiera och åtgärda brister i ett tidigt skede – en proaktiv insats som säkrar fastighetens värde och förebygger omfattande renoveringsbehov.</p>
+            <h3>Sprickor eller sprucket trä i panelen</h3>
+            <p>Sprickor i träpanelen är en direkt inkörsport för fukt. När vatten tränger in i virket, fryser och expanderar, accelererar skadeförloppet snabbt och kan sprida sig till underliggande konstruktion. Regelbundna inspektioner fångar bristerna i tid – innan en enkel lagning blir ett omfattande renoveringsprojekt.</p>
             <div class="warning-severity">
               <span class="severity-level high">Högt</span>
             </div>
@@ -299,8 +295,8 @@
 
           <div class="warning-sign-card">
             <div class="warning-number">2</div>
-            <h3>Fukt, missfärgning eller mögelartad lukt</h3>
-            <p>Fuktfläckar, missfärgningar eller en unken lukt är tydliga varningssignaler på pågående mikrobiell påväxt. Fukt är en destruktiv kraft som aldrig stannar av sig självt; den bryter systematiskt ner materialet. Genom en teknisk analys identifierar vi källan i tid och stoppar skadeutvecklingen innan den hotar byggnadens stomme och inomhusmiljö.</p>
+            <h3>Fukt, missfärgning eller mögellukt</h3>
+            <p>Mörka fläckar, missfärgade partier eller en unken lukt vid fasaden tyder på att fukt har trängt in bakom panelen. Fukt bryter systematiskt ner virket och kan orsaka mögel i konstruktionen. En teknisk analys avslöjar källan och stoppar skadeutvecklingen innan den når stommen.</p>
             <div class="warning-severity">
               <span class="severity-level critical">Kritisk</span>
             </div>
@@ -308,8 +304,8 @@
 
           <div class="warning-sign-card">
             <div class="warning-number">3</div>
-            <h3>Lös eller böjd panel</h3>
-            <p>Böjd eller lös panel exponerar underliggande konstruktion för väder och vind. Det som börjar som ett ytligt fel blir snabbt en kostsam skada.</p>
+            <h3>Lös, böjd eller buktande panel</h3>
+            <p>När panelbrädor lossnar, buktar eller böjer sig exponeras underliggande reglar och isolering för väder och vind. Det som börjar som en lös bräda kan snabbt leda till fuktskador i hela väggkonstruktionen.</p>
             <div class="warning-severity">
               <span class="severity-level high">Högt</span>
             </div>
@@ -317,8 +313,8 @@
 
           <div class="warning-sign-card">
             <div class="warning-number">4</div>
-            <h3>Flagnande eller spruckna ytlager</h3>
-            <p>När färgskiktet eller förseglingen brister lämnas materialet oskyddat mot väder, vind och UV-strålning. Detta påbörjar en direkt nedbrytningsprocess som förkortar fasadens livslängd. Förnya skyddet i tid för att undvika onödiga reparationer.</p>
+            <h3>Flagnande färg eller blottlagt trä</h3>
+            <p>När färgskiktet på panelen flagnar eller släpper exponeras det obehandlade träet direkt för regn, sol och frost. Utan skyddande yta börjar virket gråna, spricka och brytas ner. Byt ut skadade brädor och måla om i tid för att förlänga fasadens livslängd avsevärt.</p>
             <div class="warning-severity">
               <span class="severity-level medium">Medel</span>
             </div>
@@ -326,8 +322,8 @@
 
           <div class="warning-sign-card">
             <div class="warning-number">5</div>
-            <h3>Rostfläckar eller metalldetaljer</h3>
-            <p>Rostiga beslag och korroderade detaljer är tydliga tecken på att fukten tagit sig in i konstruktionen. När metallen korroderar påverkas även kringliggande material negativt. Säkra fasadens integritet genom att åtgärda bristerna innan skadorna sprider sig.</p>
+            <h3>Rostiga spikar eller beslag</h3>
+            <p>Rostiga spikhuvuden, beslag eller ventilationsgaller är tecken på att fukten har påverkat metalldelarna i fasaden. Korrosionen sprider sig till kringliggande trä och orsakar missfärgning och materialförlust. Byt ut rostiga detaljer och säkra fasadens integritet innan skadorna sprider sig.</p>
             <div class="warning-severity">
               <span class="severity-level high">Högt</span>
             </div>
