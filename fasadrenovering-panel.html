@@ -36,6 +36,32 @@
       }, { threshold: 0.1 });
       var grid = document.querySelector('.fp-why-grid');
       if (grid) cardObs.observe(grid);
+
+      /* ── Materialkollen — tab switching ── */
+      var mkTabs = document.querySelectorAll('.mk-tab');
+      var mkDetails = document.querySelectorAll('[data-mk-detail]');
+      var mkImgs = document.querySelectorAll('[data-mk-img]');
+      mkTabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var key = tab.getAttribute('data-mk');
+          mkTabs.forEach(function(t) { t.classList.remove('mk-tab-active'); });
+          tab.classList.add('mk-tab-active');
+          mkDetails.forEach(function(d) { d.classList.remove('mk-detail-active'); d.style.display = 'none'; });
+          mkImgs.forEach(function(img) { img.classList.remove('mk-img-active'); });
+          var activeDetail = document.querySelector('[data-mk-detail="' + key + '"]');
+          var activeImg = document.querySelector('[data-mk-img="' + key + '"]');
+          if (activeDetail) { activeDetail.style.display = 'block'; activeDetail.classList.add('mk-detail-active'); }
+          if (activeImg) { activeImg.classList.add('mk-img-active'); }
+        });
+      });
+
+      /* ── Materialkollen scroll-reveal ── */
+      var mkObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('mk-visible'); mkObs.unobserve(e.target); }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('[data-mk-reveal]').forEach(function(el) { mkObs.observe(el); });
     });
   </script>
 </head>
@@ -313,6 +339,139 @@
         <div class="fp-why-cta" data-fp-reveal>
           <p class="fp-why-cta-text">Redo att ge din fasad den omvårdnad den förtjänar?</p>
           <a href="index.html#contact" class="btn-primary">Kontakta oss idag</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MATERIALKOLLEN — Interaktiv paneljämförelse
+         ============================================================ -->
+    <section id="materialkollen" class="mk-section">
+      <div class="mk-inner">
+        <div class="mk-header" data-mk-reveal>
+          <span class="mk-badge">Materialkollen</span>
+          <h2 class="mk-title">Rätt panel för <span class="mk-accent">din fasad</span></h2>
+          <p class="mk-sub">Vi jobbar med tre beprövade material — alla med sina styrkor. Välj det som passar din stil, plånbok och ambition.</p>
+        </div>
+
+        <div class="mk-tabs">
+          <button class="mk-tab mk-tab-active" data-mk="gran">Gran</button>
+          <button class="mk-tab" data-mk="cedar">Cederträ</button>
+          <button class="mk-tab" data-mk="komposit">Komposit</button>
+        </div>
+
+        <div class="mk-grid">
+          <!-- Specs column -->
+          <div class="mk-specs">
+            <!-- Gran -->
+            <div class="mk-detail mk-detail-active" data-mk-detail="gran">
+              <div class="mk-detail-badge">Klassisk</div>
+              <h3 class="mk-detail-name">Granpanel</h3>
+              <p class="mk-detail-model">Traditionellt & beprövat</p>
+              <ul class="mk-spec-list">
+                <li>
+                  <span class="mk-spec-label">Livslängd</span>
+                  <span class="mk-spec-value">20–30 år</span>
+                </li>
+                <li>
+                  <span class="mk-spec-label">Underhåll</span>
+                  <span class="mk-spec-value">Ommålning var 8–12 år</span>
+                </li>
+                <li>
+                  <span class="mk-spec-label">Väderbeständighet</span>
+                  <span class="mk-spec-value">God</span>
+                </li>
+                <li>
+                  <span class="mk-spec-label">Estetik</span>
+                  <span class="mk-spec-value">Klassisk, naturlig</span>
+                </li>
+                <li>
+                  <span class="mk-spec-label">Hållbarhet</span>
+                  <span class="mk-spec-value">Bra med rätt behandling</span>
+                </li>
+                <li>
+                  <span class="mk-spec-label">Prisläge</span>
+                  <span class="mk-spec-value">$$</span>
+                </li>
+              </ul>
+              <p class="mk-verdict"><strong>Bäst för:</strong> Dig som vill ha en tidlös fasad med naturkänsla och hålla nere investeringen.</p>
+            </div>
+
+            <!-- Cederträ -->
+            <div class="mk-detail" data-mk-detail="cedar">
+              <div class="mk-detail-badge mk-badge-cedar">Premium</div>
+              <h3 class="mk-detail-name">Cederträ</h3>
+              <p class="mk-detail-model">Naturligt motståndskraftigt</p>
+              <ul class="mk-spec-list">
+                <li>
+                  <span class="mk-spec-label">Livslängd</span>
+                  <span class="mk-spec-value">30–40+ år</span>
+                </li>
+                <li>
+                  <span class="mk-spec-label">Underhåll</span>
+                  <span class="mk-spec-value">Minimalt</span>
+                </li>
+                <li>
+                  <span class="mk-spec-label">Väderbeständighet</span>
+                  <span class="mk-spec-value">Mycket god</span>
+                </li>
+                <li>
+                  <span class="mk-spec-label">Estetik</span>
+                  <span class="mk-spec-value">Exklusiv, varm ton</span>
+                </li>
+                <li>
+                  <span class="mk-spec-label">Hållbarhet</span>
+                  <span class="mk-spec-value">Naturligt rötbeständig</span>
+                </li>
+                <li>
+                  <span class="mk-spec-label">Prisläge</span>
+                  <span class="mk-spec-value">$$$</span>
+                </li>
+              </ul>
+              <p class="mk-verdict"><strong>Bäst för:</strong> Dig som vill ha en premium-fasad som åldras vackert utan att kräva ständigt underhåll.</p>
+            </div>
+
+            <!-- Komposit -->
+            <div class="mk-detail" data-mk-detail="komposit">
+              <div class="mk-detail-badge mk-badge-komposit">Modern</div>
+              <h3 class="mk-detail-name">Kompositpanel</h3>
+              <p class="mk-detail-model">Underhållsfritt & formstabilt</p>
+              <ul class="mk-spec-list">
+                <li>
+                  <span class="mk-spec-label">Livslängd</span>
+                  <span class="mk-spec-value">30–50+ år</span>
+                </li>
+                <li>
+                  <span class="mk-spec-label">Underhåll</span>
+                  <span class="mk-spec-value">Nästan inget</span>
+                </li>
+                <li>
+                  <span class="mk-spec-label">Väderbeständighet</span>
+                  <span class="mk-spec-value">Utmärkt</span>
+                </li>
+                <li>
+                  <span class="mk-spec-label">Estetik</span>
+                  <span class="mk-spec-value">Modern, enhetlig</span>
+                </li>
+                <li>
+                  <span class="mk-spec-label">Hållbarhet</span>
+                  <span class="mk-spec-value">Tål allt, sväller ej</span>
+                </li>
+                <li>
+                  <span class="mk-spec-label">Prisläge</span>
+                  <span class="mk-spec-value">$$–$$$</span>
+                </li>
+              </ul>
+              <p class="mk-verdict"><strong>Bäst för:</strong> Dig som aldrig vill tänka på underhåll igen — en investering som betalar sig själv.</p>
+            </div>
+          </div>
+
+          <!-- Image column -->
+          <div class="mk-image-wrap">
+            <img src="fas2g.jpg" alt="Granpanel fasadbeklädnad" class="mk-img mk-img-active" data-mk-img="gran">
+            <img src="fas3c.jpg" alt="Cederträ fasadbeklädnad" class="mk-img" data-mk-img="cedar">
+            <img src="fas4k.jpg" alt="Kompositpanel fasadbeklädnad" class="mk-img" data-mk-img="komposit">
+          </div>
         </div>
       </div>
     </section>
