@@ -574,8 +574,8 @@ header .nav-links { transition: opacity 0.3s ease; }
 .nav { max-width: var(--max-width); margin: 0 auto; padding: 0.5rem 1.5rem; display: grid; grid-template-columns: 1fr 2fr; align-items: center; gap: 0.8rem; position: relative; z-index: 1; }
 .nav-left { display: flex; align-items: center; gap: 0; margin-left: 0.5rem; }
 .nav-title { font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; font-size: 1rem; color: #19A8FF; margin: 0; align-self: center; margin-bottom: -0.6rem; margin-left: -0.075rem; }
-.nav-left a { display: flex; align-items: center; height: 70px; overflow: visible; }
-.logo-img { height: 200px; width: auto; margin: -70px -10px -70px 0; object-fit: contain; display: block; max-width: 160px; position: relative; z-index: 60; }
+.nav-left a { display: flex; align-items: center; height: 50px; overflow: hidden; }
+.logo-img { height: 200px; width: auto; margin: -80px -10px -80px 0; object-fit: contain; display: block; max-width: 140px; position: relative; z-index: 60; pointer-events: none; }
 .nav-links { display: none; gap: 1.2rem; }
 .nav-links a { position: relative; padding-bottom: 0.2rem; color: rgba(255,255,255,0.95); text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
 .nav-links a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: #FFF; transition: width 0.18s ease; }
@@ -675,11 +675,15 @@ section.stats-section { border-bottom: none; }
   margin-right: calc(-50vw + 50%);
   margin-top: 0;
   margin-bottom: 0;
-  padding: 0;
-  height: 100vh;
+  padding: 0 1.5rem 5rem;
+  min-height: 100vh;
   display: flex;
-  align-items: stretch;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+}
+.hero-index .frosted-box {
+  margin-top: 0;
 }
 
 /* Split layout container */
@@ -796,6 +800,40 @@ section.stats-section { border-bottom: none; }
 
 @keyframes heroTextReveal {
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== HERO SCROLL HINT ===== */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  z-index: 5;
+  animation: heroScrollBounce 2s ease-in-out infinite 1.5s;
+  opacity: 0;
+  animation-fill-mode: both;
+}
+.hero-scroll-hint span {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.6);
+  font-weight: 600;
+}
+.hero-scroll-hint svg {
+  color: rgba(255,255,255,0.5);
+}
+@keyframes heroScrollBounce {
+  0% { opacity: 0.7; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 1; transform: translateX(-50%) translateY(8px); }
+  100% { opacity: 0.7; transform: translateX(-50%) translateY(0); }
+}
+@media (max-width: 640px) {
+  .hero-scroll-hint { bottom: 1.2rem; }
 }
 
 /* Hero-index mobile responsiveness */
@@ -5059,7 +5097,7 @@ textarea { resize: vertical; min-height: 120px; }
 .process-badge { display: none; }
 .process-header { text-align: center; margin-bottom: 6rem; }
 .process-eyebrow { display: block; font-size: 0.75rem; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 1.2rem; opacity: 0; animation: fadeInDown 0.6s ease-out 0.1s forwards; }
-.process-header .section-title { font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 1.2rem; background: linear-gradient(135deg, var(--text) 0%, var(--text) 60%, var(--blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; opacity: 0; animation: fadeInDown 0.7s ease-out 0.2s forwards; }
+.process-header .section-title { font-size: 1.7rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 1.2rem; background: linear-gradient(135deg, var(--text) 0%, var(--text) 60%, var(--blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; opacity: 0; animation: fadeInDown 0.7s ease-out 0.2s forwards; }
 .process-header .section-sub { font-size: 1rem; color: var(--text-soft); max-width: 640px; margin: 0 auto; line-height: 1.85; font-weight: 500; letter-spacing: -0.3px; opacity: 0; animation: fadeInUp 0.7s ease-out 0.3s forwards; }
 /* ===== PROCESS SECTION - FEROTECT TIMELINE ===== */
 .process-section { position: relative; margin-top: 8rem; }
@@ -5893,7 +5931,7 @@ textarea { resize: vertical; min-height: 120px; }
 .footer-block h3, .footer-block h4 { color: #fff; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.5px; }
 .footer-block h3 { font-size: 1.6rem; }
 .footer-block h4 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 750; }
-.footer-logo-img { height: 30px; width: auto; margin: -6px 0 -3px -3px; display: block; }
+.footer-logo-img { height: 30px; width: auto; margin: -26px 0 -3px -3px; display: block; }
 .footer-tagline { color: rgba(255,255,255,0.75); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; }
 .footer-social { display: flex; gap: 1.2rem; }
 .social-link { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, var(--blue), #0088CC); display: flex; align-items: center; justify-content: center; transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); box-shadow: 0 6px 16px rgba(25,168,255,0.25); }
@@ -9055,7 +9093,7 @@ body:has(.solar-hero) header { background-image: linear-gradient(135deg, rgba(10
 }
 
 .services-title {
-  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 900;
   letter-spacing: -1px;
   background: linear-gradient(135deg, var(--text) 0%, var(--blue) 100%);
@@ -9577,7 +9615,7 @@ body:has(.solar-hero) header { background-image: linear-gradient(135deg, rgba(10
 /* ==================== TRE SAKER (FASAD EXPERTISE) ==================== */
 .tre-saker {
   background: #fff;
-  padding: 14rem 2rem 7rem;
+  padding: 18rem 2rem 7rem;
   position: relative;
 }
 .tre-saker-inner {
