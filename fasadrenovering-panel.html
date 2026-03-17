@@ -62,6 +62,35 @@
         });
       }, { threshold: 0.15 });
       document.querySelectorAll('[data-mk-reveal]').forEach(function(el) { mkObs.observe(el); });
+
+      /* ── FAQ accordion toggle ── */
+      document.querySelectorAll('[data-faq-toggle]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var item = btn.closest('.fp-faq-item');
+          var wasOpen = item.classList.contains('fp-faq-open');
+          // Close all
+          document.querySelectorAll('.fp-faq-item.fp-faq-open').forEach(function(el) {
+            el.classList.remove('fp-faq-open');
+          });
+          // Toggle current
+          if (!wasOpen) item.classList.add('fp-faq-open');
+        });
+      });
+
+      /* ── FAQ items stagger scroll-reveal ── */
+      var faqObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            var items = e.target.querySelectorAll('.fp-faq-item');
+            items.forEach(function(item, i) {
+              setTimeout(function() { item.classList.add('fp-visible'); }, i * 100);
+            });
+            faqObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      var faqList = document.querySelector('.fp-faq-list');
+      if (faqList) faqObs.observe(faqList);
     });
   </script>
 </head>
@@ -123,9 +152,6 @@
 
   <div id="mobile-menu">
     <div class="mobile-menu-header">
-      <div class="mobile-menu-brand">
-        <img src="Ferotect (1).png" alt="Ferotect" class="mobile-menu-logo">
-      </div>
       <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Stäng meny">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M18 6L6 18M6 6l12 12"/>
@@ -138,15 +164,17 @@
         Hem
       </a></li>
       <li class="mobile-menu-item-dropdown">
-        <button class="mobile-menu-toggle" aria-expanded="false">
-          <span>
+        <div class="mobile-menu-toggle">
+          <a href="takbyte.html" class="mobile-menu-link">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
             Takbyte
-          </span>
-          <svg class="mobile-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M6 9l6 6 6-6"/>
-          </svg>
-        </button>
+          </a>
+          <button class="mobile-submenu-btn" aria-expanded="false">
+            <svg class="mobile-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+        </div>
         <ul class="mobile-submenu">
           <li><a href="plattaket.html" class="mobile-menu-link">Plåttak</a></li>
           <li><a href="takpannor.html" class="mobile-menu-link">Takpannor</a></li>
@@ -157,15 +185,17 @@
         </ul>
       </li>
       <li class="mobile-menu-item-dropdown">
-        <button class="mobile-menu-toggle" aria-expanded="false">
-          <span>
+        <div class="mobile-menu-toggle">
+          <a href="solceller.html" class="mobile-menu-link">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
             Solceller
-          </span>
-          <svg class="mobile-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M6 9l6 6 6-6"/>
-          </svg>
-        </button>
+          </a>
+          <button class="mobile-submenu-btn" aria-expanded="false">
+            <svg class="mobile-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+        </div>
         <ul class="mobile-submenu">
           <li><a href="solceller.html" class="mobile-menu-link">Solceller</a></li>
           <li><a href="allblack.html" class="mobile-menu-link">All Black Paneler</a></li>
@@ -173,30 +203,34 @@
         </ul>
       </li>
       <li class="mobile-menu-item-dropdown">
-        <button class="mobile-menu-toggle" aria-expanded="false">
-          <span>
+        <div class="mobile-menu-toggle">
+          <a href="fasad.html" class="mobile-menu-link">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
             Fasad
-          </span>
-          <svg class="mobile-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M6 9l6 6 6-6"/>
-          </svg>
-        </button>
+          </a>
+          <button class="mobile-submenu-btn" aria-expanded="false">
+            <svg class="mobile-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+        </div>
         <ul class="mobile-submenu">
           <li><a href="fasad.html" class="mobile-menu-link">Fasad</a></li>
           <li><a href="fasadrenovering-panel.html" class="mobile-menu-link">Fasadrenovering panel</a></li>
         </ul>
       </li>
       <li class="mobile-menu-item-dropdown">
-        <button class="mobile-menu-toggle" aria-expanded="false">
-          <span>
+        <div class="mobile-menu-toggle">
+          <a href="platslageri.html" class="mobile-menu-link">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
             Plåtslageri
-          </span>
-          <svg class="mobile-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M6 9l6 6 6-6"/>
-          </svg>
-        </button>
+          </a>
+          <button class="mobile-submenu-btn" aria-expanded="false">
+            <svg class="mobile-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+        </div>
         <ul class="mobile-submenu">
           <li><a href="takkupor.html" class="mobile-menu-link">Takkupor &amp; takfönster</a></li>
           <li><a href="skorsten.html" class="mobile-menu-link">Skorsten &amp; avluftningar</a></li>
@@ -475,13 +509,88 @@
         </div>
       </div>
     </section>
+
+    <!-- ============================================================
+         FAQ — Vanliga frågor om fasadrenovering
+         ============================================================ -->
+    <section class="fp-faq">
+      <div class="fp-faq-inner">
+        <div class="fp-faq-header" data-fp-reveal>
+          <span class="fp-badge">Vanliga frågor</span>
+          <h2 class="fp-faq-title">Svar på det du <span>undrar över</span></h2>
+          <p class="fp-faq-sub">Här har vi samlat de vanligaste frågorna kring fasadrenovering med panel.</p>
+        </div>
+
+        <div class="fp-faq-list">
+          <div class="fp-faq-item" data-fp-reveal>
+            <button class="fp-faq-q" data-faq-toggle>
+              <span class="fp-faq-q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+              Hur länge håller en ny panelfasad?
+            </button>
+            <div class="fp-faq-a"><div class="fp-faq-a-inner">
+              Det beror på material och underhåll. <strong>Granpanel håller 20–30 år</strong> med regelbunden ommålning, cederträ 30–40+ år med minimalt underhåll, och komposit kan hålla 50+ år helt underhållsfritt. Vi rekommenderar alltid det material som bäst passar ditt hus och budget.
+            </div></div>
+          </div>
+
+          <div class="fp-faq-item" data-fp-reveal>
+            <button class="fp-faq-q" data-faq-toggle>
+              <span class="fp-faq-q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+              Vad kostar en fasadrenovering?
+            </button>
+            <div class="fp-faq-a"><div class="fp-faq-a-inner">
+              Priset varierar beroende på husets storlek, fasadens skick och val av material. En typisk villarenovering ligger mellan <strong>150 000 – 350 000 kr</strong>. Vi erbjuder alltid fast pris utan dolda kostnader — boka ett kostnadsfritt hembesök för en exakt offert.
+            </div></div>
+          </div>
+
+          <div class="fp-faq-item" data-fp-reveal>
+            <button class="fp-faq-q" data-faq-toggle>
+              <span class="fp-faq-q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+              Hur lång tid tar en fasadrenovering?
+            </button>
+            <div class="fp-faq-a"><div class="fp-faq-a-inner">
+              De flesta projekt tar <strong>2–4 veckor</strong> beroende på husets storlek och väderförhållanden. Vi planerar alltid noggrant och håller dig uppdaterad genom hela processen. En detaljerad tidsplan ingår i offerten.
+            </div></div>
+          </div>
+
+          <div class="fp-faq-item" data-fp-reveal>
+            <button class="fp-faq-q" data-faq-toggle>
+              <span class="fp-faq-q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+              Behöver jag bygglov för fasadrenovering?
+            </button>
+            <div class="fp-faq-a"><div class="fp-faq-a-inner">
+              Byte av panel med samma material och färg kräver normalt <strong>inget bygglov</strong>. Byter du kulör eller materialtyp kan tillstånd krävas, beroende på kommun och detaljplan. Vi hjälper dig att kolla vad som gäller för just ditt hus.
+            </div></div>
+          </div>
+
+          <div class="fp-faq-item" data-fp-reveal>
+            <button class="fp-faq-q" data-faq-toggle>
+              <span class="fp-faq-q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+              Kan man tilläggsisolera i samband med fasadbytet?
+            </button>
+            <div class="fp-faq-a"><div class="fp-faq-a-inner">
+              Absolut — det är faktiskt det <strong>smartaste tillfället att göra det</strong>. När den gamla panelen tas bort har vi direkt åtkomst till väggen. Tilläggsisolering kan sänka din energiförbrukning med upp till 30 % och betalar sig själv inom några år.
+            </div></div>
+          </div>
+
+          <div class="fp-faq-item" data-fp-reveal>
+            <button class="fp-faq-q" data-faq-toggle>
+              <span class="fp-faq-q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+              Vilken garanti ger ni på arbetet?
+            </button>
+            <div class="fp-faq-a"><div class="fp-faq-a-inner">
+              Vi ger <strong>10 års arbetsgaranti</strong> på alla fasadjobb — det är dubbelt mot många i branschen. Utöver det har materialen ofta egna garantier på 20–50 år. Inget finstilt, inga undantag.
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer id="footer">
     <div class="footer-content">
       <div class="footer-grid">
         <div class="footer-block footer-about">
-          <h3>Ferotect</h3>
+          <img src="Ferotect (1).png" alt="Ferotect" class="footer-logo-img">
           <p class="footer-tagline">Takfirma i Skåne med fokus på planerade, trygga och hållbara takbyten.</p>
           <div class="footer-social">
             <a href="https://www.instagram.com/ferotect" title="Instagram" class="social-link" target="_blank" rel="noopener noreferrer">

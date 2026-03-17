@@ -17,7 +17,7 @@ const closeMenu = () => {
   document.querySelectorAll('.mobile-submenu.active').forEach(menu => {
     menu.classList.remove('active');
   });
-  document.querySelectorAll('.mobile-menu-toggle').forEach(btn => {
+  document.querySelectorAll('.mobile-submenu-btn').forEach(btn => {
     btn.setAttribute('aria-expanded', 'false');
   });
 };
@@ -33,19 +33,22 @@ if (hamburgerBtn && mobileMenu) {
     closeBtn.addEventListener('click', closeMenu);
   }
 
-  // Handle dropdown toggles
-  const toggleButtons = mobileMenu.querySelectorAll('.mobile-menu-toggle');
+  // Handle dropdown toggles (chevron button only)
+  const toggleButtons = mobileMenu.querySelectorAll('.mobile-submenu-btn');
   toggleButtons.forEach(button => {
     button.addEventListener('click', function(e) {
       e.preventDefault();
-      const submenu = this.nextElementSibling;
+      e.stopPropagation();
+      const wrapper = this.parentElement;
+      const submenu = wrapper.nextElementSibling;
       const isActive = submenu.classList.contains('active');
       
       // Close all other submenus
       document.querySelectorAll('.mobile-submenu.active').forEach(menu => {
         if (menu !== submenu) {
           menu.classList.remove('active');
-          menu.previousElementSibling.setAttribute('aria-expanded', 'false');
+          const btn = menu.previousElementSibling.querySelector('.mobile-submenu-btn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
         }
       });
       
@@ -70,6 +73,169 @@ if (hamburgerBtn && mobileMenu) {
     }
   });
 }
+
+// ===== INTERACTIVE STEPPER =====
+(function() {
+  const stepper = document.getElementById('process-stepper');
+  if (!stepper) return;
+
+  const dots = stepper.querySelectorAll('.stepper-dot');
+  const panels = stepper.querySelectorAll('.stepper-panel');
+  const slider = stepper.querySelector('.stepper-slider');
+  const trackFill = stepper.querySelector('.stepper-track-fill');
+  const prevBtn = stepper.querySelector('.stepper-prev');
+  const nextBtn = stepper.querySelector('.stepper-next');
+  const counter = document.getElementById('stepper-current');
+  const total = panels.length;
+  let current = 0;
+  let autoTimer = null;
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= total) return;
+    current = idx;
+    slider.style.transform = 'translateX(-' + (current * 100) + '%)';
+    trackFill.style.width = (current / (total - 1) * 100) + '%';
+
+    dots.forEach(function(d, i) {
+      d.classList.remove('is-active', 'is-done');
+      if (i < current) d.classList.add('is-done');
+      if (i === current) d.classList.add('is-active');
+    });
+
+    panels.forEach(function(p, i) {
+      p.classList.toggle('is-visible', i === current);
+    });
+
+    if (counter) counter.textContent = current + 1;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === total - 1;
+  }
+
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      goTo(parseInt(this.dataset.step));
+      resetAuto();
+    });
+  });
+
+  prevBtn.addEventListener('click', function() { goTo(current - 1); resetAuto(); });
+  nextBtn.addEventListener('click', function() { goTo(current + 1); resetAuto(); });
+
+  function startAuto() {
+    autoTimer = setInterval(function() {
+      goTo(current < total - 1 ? current + 1 : 0);
+    }, 5000);
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    startAuto();
+  }
+
+  stepper.addEventListener('mouseenter', function() { clearInterval(autoTimer); });
+  stepper.addEventListener('mouseleave', function() { startAuto(); });
+
+  goTo(0);
+  startAuto();
+})();
+
+// ===== SKÅNE MAP SECTION =====
+(function() {
+  var mapSection = document.querySelector('.skane-map-section');
+  if (!mapSection) return;
+
+  /* ---- tooltip ---- */
+  var tooltip = mapSection.querySelector('.skane-tooltip');
+  var ttBg    = tooltip && tooltip.querySelector('.skane-tooltip-bg');
+  var ttCity  = tooltip && tooltip.querySelector('.skane-tooltip-city');
+  var ttType  = tooltip && tooltip.querySelector('.skane-tooltip-type');
+  var pins    = mapSection.querySelectorAll('.skane-pin');
+
+  pins.forEach(function(pin) {
+    function show(e) {
+      if (!tooltip) return;
+      var city = pin.getAttribute('data-city');
+      var type = pin.getAttribute('data-type');
+      ttCity.textContent = city;
+      ttType.textContent = type;
+      var dot = pin.querySelector('.skane-pin-dot');
+      var cx = parseFloat(dot.getAttribute('cx'));
+      var cy = parseFloat(dot.getAttribute('cy'));
+      var bw = parseFloat(ttBg.getAttribute('width'));
+      tooltip.setAttribute('transform', 'translate(' + (cx - bw / 2) + ',' + (cy - 68) + ')');
+      tooltip.style.display = '';
+    }
+    function hide() { if (tooltip) tooltip.style.display = 'none'; }
+    pin.addEventListener('mouseenter', show);
+    pin.addEventListener('mouseleave', hide);
+    pin.addEventListener('touchstart', function(e) { e.preventDefault(); show(); }, { passive: false });
+  });
+
+  /* ---- scroll-reveal animations ---- */
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+
+      /* outline draw */
+      mapSection.querySelectorAll('.skane-outline').forEach(function(path) {
+        var len = path.getTotalLength();
+        path.style.strokeDasharray = len;
+        path.style.strokeDashoffset = len;
+        path.getBoundingClientRect();
+        path.style.transition = 'stroke-dashoffset 2s ease';
+        path.style.strokeDashoffset = '0';
+      });
+
+      /* city labels */
+      mapSection.querySelectorAll('.skane-city-labels').forEach(function(g) {
+        g.style.transition = 'opacity 1.2s ease 1.4s';
+        g.style.opacity = '0.55';
+      });
+
+      /* pins stagger */
+      pins.forEach(function(pin, i) {
+        pin.style.transition = 'opacity .5s ease ' + (1.6 + i * 0.08) + 's, transform .5s ease ' + (1.6 + i * 0.08) + 's';
+        pin.style.opacity = '1';
+        pin.style.transform = 'scale(1)';
+      });
+
+      /* counter */
+      mapSection.querySelectorAll('.skane-map-info-number').forEach(function(el) {
+        var target = parseInt(el.getAttribute('data-target'), 10);
+        var duration = 1500;
+        var start = null;
+        function step(ts) {
+          if (!start) start = ts;
+          var progress = Math.min((ts - start) / duration, 1);
+          el.textContent = Math.floor(progress * target);
+          if (progress < 1) requestAnimationFrame(step);
+          else el.textContent = target;
+        }
+        setTimeout(function() { requestAnimationFrame(step); }, 2000);
+      });
+
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.2 });
+
+  observer.observe(mapSection);
+
+  /* ---- fade-in children ---- */
+  var fadeEls = mapSection.querySelectorAll('.fade-in');
+  var fadeObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        fadeObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  fadeEls.forEach(function(el) { fadeObs.observe(el); });
+
+  /* initial hidden states for pins */
+  pins.forEach(function(pin) { pin.style.opacity = '0'; pin.style.transform = 'scale(0)'; });
+  mapSection.querySelectorAll('.skane-city-labels').forEach(function(g) { g.style.opacity = '0'; });
+})();
 
 // ===== BEFORE & AFTER REVEAL =====
 (function() {
