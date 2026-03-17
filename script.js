@@ -2135,3 +2135,35 @@ document.addEventListener('DOMContentLoaded', function() {
     flowReveals.forEach(function(el) { flowObs.observe(el); });
   }
 })();
+
+// ===== ARTICLES SLIDER =====
+(function() {
+  var wrap = document.querySelector('.articles-slider-wrap');
+  if (!wrap) return;
+  var slider = wrap.querySelector('.articles-slider');
+  var prev = wrap.querySelector('.articles-arrow--prev');
+  var next = wrap.querySelector('.articles-arrow--next');
+  if (!slider || !prev || !next) return;
+
+  function getScrollAmount() {
+    var card = slider.querySelector('.article-card');
+    if (!card) return 300;
+    return card.offsetWidth + 24;
+  }
+
+  function updateArrows() {
+    prev.disabled = slider.scrollLeft <= 5;
+    next.disabled = slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - 5;
+  }
+
+  prev.addEventListener('click', function() {
+    slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+  });
+  next.addEventListener('click', function() {
+    slider.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+  });
+
+  slider.addEventListener('scroll', updateArrows);
+  window.addEventListener('resize', updateArrows);
+  updateArrows();
+})();
