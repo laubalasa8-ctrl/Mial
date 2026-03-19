@@ -9706,6 +9706,8 @@ body:has(.solar-hero) header { background-image: linear-gradient(135deg, rgba(10
   color: var(--text-soft);
   font-weight: 600;
   letter-spacing: 0.15em;
+  text-align: center;
+  margin: 0 auto;
 }
 .tre-saker-grid {
   display: grid;
@@ -9841,6 +9843,9 @@ body:has(.solar-hero) header { background-image: linear-gradient(135deg, rgba(10
   .tre-saker-card { padding: 2rem 1.5rem 1.5rem; }
   .tre-saker-card:hover { transform: none; }
   .tre-saker-card.in-view:hover { transform: none; }
+}
+@media (min-width: 769px) and (max-width: 1200px) {
+  .tre-saker { padding-top: 22rem; }
 }
 /* ==================== END TRE SAKER ==================== */
 
