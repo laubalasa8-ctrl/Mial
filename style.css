@@ -25889,7 +25889,7 @@ body.allblack-page header {
 /* --- Hero background images per page (CSS custom property approach) --- */
 body.article-page { --hero-overlay: linear-gradient(135deg, rgba(10,26,47,0.62), rgba(0,60,110,0.48)); }
 body.art-takbyte       { --hero-img: url('takbyte.jpg'); }
-body.art-solceller     { --hero-img: url('solceller6.jpg'); }
+body.art-solceller     { --hero-img: url('Solceller-tak.jpg'); }
 body.art-fasad         { --hero-img: url('Fasadbild-ferotect.jpg'); }
 body.art-bandtackning  { --hero-img: url('band1.jpg'); }
 body.art-platslageri   { --hero-img: url('plat9.jpg'); }
