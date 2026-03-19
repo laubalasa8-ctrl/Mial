@@ -581,7 +581,9 @@ header .nav-links { transition: opacity 0.3s ease; }
 .nav-links a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: #FFF; transition: width 0.18s ease; }
 .nav-links a:hover::after { width: 100%; }
 .dropdown { position: relative; }
-.dropdown-toggle { cursor: pointer; background: none; border: none; font-size: inherit; font-family: inherit; color: inherit; padding: 0; }
+.dropdown-toggle { cursor: pointer; background: none; border: none; font-size: inherit; font-family: inherit; color: inherit; padding: 0; position: relative; padding-bottom: 0.2rem; color: rgba(255,255,255,0.95); text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+.dropdown-toggle::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: #FFF; transition: width 0.18s ease; }
+.dropdown-toggle:hover::after { width: 100%; }
 .dropdown-menu { position: absolute; top: 130%; left: 0; background: #fff; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); min-width: 160px; padding: 0.4rem 0; display: none; z-index: 100; }
 .dropdown:hover .dropdown-menu,
 .dropdown:focus-within .dropdown-menu { display: block; }
@@ -589,6 +591,54 @@ header .nav-links { transition: opacity 0.3s ease; }
 .dropdown-menu a:hover { background: var(--bg-soft); color: var(--blue-dark); }
 .nav-right { display: flex; justify-content: flex-end; align-items: center; gap: 1.75rem; font-size: 0.9rem; }
 .nav-right > .btn-primary { padding: 0.45rem 1rem; font-size: 0.78rem; }
+
+/* NAV CTA BUTTON — "Få offert" */
+.nav-cta-btn {
+  display: inline-block;
+  padding: 0.55rem 1.3rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #19A8FF, #0088CC);
+  border-radius: 10px;
+  text-decoration: none;
+  letter-spacing: -0.2px;
+  box-shadow: 0 4px 15px rgba(25,168,255,0.35);
+  transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  animation: ctaPulse 2.5s ease-in-out infinite;
+  white-space: nowrap;
+}
+.nav-cta-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 25px rgba(25,168,255,0.5);
+}
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 4px 15px rgba(25,168,255,0.35); }
+  50% { box-shadow: 0 4px 25px rgba(25,168,255,0.55); }
+}
+header.scrolled .nav-cta-btn { opacity: 0; pointer-events: none; width: 0; padding: 0; margin: 0; overflow: hidden; }
+header .nav-cta-btn { transition: opacity 0.3s ease, width 0.3s ease, padding 0.3s ease, margin 0.3s ease; }
+
+/* MOBILE MENU CTA — "Få offert" */
+.mobile-menu-cta {
+  display: block;
+  margin: 1.2rem 1.5rem 0;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #19A8FF, #0088CC);
+  border-radius: 14px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(25,168,255,0.35);
+  animation: ctaPulse 2.5s ease-in-out infinite;
+  transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+.mobile-menu-cta:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(25,168,255,0.5);
+}
 
 /* Desktop: index-page topbar/header share hero bg for seamless split-screen */
 .index-page .topbar {
@@ -7212,6 +7262,7 @@ header.scrolled .hamburger span { background: #111; box-shadow: 0 1px 4px rgba(0
   .nav-right { display: flex; align-items: center; gap: 0.5rem; }
   .nav-links { display: none; }
   header .btn-primary { display: none; }
+  header .nav-cta-btn { display: none; }
   .contact-cta-container .btn-primary { display: inline-block; }
   .frosted-box { padding: 2.2rem 1.5rem; margin-left: auto; margin-right: auto; max-width: 100%; margin-top: 0; }
   .frosted-box h1 { font-size: clamp(1.4rem, 4vw, 1.8rem); margin-bottom: 0.8rem; }
