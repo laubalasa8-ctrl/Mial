@@ -640,6 +640,40 @@ header .nav-cta-btn { transition: opacity 0.3s ease, width 0.3s ease, padding 0.
   box-shadow: 0 12px 30px rgba(25,168,255,0.5);
 }
 
+/* Calculator link in mobile menu — styled like a regular menu item */
+.mobile-menu-calc {
+  display: flex !important;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.1rem 1.5rem !important;
+  margin: 0 !important;
+  font-size: 1.02rem !important;
+  font-weight: 600 !important;
+  color: var(--blue) !important;
+  background: rgba(25,168,255,0.06) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  border-top: 1px solid rgba(25,168,255,0.1) !important;
+  box-shadow: none !important;
+  animation: none !important;
+  text-align: left !important;
+  justify-content: flex-start !important;
+  letter-spacing: -0.3px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mobile-menu-calc:hover {
+  transform: none !important;
+  color: #fff !important;
+  background: rgba(25,168,255,0.15) !important;
+  padding-left: 1.8rem !important;
+}
+.mobile-menu-calc svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--blue);
+}
+
 /* Desktop: index-page topbar/header share hero bg for seamless split-screen */
 .index-page .topbar {
   background-image: linear-gradient(135deg, rgba(10,20,35,0.55), rgba(10,20,35,0.4)), url('takpanneplat1.jpg');
@@ -677,7 +711,7 @@ section.stats-section { border-bottom: none; }
 .why-content p { font-size: 0.92rem; color: var(--text-soft); margin-bottom: 1.2rem; line-height: 1.75; }
 .why-image { position: relative; border-radius: 20px; overflow: hidden; animation: fadeInRight 0.8s ease 0.2s forwards; opacity: 0; box-shadow: 0 25px 60px rgba(0,0,0,0.12); height: 500px; background: var(--bg-soft); border: 1px solid rgba(25,168,255,0.1); background-image: url('Kingen-bild-2.png'); background-size: cover; background-position: center; }
 @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px) scale(0.95); } to { opacity: 1; transform: translateX(0) scale(1); } }
-.why-image img { width: 100%; height: 100%; object-fit: cover; }
+.why-image img { width: 100%; height: 100%; object-fit: cover; opacity: 0; position: absolute; top: 0; left: 0; }
 
 /* ===== WHY INTRO SECTION ===== */
 .why-intro { animation: fadeInUp 0.8s ease 0.4s forwards; opacity: 0; margin-top: 2rem; padding: 0; }
@@ -4956,6 +4990,61 @@ section.stats-section { border-bottom: none; }
 .btn-ghost { background: rgba(255,255,255,0.95); color: var(--text); }
 .btn-ghost:hover { background: #FFF; }
 
+/* Calculator CTA button */
+.btn-calc {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem 1.3rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 2px solid var(--blue);
+  background: rgba(25,168,255,0.12);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  animation: calcPulse 3s ease-in-out infinite;
+}
+.btn-calc svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+.btn-calc:hover {
+  background: var(--blue);
+  color: #fff;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(25,168,255,0.35);
+}
+.btn-calc:hover svg { transform: rotate(12deg) scale(1.15); }
+@keyframes calcPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(25,168,255,0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(25,168,255,0); }
+}
+.btn-calc-cta {
+  display: inline-flex !important;
+  animation: calcPulse 3s ease-in-out infinite;
+}
+.band-cta-content .btn-calc-cta,
+.cta-ferotect-content .btn-calc-cta,
+.takpannor-cta-content .btn-calc-cta,
+.solar-cta-final-content .btn-calc-cta {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.5);
+  color: #fff;
+}
+.band-cta-content .btn-calc-cta:hover,
+.cta-ferotect-content .btn-calc-cta:hover,
+.takpannor-cta-content .btn-calc-cta:hover,
+.solar-cta-final-content .btn-calc-cta:hover {
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
 /* ===== STATS ===== */
 .stats-section {
   background: linear-gradient(135deg, rgba(42,54,72,0.45), rgba(42,54,72,0.45)), url('Hero-v3.0.jpg') center/cover fixed;
@@ -5179,6 +5268,10 @@ textarea { resize: vertical; min-height: 120px; }
 .contact-form-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), #0088CC, var(--blue)); border-radius: 28px 28px 0 0; }
 .contact-form-card h3 { color: #fff; font-size: 1.5rem; font-weight: 800; margin-bottom: 0.8rem; letter-spacing: -0.5px; }
 .contact-form-card .form-subtitle { color: rgba(255,255,255,0.65); font-size: 0.9rem; margin-bottom: 2.5rem; line-height: 1.5; }
+.form-calc-alt { text-align: center; margin-top: 1.2rem; font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+.form-calc-alt a { color: rgba(25,168,255,0.7); text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; transition: color 0.2s; }
+.form-calc-alt a:hover { color: var(--blue); }
+.form-calc-alt svg { vertical-align: middle; }
 .contact-form-card form { display: flex; flex-direction: column; gap: 1.4rem; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
 .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
