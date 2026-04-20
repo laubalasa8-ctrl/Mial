@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Ferotect – Offertmotor Testpanel (INTERN)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #0f1117;
+      color: #e0e0e0;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    /* ── TOP BAR ── */
+    .dev-banner {
+      background: #d32f2f;
+      color: #fff;
+      text-align: center;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .page-header {
+      background: #161822;
+      border-bottom: 1px solid #2a2d3a;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .page-header h1 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .page-header a {
+      color: #64b5f6;
+      font-size: 13px;
+      text-decoration: none;
+    }
+    .page-header a:hover { text-decoration: underline; }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 960px) {
+      .container { grid-template-columns: 1fr; }
+    }
+
+    /* ── PANELS ── */
+    .panel {
+      background: #1a1d2e;
+      border: 1px solid #2a2d3a;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .panel-header {
+      background: #22253a;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #b0b8d0;
+      border-bottom: 1px solid #2a2d3a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .panel-body { padding: 16px; }
+
+    /* ── FORM ── */
+    .form-section {
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #2a2d3a;
+    }
+    .form-section:last-child { border-bottom: none; margin-bottom: 0; }
+    .form-section-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #7c84a0;
+      margin-bottom: 10px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .form-grid.single { grid-template-columns: 1fr; }
+    .form-group { display: flex; flex-direction: column; gap: 3px; }
+    .form-group.full-width { grid-column: 1 / -1; }
+    label {
+      font-size: 11px;
+      font-weight: 500;
+      color: #8a90a8;
+    }
+    label .field-map {
+      color: #5a5f78;
+      font-weight: 400;
+    }
+    input, select {
+      background: #12141f;
+      border: 1px solid #2a2d3a;
+      border-radius: 4px;
+      padding: 7px 10px;
+      font-size: 13px;
+      color: #e0e0e0;
+      font-family: inherit;
+      transition: border-color 0.15s;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: #4a7cff;
+    }
+    input[type="number"] { -moz-appearance: textfield; }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+    /* ── CHECKBOXES (symptoms) ── */
+    .checkbox-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .checkbox-grid label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: #c0c4d4;
+      cursor: pointer;
+      background: #12141f;
+      border: 1px solid #2a2d3a;
+      border-radius: 4px;
+      padding: 4px 8px;
+    }
+    .checkbox-grid label:hover { border-color: #4a7cff; }
+    .checkbox-grid input[type="checkbox"] {
+      width: 14px;
+      height: 14px;
+      accent-color: #4a7cff;
+    }
+
+    /* ── PRESETS ── */
+    .presets {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .preset-btn {
+      background: #22253a;
+      border: 1px solid #3a3f54;
+      border-radius: 4px;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: #b0b8d0;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s;
+    }
+    .preset-btn:hover {
+      background: #2c3050;
+      border-color: #4a7cff;
+      color: #fff;
+    }
+
+    /* ── RUN BUTTON ── */
+    .run-btn {
+      width: 100%;
+      background: #2d6cdf;
+      border: none;
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s;
+      margin-top: 8px;
+    }
+    .run-btn:hover { background: #3b7ef0; }
+    .run-btn:active { background: #2058b8; }
+    .run-btn:disabled {
+      background: #333;
+      cursor: not-allowed;
+      color: #666;
+    }
+
+    /* ── RESULTS ── */
+    .results-area { display: flex; flex-direction: column; gap: 16px; }
+
+    .result-placeholder {
+      text-align: center;
+      padding: 60px 20px;
+      color: #4a4f68;
+      font-size: 14px;
+    }
+
+    /* ── SUMMARY TABLE ── */
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .summary-table th,
+    .summary-table td {
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 1px solid #22253a;
+    }
+    .summary-table th {
+      color: #7c84a0;
+      font-weight: 500;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .summary-table tr.included td { color: #c8d0e0; }
+    .summary-table tr.excluded td { color: #4a4f68; }
+    .summary-table tr.total-row td {
+      font-weight: 600;
+      border-top: 2px solid #3a3f54;
+      color: #fff;
+      font-size: 14px;
+    }
+    .summary-table tr.margin-row td { color: #e0a050; font-style: italic; }
+    .summary-table .price-cell { text-align: right; font-variant-numeric: tabular-nums; }
+
+    .tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .tag-yes { background: #1b5e20; color: #a5d6a7; }
+    .tag-no { background: #3e2723; color: #bcaaa4; }
+    .tag-assumed { background: #e65100; color: #ffcc80; }
+
+    /* ── SCAFFOLD DETAIL ── */
+    .scaffold-detail {
+      background: #1e2235;
+      border: 1px solid #2a2d3a;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-size: 13px;
+    }
+    .scaffold-detail .rule {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+    }
+    .scaffold-detail .rule-icon {
+      font-size: 16px;
+      width: 22px;
+      text-align: center;
+    }
+
+    /* ── CONFIDENCE ── */
+    .confidence-bar-outer {
+      background: #12141f;
+      border-radius: 4px;
+      height: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+    .confidence-bar-inner {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.4s ease;
+    }
+    .confidence-bar-label {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 11px;
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+
+    /* ── SALES GUIDANCE ── */
+    .guidance-field {
+      margin-bottom: 10px;
+    }
+    .guidance-field .gf-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #7c84a0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+    .guidance-field .gf-value {
+      font-size: 13px;
+      color: #c8d0e0;
+    }
+    .guidance-field .gf-value.highlight {
+      color: #ffb74d;
+      font-weight: 500;
+    }
+    .talking-point {
+      padding: 4px 0 4px 14px;
+      position: relative;
+      font-size: 13px;
+      color: #a0a8c0;
+    }
+    .talking-point::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #4a7cff;
+    }
+
+    /* ── JSON TOGGLE ── */
+    .json-toggle {
+      background: #22253a;
+      border: 1px solid #3a3f54;
+      border-radius: 4px;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: #b0b8d0;
+      cursor: pointer;
+      font-family: inherit;
+      margin-bottom: 8px;
+    }
+    .json-toggle:hover { border-color: #4a7cff; }
+    .json-block {
+      background: #0d0f18;
+      border: 1px solid #1e2030;
+      border-radius: 6px;
+      padding: 12px;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 11px;
+      line-height: 1.6;
+      color: #90a0b8;
+      max-height: 500px;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .json-block .hidden { display: none; }
+
+    /* ── ERROR ── */
+    .error-box {
+      background: #2a1010;
+      border: 1px solid #5c1a1a;
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .error-box h3 {
+      color: #ef5350;
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+    .error-box .error-message {
+      color: #ffab91;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    .error-box pre {
+      background: #1a0808;
+      border: 1px solid #3a1515;
+      border-radius: 4px;
+      padding: 10px;
+      font-size: 11px;
+      color: #cc8080;
+      overflow-x: auto;
+      max-height: 300px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    /* ── TABS ── */
+    .tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid #2a2d3a;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #6a6f88;
+      cursor: pointer;
+      font-family: inherit;
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .tab-btn.active {
+      color: #4a7cff;
+      border-bottom-color: #4a7cff;
+    }
+    .tab-btn:hover { color: #b0b8d0; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ── MISC ── */
+    .execution-time {
+      font-size: 11px;
+      color: #4a4f68;
+      text-align: right;
+      padding: 4px 0;
+    }
+    .caps-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .cap-tag {
+      font-size: 10px;
+      background: #2a1a38;
+      color: #ce93d8;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+    .warnings-list {
+      list-style: none;
+      padding: 0;
+    }
+    .warnings-list li {
+      padding: 3px 0;
+      font-size: 12px;
+      color: #ffb74d;
+    }
+    .warnings-list li::before {
+      content: '⚠ ';
+    }
+  </style>
+</head>
+<body>
+  <div class="dev-banner">⛔ INTERN TESTSIDA — EJ FÖR KUNDER ⛔</div>
+
+  <div class="page-header">
+    <h1>🔧 Offertmotor Testpanel</h1>
+    <a href="index.html">← Tillbaka till hemsidan</a>
+  </div>
+
+  <div class="container">
+    <!-- ═══════════ LEFT: FORM ═══════════ -->
+    <div>
+      <div class="panel">
+        <div class="panel-header">📝 Testdata</div>
+        <div class="panel-body">
+          <!-- PRESETS -->
+          <div class="form-section">
+            <div class="form-section-title">Förinställningar</div>
+            <div class="presets">
+              <button class="preset-btn" data-preset="simple">🏠 Enkel villa</button>
+              <button class="preset-btn" data-preset="moderate">🏡 Villa 1.5 plan</button>
+              <button class="preset-btn" data-preset="complex">🏗️ Svårt tak</button>
+              <button class="preset-btn" data-preset="worst">💀 Worst case</button>
+            </div>
+          </div>
+
+          <!-- GRUNDDATA -->
+          <div class="form-section">
+            <div class="form-section-title">Grunddata</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Taktyp <span class="field-map">→ roof_type</span></label>
+                <select id="f-roof-type">
+                  <option value="SAD">Sadeltak (SAD)</option>
+                  <option value="VAL">Valmat (VAL)</option>
+                  <option value="PUL">Pulpettak (PUL)</option>
+                  <option value="KOM">Kombinerat (KOM)</option>
+                  <option value="PLA">Platt tak (PLA)</option>
+                  <option value="UNK">Okänd (UNK)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Önskat material <span class="field-map">→ desired_material</span></label>
+                <select id="f-desired-material">
+                  <option value="BETONG_STANDARD">Betong standard</option>
+                  <option value="LERTEGEL">Lertegel</option>
+                  <option value="PLAT_SF">Skivplåt / falsad</option>
+                  <option value="PLAT_LP">Lättprofilerad plåt</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Postnummer <span class="field-map">→ postal_code</span></label>
+                <input type="text" id="f-postal-code" value="58223" maxlength="5" placeholder="58223">
+              </div>
+              <div class="form-group">
+                <label>Befintligt material <span class="field-map">→ existing_material</span></label>
+                <select id="f-existing-material">
+                  <option value="BETONG">Betong</option>
+                  <option value="TEGEL">Tegel</option>
+                  <option value="PLAT">Plåt</option>
+                  <option value="PAPP">Papp</option>
+                  <option value="ETERNIT">Eternit</option>
+                  <option value="OTHER">Annat</option>
+                  <option value="UNKNOWN">Okänt</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- AREA -->
+          <div class="form-section">
+            <div class="form-section-title">Yta</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Inmatningstyp <span class="field-map">→ area_raw_input</span></label>
+                <select id="f-area-method">
+                  <option value="exact">Exakt takyta (m²)</option>
+                  <option value="footprint">Bottenyta (m²)</option>
+                  <option value="size_class">Storleksklass</option>
+                  <option value="fallback">Ingen input (fallback)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Yta / Bottenyta (m²) <span class="field-map">→ exact_m2 / footprint_m2</span></label>
+                <input type="number" id="f-area-value" value="180" min="40" max="500" step="1">
+              </div>
+              <div class="form-group">
+                <label>Storleksklass <span class="field-map">→ size_class</span></label>
+                <select id="f-size-class">
+                  <option value="SMALL">Liten (80–120 m²)</option>
+                  <option value="MEDIUM" selected>Medel (120–180 m²)</option>
+                  <option value="LARGE">Stor (170–240 m²)</option>
+                  <option value="XLARGE">Mycket stor (220–310 m²)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- BYGGNAD -->
+          <div class="form-section">
+            <div class="form-section-title">Byggnad</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Våningar <span class="field-map">→ floors</span></label>
+                <select id="f-floors">
+                  <option value="1">1 plan</option>
+                  <option value="1.5" selected>1.5 plan</option>
+                  <option value="2">2 plan</option>
+                  <option value="2.5_PLUS">2.5+ plan</option>
+                  <option value="UNKNOWN">Okänt</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Tillgänglighet <span class="field-map">→ property_access</span></label>
+                <select id="f-property-access">
+                  <option value="EASY">Lätt</option>
+                  <option value="MODERATE" selected>Medel</option>
+                  <option value="DIFFICULT">Svår</option>
+                  <option value="UNKNOWN">Okänt</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Takets ålder <span class="field-map">→ roof_age_band</span></label>
+                <select id="f-roof-age">
+                  <option value="LT_20">Under 20 år</option>
+                  <option value="20_35" selected>20–35 år</option>
+                  <option value="35_50">35–50 år</option>
+                  <option value="GT_50">Över 50 år</option>
+                  <option value="UNKNOWN">Okänt</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- SYMPTOM -->
+          <div class="form-section">
+            <div class="form-section-title">Symptom <span class="field-map">→ symptom_flags[]</span></div>
+            <div class="checkbox-grid">
+              <label><input type="checkbox" name="symptom" value="LEAK"> Läckage</label>
+              <label><input type="checkbox" name="symptom" value="MOISTURE_INSIDE"> Fukt</label>
+              <label><input type="checkbox" name="symptom" value="BROKEN_TILES" checked> Trasiga pannor</label>
+              <label><input type="checkbox" name="symptom" value="SAGGING_GUTTERS"> Hängande rännor</label>
+              <label><input type="checkbox" name="symptom" value="MOSS"> Mossa</label>
+              <label><input type="checkbox" name="symptom" value="NONE"> Inga</label>
+              <label><input type="checkbox" name="symptom" value="UNKNOWN"> Okänt</label>
+            </div>
+          </div>
+
+          <!-- TILLVAL -->
+          <div class="form-section">
+            <div class="form-section-title">Tillval</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Hängrännor <span class="field-map">→ addon_gutters</span></label>
+                <select id="f-addon-gutters">
+                  <option value="YES">Ja</option>
+                  <option value="NO">Nej</option>
+                  <option value="UNKNOWN">Okänt</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Skorsten <span class="field-map">→ addon_chimney.action</span></label>
+                <select id="f-addon-chimney">
+                  <option value="YES">Ja</option>
+                  <option value="NO" selected>Nej</option>
+                  <option value="UNKNOWN">Okänt</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Antal skorstenar <span class="field-map">→ addon_chimney.count</span></label>
+                <input type="number" id="f-chimney-count" value="1" min="0" max="5" step="1">
+              </div>
+              <div class="form-group">
+                <label>Takfönster <span class="field-map">→ addon_roof_windows.action</span></label>
+                <select id="f-addon-windows">
+                  <option value="YES">Ja</option>
+                  <option value="NO" selected>Nej</option>
+                  <option value="UNKNOWN">Okänt</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Antal takfönster <span class="field-map">→ addon_roof_windows.count</span></label>
+                <input type="number" id="f-window-count" value="0" min="0" max="10" step="1">
+              </div>
+              <div class="form-group">
+                <label>Snörasskydd <span class="field-map">→ addon_snow_safety</span></label>
+                <select id="f-addon-snow">
+                  <option value="YES" selected>Ja</option>
+                  <option value="NO">Nej</option>
+                  <option value="UNKNOWN">Okänt</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- KVALIFICERING -->
+          <div class="form-section">
+            <div class="form-section-title">Kundkvalificering</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Tidshorisont <span class="field-map">→ lead_timeline</span></label>
+                <select id="f-timeline">
+                  <option value="Q_CURRENT" selected>Innevarande kvartal</option>
+                  <option value="Q_NEXT">Nästa kvartal</option>
+                  <option value="NEXT_YEAR">Nästa år</option>
+                  <option value="UNKNOWN">Okänt</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Ägarskap <span class="field-map">→ ownership_status</span></label>
+                <select id="f-ownership">
+                  <option value="OWNER" selected>Ägare</option>
+                  <option value="NOT_OWNER">Ej ägare</option>
+                  <option value="BRF">BRF</option>
+                  <option value="UNKNOWN">Okänt</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- FÄLTMAPPNING -->
+          <div class="form-section">
+            <div class="form-section-title" style="color: #5a5f78;">
+              Fält som inte finns i motorn (MVP)
+            </div>
+            <p style="font-size:11px; color:#4a4f68; line-height:1.7;">
+              <b>valleys_lpm, ridge_lpm</b> → Hanteras internt via complexity_factor per taktyp<br>
+              <b>labor_rate</b> → Ingår i unit_price (material + arbete per m²)<br>
+              <b>margin_percent</b> → Väljs automatiskt av margin-profil (area + material)<br>
+              <b>drone_required, mobilization_required, waste_required, safety_required, underlay_required</b>
+              → Ingår i basmodul eller adderas i V2<br>
+              <b>tearoff_required</b> → Alltid ja (demolition module beräknas alltid utom för eternit)<br>
+              <b>roof_pitch</b> → Hanteras via slope_factor per taktyp, ej separat input i MVP<br>
+              <b>gutter_lpm</b> → Beräknas automatiskt från takyta och roof_type<br>
+              <b>complexity</b> → Hanteras via complexity_factor per roof_type
+            </p>
+          </div>
+
+          <button class="run-btn" id="btn-run">▶ Kör offertmotor</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ RIGHT: RESULTS ═══════════ -->
+    <div class="results-area" id="results-area">
+      <div class="panel">
+        <div class="panel-body">
+          <div class="result-placeholder" id="placeholder">
+            Fyll i testdata och klicka "Kör offertmotor" för att se resultat.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ JS MODULE ═══════════ -->
+  <script type="module">
+    import { runOfferEngine } from './src/ferotect/offer-engine/index.js';
+
+    // ── DOM REFS ──
+    const $id = (id) => document.getElementById(id);
+    const resultsArea = $id('results-area');
+
+    // ── FORM → ENGINE INPUT ──
+    function buildRawInput() {
+      const areaMethod = $id('f-area-method').value;
+      let area_raw_input = null;
+
+      switch (areaMethod) {
+        case 'exact':
+          area_raw_input = { exact_m2: parseFloat($id('f-area-value').value) || 150 };
+          break;
+        case 'footprint':
+          area_raw_input = { footprint_m2: parseFloat($id('f-area-value').value) || 120 };
+          break;
+        case 'size_class':
+          area_raw_input = { size_class: $id('f-size-class').value };
+          break;
+        case 'fallback':
+          area_raw_input = null;
+          break;
+      }
+
+      // Collect checked symptoms
+      const symptomCheckboxes = document.querySelectorAll('input[name="symptom"]:checked');
+      const symptom_flags = Array.from(symptomCheckboxes).map((cb) => cb.value);
+
+      return {
+        roof_type: $id('f-roof-type').value,
+        desired_material: $id('f-desired-material').value,
+        postal_code: $id('f-postal-code').value,
+        area_raw_input,
+        existing_material: $id('f-existing-material').value,
+        roof_age_band: $id('f-roof-age').value,
+        symptom_flags: symptom_flags.length > 0 ? symptom_flags : undefined,
+        floors: $id('f-floors').value,
+        property_access: $id('f-property-access').value,
+        addon_gutters: $id('f-addon-gutters').value,
+        addon_chimney: {
+          action: $id('f-addon-chimney').value,
+          count: parseInt($id('f-chimney-count').value) || 1,
+        },
+        addon_roof_windows: {
+          action: $id('f-addon-windows').value,
+          count: parseInt($id('f-window-count').value) || 0,
+        },
+        addon_snow_safety: $id('f-addon-snow').value,
+        lead_timeline: $id('f-timeline').value,
+        ownership_status: $id('f-ownership').value,
+      };
+    }
+
+    // ── PRESETS ──
+    const PRESETS = {
+      simple: {
+        'f-roof-type': 'SAD',
+        'f-desired-material': 'BETONG_STANDARD',
+        'f-postal-code': '58223',
+        'f-existing-material': 'BETONG',
+        'f-area-method': 'exact',
+        'f-area-value': '140',
+        'f-floors': '1',
+        'f-property-access': 'EASY',
+        'f-roof-age': '20_35',
+        'f-addon-gutters': 'YES',
+        'f-addon-chimney': 'NO',
+        'f-chimney-count': '0',
+        'f-addon-windows': 'NO',
+        'f-window-count': '0',
+        'f-addon-snow': 'NO',
+        'f-timeline': 'Q_CURRENT',
+        'f-ownership': 'OWNER',
+        symptoms: [],
+      },
+      moderate: {
+        'f-roof-type': 'SAD',
+        'f-desired-material': 'BETONG_STANDARD',
+        'f-postal-code': '21140',
+        'f-existing-material': 'BETONG',
+        'f-area-method': 'exact',
+        'f-area-value': '180',
+        'f-floors': '1.5',
+        'f-property-access': 'MODERATE',
+        'f-roof-age': '20_35',
+        'f-addon-gutters': 'YES',
+        'f-addon-chimney': 'YES',
+        'f-chimney-count': '1',
+        'f-addon-windows': 'NO',
+        'f-window-count': '0',
+        'f-addon-snow': 'YES',
+        'f-timeline': 'Q_CURRENT',
+        'f-ownership': 'OWNER',
+        symptoms: ['BROKEN_TILES'],
+      },
+      complex: {
+        'f-roof-type': 'VAL',
+        'f-desired-material': 'LERTEGEL',
+        'f-postal-code': '58223',
+        'f-existing-material': 'TEGEL',
+        'f-area-method': 'exact',
+        'f-area-value': '220',
+        'f-floors': '2',
+        'f-property-access': 'DIFFICULT',
+        'f-roof-age': '35_50',
+        'f-addon-gutters': 'YES',
+        'f-addon-chimney': 'YES',
+        'f-chimney-count': '2',
+        'f-addon-windows': 'YES',
+        'f-window-count': '2',
+        'f-addon-snow': 'YES',
+        'f-timeline': 'Q_NEXT',
+        'f-ownership': 'OWNER',
+        symptoms: ['BROKEN_TILES', 'MOSS'],
+      },
+      worst: {
+        'f-roof-type': 'UNK',
+        'f-desired-material': 'PLAT_SF',
+        'f-postal-code': '58223',
+        'f-existing-material': 'UNKNOWN',
+        'f-area-method': 'fallback',
+        'f-area-value': '150',
+        'f-floors': 'UNKNOWN',
+        'f-property-access': 'UNKNOWN',
+        'f-roof-age': 'UNKNOWN',
+        'f-addon-gutters': 'UNKNOWN',
+        'f-addon-chimney': 'UNKNOWN',
+        'f-chimney-count': '0',
+        'f-addon-windows': 'UNKNOWN',
+        'f-window-count': '0',
+        'f-addon-snow': 'UNKNOWN',
+        'f-timeline': 'UNKNOWN',
+        'f-ownership': 'UNKNOWN',
+        symptoms: ['UNKNOWN'],
+      },
+    };
+
+    function applyPreset(name) {
+      const p = PRESETS[name];
+      if (!p) return;
+
+      for (const [id, val] of Object.entries(p)) {
+        if (id === 'symptoms') continue;
+        const el = $id(id);
+        if (el) el.value = val;
+      }
+
+      // Symptoms
+      document.querySelectorAll('input[name="symptom"]').forEach((cb) => {
+        cb.checked = p.symptoms.includes(cb.value);
+      });
+    }
+
+    // ── RUN ENGINE ──
+    function run() {
+      const startTime = performance.now();
+      let rawInput;
+
+      try {
+        rawInput = buildRawInput();
+        console.log('[OfferEngine Test] Raw input:', rawInput);
+      } catch (e) {
+        renderError('Fel vid bygge av input', e);
+        return;
+      }
+
+      let result;
+      try {
+        result = runOfferEngine(rawInput);
+        console.log('[OfferEngine Test] Result:', result);
+      } catch (e) {
+        console.error('[OfferEngine Test] Engine error:', e);
+        renderError('Offertmotorn kraschade', e, rawInput);
+        return;
+      }
+
+      const elapsed = (performance.now() - startTime).toFixed(1);
+
+      try {
+        renderResult(result, rawInput, elapsed);
+      } catch (e) {
+        console.error('[OfferEngine Test] Render error:', e);
+        renderError('Fel vid rendering av resultat', e, rawInput);
+      }
+    }
+
+    // ── FORMAT HELPERS ──
+    function kr(n) {
+      if (n == null) return '—';
+      return Math.round(n).toLocaleString('sv-SE') + ' kr';
+    }
+
+    function pct(n) {
+      if (n == null) return '—';
+      return (n * 100).toFixed(0) + '%';
+    }
+
+    function escHtml(s) {
+      const div = document.createElement('div');
+      div.textContent = String(s);
+      return div.innerHTML;
+    }
+
+    // ── RENDER RESULT ──
+    function renderResult(result, rawInput, elapsed) {
+      const { calculated_result: calc, presented_result: pres, sales_guidance_result: sales } = result;
+      const mods = calc.modules;
+
+      // Module display order and labels
+      const MODULE_DISPLAY = [
+        { id: 'M_BASE', label: 'Material & arbete' },
+        { id: 'M_DEMO', label: 'Rivning' },
+        { id: 'M_SUB_STRUCTURE', label: 'Underlagskonstruktion' },
+        { id: 'M_SCAFFOLD', label: 'Byggnadsställning' },
+        { id: 'M_ADDON_GUTTERS', label: 'Hängrännor' },
+        { id: 'M_ADDON_CHIMNEY', label: 'Skorstensbeslag' },
+        { id: 'M_ADDON_WINDOWS', label: 'Takfönster' },
+        { id: 'M_ADDON_SNOW', label: 'Snörasskydd' },
+        { id: 'M_MARGIN', label: 'Marginal (intern)' },
+      ];
+
+      // ── BUILD HTML ──
+      let html = '';
+
+      // Execution time
+      html += `<div class="execution-time">Exekvering: ${elapsed} ms</div>`;
+
+      // ── TABS ──
+      html += `
+      <div class="panel">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="summary">Sammanfattning</button>
+          <button class="tab-btn" data-tab="scaffold">Ställning</button>
+          <button class="tab-btn" data-tab="confidence">Confidence</button>
+          <button class="tab-btn" data-tab="sales">Sälj</button>
+          <button class="tab-btn" data-tab="presented">Kundvy</button>
+          <button class="tab-btn" data-tab="json">Rå JSON</button>
+        </div>
+        <div class="panel-body">
+      `;
+
+      // ═══ TAB: SUMMARY ═══
+      html += `<div class="tab-content active" data-tab="summary">`;
+
+      // Totals header
+      html += `
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:16px;">
+          <div style="background:#12141f; padding:12px; border-radius:6px; text-align:center;">
+            <div style="font-size:11px; color:#7c84a0; margin-bottom:4px;">MIN</div>
+            <div style="font-size:18px; font-weight:600; color:#81c784;">${kr(calc.total_min)}</div>
+          </div>
+          <div style="background:#12141f; padding:12px; border-radius:6px; text-align:center;">
+            <div style="font-size:11px; color:#7c84a0; margin-bottom:4px;">EXPECTED</div>
+            <div style="font-size:18px; font-weight:600; color:#fff;">${kr(calc.total_expected)}</div>
+          </div>
+          <div style="background:#12141f; padding:12px; border-radius:6px; text-align:center;">
+            <div style="font-size:11px; color:#7c84a0; margin-bottom:4px;">MAX</div>
+            <div style="font-size:18px; font-weight:600; color:#ef9a9a;">${kr(calc.total_max)}</div>
+          </div>
+        </div>
+      `;
+
+      // Invariant check
+      const invariantOk = calc.total_min <= calc.total_expected && calc.total_expected <= calc.total_max;
+      html += `<div style="font-size:11px; margin-bottom:12px; color:${invariantOk ? '#4caf50' : '#ef5350'};">
+        Invariant min ≤ expected ≤ max: ${invariantOk ? '✅ OK' : '❌ BROKEN!'}
+      </div>`;
+
+      // Meta
+      html += `<div style="display:flex; gap:16px; margin-bottom:12px; font-size:12px; color:#7c84a0;">
+        <span>Confidence: <b style="color:#fff">${calc.confidence.total}</b> (${calc.confidence.confidence_class})</span>
+        <span>Output: <b style="color:#fff">${calc.output_mode}</b></span>
+        <span>Yta: <b style="color:#fff">${calc.area_m2} m²</b> (${calc.area_method})</span>
+        <span>Lead: <b style="color:#fff">${calc.lead_quality_score}/5</b></span>
+      </div>`;
+
+      // Caps
+      if (calc.output_mode_caps_applied.length > 0) {
+        html += `<div style="margin-bottom:12px;"><span style="font-size:11px; color:#7c84a0;">Caps: </span><div class="caps-list">`;
+        for (const cap of calc.output_mode_caps_applied) {
+          html += `<span class="cap-tag">${escHtml(cap)}</span>`;
+        }
+        html += `</div></div>`;
+      }
+
+      // Module table
+      html += `<table class="summary-table">
+        <thead><tr>
+          <th>Modul</th><th>Status</th>
+          <th class="price-cell">Min</th>
+          <th class="price-cell">Expected</th>
+          <th class="price-cell">Max</th>
+        </tr></thead><tbody>`;
+
+      let subtotalMin = 0, subtotalMax = 0, subtotalExp = 0;
+
+      for (const { id, label } of MODULE_DISPLAY) {
+        const mod = mods[id];
+        if (!mod) {
+          html += `<tr class="excluded"><td>${escHtml(label)}</td><td>—</td><td class="price-cell" colspan="3">Modul saknas</td></tr>`;
+          continue;
+        }
+
+        const isMargin = id === 'M_MARGIN';
+        const rowClass = !mod.included ? 'excluded' : isMargin ? 'margin-row' : 'included';
+        const statusTag = mod.included
+          ? (mod.customer_visible ? '<span class="tag tag-yes">Inkl.</span>' : '<span class="tag tag-assumed">Intern</span>')
+          : '<span class="tag tag-no">Exkl.</span>';
+
+        if (mod.included && !isMargin) {
+          subtotalMin += mod.min;
+          subtotalMax += mod.max;
+          subtotalExp += mod.expected;
+        }
+
+        html += `<tr class="${rowClass}">
+          <td>${escHtml(label)}</td>
+          <td>${statusTag}</td>
+          <td class="price-cell">${mod.included ? kr(mod.min) : '—'}</td>
+          <td class="price-cell">${mod.included ? kr(mod.expected) : '—'}</td>
+          <td class="price-cell">${mod.included ? kr(mod.max) : '—'}</td>
+        </tr>`;
+
+        // Show flags
+        if (mod.flags && mod.flags.length > 0) {
+          html += `<tr class="${rowClass}"><td colspan="5" style="padding-left:30px;font-size:11px;color:#ce93d8;">
+            Flags: ${mod.flags.map(f => escHtml(f)).join(', ')}
+          </td></tr>`;
+        }
+      }
+
+      // Subtotal row (before margin)
+      html += `<tr class="total-row" style="color:#b0b8d0;">
+        <td>Delsum (före marginal)</td><td></td>
+        <td class="price-cell">${kr(subtotalMin)}</td>
+        <td class="price-cell">${kr(subtotalExp)}</td>
+        <td class="price-cell">${kr(subtotalMax)}</td>
+      </tr>`;
+
+      // Margin row
+      const margin = calc.margin;
+      html += `<tr class="margin-row">
+        <td>Marginal (${margin.profile_key}, ${pct(margin.rate)})</td><td></td>
+        <td class="price-cell" colspan="3">${kr(margin.absolute)} expected</td>
+      </tr>`;
+
+      // Floor row
+      if (calc.floor.applied) {
+        html += `<tr style="color:#ffb74d;font-size:12px;">
+          <td>Golvskydd (${escHtml(calc.floor.reason)})</td><td></td>
+          <td class="price-cell" colspan="3">+${kr(calc.floor.delta_amount)} på min</td>
+        </tr>`;
+      }
+
+      // Total row
+      html += `<tr class="total-row">
+        <td>TOTALT (efter marginal + golv)</td><td></td>
+        <td class="price-cell">${kr(calc.total_min)}</td>
+        <td class="price-cell">${kr(calc.total_expected)}</td>
+        <td class="price-cell">${kr(calc.total_max)}</td>
+      </tr>`;
+
+      html += `</tbody></table>`;
+
+      // Warnings
+      if (calc.warnings && calc.warnings.length > 0) {
+        html += `<div style="margin-top:12px;"><b style="font-size:11px;color:#7c84a0;">Varningar:</b><ul class="warnings-list">`;
+        for (const w of calc.warnings) {
+          html += `<li>${escHtml(w)}</li>`;
+        }
+        html += `</ul></div>`;
+      }
+
+      html += `</div>`; // end tab summary
+
+      // ═══ TAB: SCAFFOLD ═══
+      html += `<div class="tab-content" data-tab="scaffold">`;
+      const scaffMod = mods.M_SCAFFOLD;
+      if (scaffMod) {
+        const floors = rawInput.floors;
+        const access = rawInput.property_access;
+        const included = scaffMod.included;
+        const assumption = scaffMod._scaffold_assumption || 'N/A';
+
+        html += `<h3 style="font-size:15px;margin-bottom:12px;color:#fff;">Scaffold Decision</h3>`;
+        html += `<div class="scaffold-detail">`;
+
+        // Show all rules and which one fired
+        const rules = [
+          { condition: '1 plan + Lätt/Medel tillgänglighet', result: 'Ingen ställning', match: floors === '1' && ['EASY','MODERATE'].includes(access) },
+          { condition: '1 plan + Svår tillgänglighet', result: 'Ställning krävs', match: floors === '1' && access === 'DIFFICULT' },
+          { condition: '1.5+ plan (oavsett tillgänglighet)', result: 'Ställning krävs', match: ['1.5','2','2.5_PLUS'].includes(floors) },
+          { condition: 'Våningar okänt', result: 'Ställning ANTAGEN (konservativt)', match: floors === 'UNKNOWN' },
+        ];
+
+        for (const rule of rules) {
+          const icon = rule.match ? '✅' : '⬜';
+          const style = rule.match ? 'color:#81c784;font-weight:500;' : 'color:#6a6f88;';
+          html += `<div class="rule">
+            <span class="rule-icon">${icon}</span>
+            <span style="${style}">${escHtml(rule.condition)} → ${escHtml(rule.result)}</span>
+          </div>`;
+        }
+
+        html += `</div>`;
+
+        html += `<div style="margin-top:12px; font-size:13px;">
+          <div>Resultat: <b style="color:${included ? '#81c784' : '#ef9a9a'}">${included ? 'STÄLLNING KRÄVS' : 'INGEN STÄLLNING'}</b></div>
+          <div>Typ: <b>${escHtml(assumption)}</b></div>
+          ${included ? `<div>Kostnad: <b>${kr(scaffMod.expected)}</b></div>` : ''}
+        </div>`;
+
+        // Assumptions
+        if (scaffMod.assumptions && scaffMod.assumptions.length > 0) {
+          html += `<div style="margin-top:8px;font-size:12px;color:#7c84a0;">`;
+          for (const a of scaffMod.assumptions) {
+            html += `<div>· ${escHtml(a)}</div>`;
+          }
+          html += `</div>`;
+        }
+      } else {
+        html += `<p style="color:#ef5350;">Scaffold module saknas i resultatet!</p>`;
+      }
+      html += `</div>`;
+
+      // ═══ TAB: CONFIDENCE ═══
+      html += `<div class="tab-content" data-tab="confidence">`;
+      const conf = calc.confidence;
+
+      function confidenceBar(label, value, weight) {
+        const pctVal = Math.round(value * 100);
+        const color = pctVal >= 70 ? '#4caf50' : pctVal >= 45 ? '#ffb74d' : '#ef5350';
+        return `<div style="margin-bottom:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px;">
+            <span style="color:#b0b8d0;">${label} ${weight ? `<span style="color:#5a5f78;">(vikt: ${weight})</span>` : ''}</span>
+            <span style="color:#fff;font-weight:500;">${pctVal}%</span>
+          </div>
+          <div class="confidence-bar-outer">
+            <div class="confidence-bar-inner" style="width:${pctVal}%;background:${color};"></div>
+          </div>
+        </div>`;
+      }
+
+      html += `<h3 style="font-size:15px;margin-bottom:16px;color:#fff;">Confidence Breakdown</h3>`;
+      html += confidenceBar('Geometri', conf.geometry, '0.40');
+      html += confidenceBar('Material', conf.material, '0.15');
+      html += confidenceBar('Skick', conf.condition, '0.30');
+      html += confidenceBar('Tillval', conf.addon, '0.15');
+
+      html += `<div style="border-top:1px solid #2a2d3a;padding-top:10px;margin-top:4px;">`;
+      html += confidenceBar('Viktat (före penalties)', conf.weighted_before_penalties / 100);
+      html += `<div style="font-size:12px;margin-bottom:6px;color:#b0b8d0;">
+        Unknown burden: <b>${conf.unknown_burden}</b> &nbsp;|&nbsp;
+        Class: <b>${conf.confidence_class}</b>
+      </div>`;
+
+      const totalColor = conf.total >= 65 ? '#4caf50' : conf.total >= 45 ? '#ffb74d' : conf.total >= 25 ? '#ff9800' : '#ef5350';
+      html += `<div style="text-align:center;padding:16px;">
+        <div style="font-size:42px;font-weight:700;color:${totalColor};">${conf.total}</div>
+        <div style="font-size:12px;color:#7c84a0;">Total Confidence</div>
+      </div>`;
+      html += `</div>`;
+      html += `</div>`;
+
+      // ═══ TAB: SALES GUIDANCE ═══
+      html += `<div class="tab-content" data-tab="sales">`;
+      html += `<h3 style="font-size:15px;margin-bottom:16px;color:#fff;">Sales Guidance (intern)</h3>`;
+
+      const gf = (label, val, highlight) => `<div class="guidance-field">
+        <div class="gf-label">${label}</div>
+        <div class="gf-value${highlight ? ' highlight' : ''}">${val}</div>
+      </div>`;
+
+      html += gf('Headline', escHtml(sales.headline));
+      html += gf('Prioritet', `${sales.priority} (Lead score: ${sales.lead_quality_score}/5)`);
+      html += gf('Internt målpris', kr(sales.internal_target_price), true);
+      html += gf('Kundintervall', `${kr(sales.customer_price_expectation.min)} – ${kr(sales.customer_price_expectation.max)}`);
+      html += gf('Prispostur', escHtml(sales.pricing_posture || '—'), true);
+      html += gf('Rekommenderad åtgärd', escHtml(sales.recommended_sales_action || '—'));
+      html += gf('Besiktningsprioritet', escHtml(sales.inspection_priority || '—'));
+
+      // Primary verification
+      if (sales.primary_verification_target) {
+        const pvt = sales.primary_verification_target;
+        html += `<div class="guidance-field">
+          <div class="gf-label">Primär verifiering</div>
+          <div class="gf-value highlight">${escHtml(pvt.field)}: ${escHtml(pvt.reason)}</div>
+          <div class="gf-value" style="font-size:12px;">→ ${escHtml(pvt.action)}</div>
+        </div>`;
+      }
+
+      // Largest price risk
+      if (sales.largest_price_risk_driver) {
+        const lpr = sales.largest_price_risk_driver;
+        html += gf('Största prisrisk', `${escHtml(lpr.label)} (${escHtml(lpr.reason)})`, true);
+      }
+
+      // Largest uncertainty
+      if (sales.largest_uncertainty_driver) {
+        const lud = sales.largest_uncertainty_driver;
+        html += gf('Största osäkerhet', `${escHtml(lud.label)} (vikt: ${lud.weight}, totalt ${lud.total_unknowns} okända)`);
+      }
+
+      // Verify items
+      if (sales.items_to_verify && sales.items_to_verify.length > 0) {
+        html += `<div class="guidance-field"><div class="gf-label">Att verifiera</div>`;
+        for (const item of sales.items_to_verify) {
+          html += `<div class="talking-point">${escHtml(item)}</div>`;
+        }
+        html += `</div>`;
+      }
+
+      // Risk flags
+      if (sales.risk_flags && sales.risk_flags.length > 0) {
+        html += `<div class="guidance-field"><div class="gf-label">Riskflaggor</div>`;
+        for (const flag of sales.risk_flags) {
+          html += `<div style="color:#ef5350;font-size:13px;padding:2px 0;">⚠️ ${escHtml(flag)}</div>`;
+        }
+        html += `</div>`;
+      }
+
+      // Talking points
+      if (sales.talking_points && sales.talking_points.length > 0) {
+        html += `<div class="guidance-field"><div class="gf-label">Samtalspunkter</div>`;
+        for (const tp of sales.talking_points) {
+          html += `<div class="talking-point">${escHtml(tp)}</div>`;
+        }
+        html += `</div>`;
+      }
+
+      html += `</div>`;
+
+      // ═══ TAB: PRESENTED (customer view) ═══
+      html += `<div class="tab-content" data-tab="presented">`;
+      html += `<h3 style="font-size:15px;margin-bottom:16px;color:#fff;">Kundpresentation (presented_result)</h3>`;
+
+      if (pres.price.output_mode === 'NO_PRICE_CONTACT_REQUIRED') {
+        html += `<div style="background:#2a1010;border:1px solid #5c1a1a;border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:16px;color:#ef5350;font-weight:600;">Inget pris kan visas</div>
+          <div style="font-size:13px;color:#ffab91;margin-top:6px;">${escHtml(pres.confidence_text)}</div>
+        </div>`;
+      } else {
+        html += `<div style="background:#12141f;border-radius:6px;padding:16px;text-align:center;margin-bottom:12px;">
+          <div style="font-size:11px;color:#7c84a0;margin-bottom:4px;">Prisintervall (${pres.price.output_mode})</div>
+          <div style="font-size:22px;font-weight:700;color:#fff;">
+            ${pres.price.interval_min ? pres.price.interval_min.toLocaleString('sv-SE') : '—'}
+            –
+            ${pres.price.interval_max ? pres.price.interval_max.toLocaleString('sv-SE') : '—'} kr
+          </div>
+        </div>`;
+
+        // Line items
+        if (pres.price.line_items && pres.price.line_items.length > 0) {
+          html += `<table class="summary-table"><thead><tr><th>Post</th><th class="price-cell">Belopp</th><th>Osäker</th></tr></thead><tbody>`;
+          for (const li of pres.price.line_items) {
+            html += `<tr class="included">
+              <td>${escHtml(li.label)}</td>
+              <td class="price-cell">${escHtml(li.amount_label)}</td>
+              <td>${li.is_uncertain ? '<span class="tag tag-assumed">Osäker</span>' : ''}</td>
+            </tr>`;
+          }
+          html += `</tbody></table>`;
+        }
+      }
+
+      html += `<div style="margin-top:12px;font-size:13px;">
+        <div style="color:#90caf9;margin-bottom:4px;">${escHtml(pres.confidence_text)}</div>
+        <div style="color:#b0b8d0;"><b>Nästa steg:</b> ${escHtml(pres.next_step_text)}</div>
+      </div>`;
+
+      // Summary fields
+      html += `<div style="margin-top:12px;font-size:12px;color:#7c84a0;">
+        <div>${escHtml(pres.summary.roof_type_label)} · ${escHtml(pres.summary.desired_material_label)}</div>
+        <div>${escHtml(pres.summary.area_estimate_label)}</div>
+        ${pres.summary.selected_addons.length > 0 ? `<div>Tillval: ${pres.summary.selected_addons.join(', ')}</div>` : ''}
+        ${pres.summary.uncertain_items.length > 0 ? `<div>Osäkra poster: ${pres.summary.uncertain_items.join(', ')}</div>` : ''}
+      </div>`;
+
+      html += `</div>`;
+
+      // ═══ TAB: JSON ═══
+      html += `<div class="tab-content" data-tab="json">`;
+
+      html += `<div style="margin-bottom:8px;">
+        <button class="json-toggle" data-target="json-input">Input</button>
+        <button class="json-toggle" data-target="json-calc">calculated_result</button>
+        <button class="json-toggle" data-target="json-pres">presented_result</button>
+        <button class="json-toggle" data-target="json-sales">sales_guidance_result</button>
+      </div>`;
+
+      html += `<div class="json-block" id="json-input">${escHtml(JSON.stringify(rawInput, null, 2))}</div>`;
+      html += `<div class="json-block hidden" id="json-calc">${escHtml(JSON.stringify(calc, null, 2))}</div>`;
+      html += `<div class="json-block hidden" id="json-pres">${escHtml(JSON.stringify(pres, null, 2))}</div>`;
+      html += `<div class="json-block hidden" id="json-sales">${escHtml(JSON.stringify(sales, null, 2))}</div>`;
+
+      html += `</div>`; // end json tab
+
+      html += `</div></div>`; // end panel-body, panel
+
+      resultsArea.innerHTML = html;
+
+      // Wire tabs
+      resultsArea.querySelectorAll('.tab-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const tab = btn.dataset.tab;
+          resultsArea.querySelectorAll('.tab-btn').forEach((b) => b.classList.remove('active'));
+          resultsArea.querySelectorAll('.tab-content').forEach((c) => c.classList.remove('active'));
+          btn.classList.add('active');
+          resultsArea.querySelector(`.tab-content[data-tab="${tab}"]`).classList.add('active');
+        });
+      });
+
+      // Wire JSON toggles
+      resultsArea.querySelectorAll('.json-toggle').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const target = btn.dataset.target;
+          resultsArea.querySelectorAll('.json-block').forEach((b) => b.classList.add('hidden'));
+          const el = $id(target);
+          if (el) el.classList.remove('hidden');
+        });
+      });
+    }
+
+    // ── RENDER ERROR ──
+    function renderError(title, error, rawInput) {
+      let html = `<div class="error-box">
+        <h3>❌ ${escHtml(title)}</h3>
+        <div class="error-message">${escHtml(error.message)}</div>`;
+
+      // Try to identify which function failed
+      if (error.stack) {
+        const stackLines = error.stack.split('\n');
+        const funcMatch = stackLines.find((l) => l.includes('at '));
+        if (funcMatch) {
+          html += `<div style="font-size:12px;color:#ef9a9a;margin-bottom:8px;">
+            Trolig funktion: <b>${escHtml(funcMatch.trim())}</b>
+          </div>`;
+        }
+      }
+
+      html += `<pre>${escHtml(error.stack || 'Ingen stack tillgänglig')}</pre>`;
+
+      if (rawInput) {
+        html += `<div style="margin-top:12px;"><b style="color:#ef9a9a;">Input som skickades:</b>
+          <pre>${escHtml(JSON.stringify(rawInput, null, 2))}</pre>
+        </div>`;
+      }
+
+      html += `</div>`;
+      resultsArea.innerHTML = html;
+    }
+
+    // ── EVENT LISTENERS ──
+    $id('btn-run').addEventListener('click', run);
+
+    // Presets
+    document.querySelectorAll('.preset-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        applyPreset(btn.dataset.preset);
+      });
+    });
+
+    // Keyboard shortcut: Ctrl+Enter to run
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        run();
+      }
+    });
+  </script>
+</body>
+</html>

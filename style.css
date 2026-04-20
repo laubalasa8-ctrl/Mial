@@ -26326,4 +26326,74 @@ body.article-page header {
   .art-stats { grid-template-columns: 1fr 1fr; gap: 1rem; }
   .art-stat { padding: 1.2rem 0.8rem; }
   .art-stat-number { font-size: 1.6rem; }
+
+  /* Index hero: center calc button content on mobile */
+  .index-page .hero .hero-cta-row {
+    justify-content: center;
+  }
+  .index-page .hero .btn-calc {
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Solceller hero: remove left white strip and keep full-bleed image */
+  .solceller-page .solar-hero {
+    width: 100%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0;
+    padding-right: 0;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .solceller-page .solar-hero .solar-hero-content {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+/* Footer logo: move slightly higher and add breathing room above tagline */
+.footer-logo-img {
+  margin: -36px 0 8px -3px;
+}
+
+/* Terms page: make hero/header/topbar background explicit and always visible */
+body.terms-body .topbar,
+body.terms-body header,
+body.terms-body .terms-hero {
+  background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Article cards: force consistent left-to-right arrow direction on all pages */
+.articles-slider-wrap,
+.articles-slider,
+.article-card,
+.article-card-body,
+.article-card-read {
+  direction: ltr;
+}
+
+.article-card-read svg,
+.articles-arrow svg {
+  transform: none !important;
+}
+
+@media (max-width: 600px) {
+  body.terms-body .topbar,
+  body.terms-body header,
+  body.terms-body .terms-hero {
+    background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat2.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: scroll !important;
+  }
 }

@@ -1,0 +1,203 @@
+// ── ROOF TYPES ──
+export const ROOF_TYPE = Object.freeze({
+  SAD: 'SAD',       // Sadeltak
+  VAL: 'VAL',       // Valmat tak
+  PUL: 'PUL',       // Pulpettak
+  KOM: 'KOM',       // Kombinerat (ej MVP)
+  PLA: 'PLA',       // Platt tak (ej MVP)
+  UNK: 'UNK',       // Okänd
+});
+
+export const MVP_SUPPORTED_ROOF_TYPES = Object.freeze([
+  ROOF_TYPE.SAD,
+  ROOF_TYPE.VAL,
+  ROOF_TYPE.PUL,
+  ROOF_TYPE.UNK,
+]);
+
+// ── DESIRED MATERIALS ──
+export const DESIRED_MATERIAL = Object.freeze({
+  BETONG_STANDARD: 'BETONG_STANDARD',
+  LERTEGEL: 'LERTEGEL',
+  PLAT_SF: 'PLAT_SF',
+  PLAT_LP: 'PLAT_LP',
+});
+
+// ── EXISTING MATERIALS ──
+export const EXISTING_MATERIAL = Object.freeze({
+  BETONG: 'BETONG',
+  TEGEL: 'TEGEL',
+  PLAT: 'PLAT',
+  PAPP: 'PAPP',
+  ETERNIT: 'ETERNIT',
+  OTHER: 'OTHER',
+  UNKNOWN: 'UNKNOWN',
+});
+
+// ── AREA METHODS ──
+export const AREA_METHOD = Object.freeze({
+  EXACT: 'EXACT',
+  FOOTPRINT_CALC: 'FOOTPRINT_CALC',
+  SIZE_CLASS: 'SIZE_CLASS',
+  FALLBACK: 'FALLBACK',
+});
+
+// ── SIZE CLASSES ──
+export const SIZE_CLASS = Object.freeze({
+  SMALL: 'SMALL',
+  MEDIUM: 'MEDIUM',
+  LARGE: 'LARGE',
+  XLARGE: 'XLARGE',
+});
+
+// ── OUTPUT MODES ──
+export const OUTPUT_MODE = Object.freeze({
+  FULL_INTERVAL: 'FULL_INTERVAL',
+  QUALIFIED_INTERVAL: 'QUALIFIED_INTERVAL',
+  PRICE_LEVEL_ONLY: 'PRICE_LEVEL_ONLY',
+  NO_PRICE_CONTACT_REQUIRED: 'NO_PRICE_CONTACT_REQUIRED',
+});
+
+// Strictness order (lower index = stricter)
+export const OUTPUT_MODE_ORDER = Object.freeze([
+  OUTPUT_MODE.NO_PRICE_CONTACT_REQUIRED,
+  OUTPUT_MODE.PRICE_LEVEL_ONLY,
+  OUTPUT_MODE.QUALIFIED_INTERVAL,
+  OUTPUT_MODE.FULL_INTERVAL,
+]);
+
+// ── CONFIDENCE CLASSES ──
+export const CONFIDENCE_CLASS = Object.freeze({
+  HIGH: 'HIGH',
+  MEDIUM: 'MEDIUM',
+  LOW: 'LOW',
+  INSUFFICIENT: 'INSUFFICIENT',
+});
+
+// ── SUBSTRATE RISK ──
+export const SUBSTRATE_RISK = Object.freeze({
+  LOW: 'LOW',
+  LOW_MED: 'LOW_MED',
+  MED: 'MED',
+  MED_HIGH: 'MED_HIGH',
+  HIGH: 'HIGH',
+});
+
+// Ordered from lowest to highest risk
+export const SUBSTRATE_RISK_ORDER = Object.freeze([
+  SUBSTRATE_RISK.LOW,
+  SUBSTRATE_RISK.LOW_MED,
+  SUBSTRATE_RISK.MED,
+  SUBSTRATE_RISK.MED_HIGH,
+  SUBSTRATE_RISK.HIGH,
+]);
+
+// ── MARGIN PROFILES ──
+export const MARGIN_PROFILE = Object.freeze({
+  SMALL_PROJECT: 'SMALL_PROJECT',
+  PREMIUM_MATERIAL: 'PREMIUM_MATERIAL',
+  STANDARD: 'STANDARD',
+});
+
+// ── FLOOR REASONS ──
+export const FLOOR_REASON = Object.freeze({
+  PROJECT_BELOW_MINIMUM_VIABLE_SIZE: 'PROJECT_BELOW_MINIMUM_VIABLE_SIZE',
+  CALCULATED_PRICE_BELOW_COST_FLOOR: 'CALCULATED_PRICE_BELOW_COST_FLOOR',
+  MARGIN_SQUEEZE_PROTECTION: 'MARGIN_SQUEEZE_PROTECTION',
+});
+
+// ── POSTAL ZONES ──
+export const POSTAL_ZONE = Object.freeze({
+  CORE: 'CORE',
+  MID: 'MID',
+  OUTER: 'OUTER',
+});
+
+// ── SYMPTOM FLAGS ──
+export const SYMPTOM = Object.freeze({
+  LEAK: 'LEAK',
+  MOISTURE_INSIDE: 'MOISTURE_INSIDE',
+  BROKEN_TILES: 'BROKEN_TILES',
+  SAGGING_GUTTERS: 'SAGGING_GUTTERS',
+  MOSS: 'MOSS',
+  NONE: 'NONE',
+  UNKNOWN: 'UNKNOWN',
+});
+
+// ── ADDON ANSWER ──
+export const ADDON_ANSWER = Object.freeze({
+  YES: 'YES',
+  NO: 'NO',
+  UNKNOWN: 'UNKNOWN',
+});
+
+// ── CONFIDENCE FLAGS ──
+export const CONFIDENCE_FLAG = Object.freeze({
+  VERIFIED: 'VERIFIED',
+  INFERRED: 'INFERRED',
+  UNKNOWN: 'UNKNOWN',
+});
+
+// ── ROOF AGE BANDS ──
+export const ROOF_AGE_BAND = Object.freeze({
+  LT_20: 'LT_20',
+  AGE_20_35: '20_35',
+  AGE_35_50: '35_50',
+  GT_50: 'GT_50',
+  UNKNOWN: 'UNKNOWN',
+});
+
+// ── FLOORS ──
+export const FLOORS = Object.freeze({
+  ONE: '1',
+  ONE_HALF: '1.5',
+  TWO: '2',
+  TWO_HALF_PLUS: '2.5_PLUS',
+  UNKNOWN: 'UNKNOWN',
+});
+
+// ── PROPERTY ACCESS ──
+export const PROPERTY_ACCESS = Object.freeze({
+  EASY: 'EASY',
+  MODERATE: 'MODERATE',
+  DIFFICULT: 'DIFFICULT',
+  UNKNOWN: 'UNKNOWN',
+});
+
+// ── SCAFFOLD ASSUMPTION ──
+export const SCAFFOLD_ASSUMPTION = Object.freeze({
+  CONFIRMED: 'CONFIRMED',
+  ASSUMED: 'ASSUMED',
+});
+
+// ── LEAD TIMELINE ──
+export const LEAD_TIMELINE = Object.freeze({
+  Q_CURRENT: 'Q_CURRENT',
+  Q_NEXT: 'Q_NEXT',
+  NEXT_YEAR: 'NEXT_YEAR',
+  UNKNOWN: 'UNKNOWN',
+});
+
+// ── OWNERSHIP STATUS ──
+export const OWNERSHIP_STATUS = Object.freeze({
+  OWNER: 'OWNER',
+  NOT_OWNER: 'NOT_OWNER',
+  BRF: 'BRF',
+  UNKNOWN: 'UNKNOWN',
+});
+
+// ── MODULE IDS ──
+export const MODULE_ID = Object.freeze({
+  M_BASE: 'M_BASE',
+  M_DEMO: 'M_DEMO',
+  M_SUB_LAYER: 'M_SUB_LAYER',
+  M_SUB_STRUCTURE: 'M_SUB_STRUCTURE',
+  M_COMPLEXITY: 'M_COMPLEXITY',
+  M_SCAFFOLD: 'M_SCAFFOLD',
+  M_LOGISTICS: 'M_LOGISTICS',
+  M_ADDON_GUTTERS: 'M_ADDON_GUTTERS',
+  M_ADDON_CHIMNEY: 'M_ADDON_CHIMNEY',
+  M_ADDON_WINDOWS: 'M_ADDON_WINDOWS',
+  M_ADDON_SNOW: 'M_ADDON_SNOW',
+  M_MARGIN: 'M_MARGIN',
+});

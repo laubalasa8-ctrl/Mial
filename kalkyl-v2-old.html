@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Ferotect – Beräkna ditt takbyte</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Beräkna kostnaden för ditt takbyte direkt online. Fyll i dina mått och val – få en prisuppskattning direkt.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --blue: #19A8FF;
+      --blue-dark: #1177b8;
+      --bg: #ffffff;
+      --bg-soft: #f5f7fa;
+      --text: #111111;
+      --text-soft: #5a5a5a;
+      --border: #e0e0e0;
+      --max-width: 900px;
+      --danger: #d32f2f;
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── HEADER ── */
+    .calc-header {
+      background: linear-gradient(135deg, #0b1628 0%, #162744 100%);
+      color: #fff;
+      text-align: center;
+      padding: 3rem 1.5rem 2.5rem;
+    }
+    .calc-header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.5rem;
+    }
+    .calc-header h1 span { color: var(--blue); }
+    .calc-header p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .header-back {
+      position: absolute;
+      top: 1rem;
+      left: 1.5rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.2s;
+    }
+    .header-back:hover { color: var(--blue); }
+
+    /* ── STEPPER ── */
+    .stepper {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-top: 2rem;
+    }
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.35);
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .step-item.active { color: var(--blue); }
+    .step-item.done { color: rgba(255,255,255,0.7); }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      transition: all 0.3s;
+    }
+    .step-item.active .step-num {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+    .step-item.done .step-num {
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.3);
+    }
+    .step-connector {
+      width: 40px;
+      height: 2px;
+      background: rgba(255,255,255,0.1);
+      margin: 0 0.2rem;
+      align-self: center;
+    }
+    @media (max-width: 700px) {
+      .step-label { display: none; }
+      .step-connector { width: 20px; }
+    }
+
+    /* ── CONTAINER ── */
+    .calc-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* ── SECTIONS ── */
+    .calc-section {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+    .calc-section.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.3px;
+    }
+    .section-desc {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── FORM GROUPS ── */
+    .field-group {
+      margin-bottom: 1.5rem;
+    }
+    .field-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+    .field-group .field-hint {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      margin-bottom: 0.4rem;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    @media (max-width: 600px) {
+      .field-row { grid-template-columns: 1fr; }
+    }
+
+    input[type="number"], input[type="text"], select {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: var(--text);
+      background: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -moz-appearance: textfield;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(25,168,255,0.12);
+    }
+
+    /* ── MEASURE CARD (step 1) ── */
+    .measure-card {
+      background: var(--bg-soft);
+      border-radius: 12px;
+      padding: 1.2rem 1.2rem 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .measure-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin-bottom: 0.6rem;
+    }
+    .measure-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--blue);
+    }
+    .measure-icon svg { width: 20px; height: 20px; }
+    .measure-text { flex: 1; }
+    .measure-text label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 0.15rem;
+    }
+    .measure-text .field-hint {
+      font-size: 0.78rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── MATERIAL SELECTOR ── */
+    .material-categories {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .mat-cat-btn {
+      padding: 0.6rem 1.2rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #fff;
+      color: var(--text-soft);
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .mat-cat-btn:hover { border-color: var(--blue); color: var(--text); }
+    .mat-cat-btn.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+
+    .material-options { display: none; }
+    .material-options.active { display: block; }
+
+    .mat-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding: 1rem 1.1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #fff;
+    }
+    .mat-option:hover { border-color: var(--blue); background: rgba(25,168,255,0.03); }
+    .mat-option.selected {
+      border-color: var(--blue);
+      background: rgba(25,168,255,0.06);
+    }
+    .mat-radio {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
+      margin-top: 2px;
+    }
+    .mat-option.selected .mat-radio { border-color: var(--blue); }
+    .mat-radio-inner {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--blue);
+      transform: scale(0);
+      transition: transform 0.2s;
+    }
+    .mat-option.selected .mat-radio-inner { transform: scale(1); }
+    .mat-info { flex: 1; }
+    .mat-name { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.15rem; }
+    .mat-desc { font-size: 0.78rem; color: var(--text-soft); line-height: 1.5; }
+
+    /* ── COUNT FIELD WITH +/- ── */
+    .count-field {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      width: fit-content;
+    }
+    .count-btn {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: var(--bg-soft);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+    .count-btn:hover { background: #e8edf2; }
+    .count-val {
+      width: 50px;
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: none;
+      background: #fff;
+      font-family: inherit;
+      color: var(--text);
+    }
+    .count-val:focus { outline: none; }
+
+    /* ── TOGGLE (ja/nej) ── */
+    .toggle-group {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .toggle-btn {
+      padding: 0.5rem 1.2rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #fff;
+      color: var(--text-soft);
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .toggle-btn:hover { border-color: var(--blue); }
+    .toggle-btn.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+
+    /* ── SUB-SECTION ── */
+    .sub-section {
+      background: var(--bg-soft);
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .sub-section-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .sub-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--text-soft);
+    }
+    .sub-icon svg { width: 16px; height: 16px; }
+
+    .sub-section-hint {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      margin-bottom: 0.7rem;
+      line-height: 1.5;
+    }
+
+    /* ── CHIMNEY/ASBEST OPTIONS ── */
+    .option-panel {
+      margin-top: 0.8rem;
+      padding: 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+    }
+    .option-panel label {
+      font-size: 0.82rem;
+    }
+
+    /* ── NAVIGATION BUTTONS ── */
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .btn-prev, .btn-next {
+      padding: 0.75rem 1.8rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      border: none;
+    }
+    .btn-prev {
+      background: var(--bg-soft);
+      color: var(--text-soft);
+      border: 1.5px solid var(--border);
+    }
+    .btn-prev:hover { border-color: var(--blue); color: var(--text); }
+    .btn-next {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(25,168,255,0.3);
+    }
+    .btn-next:hover { background: var(--blue-dark); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(25,168,255,0.35); }
+
+    /* ── RESULTS ── */
+    .result-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .result-header {
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .result-header h3 { font-size: 1rem; font-weight: 700; }
+    .result-body { padding: 1.2rem 1.5rem; }
+
+    .price-hero {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: linear-gradient(135deg, #0b1628, #162744);
+      border-radius: 14px;
+      margin-bottom: 1.5rem;
+    }
+    .price-hero-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.3rem;
+    }
+    .price-hero-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -1px;
+    }
+    .price-hero-sub {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.5rem;
+    }
+    .price-hero-rot {
+      display: inline-block;
+      margin-top: 0.8rem;
+      background: rgba(25,168,255,0.15);
+      border: 1px solid rgba(25,168,255,0.3);
+      border-radius: 8px;
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    .breakdown-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .breakdown-table th,
+    .breakdown-table td {
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      font-size: 0.85rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .breakdown-table th {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-soft);
+    }
+    .breakdown-table td.val-cell {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      font-weight: 500;
+    }
+    .breakdown-table tr.total-row td {
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-top: 2px solid var(--text);
+      border-bottom: none;
+    }
+    .breakdown-table tr.sub-total td {
+      font-weight: 600;
+      color: var(--text-soft);
+      background: var(--bg-soft);
+    }
+
+    .disclaimer {
+      margin-top: 2rem;
+      padding: 1rem 1.2rem;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      color: #92400e;
+      line-height: 1.6;
+    }
+    .disclaimer strong { color: #78350f; }
+
+    .cta-box {
+      text-align: center;
+      padding: 2rem;
+      background: var(--bg-soft);
+      border-radius: 14px;
+      margin-top: 1.5rem;
+    }
+    .cta-box h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .cta-box p { font-size: 0.85rem; color: var(--text-soft); margin-bottom: 1rem; }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 2rem;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .cta-btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
+
+    .hidden { display: none; }
+
+    .calc-footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════ HEADER ═══════ -->
+  <div class="calc-header" style="position:relative;">
+    <a href="index.html" class="header-back">← Tillbaka</a>
+    <h1>Beräkna ditt <span>takbyte</span></h1>
+    <p>Fyll i mått och val nedan för att få en prisuppskattning direkt. Kalkylen baseras på verkliga materialpriser och arbetskostnader.</p>
+
+    <div class="stepper">
+      <div class="step-item active" data-step="1">
+        <span class="step-num">1</span>
+        <span class="step-label">Grundmått</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" data-step="2">
+        <span class="step-num">2</span>
+        <span class="step-label">Material</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" data-step="3">
+        <span class="step-num">3</span>
+        <span class="step-label">Detaljer</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" data-step="4">
+        <span class="step-num">4</span>
+        <span class="step-label">Underlag</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" data-step="5">
+        <span class="step-num">5</span>
+        <span class="step-label">Resultat</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="calc-container">
+
+    <!-- ═══════ STEG 1: GRUNDMÅTT ═══════ -->
+    <div class="calc-section active" data-section="1">
+      <h2 class="section-title">Takets grundmått</h2>
+      <p class="section-desc">Vi behöver fyra huvudmått för att beräkna materialmängd och arbetskostnad. Alla mått anges i meter eller kvadratmeter.</p>
+
+      <div class="field-group">
+        <label>Antal ägare på fastigheten</label>
+        <p class="field-hint">Antalet ägare avgör hur mycket ROT-avdrag ni kan utnyttja. Varje ägare har rätt till 50 000 kr i avdrag per år.</p>
+        <div class="toggle-group">
+          <button class="toggle-btn active" data-field="owners" data-value="1">1 ägare</button>
+          <button class="toggle-btn" data-field="owners" data-value="2">2 ägare</button>
+        </div>
+      </div>
+
+      <!-- Takets yta -->
+      <div class="measure-card">
+        <div class="measure-card-header">
+          <div class="measure-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21V7l9-5 9 5v14"/>
+              <path d="M3 21h18"/>
+              <path d="M12 2v8"/>
+              <path d="M5 10h14"/>
+            </svg>
+          </div>
+          <div class="measure-text">
+            <label for="roof-area">Takets totala yta (m²)</label>
+            <p class="field-hint">Den sammanlagda ytan av alla taksidor, alltså hela den yta som ska beläggas med nytt material. Om du har ett sadeltak räknar du ihop båda sidor. Har du inte exakta mått? Mät husets längd × takets lutningslängd (från takfot upp till nock) för varje sida och addera ihop.</p>
+          </div>
+        </div>
+        <input type="number" id="roof-area" min="40" max="500" step="1" placeholder="t.ex. 160">
+      </div>
+
+      <div class="field-row">
+        <!-- Gavel -->
+        <div class="measure-card">
+          <div class="measure-card-header">
+            <div class="measure-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 20h2l6-12 6 12h2"/>
+                <path d="M2 20h20"/>
+              </svg>
+            </div>
+            <div class="measure-text">
+              <label for="gavel">Gavel (m)</label>
+              <p class="field-hint">Gaveln är den snedskurna kanten på taket vid husets kortsidor — där takytan slutar och vindskivan sitter. Mät den totala gavellängden längs taket (inte väggen), inkl. eventuella takkuporgavlar.</p>
+            </div>
+          </div>
+          <input type="number" id="gavel" min="0" max="200" step="0.1" placeholder="t.ex. 27.6">
+        </div>
+
+        <!-- Nock -->
+        <div class="measure-card">
+          <div class="measure-card-header">
+            <div class="measure-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 20 12 6l10 14"/>
+                <path d="M7 13h10" stroke-dasharray="2 2"/>
+              </svg>
+            </div>
+            <div class="measure-text">
+              <label for="nock">Nock (m)</label>
+              <p class="field-hint">Nocken är den översta linjen på taket, alltså krönets längd där de två taksidorna möts. Mät nockens längd rakt från den ena gaveln till den andra.</p>
+            </div>
+          </div>
+          <input type="number" id="nock" min="0" max="100" step="0.1" placeholder="t.ex. 12.3">
+        </div>
+      </div>
+
+      <!-- Takfot -->
+      <div class="measure-card">
+        <div class="measure-card-header">
+          <div class="measure-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 18h20"/>
+              <path d="M4 18V8l8-4 8 4v10"/>
+              <path d="M2 18l2-1"/>
+              <path d="M20 17l2 1"/>
+            </svg>
+          </div>
+          <div class="measure-text">
+            <label for="takfot">Takfot (m)</label>
+            <p class="field-hint">Takfoten är takets nedre kant — den del som sticker ut förbi ytterväggen. Här sitter normalt hängrännorna. Mät den totala längden av all takfot runt huset.</p>
+          </div>
+        </div>
+        <input type="number" id="takfot" min="0" max="200" step="0.1" placeholder="t.ex. 24.6">
+      </div>
+
+      <div class="nav-buttons">
+        <div></div>
+        <button class="btn-next" onclick="goStep(2)">Nästa: Material →</button>
+      </div>
+    </div>
+
+    <!-- ═══════ STEG 2: MATERIAL ═══════ -->
+    <div class="calc-section" data-section="2">
+      <h2 class="section-title">Val av takmaterial</h2>
+      <p class="section-desc">Välj den materialkategori och modell som passar din fastighet. Varje material har olika egenskaper när det gäller livslängd, underhåll och utseende.</p>
+
+      <div class="material-categories">
+        <button class="mat-cat-btn active" data-cat="pannor">Takpannor</button>
+        <button class="mat-cat-btn" data-cat="plat">Plåt</button>
+        <button class="mat-cat-btn" data-cat="band">Bandtäckning</button>
+        <button class="mat-cat-btn" data-cat="papp">Papptak</button>
+      </div>
+
+      <!-- TAKPANNOR -->
+      <div class="material-options active" data-cat="pannor">
+        <div class="mat-option selected" data-material="palema_benderit">
+          <div class="mat-radio"><div class="mat-radio-inner"></div></div>
+          <div class="mat-info">
+            <div class="mat-name">Benders Palema – Benderit</div>
+            <div class="mat-desc">Betongpanna med Benderit-ytbehandling som ger ett jämnt och slitstarkt skydd mot väder. Palema-profilen är Sveriges mest monterade takpanna och passar de flesta hustyper. Livslängd ca 40–50 år. Ekonomiskt val utan att kompromissa med kvaliteten.</div>
+          </div>
+        </div>
+        <div class="mat-option" data-material="palema_candor">
+          <div class="mat-radio"><div class="mat-radio-inner"></div></div>
+          <div class="mat-info">
+            <div class="mat-name">Benders Palema – Candor</div>
+            <div class="mat-desc">Samma beprövade Palema-profil men med Candor-ytbehandling, som ger en slätare yta med bättre glansbehållning över tid. Håller sig fräsch längre och smutsar ner mindre. Bra val om du vill ha ett extra exklusivt uttryck.</div>
+          </div>
+        </div>
+        <div class="mat-option" data-material="jonaker_elegant">
+          <div class="mat-radio"><div class="mat-radio-inner"></div></div>
+          <div class="mat-info">
+            <div class="mat-name">Jönåker Elegant</div>
+            <div class="mat-desc">Platt och modern design med en slank profil. Populärt val för nyare eller moderna hus. Beprövad och prisvärd betongpanna med lång livslängd. Levereras i flera kulörer.</div>
+          </div>
+        </div>
+        <div class="mat-option" data-material="jonaker_protector">
+          <div class="mat-radio"><div class="mat-radio-inner"></div></div>
+          <div class="mat-info">
+            <div class="mat-name">Jönåker Protector 2.0</div>
+            <div class="mat-desc">Förstärkt ytskikt med nano-teknik som aktivt stöter bort smuts och mossa. Kräver minimal fastighetsskötsel. Ett steg upp för den som vill ha ett slitstarkare tak som behåller sitt utseende utan underhåll.</div>
+          </div>
+        </div>
+        <div class="mat-option" data-material="jonaker_minster">
+          <div class="mat-radio"><div class="mat-radio-inner"></div></div>
+          <div class="mat-info">
+            <div class="mat-name">Jönåker Minster</div>
+            <div class="mat-desc">Premiumpanna med en klassisk rörtaksprofil som ger ett exklusivt och tidlöst uttryck. Vanligt val för villor med karaktär. Ligger i det högre prissegmentet men levererar en estetik som få andra pannor matchar.</div>
+          </div>
+        </div>
+        <div class="mat-option" data-material="vittinge_lertegel">
+          <div class="mat-radio"><div class="mat-radio-inner"></div></div>
+          <div class="mat-info">
+            <div class="mat-name">Vittinge Lertegel</div>
+            <div class="mat-desc">Äkta svensktillverkat lertegel, bränt i ugn. Naturligt material som åldras vackert och kan hålla uppemot 100 år. Det mest exklusiva valet — vanligt på kulturhistoriskt värdefulla fastigheter och för den som vill ha det allra bästa.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLÅT -->
+      <div class="material-options" data-cat="plat">
+        <div class="mat-option" data-material="pannplat">
+          <div class="mat-radio"><div class="mat-radio-inner"></div></div>
+          <div class="mat-info">
+            <div class="mat-name">Pannplåt</div>
+            <div class="mat-desc">Stålplåt formad som takpannor — ger ett traditionellt utseende men med plåtens alla fördelar: låg vikt, snabb montering och lång livslängd (40–50 år). Levereras i stora skivor som effektiviserar monteringen. Fungerar på de flesta taktyper.</div>
+          </div>
+        </div>
+        <div class="mat-option" data-material="korrugerad">
+          <div class="mat-radio"><div class="mat-radio-inner"></div></div>
+          <div class="mat-info">
+            <div class="mat-name">Korrugerad plåt</div>
+            <div class="mat-desc">Klassisk vågformad stålplåt. Ekonomiskt, hållbart och beprövat material som fungerar särskilt bra på enklare takformer och ekonomibyggnader. Lätt att montera och underhålla. Livslängd 30–50 år beroende på ytbehandling.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BANDTÄCKNING -->
+      <div class="material-options" data-cat="band">
+        <div class="mat-option" data-material="klickfalsad">
+          <div class="mat-radio"><div class="mat-radio-inner"></div></div>
+          <div class="mat-info">
+            <div class="mat-name">Klickfalsad bandtäckning</div>
+            <div class="mat-desc">Stående plåtfalsar som klickas samman mekaniskt. Ger ett modernt och stilrent uttryck med stående sömmar. Snabbare att montera än dubbelfalsad, men med samma höga täthet. Vanligt val vid nyproduktion och renoveringar med höga designkrav.</div>
+          </div>
+        </div>
+        <div class="mat-option" data-material="dubbelfalsad">
+          <div class="mat-radio"><div class="mat-radio-inner"></div></div>
+          <div class="mat-info">
+            <div class="mat-name">Dubbelfalsad bandtäckning</div>
+            <div class="mat-desc">Traditionell falsad plåt där varje skarv dubbelviks för optimal täthet. Den mest vattensäkra taktäckningen som finns. Kräver hantverksskicklighet att montera. Populärt på kulturhistoriska byggnader och villor där kvalitet och livslängd prioriteras. Håller 60–80 år.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAPP -->
+      <div class="material-options" data-cat="papp">
+        <div class="mat-option" data-material="mataki_sjalvtack">
+          <div class="mat-radio"><div class="mat-radio-inner"></div></div>
+          <div class="mat-info">
+            <div class="mat-name">Mataki Självtäck 3 Kristallsvart</div>
+            <div class="mat-desc">Självhäftande takpapp från Mataki med bitumenbaserad klisteryta. Appliceras utan svetsning, vilket ger en säkrare och snabbare montageprocess. Lämplig för lågsluttande tak och tillbyggnader. Livslängd ca 20–30 år.</div>
+          </div>
+        </div>
+        <div class="mat-option" data-material="mataki_yam">
+          <div class="mat-radio"><div class="mat-radio-inner"></div></div>
+          <div class="mat-info">
+            <div class="mat-name">Mataki YAM 2000</div>
+            <div class="mat-desc">Svetspapp av hög kvalitet med polyesterarmering som ger hög rivhållfasthet. Svetsas fast med gasol, vilket skapar en helt tät och långlivad tätskikt. Används på platta och lågsluttande tak. Väl beprövad i svenskt klimat. Livslängd 25–35 år.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn-prev" onclick="goStep(1)">← Tillbaka</button>
+        <button class="btn-next" onclick="goStep(3)">Nästa: Detaljer →</button>
+      </div>
+    </div>
+
+    <!-- ═══════ STEG 3: DETALJER ═══════ -->
+    <div class="calc-section" data-section="3">
+      <h2 class="section-title">Tillbehör och detaljer</h2>
+      <p class="section-desc">Fyll i antal och mått för de detaljer som finns på ditt tak. Om något inte finns — lämna 0.</p>
+
+      <!-- Stuprör -->
+      <div class="sub-section">
+        <div class="sub-section-title">
+          <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M8 3h8"/><path d="M9 21h6"/><path d="M10 8l-2 3"/><path d="M14 8l2 3"/></svg></div>
+          Stuprör
+        </div>
+        <p class="sub-section-hint">Stuprör leder regnvattnet från hängrännan ner till marken. Räkna alla stuprör runt hela huset — de sitter vanligtvis vid hörn och vid längre väggpartier.</p>
+        <div class="field-group" style="margin-bottom:0;">
+          <label>Antal stuprör</label>
+          <div class="count-field">
+            <button class="count-btn" data-target="stupror" data-dir="-1">−</button>
+            <input class="count-val" type="number" id="stupror" value="2" min="0" max="20">
+            <button class="count-btn" data-target="stupror" data-dir="1">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ränndal -->
+      <div class="sub-section">
+        <div class="sub-section-title">
+          <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l8 16 8-16"/><path d="M6 8h12"/></svg></div>
+          Ränndal
+        </div>
+        <p class="sub-section-hint">En ränndal är den V-formade fåran som bildas där två taksidor möts i en inåtgående vinkel. Vanligt på hus med L- eller T-form. Om ditt tak har rak form utan sådana skärningar, ange 0.</p>
+        <div class="field-group" style="margin-bottom:0;">
+          <label for="ranndal">Ränndal (meter)</label>
+          <input type="number" id="ranndal" value="0" min="0" max="100" step="0.5">
+        </div>
+      </div>
+
+      <!-- Takfönster -->
+      <div class="sub-section">
+        <div class="sub-section-title">
+          <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h16"/><path d="M12 4v16"/></svg></div>
+          Takfönster
+        </div>
+        <p class="sub-section-hint">Takfönster är fönster som är infällda i takytan (t.ex. Velux). De kräver specialanpassad inplåtning runtom. Räkna alla fönster på samtliga taksidor. Ange 0 om det inte finns några.</p>
+        <div class="field-group" style="margin-bottom:0;">
+          <label>Antal takfönster</label>
+          <div class="count-field">
+            <button class="count-btn" data-target="takfonster" data-dir="-1">−</button>
+            <input class="count-val" type="number" id="takfonster" value="0" min="0" max="15">
+            <button class="count-btn" data-target="takfonster" data-dir="1">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Takstege -->
+      <div class="sub-section">
+        <div class="sub-section-title">
+          <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v20"/><path d="M18 2v20"/><path d="M6 6h12"/><path d="M6 10h12"/><path d="M6 14h12"/><path d="M6 18h12"/></svg></div>
+          Takstege
+        </div>
+        <p class="sub-section-hint">Takstegen monteras längs takytan för att ge säker åtkomst till skorstenar och ventilationsgenomföringar. Ange total längd i meter. Om det inte behövs någon takstege, ange 0.</p>
+        <div class="field-group" style="margin-bottom:0;">
+          <label for="takstege">Takstege (meter)</label>
+          <input type="number" id="takstege" value="2" min="0" max="20" step="0.5">
+        </div>
+      </div>
+
+      <!-- Genomföringar -->
+      <div class="sub-section">
+        <div class="sub-section-title">
+          <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/></svg></div>
+          Genomföringar
+        </div>
+        <p class="sub-section-hint">Genomföringar är alla rör och ventilationskanaler som sticker genom takytan — det inkluderar avluftningsrör, ventilationshuvar och avloppsluftningar. Varje genomföring behöver en plastbetkrage eller formatplåt som säkerställer täthet. Räkna alla sådana rör på taket.</p>
+        <div class="field-group" style="margin-bottom:0;">
+          <label>Antal genomföringar</label>
+          <div class="count-field">
+            <button class="count-btn" data-target="avluftningar" data-dir="-1">−</button>
+            <input class="count-val" type="number" id="avluftningar" value="2" min="0" max="20">
+            <button class="count-btn" data-target="avluftningar" data-dir="1">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Takkupor -->
+      <div class="sub-section">
+        <div class="sub-section-title">
+          <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M3 21V10l9-7 9 7v11"/><path d="M9 13h6v4H9z"/><path d="M9 13l3-2 3 2"/></svg></div>
+          Takkupor
+        </div>
+        <p class="sub-section-hint">Takkupor sticker ut från takytan och har ett eget litet tak med gavel och sidor. Dessa kräver plåtarbete runtom för tätning. Räkna alla takkupor på samtliga taksidor. Ange 0 om inga finns.</p>
+        <div class="field-group" style="margin-bottom:0;">
+          <label>Antal takkupor</label>
+          <div class="count-field">
+            <button class="count-btn" data-target="takkupor" data-dir="-1">−</button>
+            <input class="count-val" type="number" id="takkupor" value="0" min="0" max="10">
+            <button class="count-btn" data-target="takkupor" data-dir="1">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn-prev" onclick="goStep(2)">← Tillbaka</button>
+        <button class="btn-next" onclick="goStep(4)">Nästa: Underlag →</button>
+      </div>
+    </div>
+
+    <!-- ═══════ STEG 4: SKORSTEN, RÅSPONT, ASBEST ═══════ -->
+    <div class="calc-section" data-section="4">
+      <h2 class="section-title">Skorstenar, råspont och asbest</h2>
+      <p class="section-desc">Sista steget innan vi beräknar priset. Ange uppgifter om skorstenar, underlag och eventuell asbest.</p>
+
+      <!-- Skorsten -->
+      <div class="sub-section">
+        <div class="sub-section-title">
+          <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="10" rx="1"/><path d="M6 12h12v8H6z"/><path d="M10 2v3"/><path d="M14 2v3"/><path d="M6 20h12"/></svg></div>
+          Skorstenar
+        </div>
+        <p class="sub-section-hint">Varje skorsten på taket behöver plåtbeslag runtom för att säkerställa täthet mot vatten. Ange antalet skorstenar — välj sedan vilken typ av plåtarbete som ska utföras.</p>
+        <div class="field-group">
+          <label>Antal skorstenar</label>
+          <div class="count-field">
+            <button class="count-btn" data-target="skorstenar" data-dir="-1">−</button>
+            <input class="count-val" type="number" id="skorstenar" value="0" min="0" max="5">
+            <button class="count-btn" data-target="skorstenar" data-dir="1">+</button>
+          </div>
+        </div>
+
+        <div class="option-panel" id="chimney-opts" style="display:none;">
+          <div class="field-group" style="margin-bottom:0;">
+            <label>Välj typ av skorstensinplåtning</label>
+            <p class="field-hint" style="margin-bottom:0.5rem;">Inplåtning vid bas innebär plåtbeslag där skorstenen möter takytan. Helinplåtad skorsten innebär att hela skorstenen kläs in i plåt inklusive ny skorstenshuv.</p>
+            <div class="toggle-group">
+              <button class="toggle-btn active" data-field="chimney-type" data-value="bas">Inplåtning vid bas</button>
+              <button class="toggle-btn" data-field="chimney-type" data-value="hel">Helinplåtad skorsten med huv</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Råspont -->
+      <div class="sub-section">
+        <div class="sub-section-title">
+          <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h4v16H4z"/><path d="M10 4h4v16h-4z"/><path d="M16 4h4v16h-4z"/></svg></div>
+          Råspont
+        </div>
+        <p class="sub-section-hint">Råsponten är trätaket under taktäckningen — den bärande brädkonstruktionen. Om den är skadad eller rötangripen behöver den bytas helt eller delvis innan nytt material kan läggas.</p>
+        <div class="field-group">
+          <label>Ska råspont bytas?</label>
+          <div class="toggle-group">
+            <button class="toggle-btn" data-field="raspont" data-value="ja">Ja, delvis</button>
+            <button class="toggle-btn" data-field="raspont" data-value="allt">Ja, allt</button>
+            <button class="toggle-btn active" data-field="raspont" data-value="nej">Nej</button>
+          </div>
+        </div>
+        <div class="field-group hidden" id="raspont-amount-group" style="margin-top:0.5rem;margin-bottom:0;">
+          <label for="raspont-m2">Ungefärligt antal m² råspont att byta</label>
+          <input type="number" id="raspont-m2" min="0" max="500" step="1" placeholder="t.ex. 50">
+        </div>
+        <div class="hidden" id="raspont-all-note" style="margin-top:0.5rem;">
+          <p class="field-hint" style="color:var(--blue);font-weight:500;">All råspont byts — beräknas automatiskt utifrån takytan med 20% materialmarginal.</p>
+        </div>
+      </div>
+
+      <!-- Asbest -->
+      <div class="sub-section">
+        <div class="sub-section-title">
+          <div class="sub-icon" style="color:var(--danger);border-color:#f5c6cb;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          Asbest
+        </div>
+        <p class="sub-section-hint">Eternittak och vissa äldre material kan innehålla asbest. Asbestsanering kräver specialhantering och certifierat avfallsomhändertagande enligt lag. Om du vet eller misstänker att det finns asbest — ange det här.</p>
+        <div class="field-group">
+          <label>Finns det asbest eller eternit på taket?</label>
+          <div class="toggle-group">
+            <button class="toggle-btn" data-field="asbest" data-value="ja">Ja</button>
+            <button class="toggle-btn active" data-field="asbest" data-value="nej">Nej</button>
+          </div>
+        </div>
+        <div class="option-panel hidden" id="asbest-opts">
+          <div class="field-group">
+            <label>Hur stor del av taket ska asbestsaneras?</label>
+            <div class="toggle-group">
+              <button class="toggle-btn active" data-field="asbest-scope" data-value="hela">Hela taket</button>
+              <button class="toggle-btn" data-field="asbest-scope" data-value="del">Mindre del</button>
+            </div>
+          </div>
+          <div class="field-group hidden" id="asbest-m2-group" style="margin-top:0.5rem;margin-bottom:0;">
+            <label for="asbest-m2">Ungefärlig yta att sanera (m²)</label>
+            <input type="number" id="asbest-m2" min="1" max="500" step="1" placeholder="t.ex. 40">
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn-prev" onclick="goStep(3)">← Tillbaka</button>
+        <button class="btn-next" onclick="calculateAndShow()">Beräkna pris →</button>
+      </div>
+    </div>
+
+    <!-- ═══════ STEG 5: RESULTAT ═══════ -->
+    <div class="calc-section" data-section="5">
+      <h2 class="section-title">Din prisuppskattning</h2>
+      <p class="section-desc">Baserat på dina angivna mått och val.</p>
+      <div id="result-output"></div>
+    </div>
+
+  </div>
+
+  <div class="calc-footer">
+    © <span id="year-el"></span> Ferotect AB – Alla priser är uppskattningar. Slutpris fastställs efter besiktning.
+  </div>
+
+  <!-- ═══════ SCRIPT ═══════ -->
+  <script>
+    // ── STATE ──
+    const state = {
+      owners: '1',
+      material: 'palema_benderit',
+      materialCategory: 'pannor',
+      chimneyType: 'bas',
+      raspont: 'nej',
+      asbest: 'nej',
+      asbestScope: 'hela',
+    };
+
+    // ── YEAR ──
+    const yearEl = document.getElementById('year-el');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // ── STEP NAVIGATION ──
+    let currentStep = 1;
+
+    function goStep(n) {
+      if (n > currentStep && currentStep === 1 && !validateStep1()) return;
+      currentStep = n;
+      document.querySelectorAll('.calc-section').forEach(s => s.classList.remove('active'));
+      const target = document.querySelector(`.calc-section[data-section="${n}"]`);
+      if (target) target.classList.add('active');
+      document.querySelectorAll('.step-item').forEach(s => {
+        const sn = parseInt(s.dataset.step);
+        s.classList.remove('active', 'done');
+        if (sn === n) s.classList.add('active');
+        else if (sn < n) s.classList.add('done');
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function validateStep1() {
+      const area = parseFloat(document.getElementById('roof-area').value);
+      if (!area || area < 20) {
+        alert('Ange takets yta (minst 20 m²).');
+        document.getElementById('roof-area').focus();
+        return false;
+      }
+      return true;
+    }
+
+    // ── TOGGLE BUTTONS ──
+    document.querySelectorAll('.toggle-group').forEach(group => {
+      group.querySelectorAll('.toggle-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          group.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const field = btn.dataset.field;
+          const val = btn.dataset.value;
+
+          if (field === 'owners') state.owners = val;
+          if (field === 'chimney-type') state.chimneyType = val;
+          if (field === 'raspont') {
+            state.raspont = val;
+            document.getElementById('raspont-amount-group').classList.toggle('hidden', val !== 'ja');
+            document.getElementById('raspont-all-note').classList.toggle('hidden', val !== 'allt');
+          }
+          if (field === 'asbest') {
+            state.asbest = val;
+            document.getElementById('asbest-opts').classList.toggle('hidden', val !== 'ja');
+          }
+          if (field === 'asbest-scope') {
+            state.asbestScope = val;
+            document.getElementById('asbest-m2-group').classList.toggle('hidden', val !== 'del');
+          }
+        });
+      });
+    });
+
+    // ── COUNT BUTTONS ──
+    document.querySelectorAll('.count-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const input = document.getElementById(btn.dataset.target);
+        const dir = parseInt(btn.dataset.dir);
+        const mn = parseInt(input.min) || 0;
+        const mx = parseInt(input.max) || 99;
+        let v = parseInt(input.value) || 0;
+        v = Math.max(mn, Math.min(mx, v + dir));
+        input.value = v;
+        if (btn.dataset.target === 'skorstenar') {
+          document.getElementById('chimney-opts').style.display = v > 0 ? 'block' : 'none';
+        }
+      });
+    });
+
+    // ── MATERIAL TABS ──
+    document.querySelectorAll('.mat-cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.mat-cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.dataset.cat;
+        state.materialCategory = cat;
+        document.querySelectorAll('.material-options').forEach(o => o.classList.remove('active'));
+        const panel = document.querySelector(`.material-options[data-cat="${cat}"]`);
+        if (panel) {
+          panel.classList.add('active');
+          const sel = panel.querySelector('.mat-option.selected');
+          if (!sel) { const f = panel.querySelector('.mat-option'); if (f) f.click(); }
+          else state.material = sel.dataset.material;
+        }
+      });
+    });
+
+    document.querySelectorAll('.mat-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        opt.closest('.material-options').querySelectorAll('.mat-option').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        state.material = opt.dataset.material;
+      });
+    });
+
+    document.querySelectorAll('.step-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const step = parseInt(item.dataset.step);
+        if (step < currentStep) goStep(step);
+      });
+    });
+
+    // ══════════════════════════════════════════════════════
+    //  PRICING ENGINE
+    // ══════════════════════════════════════════════════════
+
+    const TILE_PRICES = {
+      palema_benderit:   { tile: 70.00,  nock: 119.98, label: 'Benders Palema Benderit' },
+      palema_candor:     { tile: 93.00,  nock: 164.668, label: 'Benders Palema Candor' },
+      jonaker_elegant:   { tile: 62.30,  nock: 156.00, label: 'Jönåker Elegant' },
+      jonaker_protector: { tile: 97.90,  nock: 216.00, label: 'Jönåker Protector 2.0' },
+      jonaker_minster:   { tile: 172.50, nock: 297.00, label: 'Jönåker Minster' },
+      vittinge_lertegel: { tile: 171.70, nock: 300.00, label: 'Vittinge Lertegel' },
+    };
+    const PLAT_PRICES = {
+      pannplat:   { per_m2: 215.0, label: 'Pannplåt', nock_per_m: 235, tatningslist: 18 },
+      korrugerad: { per_m2: 215.0, label: 'Korrugerad plåt', nock_per_m: 235, tatningslist: 18 },
+    };
+    const BAND_PRICES = {
+      klickfalsad:  { per_m2: 245, label: 'Klickfalsad bandtäckning', klammer: 3.94 },
+      dubbelfalsad: { per_m2: 278, label: 'Dubbelfalsad bandtäckning', klammer: 3.94 },
+    };
+    const PAPP_PRICES = {
+      mataki_sjalvtack: { per_m2: 86.67, label: 'Mataki Självtäck 3', skruv: 6.0 },
+      mataki_yam:       { per_m2: 86.67, label: 'Mataki YAM 2000', skruv: 6.0 },
+    };
+
+    const P = {
+      raspont: 105.45, spik75_pistol: 0.5064,
+      underlagsduk: 41.2, underlagsduk_band: 84.21,
+      silikon: 38.25, stift: 0.0284,
+      barlakt: 5.42, strolakt: 5.42, distans: 5.42,
+      spik50_pistol: 0.30, spik50: 0.232,
+      skruv80: 0.74, skruv60: 0.44, skruv120: 1.26,
+      kladsbrada: 25.5, malarfarg: 199,
+      vindskivebeslag: 508.20, vindskivskruv: 0.93,
+      nockbrada: 26.25, nockband: 28,
+      takfotskil: 46.25,
+      hangränna: 55, hangränna_band: 65,
+      hangranne_skarv: 42.24, fotplat: 508.20, platskruv: 0.36,
+      fagelband: 20, hangrannekrok: 36.48, hangrannegavel: 42.96,
+      omvikningskupa: 76.80, rorkoj: 77.28, mellanstycke: 72,
+      stupror: 236.64, rorsvep: 29.04, utkast: 200,
+      ranndal_underbeslag: 34.17,
+      veluxfonster: 8000,
+      takstege_pannor: 297.50, takstege_plat: 471.68,
+      takstege_band: 274.56, takstege_papp: 472, glidskydd: 170,
+      avluftning_format: 508.20,
+      takkupa_format: 508.20,
+      skorsten_format: 508.20, skorstenshuv: 3500,
+      excenterlås: 20, gangjarn: 22,
+      sopsack: 89, container: 5000, frakt: 10000,
+      container_papp: 0, frakt_papp: 3000,
+      asbestavgift: 20000, asbestavgift_papp: 18000,
+      stallning_per_dag: 132,
+      labor_day: 5800, labor_day_band: 6000,
+    };
+
+    // ── LABOR: new realistic calculation ──
+    function getLaborDays(cat, area, takfot, hasRaspont, skorstenar, chimneyType) {
+      const phases = [];
+      // 1. Administration
+      phases.push({ label: 'Administration och projektplanering', days: 1, workers: 2 });
+
+      // 2. Ställning: 130 kvm/dag
+      if (cat !== 'papp') {
+        const stallDays = Math.max(1, Math.round(area / 130 * 2) / 2);
+        phases.push({ label: 'Uppbyggnad av byggnadsställning', days: stallDays, workers: 2 });
+      }
+
+      // 3. Rivning + underlagstäckning: 80 kvm/dag (normal), 60 kvm/dag (med råspont)
+      const rivRate = hasRaspont ? 60 : 80;
+      const rivDays = Math.max(1, Math.round(area / rivRate * 2) / 2);
+      phases.push({ label: 'Rivning av befintligt tak och underlagstäckning', days: rivDays, workers: 2 });
+
+      // 4. Läktning / riktning: 70 kvm/dag (ej papp)
+      if (cat !== 'papp') {
+        const laktDays = Math.max(1, Math.round(area / 70 * 2) / 2);
+        phases.push({ label: 'Läktning och riktning av underlag', days: laktDays, workers: 2 });
+      }
+
+      // 5. Takfot & hängränna: 25 m/dag
+      if (takfot > 0) {
+        const fotDays = Math.max(1, Math.round(takfot / 25 * 2) / 2);
+        phases.push({ label: 'Montering av takfot och hängränna', days: fotDays, workers: 2 });
+      }
+
+      // 6. Vindskivor & stuprör: 1–1.5 dag
+      phases.push({ label: 'Uppsättning av vindskivor och stuprör', days: 1.5, workers: 2 });
+
+      // 7. Taktäckning
+      if (cat === 'pannor') {
+        const pannDays = Math.max(1, Math.round(area / 100 * 2) / 2);
+        phases.push({ label: 'Läggning av takpannor', days: pannDays, workers: 2 });
+      } else if (cat === 'plat') {
+        const platDays = Math.max(1, Math.round(area / 100 * 2) / 2);
+        phases.push({ label: 'Montering av takplåt', days: platDays, workers: 2 });
+      } else if (cat === 'band') {
+        const bandDays = Math.max(2, Math.round(area / 20 * 2) / 2);
+        phases.push({ label: 'Falsning och montering av bandtäckning', days: bandDays, workers: 2 });
+      } else {
+        const pappDays = Math.max(1, Math.round(area / 80 * 2) / 2);
+        phases.push({ label: 'Svetsning och applicering av takpapp', days: pappDays, workers: 2 });
+      }
+
+      // 8. Montering av plåtdetaljer: alltid 1 dag
+      phases.push({ label: 'Tillverkning och montering av plåtdetaljer', days: 1, workers: 2 });
+
+      // 9. Helinplåtad skorsten (+1.6 dag per st)
+      if (skorstenar > 0 && chimneyType === 'hel') {
+        const skDays = Math.round(skorstenar * 1.6 * 2) / 2;
+        phases.push({ label: 'Helinplåtning av skorsten inkl. skorstenshuv', days: skDays, workers: 2 });
+      }
+
+      // 10. Demontering av ställning: 1–1.5 dag
+      if (cat !== 'papp') {
+        phases.push({ label: 'Nedmontering av byggnadsställning', days: 1.5, workers: 2 });
+      }
+
+      return phases;
+    }
+
+    // ══════════════════════════════
+    //  MAIN CALCULATION
+    // ══════════════════════════════
+    function calculate() {
+      const area   = parseFloat(document.getElementById('roof-area').value) || 0;
+      const gavel  = parseFloat(document.getElementById('gavel').value) || 0;
+      const nock   = parseFloat(document.getElementById('nock').value) || 0;
+      const takfot = parseFloat(document.getElementById('takfot').value) || 0;
+      const stupror     = parseInt(document.getElementById('stupror').value) || 0;
+      const ranndal     = parseFloat(document.getElementById('ranndal').value) || 0;
+      const takfonster  = parseInt(document.getElementById('takfonster').value) || 0;
+      const takstege    = parseFloat(document.getElementById('takstege').value) || 0;
+      const avluftningar= parseInt(document.getElementById('avluftningar').value) || 0;
+      const takkupor    = parseInt(document.getElementById('takkupor').value) || 0;
+      const skorstenar  = parseInt(document.getElementById('skorstenar').value) || 0;
+
+      const owners = state.owners === '2' ? 2 : 1;
+      const mat = state.material;
+      const cat = state.materialCategory;
+      const chimneyType = state.chimneyType;
+      const raspontVal = state.raspont;
+      const asbestVal = state.asbest;
+
+      // ── MATERIAL QUANTITIES (for spec) and COSTS ──
+      const materialSpec = []; // { label, qty, unit }
+      let materialTotal = 0;
+
+      // RÅSPONT
+      let raspontM2 = 0;
+      if (raspontVal === 'allt') {
+        raspontM2 = Math.round(area * 1.02 * 1.2);
+      } else if (raspontVal === 'ja') {
+        raspontM2 = Math.round((parseFloat(document.getElementById('raspont-m2').value) || 0) * 1.02 * 1.2);
+      }
+      if (raspontM2 > 0) {
+        const c = raspontM2 * P.raspont + raspontM2 * 9 * P.spik75_pistol;
+        materialSpec.push({ label: 'Råspont', qty: raspontM2, unit: 'm²' });
+        materialTotal += c;
+      }
+
+      // UNDERLAGSDUK
+      const dukM2 = Math.round(area * 1.23 + 5);
+      const dukPrice = cat === 'band' ? P.underlagsduk_band : P.underlagsduk;
+      let ytaCost = 0;
+      if (cat !== 'papp') {
+        materialSpec.push({ label: 'Underlagsduk', qty: dukM2, unit: 'm²' });
+        ytaCost += dukM2 * dukPrice;
+        // Silikon + Stift
+        ytaCost += area * 0.05 * 1.2 * P.silikon;
+        ytaCost += area * 28 * 1.1 * P.stift;
+        // Läkt
+        const barM = Math.round(area * 3.0 * 1.2 + 40);
+        const stroM = Math.round(area * 1.8 * 1.2 + 20);
+        const distM = Math.round(area * 0.1 * 1.1);
+        materialSpec.push({ label: 'Bärläkt', qty: barM, unit: 'm' });
+        materialSpec.push({ label: 'Ströläkt', qty: stroM, unit: 'm' });
+        ytaCost += barM * P.barlakt + stroM * P.strolakt + distM * P.distans;
+        ytaCost += (barM * 2 + stroM * 3 + distM * 4) * P.spik75_pistol
+                 + (stroM * 3) * P.spik50_pistol + (distM * 4) * P.spik50;
+      }
+      materialTotal += ytaCost;
+
+      // COVERING MATERIAL
+      let coveringLabel = '';
+      let coveringCost = 0;
+      let nockCost = 0;
+
+      if (cat === 'pannor') {
+        const tp = TILE_PRICES[mat];
+        coveringLabel = tp.label;
+        const tileMangd = Math.round(area * 1.15);
+        coveringCost = tileMangd * tp.tile;
+        coveringCost += area * 3 * 1.12 * P.skruv80;
+        materialSpec.push({ label: 'Takpannor (' + tp.label + ')', qty: tileMangd, unit: 'st' });
+
+        const nockMangd = Math.round(nock * 1.1);
+        nockCost = nockMangd * tp.nock + nockMangd * P.nockbrada + nock * 2 * 1.1 * P.nockband
+                 + nock * 2 * 1.1 * P.skruv120 + nock * 3 * 1.1 * P.skruv80;
+        if (nockMangd > 0) materialSpec.push({ label: 'Nockpannor', qty: nockMangd, unit: 'st' });
+
+      } else if (cat === 'plat') {
+        const pp = PLAT_PRICES[mat];
+        coveringLabel = pp.label;
+        const platM2 = Math.round(area * 1.15);
+        coveringCost = platM2 * pp.per_m2;
+        coveringCost += area * 2 * 1.12 * 1.2 + area * 2 * 1.12 * 1.1;
+        materialSpec.push({ label: pp.label, qty: platM2, unit: 'm²' });
+
+        const nockM = Math.round(nock * 1.1 * 10) / 10;
+        nockCost = nockM * pp.nock_per_m + nockM * pp.tatningslist + nock * 3 * 1.1 * 1.2 + 2 * 88;
+        if (nock > 0) materialSpec.push({ label: 'Nockbeslag', qty: nockM, unit: 'm' });
+
+      } else if (cat === 'band') {
+        const bp = BAND_PRICES[mat];
+        coveringLabel = bp.label;
+        const bandM2 = Math.round(area * 1.1 * 1.2);
+        coveringCost = bandM2 * bp.per_m2;
+        const klammer = Math.round(area * 3.7 * 1.12);
+        coveringCost += klammer * bp.klammer + area * 0.025 * 1.1 * 97.8;
+        materialSpec.push({ label: bp.label, qty: bandM2, unit: 'm²' });
+        materialSpec.push({ label: 'Fästklammer', qty: klammer, unit: 'st' });
+
+      } else {
+        const pp = PAPP_PRICES[mat];
+        coveringLabel = pp.label;
+        const pappM2 = Math.round(area * 1.3 * 1.12);
+        coveringCost = pappM2 * pp.per_m2 + area * 5 * 1.12 * pp.skruv;
+        materialSpec.push({ label: pp.label, qty: pappM2, unit: 'm²' });
+      }
+      materialTotal += coveringCost + nockCost;
+
+      // GAVEL
+      let gavelCost = 0;
+      if (gavel > 0) {
+        const gavelM = Math.round(gavel * 1.1 * 10) / 10;
+        gavelCost += gavelM * P.barlakt;
+        gavelCost += gavelM * P.kladsbrada * 2;
+        gavelCost += gavel * 4 * 1.1 * P.skruv60;
+        const beslagSt = Math.round(gavel / 12 * 1.2);
+        gavelCost += beslagSt * P.vindskivebeslag;
+        gavelCost += gavel * 2 * 1.1 * P.vindskivskruv;
+        const färgBurkar = Math.max(3, Math.ceil(gavel / 5));
+        gavelCost += färgBurkar * P.malarfarg;
+        materialSpec.push({ label: 'Vindskivebrädor', qty: gavelM, unit: 'm' });
+        materialSpec.push({ label: 'Vindskivebeslag', qty: beslagSt, unit: 'st' });
+        materialTotal += gavelCost;
+      }
+
+      // TAKFOT
+      let takfotCost = 0;
+      if (takfot > 0) {
+        const tfM = Math.round(takfot * 1.1 * 10) / 10;
+        takfotCost += tfM * P.takfotskil + takfot * 3 * 1.1 * P.skruv120;
+        const rännaPris = cat === 'band' ? P.hangränna_band : P.hangränna;
+        const rännaM = Math.round(takfot * 1.3 * 10) / 10;
+        takfotCost += rännaM * rännaPris;
+        takfotCost += takfot * 0.3 * 1.1 * P.hangranne_skarv;
+        takfotCost += takfot * 0.1 * 1.2 * P.fotplat;
+        takfotCost += takfot * 3 * 1.1 * P.platskruv;
+        if (cat === 'pannor' || cat === 'plat') takfotCost += tfM * P.fagelband;
+        const krokAnt = Math.round(takfot * 1.6 * 1.1 + 6);
+        takfotCost += krokAnt * P.hangrannekrok + krokAnt * 3 * P.platskruv;
+        takfotCost += 4 * P.hangrannegavel;
+        materialSpec.push({ label: 'Hängränna', qty: rännaM, unit: 'm' });
+        materialSpec.push({ label: 'Hängrännekrokar', qty: krokAnt, unit: 'st' });
+        materialTotal += takfotCost;
+      }
+
+      // STUPRÖR
+      if (stupror > 0) {
+        const perSt = P.omvikningskupa + P.rorkoj * 2 + P.mellanstycke + P.stupror * 2 + P.rorsvep * 4 + P.vindskivskruv * 8 + P.utkast;
+        materialTotal += stupror * perSt;
+        materialSpec.push({ label: 'Stuprör (komplett)', qty: stupror, unit: 'st' });
+      }
+
+      // RÄNNDAL
+      if (ranndal > 0) {
+        materialTotal += ranndal * 1.2 * (cat === 'band' ? P.underlagsduk_band : P.underlagsduk)
+                       + ranndal * (1/6) * 1.2 * P.ranndal_underbeslag
+                       + ranndal * 2 * 1.1 * P.platskruv;
+        materialSpec.push({ label: 'Ränndalsplåt', qty: Math.round(ranndal * 1.2 * 10) / 10, unit: 'm' });
+      }
+
+      // TAKFÖNSTER
+      if (takfonster > 0) {
+        materialTotal += takfonster * P.veluxfonster;
+        materialSpec.push({ label: 'Takfönsterinplåtning', qty: takfonster, unit: 'st' });
+      }
+
+      // TAKSTEGE
+      if (takstege > 0) {
+        let stegePerM = P.takstege_pannor;
+        if (cat === 'plat') stegePerM = P.takstege_plat;
+        if (cat === 'band') stegePerM = P.takstege_band;
+        if (cat === 'papp') stegePerM = P.takstege_papp;
+        materialTotal += takstege * 1.1 * stegePerM + P.glidskydd;
+        materialSpec.push({ label: 'Takstege', qty: takstege, unit: 'm' });
+      }
+
+      // AVLUFTNINGAR
+      if (avluftningar > 0) {
+        materialTotal += avluftningar * 2 * 1.1 * P.avluftning_format;
+        materialSpec.push({ label: 'Genomföringsplåtar', qty: avluftningar * 2, unit: 'st' });
+      }
+
+      // TAKKUPOR
+      if (takkupor > 0) {
+        materialTotal += takkupor * 6 * 1.2 * P.takkupa_format;
+        materialSpec.push({ label: 'Takkupa inplåtning (formatplåtar)', qty: takkupor * 6, unit: 'st' });
+      }
+
+      // SKORSTENAR
+      if (skorstenar > 0) {
+        const isHel = chimneyType === 'hel';
+        const platAntal = isHel ? 8 : 4;
+        let skCost = skorstenar * platAntal * 1.1 * P.skorsten_format;
+        if (isHel) {
+          skCost += skorstenar * 2 * P.excenterlås + skorstenar * 2 * P.gangjarn;
+          skCost += skorstenar * P.skorstenshuv;
+          materialSpec.push({ label: 'Skorsten helinplåtad + huv', qty: skorstenar, unit: 'st' });
+        } else {
+          materialSpec.push({ label: 'Skorsten basinplåtning', qty: skorstenar, unit: 'st' });
+        }
+        materialTotal += skCost;
+      }
+
+      materialTotal += P.sopsack;
+
+      // ── LABOR ──
+      const hasRaspont = raspontVal === 'ja' || raspontVal === 'allt';
+      const laborPhases = getLaborDays(cat, area, takfot, hasRaspont, skorstenar, chimneyType);
+      const laborDayRate = cat === 'band' ? P.labor_day_band : P.labor_day;
+      let totalLaborDays = 0;
+      for (const ph of laborPhases) totalLaborDays += ph.days;
+      const totalLabor = totalLaborDays * laborDayRate;
+
+      // ── OTHER COSTS ──
+      const containerCost = cat === 'papp' ? P.container_papp : P.container;
+      const fraktCost = cat === 'papp' ? P.frakt_papp : P.frakt;
+      const drivmedel = 15 * totalLaborDays * 0.9 * 18;
+      const stallning = P.stallning_per_dag * totalLaborDays;
+      const ovrigaKostnader = containerCost + fraktCost + drivmedel + stallning;
+
+      // ── ASBEST (added to övriga) ──
+      let asbestCost = 0;
+      if (asbestVal === 'ja') {
+        asbestCost = cat === 'papp' ? P.asbestavgift_papp : P.asbestavgift;
+      }
+
+      // ── PRICING: 1.55 applied to each category ──
+      const MARGIN = 1.55;
+      const materialPris = materialTotal * MARGIN;
+      const arbetePris = (totalLabor + asbestCost) * MARGIN;
+      const övrigtPris = ovrigaKostnader * MARGIN;
+
+      const exMoms = materialPris + arbetePris + övrigtPris;
+      const moms = exMoms * 0.25;
+      const totalInklMoms = exMoms + moms;
+
+      // ROT: 30% of labor portion incl moms
+      const arbeteInklMoms = arbetePris * 1.25;
+      const maxRot = owners === 2 ? 100000 : 50000;
+      const rotAvdrag = Math.min(arbeteInklMoms * 0.3, maxRot);
+      const attBetala = totalInklMoms - rotAvdrag;
+
+      return {
+        area, gavel, nock, takfot, owners,
+        materialLabel: coveringLabel, cat,
+        materialTotal: Math.round(materialTotal),
+        laborTotal: Math.round(totalLabor),
+        ovrigaKostnader: Math.round(ovrigaKostnader),
+        asbestCost: Math.round(asbestCost),
+        materialPris: Math.round(materialPris),
+        arbetePris: Math.round(arbetePris),
+        övrigtPris: Math.round(övrigtPris),
+        exMoms: Math.round(exMoms),
+        moms: Math.round(moms),
+        totalInklMoms: Math.round(totalInklMoms),
+        arbeteInklMoms: Math.round(arbeteInklMoms),
+        rotAvdrag: Math.round(rotAvdrag),
+        attBetala: Math.round(attBetala),
+        materialSpec,
+        laborPhases,
+        totalLaborDays,
+        raspontM2,
+      };
+    }
+
+    function kr(n) { return Math.round(n).toLocaleString('sv-SE') + ' kr'; }
+
+    function calculateAndShow() {
+      const r = calculate();
+      goStep(5);
+
+      const out = document.getElementById('result-output');
+      let h = '';
+
+      // ── PRICE HERO ──
+      h += `<div class="price-hero">
+        <div class="price-hero-label">Uppskattat pris inkl. moms</div>
+        <div class="price-hero-value">${kr(r.totalInklMoms)}</div>
+        <div class="price-hero-sub">exkl. moms: ${kr(r.exMoms)}</div>
+        <div class="price-hero-rot">
+          ROT-avdrag: −${kr(r.rotAvdrag)} → <strong>Att betala: ${kr(r.attBetala)}</strong>
+        </div>
+      </div>`;
+
+      // ── SUMMARY ──
+      h += `<div class="result-card">
+        <div class="result-header"><h3>Sammanfattning</h3></div>
+        <div class="result-body"><table class="breakdown-table">
+          <tr><td>Takmaterial</td><td class="val-cell"><strong>${sanitize(r.materialLabel)}</strong></td></tr>
+          <tr><td>Takyta</td><td class="val-cell">${r.area} m²</td></tr>
+          <tr><td>Gavel</td><td class="val-cell">${r.gavel} m</td></tr>
+          <tr><td>Nock</td><td class="val-cell">${r.nock} m</td></tr>
+          <tr><td>Takfot</td><td class="val-cell">${r.takfot} m</td></tr>
+          <tr><td>Antal ägare</td><td class="val-cell">${r.owners}</td></tr>
+          ${r.raspontM2 > 0 ? `<tr><td>Råspont</td><td class="val-cell">${r.raspontM2} m²</td></tr>` : ''}
+          ${r.asbestCost > 0 ? `<tr style="color:var(--danger);"><td>Asbestsanering</td><td class="val-cell">Ingår</td></tr>` : ''}
+        </table></div>
+      </div>`;
+
+      // ── MATERIAL SPEC (quantities, not costs) ──
+      h += `<div class="result-card">
+        <div class="result-header"><h3>Materialspecifikation</h3></div>
+        <div class="result-body"><table class="breakdown-table">
+          <thead><tr><th>Material</th><th class="val-cell">Mängd</th></tr></thead><tbody>`;
+      for (const item of r.materialSpec) {
+        h += `<tr><td>${sanitize(item.label)}</td><td class="val-cell">${item.qty} ${sanitize(item.unit)}</td></tr>`;
+      }
+      h += `</tbody></table></div></div>`;
+
+      // ── LABOR (days + workers, no cost column) ──
+      h += `<div class="result-card">
+        <div class="result-header"><h3>Arbetsmoment (${r.totalLaborDays} arbetsdagar)</h3></div>
+        <div class="result-body"><table class="breakdown-table">
+          <thead><tr><th>Moment</th><th class="val-cell">Dagar</th><th class="val-cell">Antal arbetare</th></tr></thead><tbody>`;
+      for (const ph of r.laborPhases) {
+        h += `<tr><td>${sanitize(ph.label)}</td><td class="val-cell">${ph.days}</td><td class="val-cell">${ph.workers}</td></tr>`;
+      }
+      h += `<tr class="sub-total"><td>Totalt</td><td class="val-cell">${r.totalLaborDays}</td><td class="val-cell">2</td></tr>`;
+      h += `</tbody></table></div></div>`;
+
+      // ── PRICING ──
+      h += `<div class="result-card">
+        <div class="result-header"><h3>Prisberäkning</h3></div>
+        <div class="result-body"><table class="breakdown-table">
+          <tr><td>Materialkostnad</td><td class="val-cell">${kr(r.materialPris)}</td></tr>
+          <tr><td>Arbetskostnad</td><td class="val-cell">${kr(r.arbetePris)}</td></tr>
+          <tr><td>Övriga kostnader (container, frakt, drivmedel, ställning)</td><td class="val-cell">${kr(r.övrigtPris)}</td></tr>
+          <tr><td>Pris exkl. moms</td><td class="val-cell">${kr(r.exMoms)}</td></tr>
+          <tr><td>Moms (25%)</td><td class="val-cell">${kr(r.moms)}</td></tr>
+          <tr class="total-row"><td>Totalt inkl. moms</td><td class="val-cell">${kr(r.totalInklMoms)}</td></tr>
+          <tr><td>Arbetskostnad inkl. moms (underlag för ROT)</td><td class="val-cell">${kr(r.arbeteInklMoms)}</td></tr>
+          <tr style="color:var(--blue);"><td>ROT-avdrag (30%, max ${kr(r.owners === 2 ? 100000 : 50000)})</td><td class="val-cell">−${kr(r.rotAvdrag)}</td></tr>
+          <tr class="total-row"><td>Att betala efter ROT</td><td class="val-cell">${kr(r.attBetala)}</td></tr>
+        </table></div>
+      </div>`;
+
+      // ── DISCLAIMER ──
+      h += `<div class="disclaimer">
+        <strong>Observera:</strong> Denna prisuppskattning är baserad på normalförhållanden och standardpriser.
+        Slutpriset kan variera beroende på faktorer som takytans skick, tillgänglighet, transportavstånd
+        och eventuella oförutsedda arbeten. En besiktning av taket krävs för att fastställa ett exakt pris.
+        Alla priser inkluderar material och arbete. ROT-avdrag gäller under förutsättning att villkoren uppfylls.
+      </div>`;
+
+      // ── CTA ──
+      h += `<div class="cta-box">
+        <h3>Redo att gå vidare?</h3>
+        <p>Boka en kostnadsfri besiktning så ger vi dig ett fast pris baserat på ditt tak.</p>
+        <a href="tel:0733451263" class="cta-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          Ring oss: 073-345 1263
+        </a>
+      </div>`;
+
+      h += `<div class="nav-buttons">
+        <button class="btn-prev" onclick="goStep(1)">← Gör en ny beräkning</button>
+        <div></div>
+      </div>`;
+
+      out.innerHTML = h;
+    }
+
+    function sanitize(s) {
+      const d = document.createElement('div');
+      d.textContent = String(s);
+      return d.innerHTML;
+    }
+  </script>
+</body>
+</html>

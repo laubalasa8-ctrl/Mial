@@ -2145,6 +2145,22 @@ document.addEventListener('DOMContentLoaded', function() {
   var next = wrap.querySelector('.articles-arrow--next');
   if (!slider || !prev || !next) return;
 
+  // Keep article card destinations consistent across all pages.
+  var canonicalArticleHrefs = [
+    'artikel-takbyte.html',
+    'artikel-solceller.html',
+    'artikel-fasad.html',
+    'artikel-bandtackning.html',
+    'artikel-platslageri.html',
+    'artikel-takpanneplat.html',
+  ];
+  var cards = slider.querySelectorAll('.article-card');
+  cards.forEach(function(card, index) {
+    if (canonicalArticleHrefs[index]) {
+      card.setAttribute('href', canonicalArticleHrefs[index]);
+    }
+  });
+
   function getScrollAmount() {
     var card = slider.querySelector('.article-card');
     if (!card) return 300;

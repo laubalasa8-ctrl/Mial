@@ -1706,119 +1706,79 @@
         return;
       }
       const r = window._lastCalcResult;
-      if (!r) {
+      const resultSection = document.querySelector('.calc-section[data-section="5"]');
+      const resultOutput = document.getElementById('result-output');
+
+      if (!r || !resultSection || !resultOutput || !resultOutput.innerHTML.trim()) {
         alert('Ingen beräkning att ladda ner. Gör en beräkning först.');
         return;
       }
 
-      // Style constants for fully inlined PDF content
-      const tbl = 'width:100%;border-collapse:collapse;font-size:13px;';
-      const td = 'padding:7px 4px;border-bottom:1px solid #f0f0f0;';
-      const vd = td + 'text-align:right;font-weight:600;';
-      const card = 'border:1px solid #e0e0e0;border-radius:12px;overflow:hidden;margin-bottom:16px;page-break-inside:avoid;';
-      const hdr = 'background:#f5f7fa;padding:10px 20px;border-bottom:1px solid #e0e0e0;';
-      const h3s = 'font-size:14px;font-weight:700;margin:0;';
-      const bdy = 'padding:12px 20px;';
-      const tot = td + 'font-weight:700;font-size:14px;border-top:2px solid #111;padding-top:10px;';
-      const totR = tot + 'text-align:right;';
-      const sub = td + 'font-weight:600;border-top:1px solid #ccc;';
-      const subR = sub + 'text-align:right;';
-
-      let c = '';
-
-      // ── HEADER ──
-      c += '<div style="background:linear-gradient(135deg,#0b1628,#162744);padding:28px 32px;border-radius:12px;margin-bottom:24px;text-align:center;">';
-      c += '<div style="font-size:13px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:6px;">Ferotect AB</div>';
-      c += '<div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px;">Prisuppskattning – Takbyte</div>';
-      c += '<div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:6px;">' + new Date().toLocaleDateString('sv-SE') + '</div>';
-      c += '</div>';
-
-      // ── PRICE HERO ──
-      c += '<div style="background:linear-gradient(135deg,#0b1628,#162744);border-radius:12px;padding:24px 32px;text-align:center;margin-bottom:20px;">';
-      c += '<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:8px;">Uppskattat pris inkl. moms</div>';
-      c += '<div style="font-size:36px;font-weight:800;color:#fff;letter-spacing:-1px;margin-bottom:6px;">' + kr(r.totalInklMoms) + '</div>';
-      c += '<div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:10px;">exkl. moms: ' + kr(r.exMoms) + '</div>';
-      c += '<div style="display:inline-block;background:rgba(25,168,255,0.15);border:1px solid rgba(25,168,255,0.3);border-radius:8px;padding:6px 16px;font-size:13px;color:#19A8FF;">';
-      c += 'ROT-avdrag: −' + kr(r.rotAvdrag) + ' → <strong>Att betala: ' + kr(r.attBetala) + '</strong></div>';
-      c += '</div>';
-
-      // ── SUMMARY ──
-      c += '<div style="' + card + '"><div style="' + hdr + '"><h3 style="' + h3s + '">Sammanfattning</h3></div>';
-      c += '<div style="' + bdy + '"><table style="' + tbl + '">';
-      c += '<tr><td style="' + td + '">Takmaterial</td><td style="' + vd + '"><strong>' + sanitize(r.materialLabel) + '</strong></td></tr>';
-      c += '<tr><td style="' + td + '">Takyta</td><td style="' + vd + '">' + r.area + ' m²</td></tr>';
-      c += '<tr><td style="' + td + '">Gavel</td><td style="' + vd + '">' + r.gavel + ' m</td></tr>';
-      c += '<tr><td style="' + td + '">Nock</td><td style="' + vd + '">' + r.nock + ' m</td></tr>';
-      c += '<tr><td style="' + td + '">Takfot</td><td style="' + vd + '">' + r.takfot + ' m</td></tr>';
-      c += '<tr><td style="' + td + '">Antal ägare</td><td style="' + vd + '">' + r.owners + '</td></tr>';
-      if (r.raspontM2 > 0) c += '<tr><td style="' + td + '">Råspont</td><td style="' + vd + '">' + r.raspontM2 + ' m²</td></tr>';
-      if (r.asbestCost > 0) c += '<tr><td style="' + td + 'color:#dc2626;">Asbestsanering</td><td style="' + vd + 'color:#dc2626;">Ingår</td></tr>';
-      c += '</table></div></div>';
-
-      // ── MATERIAL SPEC ──
-      c += '<div style="' + card + '"><div style="' + hdr + '"><h3 style="' + h3s + '">Materialspecifikation</h3></div>';
-      c += '<div style="' + bdy + '"><table style="' + tbl + '">';
-      c += '<thead><tr><th style="' + td + 'text-align:left;">Material</th><th style="' + vd + '">Mängd</th></tr></thead><tbody>';
-      for (const item of r.materialSpec) {
-        c += '<tr><td style="' + td + '">' + sanitize(item.label) + '</td><td style="' + vd + '">' + item.qty + ' ' + sanitize(item.unit) + '</td></tr>';
+      const btn = document.querySelector('.calc-section[data-section="5"] .btn-next[onclick="downloadPDF()"]');
+      const btnOriginalHtml = btn ? btn.innerHTML : '';
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = 'Skapar PDF...';
       }
-      c += '</tbody></table></div></div>';
 
-      // ── LABOR ──
-      c += '<div style="' + card + '"><div style="' + hdr + '"><h3 style="' + h3s + '">Arbetsmoment (' + r.totalLaborDays + ' arbetsdagar)</h3></div>';
-      c += '<div style="' + bdy + '"><table style="' + tbl + '">';
-      c += '<thead><tr><th style="' + td + 'text-align:left;">Moment</th><th style="' + vd + '">Dagar</th><th style="' + vd + '">Antal arbetare</th></tr></thead><tbody>';
-      for (const ph of r.laborPhases) {
-        c += '<tr><td style="' + td + '">' + sanitize(ph.label) + '</td><td style="' + vd + '">' + ph.days + '</td><td style="' + vd + '">' + ph.workers + '</td></tr>';
-      }
-      c += '<tr><td style="' + sub + '">Totalt</td><td style="' + subR + '">' + r.totalLaborDays + '</td><td style="' + subR + '">2</td></tr>';
-      c += '</tbody></table></div></div>';
+      // Clone what's currently displayed so the PDF matches the result view.
+      // A4 width: 210mm, with 8mm margins = 194mm usable = ~730px at 96dpi
+      const staging = document.createElement('div');
+      staging.style.cssText = 'position:fixed;left:-10000px;top:0;width:730px;background:#fff;padding:0;margin:0;z-index:999999;';
 
-      // ── PRICING ──
-      c += '<div style="' + card + '"><div style="' + hdr + '"><h3 style="' + h3s + '">Prisberäkning</h3></div>';
-      c += '<div style="' + bdy + '"><table style="' + tbl + '">';
-      c += '<tr><td style="' + td + '">Materialkostnad</td><td style="' + vd + '">' + kr(r.materialPris) + '</td></tr>';
-      c += '<tr><td style="' + td + '">Arbetskostnad</td><td style="' + vd + '">' + kr(r.arbetePris) + '</td></tr>';
-      c += '<tr><td style="' + td + '">Övriga kostnader (container, drivmedel, ställning)</td><td style="' + vd + '">' + kr(r.övrigtPris) + '</td></tr>';
-      c += '<tr><td style="' + td + '">Pris exkl. moms</td><td style="' + vd + '">' + kr(r.exMoms) + '</td></tr>';
-      c += '<tr><td style="' + td + '">Moms (25%)</td><td style="' + vd + '">' + kr(r.moms) + '</td></tr>';
-      c += '<tr><td style="' + tot + '">Totalt inkl. moms</td><td style="' + totR + '">' + kr(r.totalInklMoms) + '</td></tr>';
-      c += '<tr><td style="' + td + '">Arbetskostnad inkl. moms (underlag för ROT)</td><td style="' + vd + '">' + kr(r.rotBase) + '</td></tr>';
-      c += '<tr><td style="' + td + 'color:#19A8FF;">ROT-avdrag (30%, max ' + kr(r.owners === 2 ? 100000 : 50000) + ')</td><td style="' + vd + 'color:#19A8FF;">−' + kr(r.rotAvdrag) + '</td></tr>';
-      c += '<tr><td style="' + tot + '">Att betala efter ROT</td><td style="' + totR + '">' + kr(r.attBetala) + '</td></tr>';
-      c += '</table></div></div>';
+      const clone = resultSection.cloneNode(true);
+      clone.style.width = '100%';
+      clone.style.maxWidth = '100%';
+      clone.style.margin = '0';
+      clone.style.padding = '16px';
+      clone.style.background = '#fff';
+      clone.style.color = '#111';
+      clone.style.fontSize = '13px';
+      clone.style.boxSizing = 'border-box';
 
-      // ── DISCLAIMER ──
-      c += '<div style="background:#f9f9f9;border:1px solid #e0e0e0;border-radius:10px;padding:14px 20px;font-size:11px;color:#666;line-height:1.6;margin-top:20px;page-break-inside:avoid;">';
-      c += '<strong style="color:#78350f;">Observera:</strong> Denna prisuppskattning är baserad på normalförhållanden och standardpriser. ';
-      c += 'Slutpriset kan variera beroende på faktorer som takytans skick, tillgänglighet, transportavstånd ';
-      c += 'och eventuella oförutsedda arbeten. En besiktning av taket krävs för att fastställa ett exakt pris. ';
-      c += 'Alla priser inkluderar material och arbete. ROT-avdrag gäller under förutsättning att villkoren uppfylls.</div>';
+      // Scale down large text elements for better fit
+      clone.querySelectorAll('h1, h2, h3, h4').forEach(function(heading) {
+        heading.style.fontSize = 'smaller';
+        heading.style.marginTop = '8px';
+        heading.style.marginBottom = '8px';
+      });
 
-      // ── FOOTER ──
-      c += '<div style="text-align:center;margin-top:24px;padding-top:12px;border-top:1px solid #e0e0e0;font-size:10px;color:#999;">';
-      c += 'Ferotect AB · 073-345 1263 · hej@ferotect.se · ferotect.se</div>';
+      // Hide buttons
+      clone.querySelectorAll('button').forEach(function(button) {
+        button.style.display = 'none';
+      });
 
-      // Create container at document origin (not off-screen — html2canvas needs visible coordinates)
-      const wrap = document.createElement('div');
-      wrap.style.cssText = 'position:fixed;left:0;top:0;width:700px;background:#fff;padding:24px;margin:0;font-family:Inter,system-ui,sans-serif;color:#111;z-index:-1;';
-      wrap.innerHTML = c;
-      document.body.appendChild(wrap);
+      staging.appendChild(clone);
+      document.body.appendChild(staging);
 
       const opt = {
-        margin: [12, 14, 12, 14],
+        margin: [8, 8, 8, 8],
         filename: 'Ferotect-prisuppskattning.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true, scrollY: 0, windowWidth: 700 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          scrollY: 0,
+          windowWidth: 730,
+          backgroundColor: '#ffffff',
+        },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        pagebreak: { mode: ['avoid-all', 'css'] }
+        pagebreak: { mode: ['css', 'legacy'] },
       };
 
-      html2pdf().set(opt).from(wrap).save().then(function() {
-        document.body.removeChild(wrap);
+      html2pdf().set(opt).from(clone).save().then(function() {
+        document.body.removeChild(staging);
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = btnOriginalHtml;
+        }
       }).catch(function(err) {
         console.error('PDF generation failed:', err);
-        try { document.body.removeChild(wrap); } catch(e) {}
+        try { document.body.removeChild(staging); } catch (e) {}
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = btnOriginalHtml;
+        }
         alert('Kunde inte skapa PDF. Försök igen.');
       });
     }
