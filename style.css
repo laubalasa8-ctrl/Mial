@@ -679,6 +679,12 @@ header .nav-cta-btn { transition: opacity 0.3s ease, width 0.3s ease, padding 0.
   transform: translateY(-50%);
   color: var(--blue);
 }
+.mobile-menu-calc::after {
+  content: '';
+  width: 20px;
+  height: 1px;
+  flex-shrink: 0;
+}
 .mobile-menu-calc:hover svg {
   color: #fff;
 }
@@ -7398,6 +7404,12 @@ header.scrolled .hamburger span { background: #111; box-shadow: 0 1px 4px rgba(0
     left: 1rem;
     top: 50%;
     transform: translateY(-50%);
+  }
+  .btn-calc::after {
+    content: '';
+    width: 16px;
+    height: 1px;
+    flex-shrink: 0;
   }
   .btn-calc:hover svg {
     transform: translateY(-50%) rotate(12deg) scale(1.15);
