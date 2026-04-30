@@ -32,7 +32,7 @@ body.takpannor-page .topbar { background: url('tak2.jpg') fixed center/cover no-
 body.takpannor-page .topbar-contact-item { background: transparent; border: 1px solid rgba(25,168,255,0.2); }
 body.fasad-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('fasad1.jpg'); }
 body.platslageri-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('Plat1.jpg'); }
-body.terms-body { background: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat2.jpg') center/cover no-repeat fixed; }
+body.terms-body { background: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat11.jpg') center/cover no-repeat fixed; }
 body.privacy-body { background: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat11.jpg') center/cover no-repeat fixed; }
 body.terms-body .topbar,
 body.privacy-body .topbar { background: transparent; }
@@ -644,34 +644,43 @@ header .nav-cta-btn { transition: opacity 0.3s ease, width 0.3s ease, padding 0.
 .mobile-menu-calc {
   display: flex !important;
   align-items: center;
-  gap: 0.8rem;
-  padding: 1.1rem 1.5rem !important;
-  margin: 0 !important;
+  justify-content: center !important;
+  gap: 0.7rem;
+  padding: 1rem 1.35rem !important;
+  margin: 1rem 1.5rem 0 !important;
   font-size: 1.02rem !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   color: var(--blue) !important;
-  background: rgba(25,168,255,0.06) !important;
-  border: none !important;
-  border-radius: 0 !important;
-  border-top: 1px solid rgba(25,168,255,0.1) !important;
-  box-shadow: none !important;
+  background: rgba(25,168,255,0.12) !important;
+  border: 2px solid rgba(25,168,255,0.9) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 10px 24px rgba(25,168,255,0.12) !important;
   animation: none !important;
-  text-align: left !important;
-  justify-content: flex-start !important;
+  text-align: center !important;
+  line-height: 1.2;
+  position: relative;
+  padding-left: 2.9rem !important;
+  padding-right: 2.9rem !important;
   letter-spacing: -0.3px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .mobile-menu-calc:hover {
-  transform: none !important;
+  transform: translateY(-2px) !important;
   color: #fff !important;
-  background: rgba(25,168,255,0.15) !important;
-  padding-left: 1.8rem !important;
+  background: rgba(25,168,255,0.2) !important;
+  box-shadow: 0 16px 30px rgba(25,168,255,0.2) !important;
 }
 .mobile-menu-calc svg {
   width: 20px;
   height: 20px;
-  flex-shrink: 0;
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
   color: var(--blue);
+}
+.mobile-menu-calc:hover svg {
+  color: #fff;
 }
 
 /* Desktop: index-page topbar/header share hero bg for seamless split-screen */
@@ -5282,6 +5291,12 @@ textarea { resize: vertical; min-height: 120px; }
 .contact-form-card select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.6)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
 .contact-form-card select option { background: #1a2d4a; color: #fff; }
 .contact-form-card textarea { min-height: 110px; resize: vertical; }
+.form-field-hint {
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.62);
+}
 .contact-form-card .btn-primary { width: 100%; padding: 1.1rem 2rem; font-size: 1.05rem; font-weight: 700; border-radius: 14px; margin-top: 0.8rem; background: linear-gradient(135deg, var(--blue), #0088CC); border: none; box-shadow: 0 10px 30px rgba(25,168,255,0.35); transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1); letter-spacing: -0.3px; }
 .contact-form-card .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(25,168,255,0.45); }
 .contact-image-side { position: relative; border-radius: 28px; overflow: hidden; min-height: 550px; display: block; box-shadow: 0 35px 80px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1); border: 1px solid rgba(25,168,255,0.12); }
@@ -7370,6 +7385,23 @@ header.scrolled .hamburger span { background: #111; box-shadow: 0 1px 4px rgba(0
   .hero-lead { font-size: 0.85rem; line-height: 1.65; margin-bottom: 1.5rem; font-weight: 500; }
   .hero-cta-row { justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0; display: none; }
   .hero-cta-row .btn-ghost { display: none; }
+  .btn-calc {
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+    position: relative;
+    padding-left: 2.6rem;
+    padding-right: 2.6rem;
+  }
+  .btn-calc svg {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .btn-calc:hover svg {
+    transform: translateY(-50%) rotate(12deg) scale(1.15);
+  }
   .hero-note { margin-top: 1.5rem; font-size: 0.8rem; line-height: 1.6; opacity: 0.95; }
   .hero-note::before { content: 'Kontakta oss idag'; display: block; background: linear-gradient(135deg, #19A8FF 0%, #0088CC 100%); color: white; padding: 0.8rem 1.5rem; border-radius: 10px; font-weight: 700; font-size: 0.9rem; margin-bottom: 1.2rem; cursor: pointer; transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); box-shadow: 0 8px 24px rgba(25,168,255,0.35); letter-spacing: -0.3px; text-decoration: none; }
   .hero-note:hover::before { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(25,168,255,0.45); background: linear-gradient(135deg, #0d9cff 0%, #0077bb 100%); }
@@ -12302,13 +12334,44 @@ a.plat-showcase-card:hover .plat-showcase-arrow svg {
 
 @media (max-width: 600px) {
   .skane-map-section {
-    padding: 4rem 1.2rem 3rem;
+    padding: 4rem 1rem 3rem;
   }
   .skane-map-container {
-    padding: 1.2rem;
+    padding: 0.9rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding-inline: 1rem;
+  }
+  .skane-svg {
+    width: 680px;
+    max-width: none;
+  }
+  .skane-label {
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .skane-pin-dot {
+    stroke-width: 4;
+  }
+  .skane-pin-home .skane-pin-dot {
+    stroke-width: 4.5;
+  }
+  .skane-tooltip-city {
+    font-size: 14px;
+  }
+  .skane-map-info {
+    gap: 1rem;
   }
   .skane-map-info-item {
     padding: 1rem 1.1rem;
+  }
+  .skane-map-info-item strong {
+    font-size: 0.98rem;
+  }
+  .skane-map-info-item p {
+    font-size: 0.88rem;
+    line-height: 1.6;
   }
   .skane-map-title {
     font-size: 1.6rem;
@@ -26366,10 +26429,7 @@ body.article-page header {
 body.terms-body .topbar,
 body.terms-body header,
 body.terms-body .terms-hero {
-  background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat2.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: transparent !important;
 }
 
 /* Article cards: force consistent left-to-right arrow direction on all pages */
@@ -26390,10 +26450,10 @@ body.terms-body .terms-hero {
   body.terms-body .topbar,
   body.terms-body header,
   body.terms-body .terms-hero {
-    background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat2.jpg') !important;
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    background-attachment: scroll !important;
+    background: transparent !important;
+  }
+  body.terms-body {
+    background-attachment: scroll;
+    background-position: center top;
   }
 }

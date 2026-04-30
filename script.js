@@ -155,14 +155,18 @@ if (hamburgerBtn && mobileMenu) {
     function show(e) {
       if (!tooltip) return;
       var city = pin.getAttribute('data-city');
-      var type = pin.getAttribute('data-type');
       ttCity.textContent = city;
-      ttType.textContent = type;
+      if (ttType) {
+        ttType.textContent = '';
+        ttType.style.display = 'none';
+      }
       var dot = pin.querySelector('.skane-pin-dot');
       var cx = parseFloat(dot.getAttribute('cx'));
       var cy = parseFloat(dot.getAttribute('cy'));
-      var bw = parseFloat(ttBg.getAttribute('width'));
-      tooltip.setAttribute('transform', 'translate(' + (cx - bw / 2) + ',' + (cy - 68) + ')');
+      var tooltipWidth = Math.max(104, city.length * 8 + 32);
+      ttBg.setAttribute('width', tooltipWidth);
+      ttBg.setAttribute('height', 40);
+      tooltip.setAttribute('transform', 'translate(' + (cx - tooltipWidth / 2) + ',' + (cy - 54) + ')');
       tooltip.style.display = '';
     }
     function hide() { if (tooltip) tooltip.style.display = 'none'; }
@@ -669,45 +673,133 @@ document.addEventListener('DOMContentLoaded', function() {
   initCookieBanner();
 });
 
-// ===== FORM SUBMISSION =====
-const form = document.querySelector('form');
-if (form) {
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Collect form data
-    const formData = new FormData(form);
-    const data = {
-      name: formData.get('name'),
-      phone: formData.get('phone'),
-      email: formData.get('email'),
-      address: formData.get('address'),
-      service: formData.get('service'),
-      message: formData.get('message'),
-      timestamp: new Date().toLocaleString('sv-SE')
-    };
-    
-    // Send via fetch to FormSubmit
-    fetch('https://formsubmit.co/ajax/laubalasa8@gmail.com', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(json => {
-      alert('Tack för din förfrågan! Vi återkommer inom 1 arbetsdag.');
-      form.reset();
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('Tack för din förfrågan! Vi återkommer inom 1 arbetsdag.');
-      form.reset();
+// ===== CONTACT FORM =====
+const serviceCopy = {
+  default: {
+    placeholder: 'Beskriv vad du vill ha hjälp med, ungefärlig omfattning och sådant som är bra för oss att känna till.',
+    hint: 'Välj gärna tjänst först så anpassar vi vägledningen efter just ditt projekt.'
+  },
+  takbyte: {
+    placeholder: 'Skriv gärna taktyp, ungefärlig takyta, takets ålder, eventuella läckage/fukt och om du vill byta hela taket eller en del.',
+    hint: 'Bra att nämna: taktyp, ungefärlig yta, takets skick och om du vill byta hela taket eller bara en del.'
+  },
+  solceller: {
+    placeholder: 'Skriv gärna taktyp, väderstreck, om taket är fritt från skuggning, ungefärlig elförbrukning och om du vill ha batterilagring.',
+    hint: 'Bra att nämna: takets väderstreck, eventuell skuggning, din ungefärliga elförbrukning och om du är intresserad av batteri.'
+  },
+  platslageri: {
+    placeholder: 'Beskriv vilka plåtdetaljer det gäller, till exempel hängrännor, stuprör, beslag, skorsten eller andra takdetaljer, samt vad som behöver åtgärdas.',
+    hint: 'Bra att nämna: vilka plåtdetaljer som berörs, om det läcker och om du behöver reparation eller nytt montage.'
+  },
+  fasad: {
+    placeholder: 'Beskriv gärna fasadtyp, ungefärlig yta, nuvarande skick, om det finns rötskador/fukt och om du vill renovera, byta panel eller uppgradera utseendet.',
+    hint: 'Bra att nämna: fasadmaterial, skador, ungefärlig yta och om du vill renovera befintligt eller byta till nytt.'
+  },
+  annat: {
+    placeholder: 'Beskriv så tydligt du kan vad du vill ha hjälp med, var fastigheten ligger och vad du vill uppnå, så återkommer vi med rätt upplägg.',
+    hint: 'Skriv kort vad projektet gäller, var det ligger och vad du vill uppnå, så guidar vi dig vidare.'
+  }
+};
+
+function initContactRequestForm() {
+  const form = document.querySelector('.contact-request-form');
+  if (!form) return;
+
+  const serviceField = form.querySelector('#service');
+  const messageField = form.querySelector('#message');
+  const messageHelp = form.querySelector('#message-help');
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  function applyServiceCopy(serviceValue) {
+    if (!messageField) return;
+    const content = serviceCopy[serviceValue] || serviceCopy.default;
+    messageField.placeholder = content.placeholder;
+    if (messageHelp) {
+      messageHelp.textContent = content.hint;
+    }
+  }
+
+  if (serviceField) {
+    serviceField.addEventListener('change', function() {
+      applyServiceCopy(serviceField.value);
     });
+    applyServiceCopy(serviceField.value);
+  }
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const nameField = form.querySelector('#name');
+    const phoneField = form.querySelector('#phone');
+    const emailField = form.querySelector('#email');
+    const addressField = form.querySelector('#address');
+
+    const data = {
+      name: nameField ? nameField.value.trim() : '',
+      phone: phoneField ? phoneField.value.trim() : '',
+      email: emailField ? emailField.value.trim() : '',
+      address: addressField ? addressField.value.trim() : '',
+      service: serviceField ? serviceField.value : '',
+      message: messageField ? messageField.value.trim() : ''
+    };
+
+    if (!data.name || !data.phone || !data.email || !data.service || !data.message) {
+      alert('Fyll i namn, telefon, e-post, tjänst och en kort projektbeskrivning innan du skickar.');
+      return;
+    }
+
+    const serviceLabel = serviceField ? serviceField.options[serviceField.selectedIndex].text : data.service;
+    const payload = {
+      name: data.name,
+      phone: data.phone,
+      email: data.email,
+      address: data.address || 'Ej angiven',
+      service: serviceLabel,
+      message: data.message,
+      timestamp: new Date().toLocaleString('sv-SE'),
+      source: window.location.href,
+      _subject: 'Ny förfrågan från ferotect.se',
+      _replyto: data.email,
+      _captcha: 'false'
+    };
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Skickar...';
+    }
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/laubalasa8@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error('FormSubmit request failed');
+      }
+
+      alert('Tack för din förfrågan! Den har skickats till laubalasa8@gmail.com och vi återkommer inom 1 arbetsdag.');
+      form.reset();
+      applyServiceCopy('');
+    } catch (error) {
+      console.error('Contact form submission failed:', error);
+      alert('Det gick inte att skicka formuläret just nu. Mejla oss gärna direkt på laubalasa8@gmail.com så hjälper vi dig vidare.');
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Skicka förfrågan →';
+      }
+    }
   });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  initContactRequestForm();
+});
 
 // ===== FADE IN OBSERVER =====
 const fadeElems = document.querySelectorAll('.fade-in');
