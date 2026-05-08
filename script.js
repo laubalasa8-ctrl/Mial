@@ -874,8 +874,8 @@ if (header) {
 // ===== PANNMODELLER & FÄRGER INTERACTIVE SELECTOR =====
 const pannmodellerData = {
   spansk: {
-    name: 'Dubbelkupig Takpanna',
-    description: 'Ett säkert val som håller över tid. Den dubbelkupiga betongpannan kombinerar klassisk form med modern funktion. De mjuka kuporna ger taket ett levande uttryck samtidigt som konstruktionen leder bort regn och smältvatten effektivt. Ett pålitligt och stilrent val som passar lika bra på traditionella villor som på moderna bostäder.',
+    name: 'Dubbelkupig takpanna',
+    description: 'Dubbelkupigt är ofta det trygga standardvalet. Formen leder bort vatten bra och ger ett uttryck som passar många villor i Skåne, både äldre hus och mer uppdaterade fasader.',
     image: 'clara1.png',
     färger: [
       { name: 'Svart Granit', color: '#2a2a2a', ral: 'RAL 9005', desc: 'Elegant svart med granit-finish. Modernt och tidlöst val som passar många husstil.' },
@@ -890,8 +890,8 @@ const pannmodellerData = {
     ]
   },
   nederländsk: {
-    name: 'Enkupig Takpanna',
-    description: 'Enkupig takpanna – modernt och stilrent. Den enkupiga takpannan har en rak och enkel form som ger huset ett modernt utseende. Den passar dig som vill ha ett stilrent tak med tydliga linjer och ett lugnt helhetsintryck. Ett populärt val vid nybyggen och moderna hus.',
+    name: 'Enkupig takpanna',
+    description: 'Enkupigt ger ett rakare takfall och ett lugnare uttryck. Det passar ofta bra när huset redan har tydliga linjer och du vill att taket ska kännas mer återhållet än markerat.',
     image: 'clara2.png',
     färger: [
       { name: 'Svart Granit', color: '#2a2a2a', ral: 'RAL 9005', desc: 'Rent och modernt med granit-finish. Perfekt för moderna byggen.' },
@@ -906,8 +906,8 @@ const pannmodellerData = {
     ]
   },
   fransk: {
-    name: 'Lertegel Takpanna',
-    description: 'Lertegelpanna – klassiskt och levande tak. Lertegelpannor ger huset ett tidlöst och naturligt utseende. Den varma färgen och de mjuka formerna gör att taket får liv och karaktär som bara blir finare med åren. Ett självklart val för dig som vill ha ett klassiskt, gediget och mer exklusivt tak.',
+    name: 'Lertegelpanna',
+    description: 'Lertegel väljs ofta när huset tjänar på ett mer traditionellt uttryck. Materialet får liv med åren och passar särskilt bra på äldre villor och hus där man vill behålla den ursprungliga känslan.',
     image: 'clara3.jpg',
     färger: [
       { name: 'Svart Granit', color: '#2a2a2a', ral: 'RAL 9005', desc: 'Klassisk svart granit för ultimate elegans.' },
