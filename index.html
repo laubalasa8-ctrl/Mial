@@ -695,8 +695,8 @@
 
       <div class="contact-ferotect">
         <div class="contact-form-card">
-          <h3>Beskriv ditt projekt</h3>
-          <p class="form-subtitle">Skriv några rader om taket eller fasaden så återkommer vi med nästa steg.</p>
+          <h3>Boka en kostnadsfri genomgång</h3>
+          <p class="form-subtitle">Vi ringer upp, ställer några frågor och bokar in ett besök om det känns relevant. Ingen bindning.</p>
           
           <form class="contact-request-form" novalidate>
             <div class="form-row">
@@ -710,33 +710,21 @@
               </div>
             </div>
 
-            <div class="form-row">
-              <div class="form-group">
-                <label for="email">E-post</label>
-                <input id="email" name="email" type="email" placeholder="din@email.se" required>
-              </div>
-              <div class="form-group">
-                <label for="address">Adress</label>
-                <input id="address" name="address" type="text" placeholder="Gatuadress, ort">
-              </div>
-            </div>
-
             <div class="form-group">
-              <label for="service">Vad behöver du hjälp med?</label>
+              <label for="service">Vad gäller det?</label>
               <select id="service" name="service" required>
                 <option value="">Välj tjänst...</option>
                 <option value="takbyte">Takbyte</option>
                 <option value="solceller">Solceller</option>
                 <option value="platslageri">Plåtslageri</option>
                 <option value="fasad">Fasadarbete</option>
-                <option value="annat">Annat / Osäker</option>
+                <option value="annat">Annat / Vet inte än</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="message">Beskriv ditt projekt</label>
-              <textarea id="message" name="message" placeholder="Beskriv vad du vill ha hjälp med, ungefärlig omfattning och sådant som är bra för oss att känna till." required></textarea>
-              <p class="form-field-hint" id="message-help">Välj gärna tjänst först så anpassar vi vägledningen efter just ditt projekt.</p>
+              <label for="message">Kort beskrivning <span style="font-weight:400;opacity:0.6;">(valfritt)</span></label>
+              <textarea id="message" name="message" placeholder="Berätta gärna kort – typ av tak, ungefärlig storlek, vad du sett eller misstänker. Inget krav."></textarea>
             </div>
 
             <button type="submit" class="btn-primary">Skicka förfrågan →</button>
