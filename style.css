@@ -31,7 +31,7 @@ body.takbyte-page .topbar { background-image: linear-gradient(135deg, rgba(42,54
 body.takpannor-page .topbar { background: url('tak2.jpg') fixed center/cover no-repeat; }
 body.takpannor-page .topbar-contact-item { background: transparent; border: 1px solid rgba(25,168,255,0.2); }
 body.fasad-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('fasad1.jpg'); }
-body.platslageri-page { background: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('Plat1.jpg') center/cover no-repeat fixed; }
+body.platslageri-page { background: linear-gradient(135deg, rgba(30,40,55,0.3), rgba(30,40,55,0.3)), url('Plat1.jpg') center/cover no-repeat fixed; }
 body.platslageri-page .topbar { background: transparent; }
 body.terms-body { background: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat11.jpg') center/cover no-repeat fixed; }
 body.privacy-body { background: linear-gradient(135deg, rgba(42,54,72,0.5), rgba(42,54,72,0.5)), url('plat11.jpg') center/cover no-repeat fixed; }
@@ -8974,7 +8974,7 @@ body:has(.solar-hero) header { background-image: linear-gradient(135deg, rgba(10
   
   .solar-planning { padding: 5rem 1rem; }
   .solar-planning-wrapper { grid-template-columns: 1fr; gap: 2.5rem; }
-  .solar-planning-image { display: none; }
+  .solar-planning-image { height: 260px; }
   .solar-planning-steps::before { left: 29px; }
   .solar-step-circle { width: 60px; height: 60px; font-size: 1.5rem; }
   .solar-step-text h4 { font-size: 1.1rem; }
