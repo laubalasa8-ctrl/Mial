@@ -1,0 +1,21 @@
+{
+  "name": "Ferotect AB",
+  "short_name": "Ferotect",
+  "description": "Takläggare i Skåne – takbyte, takrenovering och plåttak med 10 års garanti.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1280CE",
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
