@@ -7578,7 +7578,7 @@ header.scrolled .hamburger span { background: #111; box-shadow: 0 1px 4px rgba(0
 
 /* ===== SOLCELLER PAGE ===== */
 /* Hero Section */
-.solar-hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: flex-start; overflow: hidden; background-image: linear-gradient(135deg, rgba(42,54,72,0.65), rgba(42,54,72,0.65)), url('money1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; }
+.solar-hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background-image: linear-gradient(135deg, rgba(42,54,72,0.65), rgba(42,54,72,0.65)), url('money1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; }
 body:has(.solar-hero) .topbar { background-image: linear-gradient(135deg, rgba(10,30,46,0.7), rgba(10,30,46,0.5)), url('money1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; }
 body:has(.solar-hero) header { background-image: linear-gradient(135deg, rgba(10,30,46,0.7), rgba(10,30,46,0.5)), url('money1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; }
 .solar-hero-background { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-size: cover; background-position: center right; background-attachment: fixed; z-index: -2; display: none; }

@@ -743,8 +743,8 @@ function initContactRequestForm() {
       message: messageField ? messageField.value.trim() : ''
     };
 
-    if (!data.name || !data.phone || !data.email || !data.service || !data.message) {
-      alert('Fyll i namn, telefon, e-post, tjänst och en kort projektbeskrivning innan du skickar.');
+    if (!data.name || !data.phone || !data.service) {
+      alert('Fyll i namn, telefon och välj tjänst innan du skickar.');
       return;
     }
 
