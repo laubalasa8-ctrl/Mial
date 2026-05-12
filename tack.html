@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+  <meta charset="UTF-8">
+  <title>Tack för din förfrågan | Ferotect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .tack-hero {
+      min-height: 52vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0a1628 0%, #0d1f3c 60%, #0f2748 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 6rem 1.5rem 4rem;
+    }
+    .tack-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(18,128,206,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .tack-hero-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 620px;
+    }
+    .tack-check {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(18,128,206,0.15);
+      border: 2px solid rgba(18,128,206,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.75rem;
+      animation: checkPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes checkPop {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .tack-check svg {
+      color: #1280CE;
+    }
+    .tack-hero-inner h1 {
+      font-size: clamp(1.9rem, 5vw, 2.8rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .tack-hero-inner h1 span {
+      color: #1280CE;
+    }
+    .tack-hero-inner p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+    .tack-hero-inner p strong {
+      color: rgba(255,255,255,0.9);
+    }
+    .tack-info-row {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.75rem;
+    }
+    .tack-info-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50px;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+    }
+    .tack-info-pill svg {
+      color: #1280CE;
+      flex-shrink: 0;
+    }
+    .tack-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .tack-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #1280CE;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.75rem 1.6rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .tack-btn-primary:hover {
+      background: #0f6fb5;
+      transform: translateY(-1px);
+    }
+    .tack-btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.75rem 1.6rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.18);
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .tack-btn-ghost:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-1px);
+    }
+
+    /* Services section */
+    .tack-services {
+      background: var(--bg, #f8f9fb);
+      padding: 4rem 1.5rem 5rem;
+    }
+    .tack-services-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .tack-services-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .tack-services-header h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+      font-weight: 700;
+      color: var(--text, #0d1f3c);
+      margin-bottom: 0.5rem;
+    }
+    .tack-services-header p {
+      color: var(--text-soft, #5a6a80);
+      font-size: 0.97rem;
+    }
+    .tack-services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.25rem;
+    }
+    .tack-service-card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      text-decoration: none;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .tack-service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(18,128,206,0.15);
+    }
+    .tack-service-img {
+      width: 100%;
+      height: 155px;
+      object-fit: cover;
+      display: block;
+    }
+    .tack-service-body {
+      padding: 1.1rem 1.2rem 1.3rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .tack-service-body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text, #0d1f3c);
+      margin-bottom: 0.4rem;
+    }
+    .tack-service-body p {
+      font-size: 0.85rem;
+      color: var(--text-soft, #5a6a80);
+      line-height: 1.5;
+      flex: 1;
+    }
+    .tack-service-cta {
+      margin-top: 0.85rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1280CE;
+    }
+    @media (max-width: 600px) {
+      .tack-actions { flex-direction: column; align-items: stretch; }
+      .tack-btn-primary, .tack-btn-ghost { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a href="tel:0733451263" class="topbar-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        <div>
+          <p class="topbar-label">Ring oss direkt</p>
+          <p class="topbar-value">073-345 1263</p>
+        </div>
+      </a>
+      <a href="mailto:hej@ferotect.se" class="topbar-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <div>
+          <p class="topbar-label">Mejla oss</p>
+          <p class="topbar-value">hej@ferotect.se</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <header>
+    <div class="nav">
+      <div class="nav-left">
+        <a href="/">
+          <img src="Ferotect (1).png" alt="Ferotect logotyp" class="logo-img">
+        </a>
+      </div>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="index#top">Hem</a>
+          <div class="dropdown">
+            <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Tak</button>
+            <div class="dropdown-menu">
+              <a href="takbyte">Takbyte</a>
+              <a href="plattaket">Plåttak</a>
+              <a href="takpannor">Takpannor</a>
+              <a href="takpanneplat">Takpanneplåt</a>
+              <a href="papptak">Papptak</a>
+              <a href="bandtackning">Bandtäckning</a>
+              <a href="korrugerad">Korrugerad plåt</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Solceller</button>
+            <div class="dropdown-menu">
+              <a href="solceller">Solceller</a>
+              <a href="allblack">All Black Paneler</a>
+              <a href="batterilagring">Batterilagring</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Fasader</button>
+            <div class="dropdown-menu">
+              <a href="fasad">Fasad</a>
+              <a href="fasadrenovering-panel">Panelfasad</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Plåtslageri</button>
+            <div class="dropdown-menu">
+              <a href="platslageri">Plåtslageri</a>
+              <a href="takkupor">Takkupor &amp; takfönster</a>
+              <a href="skorsten">Skorsten &amp; avluftningar</a>
+            </div>
+          </div>
+          <a href="index#artiklar">Artiklar</a>
+          <a href="index#contact">Kontakt</a>
+        </div>
+        <a href="index#contact" class="nav-cta-btn">Boka hembesök</a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div id="mobile-menu">
+    <div class="mobile-menu-header">
+      <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Stäng meny">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <ul class="mobile-menu-list">
+      <li><a href="index#top" class="mobile-menu-link">Hem</a></li>
+      <li><a href="takbyte" class="mobile-menu-link">Takbyte</a></li>
+      <li><a href="solceller" class="mobile-menu-link">Solceller</a></li>
+      <li><a href="fasad" class="mobile-menu-link">Fasad</a></li>
+      <li><a href="platslageri" class="mobile-menu-link">Plåtslageri</a></li>
+      <li><a href="index#contact" class="mobile-menu-link mobile-menu-link-contact">Kontakt</a></li>
+    </ul>
+    <a href="index#contact" class="mobile-menu-cta">Boka hembesök</a>
+  </div>
+
+  <main>
+    <!-- Hero tack-sektion -->
+    <section class="tack-hero">
+      <div class="tack-hero-inner">
+        <div class="tack-check">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h1>Tack för din <span>förfrågan!</span></h1>
+        <p>Vi har tagit emot din förfrågan och <strong>återkommer inom 1 dygn</strong> med besked om nästa steg.</p>
+        <p>Har du brådskande frågor är du alltid välkommen att ringa oss direkt på <strong>073-345 1263</strong>.</p>
+
+        <div class="tack-info-row">
+          <div class="tack-info-pill">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Svar inom 1 dygn
+          </div>
+          <div class="tack-info-pill">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Kostnadsfri rådgivning
+          </div>
+          <div class="tack-info-pill">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            10 års garanti
+          </div>
+        </div>
+
+        <div class="tack-actions">
+          <a href="/" class="tack-btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Tillbaka till startsidan
+          </a>
+          <a href="#vara-tjanster" class="tack-btn-ghost">
+            Utforska våra tjänster
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicekort -->
+    <section class="tack-services" id="vara-tjanster">
+      <div class="tack-services-inner">
+        <div class="tack-services-header">
+          <h2>Våra <span style="color:#1280CE">tjänster</span></h2>
+          <p>Medan du väntar på svar — utforska vad vi kan hjälpa dig med.</p>
+        </div>
+        <div class="tack-services-grid">
+          <a href="takbyte" class="tack-service-card">
+            <img src="takbyte.jpg" alt="Takbyte" class="tack-service-img" loading="lazy">
+            <div class="tack-service-body">
+              <h3>Takbyte</h3>
+              <p>Vi byter tak från grunden och går igenom underlag, läkt, beslag och avvattning på vägen.</p>
+              <div class="tack-service-cta">Läs mer →</div>
+            </div>
+          </a>
+          <a href="solceller" class="tack-service-card">
+            <img src="Solceller-tak.jpg" alt="Solceller" class="tack-service-img" loading="lazy">
+            <div class="tack-service-body">
+              <h3>Solceller</h3>
+              <p>Solceller som planeras tillsammans med taket, inte ovanpå ett frågetecken.</p>
+              <div class="tack-service-cta">Läs mer →</div>
+            </div>
+          </a>
+          <a href="fasad" class="tack-service-card">
+            <img src="Fasadbild-ferotect.jpg" alt="Fasad" class="tack-service-img" loading="lazy">
+            <div class="tack-service-body">
+              <h3>Fasad</h3>
+              <p>Vi renoverar panel, puts och fibercement så att huset blir tätt, skyddat och snyggt igen.</p>
+              <div class="tack-service-cta">Läs mer →</div>
+            </div>
+          </a>
+          <a href="platslageri" class="tack-service-card">
+            <img src="Plåtslageri-Ferotect.jpg" alt="Plåtslageri" class="tack-service-img" loading="lazy">
+            <div class="tack-service-body">
+              <h3>Plåtslageri</h3>
+              <p>Vi gör beslag, rännor och genomföringar som får helheten att hålla tätt.</p>
+              <div class="tack-service-cta">Läs mer →</div>
+            </div>
+          </a>
+          <a href="bandtackning" class="tack-service-card">
+            <img src="band1.jpg" alt="Bandtäckning" class="tack-service-img" loading="lazy">
+            <div class="tack-service-body">
+              <h3>Bandtäckning</h3>
+              <p>Stående söm och bandtäckning i zink, koppar eller stål — för tak som håller i generationer.</p>
+              <div class="tack-service-cta">Läs mer →</div>
+            </div>
+          </a>
+          <a href="plattaket" class="tack-service-card">
+            <img src="plat2.jpg" alt="Plåttak" class="tack-service-img" loading="lazy">
+            <div class="tack-service-body">
+              <h3>Plåttak</h3>
+              <p>Plåttak med lång livslängd och lågt underhållsbehov — vi hjälper dig välja rätt system.</p>
+              <div class="tack-service-cta">Läs mer →</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div class="footer-block footer-about">
+          <img src="Ferotect (1).png" alt="Ferotect" class="footer-logo-img">
+          <p class="footer-tagline">Takläggare i Skåne. Takbyten, plåtslageri, fasad och solceller – baserade i Önnestad, verksamma i hela länet.</p>
+        </div>
+        <div class="footer-block footer-info">
+          <h4>Kontakt</h4>
+          <div class="footer-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div>
+              <p class="footer-label">Ring oss</p>
+              <a href="tel:0733451263" class="footer-value">073-345 1263</a>
+            </div>
+          </div>
+          <div class="footer-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div>
+              <p class="footer-label">E-post</p>
+              <a href="mailto:hej@ferotect.se" class="footer-value">hej@ferotect.se</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-block footer-navigation">
+          <h4>Tjänster</h4>
+          <nav class="footer-nav">
+            <a href="takbyte" class="footer-nav-link">Takbyte</a>
+            <a href="solceller" class="footer-nav-link">Solceller</a>
+            <a href="fasad" class="footer-nav-link">Fasad</a>
+            <a href="platslageri" class="footer-nav-link">Plåtslageri</a>
+            <a href="bandtackning" class="footer-nav-link">Bandtäckning</a>
+            <a href="plattaket" class="footer-nav-link">Plåttak</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Ferotect. Alla rättigheter reserverade. &nbsp;&nbsp;|&nbsp;&nbsp; Org.nr: 559585-5114</p>
+        <div class="footer-bottom-links">
+          <a href="integritetspolicy" class="footer-bottom-link">Integritetspolicy</a>
+          <a href="anvandarvillkor" class="footer-bottom-link">Användarvillkor</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -782,7 +782,7 @@ function initContactRequestForm() {
         throw new Error('FormSubmit request failed');
       }
 
-      alert('Tack för din förfrågan! Den har skickats till laubalasa8@gmail.com och vi återkommer inom 1 arbetsdag.');
+      window.location.href = '/tack';
       form.reset();
       applyServiceCopy('');
     } catch (error) {
