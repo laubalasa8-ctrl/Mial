@@ -34,6 +34,7 @@ body.fasad-page .topbar { background-image: linear-gradient(135deg, rgba(42,54,7
 body.platslageri-page { background: linear-gradient(135deg, rgba(30,40,55,0.3), rgba(30,40,55,0.3)), url('Plat1.jpg') center/cover no-repeat fixed; }
 body.platslageri-page .topbar { background: transparent; }
 body.tack-page { background: #f8f9fb; }
+body.tack-page main { max-width: 100%; padding: 0; margin: 0; }
 body.tack-page .topbar { background: #0a1628; border-bottom: none; }
 body.tack-page header { background: #0a1628; border-bottom: none; box-shadow: none; }
 body.tack-page header.scrolled { background: #0a1628; box-shadow: none; }
